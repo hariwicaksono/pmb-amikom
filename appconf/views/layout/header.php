@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
+    <head> 
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,7 +11,10 @@
         <!-- Bootstrap -->
         <link href="<?php echo base_url(); ?>assets/css/bootstrap.min.css" rel="stylesheet">
         <!-- custom css-->
-
+        <link href="<?php echo base_url(); ?>assets/css/theme.css" rel="stylesheet">
+        <link href="<?php echo base_url(); ?>assets/css/index.css" rel="stylesheet">
+        <link href="<?php echo base_url(); ?>assets/offline-js/themes/offline-theme-default.css" rel="stylesheet">
+        <link href="<?php echo base_url(); ?>assets/offline-js/themes/offline-language-english.css" rel="stylesheet">
         <!-- font awesome for icons -->
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
         
@@ -23,6 +26,7 @@
         <script src="<?php echo base_url('assets/js');?>/popper.min.js"></script>   
         <!--bootstrap js plugin-->
         <script src="<?php echo base_url('assets/js');?>/bootstrap.min.js" type="text/javascript"></script>    
+        <script src="<?php echo base_url('assets');?>/offline-js/offline.js" type="text/javascript"></script>   
     </head>
     <!--<script type="text/javascript" language="javascript" src="<?=base_url()?>assets/intro/js/jquery.dataTables.js"></script>-->
     <script type="text/javascript" language="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.9.4/jquery.dataTables.min.js"></script>

@@ -1,0 +1,135 @@
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+
+/*
+| -------------------------------------------------------------------
+| SMILEYS
+| -------------------------------------------------------------------
+| This file contains an array of smileys for use with the emoticon helper.
+| Individual images can be used to replace multiple smileys.  For example:
+| :-) and :) use the same image replacement.
+|
+| Please see user guide for more info:
+| http://codeigniter.com/user_guide/helpers/smiley_helper.html
+|
+*/
+$petik = "'";
+
+$smileys = array(
+
+//	smiley			image name						width	height	alt
+
+        
+        'O:-)'  =>      array('1f607.svg',              '19px', '19px', ''),
+        '0:-)'  =>      array('1f607.svg',              '19px', '19px', ''),
+        '0:)'   =>      array('1f607.svg',              '19px', '19px', ''),
+        'O:)'   =>      array('1f607.svg',              '19px', '19px', ''),
+        'O;-)'  =>      array('1f607.svg',              '19px', '19px', ''),
+        'O=)'   =>      array('1f607.svg',              '19px', '19px', ''),
+        '0;-)'  =>      array('1f607.svg',              '19px', '19px', ''),
+        '>:)'   =>      array('1f606.svg',              '19px', '19px', ''),
+        '>=)'   =>      array('1f608.svg',              '19px', '19px', ''),
+        ':)'	=>	array('1f642.svg',		'19px',	'19px',	''),
+        ':-)'	=>	array('1f642.svg',		'19px',	'19px',	''),
+        '=)'	=>	array('1f642.svg',		'19px',	'19px',	''),
+        '=]'	=>	array('1f601.svg',		'19px',	'19px',	''),
+        ':]'	=>	array('1f601.svg',		'19px',	'19px',	''),
+        ':^)'	=>	array('1f605.svg',		'19px',	'19px',	''),
+        ':^-)'	=>	array('1f605.svg',		'19px',	'19px',	''),
+        '=)'	=>	array('1f605.svg',		'19px',	'19px',	''),
+        ':D'	=>	array('1f603.svg',		'19px',	'19px',	''),
+        ':-D'	=>	array('1f603.svg',		'19px',	'19px',	''),
+        '=D'	=>	array('1f600.svg',		'19px',	'19px',	''),
+        ';*D'	=>	array('1f602.svg',		'19px',	'19px',	''),
+        ';^-D'	=>	array('1f602.svg',		'19px',	'19px',	''),
+        ':^D'	=>	array('1f605.svg',		'19px',	'19px',	''),
+        ':^-D'	=>	array('1f605.svg',		'19px',	'19px',	''),
+        '=^D'	=>	array('1f605.svg',		'19px',	'19px',	''),
+        '>;)'	=>	array('1f606.svg',		'19px',	'19px',	''),
+        '>:-)'	=>	array('1f606.svg',		'19px',	'19px',	''),
+        ';)'	=>	array('1f609.svg',		'19px',	'19px',	''),
+        ';-)'	=>	array('1f609.svg',		'19px',	'19px',	''),
+        '*-)'	=>	array('1f609.svg',		'19px',	'19px',	''),
+        '*)'	=>	array('1f609.svg',		'19px',	'19px',	''),
+        ';-]'	=>	array('1f609.svg',		'19px',	'19px',	''),
+        ';]'	=>	array('1f609.svg',		'19px',	'19px',	''),
+        ';D'	=>	array('1f609.svg',		'19px',	'19px',	''),
+        ';^)'	=>	array('1f609.svg',		'19px',	'19px',	''),
+        ':-(%'  =>      array('1f624.svg',              '19px', '19px', ''),
+        ':(%'   =>      array('1f624.svg',              '19px', '19px', ''),
+        '>:('   =>      array('1f620.svg',              '19px', '19px', ''),
+        '>:-('  =>      array('1f620.svg',              '19px', '19px', ''),
+        ':('	=>	array('1f613.svg',		'19px',	'19px',	''),
+        ':-('	=>	array('1f613.svg',		'19px',	'19px',	''),
+        '=('	=>	array('1f613.svg',		'19px',	'19px',	''),
+        '({})'	=>	array('1f917.svg',		'19px',	'19px',	''),
+        ':*'	=>	array('1f618.svg',		'19px',	'19px',	''),
+        ':-*'	=>	array('1f618.svg',		'19px',	'19px',	''),
+        '=*'	=>	array('1f618.svg',		'19px',	'19px',	''),
+        ':^*'	=>	array('1f618.svg',		'19px',	'19px',	''),
+        '>:P'	=>	array('1f61c.svg',		'19px',	'19px',	''),
+        'X-P'	=>	array('1f61c.svg',		'19px',	'19px',	''),
+        'x-p'	=>	array('1f61c.svg',		'19px',	'19px',	''),
+        '>:['	=>	array('1f61e.svg',		'19px',	'19px',	''),
+        ':('	=>	array('1f61e.svg',		'19px',	'19px',	''),
+        ':-['	=>	array('1f61e.svg',		'19px',	'19px',	''),
+        ':['	=>	array('1f61e.svg',		'19px',	'19px',	''),
+        '=('	=>	array('1f61e.svg',		'19px',	'19px',	''),
+        ':@'	=>	array('1f620.svg',		'19px',	'19px',	''),
+        ';('	=>	array('1f622.svg',		'19px',	'19px',	''),
+        ';-('	=>	array('1f622.svg',		'19px',	'19px',	''),
+        '>.<'	=>	array('1f623.svg',		'19px',	'19px',	''),
+        ':3'	=>	array('1f616.svg',		'19px',	'19px',	''),
+        ':=3'	=>	array('1f616.svg',		'19px',	'19px',	''),
+        'D:'	=>	array('1f628.svg',		'19px',	'19px',	''),
+        '#-)'	=>	array('1f635.svg',		'19px',	'19px',	''),
+        '#)'	=>	array('1f635.svg',		'19px',	'19px',	''),
+        '%-)'	=>	array('1f635.svg',		'19px',	'19px',	''),
+        '%)'	=>	array('1f635.svg',		'19px',	'19px',	''),
+        'X)'	=>	array('1f635.svg',		'19px',	'19px',	''),
+        'X-)'	=>	array('1f635.svg',		'19px',	'19px',	''),
+        'B-)'	=>	array('1f60e.svg',		'19px',	'19px',	''),
+        'B)'	=>	array('1f60e.svg',		'19px',	'19px',	''),
+        '8)'	=>	array('1f60e.svg',		'19px',	'19px',	''),
+        '8-)'	=>	array('1f60e.svg',		'19px',	'19px',	''),
+        'B-D'	=>	array('1f60e.svg',		'19px',	'19px',	''),
+        '8-D'	=>	array('1f60e.svg',		'19px',	'19px',	''),
+        '-_-'	=>	array('1f611.svg',		'19px',	'19px',	''),
+        '-__-'	=>	array('1f611.svg',		'19px',	'19px',	''),
+        '-___-'	=>	array('1f611.svg',		'19px',	'19px',	''),
+        '>:/'	=>	array('1f615.svg',		'19px',	'19px',	''),
+        ':-/'	=>	array('1f615.svg',		'19px',	'19px',	''),
+        ':-.'	=>	array('1f615.svg',		'19px',	'19px',	''),
+        '=/'	=>	array('1f615.svg',		'19px',	'19px',	''),
+        ':L'	=>	array('1f615.svg',		'19px',	'19px',	''),
+        '=L'	=>	array('1f615.svg',		'19px',	'19px',	''),
+        ':P'	=>	array('1f61b.svg',		'19px',	'19px',	''),
+        ':-P'	=>	array('1f61b.svg',		'19px',	'19px',	''),
+        '=P'	=>	array('1f61b.svg',		'19px',	'19px',	''),
+        ':-p'	=>	array('1f61b.svg',		'19px',	'19px',	''),
+        ':p'	=>	array('1f61b.svg',		'19px',	'19px',	''),
+        '=p'	=>	array('1f61b.svg',		'19px',	'19px',	''),
+        ':-b'	=>	array('1f61b.svg',		'19px',	'19px',	''),
+        ':b'	=>	array('1f61b.svg',		'19px',	'19px',	''),
+        'd:'	=>	array('1f61b.svg',		'19px',	'19px',	''),
+        ':$'	=>	array('1f911.svg',		'19px',	'19px',	''),
+        '=$'	=>	array('1f911.svg',		'19px',	'19px',	''),
+        ':-O'	=>	array('1f62e.svg',		'19px',	'19px',	''),
+        ':O'	=>	array('1f62e.svg',		'19px',	'19px',	''),
+        ':-o'	=>	array('1f62e.svg',		'19px',	'19px',	''),
+        ':o'	=>	array('1f62e.svg',		'19px',	'19px',	''),
+        'O_O'	=>	array('1f62e.svg',		'19px',	'19px',	''),
+        '>:O'	=>	array('1f62e.svg',		'19px',	'19px',	''),
+        ':-X'	=>	array('1f636.svg',		'19px',	'19px',	''),
+        ':X'	=>	array('1f636.svg',		'19px',	'19px',	''),
+        ':-#'	=>	array('1f637.svg',		'19px',	'19px',	''),
+        ':#'	=>	array('1f637.svg',		'19px',	'19px',	''),
+        '=X'	=>	array('1f910.svg',		'19px',	'19px',	''),
+        '=x'	=>	array('1f910.svg',		'19px',	'19px',	''),
+        ':x'	=>	array('1f636.svg',		'19px',	'19px',	''),
+        ':-x'	=>	array('1f636.svg',		'19px',	'19px',	''),
+        '%('	=>	array('1f915.svg',		'19px',	'19px',	''),
+        '<3'	=>	array('2764.svg',		'19px',	'19px',	'')
+
+
+);

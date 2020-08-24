@@ -1,0 +1,13 @@
+  RewriteEngine on
+  RewriteBase /pmb-amikom
+  RewriteCond %[REQUEST_URI] ^sysconf*
+  RewriteRule ^(.*)$ /index.php?/$1 [L]
+  RewriteCond %[REQUEST_URI] ^appconf.*
+  RewriteRule ^(.*)$ /index.php?/$1 [L]
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule ^(.*)$ index.php?/$1 [L]
+
+<IfModule !mod_rewrite.c>
+ErrorDucument 404/index.php
+</IfModule>

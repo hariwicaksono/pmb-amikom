@@ -1,88 +1,120 @@
 
-     <!--     
-                <div class="col-sm-12">
-                <br />  
-                    <div class="well wow animated fadeInLeft" style="text-align: justify;">
-                       <h1>PMB <?=$tahun_pmb?> </h1>
-							<p>Selamat Datang di Website Penerimaan Mahasiswa Baru (PMB) UNIVERSITAS AMIKOM PURWOKERTO
-							Melalui Website ini Anda dapat mendapatkan informasi Program Studi, beasiswa, jadwal kegiatan, pendaftaran secara online dan informasi lain yang terkait. Sebelum melakukan pendaftaran silahkan baca informasi terlebih dahulu </p> 
-							<b>FAKULTAS</b>
-							<ul>
-								<li>ILMU KOMPUTER
-									<ol type="1">
-										<li>TEKNIK INFORMATIKA
-											<ul>
-												<li>Robotika</li>
-												<li>Pemrograman Mobile & Game</li>
-												<li>Multimedia & Visualisasi</li>
-											</ul>
-										</li>
-										<li>SISTEM INFORMASI
-											<ul>
-												<li>E-Bussines</li>
-												<li>Manajemen Sistem Informasi</li>
-											</ul>
-										</li>
-										<li>TEKNOLOGI INFORMASI
-											<ul>
-												<li>Cyber Security</li>
-												<li>Digital Marketing</li>
-											</ul>
-										</li>
-									</ol>
-								</li>
-								<li>BISNIS DAN ILMU SOSIAL
-									<ol type="1">
-										<li>BISNIS DIGITAL
-											<ul>
-												<li>Financial Technology</li>
-												<li>Business Analyst</li>
-											</ul>
-										</li>
-										<li>ILMU KOMUNIKASI
-											<ul>
-												<li>Advertising</li>
-												<li>Public Relations</li>
-												<li>Jurnalistik</li>
-											</ul>
-										</li>
-										<li>BAHASA INGGRIS / PSDKU
-											<ul>
-												<li>Tourism</li>
-											</ul>
-										</li>
-									</ol>
-								</li>
-							</ul>
-							<b>BEASISWA</b>
-							<ol type="1">
-								<li>Beasiswa Bidikmisi
-									<ul>
-										<li>Beasiswa Peningkatan Prestasi Akademik</li>
-										<li>Beasiswa Yayasan</li>
-										<li>Beasiswa Perbankan</li>
-									</ul>
-								</li>
-								<li>Ketentuan Jalur Prestasi Akademik & Non Akademik
-									<ul>
-										<li>MEKANISME
-											<ul>
-												<li>Pendaftaran dilaksanakan melalui sekolah yang bersangkutan, dan secara kolektif dikirim melalui Pos atau diserahkan langsung, pada hari kerja (Senin s/d Sabtu), di Sekretariat Panitia PMB Universitas Amikom Purwokerto Jl. Let. Jend. Pol. Soemarto Purwokerto Telp. (0281)623321, Fax. (0281)623196, email: amikom@amikompurwokerto.ac.id. </li>
-											</ul>
-										</li>
-										<li>TANGGAL PELAKSANAAN
-											<ul>
-												<li>02 Desember 2019 – 02 Maret 2020 </li>
-											</ul>
-										</li>
-									</ul>
-								</li>
-							</ol>
-							
+
+<div class="row mb-3">
+<div class="col-md-8">
+<div class="card h-100 shadow">
+<div class="card-body">
+
+
+</div>
+</div>
+</div>
+
+<div class="col-md-4">
+<div class="card h-100 shadow">
+	
+<div class="card-body">
+<h5 class="card-title">Login</h5>
+<form role="form" method="post" action="" id="formlogin">
+
+            <div id="alerts"></div>
+
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                        <div class="input-group-text"><i class="fa fa-user"></i></div>
+                        </div>
+                        <input type="text" class="form-control input-lg" placeholder="Username" id="usernames" name="username" required="required">
                     </div>
-                </div>	   
-  -->
-      <!-- wide-imge showcase -->
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                        <div class="input-group-text"><i class="fa fa-lock"></i></div>
+                        </div>
+                        <input type="password" class="form-control input-lg" placeholder="Password" id="passwords" name="password" required="required">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                <a href="#" class="btn btn-primary btn-block" id="btnLogin" onclick="masuk_log();"><i class="fa fa-sign-in" aria-hidden="true"></i> Login</a>
+                </div>
+                   
+                </div>
+            </form>
 
+</div>
+</div>
+</div>
 
-             
+</div>
+
+<div class="container-fluid">
+
+<div class="row mb-3">
+            <div class="col-md-12">
+            <div class="card bg-danger text-white shadow px-3 py-3">
+            <div class="card-body">
+            <div class="card-title" style="font-size: 2.4rem; font-weight: 700">Daftar Sekarang
+			</div>
+			<p>
+            Buruan gabung yuk sob, di kampus dengan tenaga pengajar yang kompeten di bidangnya.
+            <br/>JOIN AMIKOM PURWOKERTO NOW!
+			</p>
+            <a href='<?php echo base_url();?>page/register' class="btn btn-outline-light rounded-pill" style="font-weight: 600;padding-top: 10px;padding-bottom:10px">Daftar Sekarang </a>
+			</div>
+			</div>
+			</div>
+</div>
+
+</div>
+			
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.15.1/jquery.validate.min.js"></script>
+
+<script type="text/javascript">
+
+        var $jquery=jQuery.noConflict();
+        
+             function masuk_log(){
+                
+                var username = $jquery('#usernames').val();
+                var password = $jquery('#passwords').val();
+
+                if(username.length == "") {
+                    $jquery.notify({
+                        title: "Perhatian",
+                        message: "Username harus diisi"
+                    },{
+                        type: 'danger'
+                    });
+
+                } else if(password.length == "") {
+                    $jquery.notify({
+                        title: "Perhatian",
+                        message: "Password harus diisi"
+                    },{
+                        type: 'warning'
+                    });
+
+                } else {
+
+                document.getElementById('btnLogin').innerHTML="<i class='fa fa-circle-o-notch fa-spin'></i> Please Wait...";
+                  $jquery.ajax({
+                    url   : '<?php echo base_url('main/login_process');?>',
+                    data  : 'username='+username+'&password='+password,
+                    type  : 'POST',
+                    dataType: 'html',
+                    success : function(pesan){
+                        if($jquery.trim(pesan) =='ok'){
+                          window.location = '<?php echo base_url('main_user');?>';
+                        }else{
+                            document.getElementById('alerts').innerHTML=pesan;
+                            document.getElementById('btnLogin').innerHTML="Login";
+                        }
+                    },
+                });
+}
+                
+            }
+     
+        </script>

@@ -1,40 +1,23 @@
-<style type="text/css">
-body{background:rgba(71, 35, 113, 0.99) url('../assets/main/images/bg.png') no-repeat center center fixed;-webkit-background-size: cover;-moz-background-size: cover;-o-background-size: cover;background-size: cover;}
-.form-horizontal .control-label{
-    text-align: left;
-    width: 15%;
-}
-
-label.error {
-    color: red;
-    font-size: 1rem;
-    display: block;
-    margin-top: 2px;
-}
-
-input.error {
-    border: 1px dashed red;
-    font-weight: 300;
-    color: red;
-}
-input.form-control,
-.form-control
-{
-    font-size:16px;
-    color: #212121;
-    font-weight:500;
-}
-</style>
- <div class="divide10" style="margin-top: 8rem;"></div>
-
-<div class="container-fluid" style="margin-top: 2rem;margin-bottom: 2rem">
+<div class="container-fluid">
  	<div class="wow animated fadeInDown">
 
-<div class="row">
-     <div class="col-md-8 col-md-offset-2">
-     <div class="panel panel-default">
-     <div class="panel-heading"><h3 style="margin-bottom:0rem;padding-top:1rem;padding-bottom:1rem">Daftar Akun <small>PMB Universitas AMIKOM Purwokerto</small></h3></div>
-            <div class="panel-body">
+<div class="row justify-content-center">
+     <div class="col-md-8">
+     <ul class="nav nav-tabs nav-fill bg-white" style="font-size: 1.125rem; font-weight: 700">
+                <li class="nav-item">
+                    <a class="nav-link" href='<?php echo base_url();?>page/login'>Masuk</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link active" href='<?php echo base_url();?>page/register'>Daftar</a>
+                </li>
+
+        </ul>
+
+
+     <div class="card shadow bg-white border-0">
+    
+     <div class="card-body">
+     <h4 class="mb-3">Daftar Akun PMB<small> Universitas AMIKOM Purwokerto</small></h4>
     <?php  $info=$this->session->flashdata('info');
                             if (!empty($info)) { ?>
     <div class="alert alert-success alert-dismissable" role="alert">
@@ -100,7 +83,7 @@ input.form-control,
             </div>
  			<div class="form-group">
  				
- 					<button class="btn btn-primary btn-lg" id="simpan"><i class="fa fa-check-square-o" aria-hidden="true"></i> Daftar</button>
+ 					<button class="btn btn-primary btn-block" id="simpan"><i class="fa fa-check-square-o" aria-hidden="true"></i> Daftar</button>
  			
  			</div>
 

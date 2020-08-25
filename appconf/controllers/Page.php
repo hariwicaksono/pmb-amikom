@@ -93,6 +93,63 @@ class Page extends CI_Controller{
 					$this->data['konten']='view_isi';
 					$this->load->view('view_main',$this->data);
 				}
+
+				function petunjuk($judul=''){
+					//Menu PMB
+					$hasil=$this->mmenupmb->get_judul_tupoksi(37);
+					foreach($hasil as $row){
+						$this->judul=$row['judul_tupoksi'];
+						$this->isi=$row['isi_tupoksi'];
+					}
+					$this->data['content_title']=$this->judul;
+					$this->data['isi_tupoksi']=$this->isi;
+					$this->data['modul'] ='petunjuk';
+					$this->data['konten']='view_isi';
+					$this->load->view('view_main',$this->data);
+				}
+
+				function fasilitas($judul=''){
+					//Menu PMB
+					$hasil=$this->mmenupmb->get_judul_tupoksi(35);
+					foreach($hasil as $row){
+						$this->judul=$row['judul_tupoksi'];
+						$this->isi=$row['isi_tupoksi'];
+					}
+					$this->data['content_title']=$this->judul;
+					$this->data['isi_tupoksi']=$this->isi;
+					$this->data['modul'] ='fasilitas';
+					$this->data['konten']='view_isi';
+					$this->load->view('view_main',$this->data);
+				}
+
+				function fakultas_programstudi($judul=''){
+					//Menu PMB
+					$hasil=$this->mmenupmb->get_judul_tupoksi(36);
+					foreach($hasil as $row){
+						$this->judul=$row['judul_tupoksi'];
+						$this->isi=$row['isi_tupoksi'];
+					}
+					$this->data['content_title']=$this->judul;
+					$this->data['isi_tupoksi']=$this->isi;
+					$this->data['modul'] ='fakultas_programstudi';
+					$this->data['konten']='view_isi';
+					$this->load->view('view_main',$this->data);
+				}
+
+				function biaya_pendidikan($judul=''){
+					//Menu PMB
+					$hasil=$this->mmenupmb->get_judul_tupoksi(36);
+					foreach($hasil as $row){
+						$this->judul=$row['judul_tupoksi'];
+						$this->isi=$row['isi_tupoksi'];
+					}
+					$this->data['content_title']=$this->judul;
+					$this->data['isi_tupoksi']=$this->isi;
+					$this->data['modul'] ='biaya_pendidikan';
+					$this->data['konten']='view_isi';
+					$this->load->view('view_main',$this->data);
+				}
+
 				function Beasiswa($judul=''){
 //Menu PMB
 					$hasil=$this->mmenupmb->get_judul_tupoksi(30);
@@ -398,30 +455,6 @@ class Page extends CI_Controller{
 		return $indonesian;
 	}
 
-	function registrasi() {
-		$this->load->library('email');
-		$this->load->model('memail');
-		$this->data['konten']='view_daftar';
-		$this->data['content_title']='SELAMAT DATANG CALON MAHASISWA BARU UNIVERSITAS AMIKOM PURWOKERTO';
-		if (isset($_POST['nama'])) {
-			$cek=$this->model_crud->selectData('registrasi_pmb',array('email'=>$_POST['email']))->result_array();
-			if (!empty($cek)) { ?>
-				<script type="text/javascript">
-					alert('Email telah terdaftar');
-					history.go(-1);
-				</script>
-			<?php } else {
-				$this->model_crud->insertData('registrasi_pmb',array('username'=>$_POST['username'],'nama'=>$_POST['nama'],'telp'=>$_POST['telp'],'email'=>$_POST['email'],'password'=>$_POST['password']));
-				
-				$this->memail->email_reg($_POST['email']);
-				$this->session->set_flashdata('info',"Proses daftar akun berhasil, silahkan Login untuk melakukan Pendaftaran PMB");
-				redirect(base_url('page/registrasi'));
-			}
-		}
-
-		$this->load->view('view_main',$this->data);
-	}
-
 	function register() {
 		$this->load->library('email');
 		$this->load->model('memail');
@@ -429,9 +462,11 @@ class Page extends CI_Controller{
 		$this->data['content_title']='SELAMAT DATANG CALON MAHASISWA BARU UNIVERSITAS AMIKOM PURWOKERTO';
 		if (isset($_POST['nama'])) {
 			$cek=$this->model_crud->selectData('registrasi_pmb',array('email'=>$_POST['email']))->result_array();
-			if (!empty($cek)) { ?>
+			$cekuser=$this->model_crud->selectData('registrasi_pmb',array('username'=>$_POST['username']))->result_array();
+			if (!empty($cek) || !empty($cekuser)) { ?>
+			<?php $this->session->set_flashdata('info',"Perhatian, Email atau Username telah terdaftar"); ?>
 				<script type="text/javascript">
-					alert('Email telah terdaftar');
+					//alert('Email atau Username telah terdaftar');
 					history.go(-1);
 				</script>
 			<?php } else {
@@ -439,7 +474,7 @@ class Page extends CI_Controller{
 				
 				$this->memail->email_reg($_POST['email']);
 				$this->session->set_flashdata('info',"Proses daftar akun berhasil, silahkan Login untuk melakukan Pendaftaran PMB");
-				redirect(base_url('page/registrasi'));
+				redirect(base_url('page/login'));
 			}
 		}
 

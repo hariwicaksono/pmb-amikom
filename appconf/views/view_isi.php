@@ -1,4 +1,6 @@
-<div class="my-4 mx-4">
+<div class="card shadow">
+  <div class="card-body">
+
 <?php if($modul=='datamhs'){;?>
 	<div class="row">
 <div class="col-sm-12">
@@ -150,4 +152,6 @@ else{
 <?php
 }
 ?>
+
+</div>
 </div>

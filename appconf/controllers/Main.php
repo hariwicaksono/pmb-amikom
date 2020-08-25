@@ -53,7 +53,7 @@ class Main extends CI_Controller {
         $hasil=$this->model_crud->selectData('registrasi_pmb',array('username'=>$_POST['username']))->row_array();
        
         if (empty($hasil)) {
-            echo "<div class='alert alert-warning'>username not found</div>";
+            echo "<div class='alert alert-warning'>Username tidak ditemukan</div>";
         } else {
             if($hasil['password']==$_POST['password']){
                 $this->session->set_userdata('username',$hasil['username']);

@@ -1,3 +1,80 @@
+<link href="<?php echo base_url(); ?>assets/wizard/css/smart_wizard.min.css" rel="stylesheet">
+
+<!-- Optional SmartWizard themes -->
+<link href="<?php echo base_url(); ?>assets/wizard/css/smart_wizard_theme_circles.min.css" rel="stylesheet">
+<link href="<?php echo base_url(); ?>assets/wizard/css/smart_wizard_theme_arrows.min.css" rel="stylesheet">
+<link href="<?php echo base_url(); ?>assets/wizard/css/smart_wizard_theme_dots.min.css" rel="stylesheet">
+<script src="<?php echo base_url(); ?>assets/wizard/js/jquery.smartWizard.min.js"></script>
+
+<script type="text/javascript">
+var $jquery=jQuery.noConflict();
+        $jquery(document).ready(function(){
+
+            // Step show event
+            $jquery("#smartwizard").on("showStep", function(e, anchorObject, stepNumber, stepDirection, stepPosition) {
+               //alert("You are on step "+stepNumber+" now");
+               if(stepPosition === 'first'){
+                   $jquery("#prev-btn").addClass('disabled');
+               }else if(stepPosition === 'final'){
+                   $jquery("#next-btn").addClass('disabled');
+               }else{
+                   $jquery("#prev-btn").removeClass('disabled');
+                   $jquery("#next-btn").removeClass('disabled');
+               }
+            });
+
+            // Toolbar extra buttons
+            var btnFinish = $jquery('<button></button>').text('Finish')
+                                             .addClass('btn btn-info')
+                                             .on('click', function(){ alert('Finish Clicked'); });
+            var btnCancel = $jquery('<button></button>').text('Cancel')
+                                             .addClass('btn btn-danger')
+                                             .on('click', function(){ $jquery('#smartwizard').smartWizard("reset"); });
+
+
+            // Smart Wizard
+            $jquery('#smartwizard').smartWizard({
+                    selected: 0,
+                    theme: 'defaults',
+                    transitionEffect:'fade',
+                    showStepURLhash: true,
+                    toolbarSettings: {toolbarPosition: 'both',
+                                      toolbarButtonPosition: 'end',
+                                      toolbarExtraButtons: [btnFinish, btnCancel]
+                                    }
+            });
+
+
+            // External Button Events
+            $jquery("#reset-btn").on("click", function() {
+                // Reset wizard
+                $jquery('#smartwizard').smartWizard("reset");
+                return true;
+            });
+
+            $jquery("#prev-btn").on("click", function() {
+                // Navigate previous
+                $jquery('#smartwizard').smartWizard("prev");
+                return true;
+            });
+
+            $jquery("#next-btn").on("click", function() {
+                // Navigate next
+                $jquery('#smartwizard').smartWizard("next");
+                return true;
+            });
+
+            $jquery("#theme_selector").on("change", function() {
+                // Change theme
+                $jquery('#smartwizard').smartWizard("theme", $jquery(this).val());
+                return true;
+            });
+
+            // Set selected theme on page refresh
+            $jquery("#theme_selector").change();
+        });
+    </script>
+
 <style type="text/css">
 h4{font-size:18px;font-weight:600}
 .error{
@@ -24,24 +101,48 @@ input[type="radio"],input[type="checkbox"] {
 if ($biodata['syarat2']=='Sudah') $status='Readonly';
 $this->data['tahun_pmb']=$this->mtahun->getThaPmb();
 $gelombang=$this->mgelombang->cek_daftar(array('thn_akademik'=>'2018/2019'));
-?>     
+?>   
 
+<div id="smartwizard">
+  <ul>
+    <li><a href="#step-1">Step 1<br /><small>This is tab's description</small></a></li>
+    <li><a href="#step-2">Step 2<br /><small>This is tab's description</small></a></li>
+    <li><a href="#step-3">Step 3<br /><small>This is tab's description</small></a></li>
+    <li><a href="#step-4">Step 4<br /><small>This is tab's description</small></a></li>
+  </ul>
+  
+  <div>
+      <div id="step-1" class="">
+        <h2>Step 1 Content</h2>
+      </div>
+      <div id="step-2" class="">
+        <h2>Step 2 Content</h2>
+      </div>
+      <div id="step-3" class="">
+        <h2>Step 3 Content</h2>
+      </div>
+      <div id="step-4" class="">
+        <h2>Step 4 Content</h2>
+      </div>
+  </div>
+</div>
 
-<div class="panel panel-info">
-    <div class="panel-heading">
-        <h3 class="panel-title"><i class="fa fa-wpforms" aria-hidden="true"></i> <?php echo "Form Pendaftaran ".$gelombang['gelombang']; ?></h3>
+<div class="card">
+    <div class="card-header">
+    <strong><i class="fa fa-wpforms" aria-hidden="true"></i> <?php echo "Form Pendaftaran ".$gelombang['gelombang']; ?></strong>
     </div>
-    <div class="panel-body">
-        <form  method="post" action="<?=base_url()?>main_user/setting_biodata" enctype="multipart/form-data" id="form">
+    <div class="card-body">
+    
+    <form  method="post" action="<?=base_url()?>main_user/setting_biodata" enctype="multipart/form-data" id="form">
 
-            <input type="hidden" name="relasi" value="1">
+    <input type="hidden" name="relasi" value="1">
      
-    <div class="row-fluid">
+    <div class="row">
         <div class="col-md-7">
 
-        <div class="panel panel-default">
+        <div class="card card-default">
 
-            <div class="panel-body">
+            <div class="card-body">
             <h4><i class="fa fa-user" aria-hidden="true"></i> Data Diri Pendaftar</h4>
 
             <div class="form-group">
@@ -192,7 +293,7 @@ $gelombang=$this->mgelombang->cek_daftar(array('thn_akademik'=>'2018/2019'));
     </div><!--row-->
 
 
-    <div class="row-fluid">
+    <div class="row">
 
     <div class="col-md-12">
 
@@ -305,7 +406,7 @@ $gelombang=$this->mgelombang->cek_daftar(array('thn_akademik'=>'2018/2019'));
 </div><!--row-->
 
 
-    <div class="row-fluid">
+    <div class="row">
 
     <div class="col-md-6">
 
@@ -543,11 +644,11 @@ $gelombang=$this->mgelombang->cek_daftar(array('thn_akademik'=>'2018/2019'));
     </div><!--row-->
 
 
-    <div class="row-fluid">
+    <div class="row">
         <div class="col-md-12">
 
             <div class="form-group">    
-            <button class="btn btn-primary btn-lg"<?php if (!empty($biodata)) { if ($biodata['syarat2']=='Sudah') echo "disabled";} ?>><i class="fa fa-floppy-o" aria-hidden="true"></i>SIMPAN</button>     
+            <button class="btn btn-primary btn-lg"<?php if (!empty($biodata)) { if ($biodata['syarat2']=='Sudah') echo "disabled";} ?>><i class="fa fa-floppy-o" aria-hidden="true"></i> SIMPAN</button>     
             </div>
 
         </div>

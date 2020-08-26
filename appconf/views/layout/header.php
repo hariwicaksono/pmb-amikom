@@ -24,32 +24,8 @@
         <script src="<?php echo base_url('assets/js');?>/bootstrap.bundle.min.js" type="text/javascript"></script>    
         <script src="<?php echo base_url('assets');?>/offline-js/offline.js" type="text/javascript"></script>   
         <script src="https://cdn.jsdelivr.net/npm/bootstrap-notify@3.1.3/bootstrap-notify.min.js" type="text/javascript"></script> 
-    </head>
-    <!--<script type="text/javascript" language="javascript" src="<?=base_url()?>assets/intro/js/jquery.dataTables.js"></script>-->
-    <script type="text/javascript" language="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.9.4/jquery.dataTables.min.js"></script>
-    <script type="text/javascript" charset="utf-8">
-    var $jtable=jQuery.noConflict();
-                $jtable(document).ready(function() {
-            oTable = $jtable('#example').dataTable({
-                "bJQueryUI": true,
-                "sPaginationType": "full_numbers",
-                   "bLengthChange": false,
-    "bFilter": true,
-    "bInfo": false,
-    "bAutoWidth": false
-            });
-            
-        } );
-    </script>
-    <style type="text/css" title="currentStyle">   
-    @import "<?=base_url()?>assets/intro/css/demo_table_jui.css";
-    @import "<?=base_url();?>assets/intro/css/jquery-ui-1.8.4.custom.css";
-     @keyframes blink{
-        0%{opacity: 0;}
-        50%{opacity: .5;}
-        100%{opacity: 1;}
-        }
-    </style>
+   
+</head>
 <body>
 
 
@@ -104,7 +80,7 @@
     <a href="<?php echo base_url('page/faq');?>" class="nav-link"><i class="fa fa-question-circle-o fa-2x" aria-hidden="true"></i></a>
     </li>
     
-    <li class="nav-item"><a class="btn btn-info btn-sm mt-1" href="<?php echo base_url('page/login');?>" style="font-weight: 600;padding-top: 8px;padding-bottom:8px;">Daftar/Masuk</a></li>
+    <form class="form-inline my-2 my-lg-0"><a class="btn btn-info btn-sm mt-1" href="<?php echo base_url('page/login');?>" style="font-weight: 600;padding-top: 8px;padding-bottom:8px;">Daftar/Masuk</a></form>
     </ul>
             
     <?php }else{ ?>

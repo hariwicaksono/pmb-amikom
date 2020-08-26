@@ -7,7 +7,7 @@ class Download extends CI_Controller {
 		parent::__construct();
 	   	date_default_timezone_set('Asia/Jakarta');
 	   	$this->load->library('session');
-	   	$this->load->library('fpdf.php');
+	   	//$this->load->library('fpdf.php');
 	   	$this->load->helper(array('form', 'url','file'));
 		$this->load->model('model_crud');
 		$this->load->model('mberita');
@@ -36,8 +36,21 @@ class Download extends CI_Controller {
 		}	
 
 		
+		$pdfFilePath ="registrasi-".time()."-download.pdf";
+ 
+        
+        //actually, you can pass mPDF parameter on this load() function
+        //$pdf = $this->m_pdf->load();
+        $mpdf = new \Mpdf\Mpdf();
+        $html=$this->load->view('pdf/kartu.php',$this->data, true);
+
+        //generate the PDF!
+        $mpdf->WriteHTML($html);
+        
+        //offer it to user via browser download! (The PDF won't be saved on your server HDD)
+		$mpdf->Output($pdfFilePath, "I");
+		
     
-    $this->load->view('pdf/kartu.php',$this->data);
  
 
 	}

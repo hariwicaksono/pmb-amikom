@@ -1,77 +1,17 @@
-<style type="text/css">
-    .form-horizontal .control-label{
-    text-align: left;
-    width: 15%;
-}
-</style>
-<style>
- .nav-tabs > li.active > a, .nav-tabs > li.active > a:focus, .nav-tabs > li.active > a:hover {
- border:0;
- background-color:#fff;
- }
-  .nav-tabs > li.active {
-  border-bottom:3px solid #0d0682;
-  }
-  </style>
-<style>
-.breadcrumb {
-        background: #ddd;
-        /*display: inline-block;*/
-        padding: 1px;
-        padding-right: 18px;
-
-    }
-
-    .breadcrumb li {
-        display: inline-block;
-        background: white;
-        padding: 0;
-        position: relative;
-        min-width:50px;
-        text-decoration: none;
-        -webkit-clip-path: polygon(0 0, calc(100% - 15px) 0, 100% 50%, calc(100% - 15px) 100%, 0 100%, 15px 50%);
-        clip-path: polygon(0 0, calc(100% - 15px) 0, 100% 50%, calc(100% - 15px) 100%, 0 100%, 15px 50%);
-        margin-right: -13px;
-    }
-
-    .breadcrumb li#last {
-        -webkit-clip-path: polygon(0 0, calc(100% - 0px) 0, 100% 50%, calc(100% - 0px) 100%, 0 100%, 15px 50%);
-        clip-path: polygon(0 0, calc(100% - 0px) 0, 100% 50%, calc(100% - 0px) 100%, 0 100%, 15px 50%);
-    }
-
-    .breadcrumb li:hover {
-        color: white;
-        background: #fff;
-    }
-
-    /* first link should not have anything cliped on the left side */
-    .breadcrumb li:first-child {
-        -webkit-clip-path: polygon(0 0, calc(100% - 15px) 0, 100% 50%, calc(100% - 15px) 100%, 0 100%);
-        clip-path: polygon(0 0, calc(100% - 15px) 0, 100% 50%, calc(100% - 15px) 100%, 0 100%);
-    }
-
-    .label{
-        height: 100%;
-        width: 100%;
-    }
-
-
-</style>
-       
 <div class="row">
 <div class="col-sm-12">
-    <div class="breadcrumb shadow">
+    <div class="card shadow">
         <?php
         $gelombang=$this->mgelombang->cek_daftar(array('thn_akademik'=>$tahun_pmb));
         if (empty($gelombang)) {
             ?>
-                <div class="tab-content" style="min-height: 500px;">
+        <div class="tab-content" style="min-height: 500px;">
         <div class="tab-pane fade active">
             <?php
             echo "<b>Maaf Pendaftaran Telah Ditutup</b>";
             ?>
         </div>
-    </div>
+        </div>
         <?php
         }else{
         ?>
@@ -84,8 +24,8 @@
         <li class="nav-item" id="ribbon2" >
         <a class="nav-link <?php if ($this->uri->segment(2)=='upload') echo "active";?>" <?php if (!empty($biodata)) { ?> href="<?=base_url()?>main_user/upload?act=det" <?php } else { ?>  onclick="alert('Isi Biodata Terlebih Dahulu')" <?php }  ?>  ><i class="fa fa-info-circle"></i>  Upload Dokumen</a></li>
 
-        <li class="nav-item" id="ribbon3" >
-        <a class="nav-link <?php if ($this->uri->segment(2)=='mulaiujian') echo "active";?>" <?php if (!empty($bukti)) { ?> href="<?=base_url()?>main_user/mulaiujian?act=det" <?php } else { ?>  onclick="alert('Unggah Bukti Bayar PMB Terlebih Dahulu')" <?php }  ?>  ><i class="fa fa-info-circle"></i>  Ujian Online</a></li>
+        <li class="nav-item" id="ribbon3">
+        <a class="nav-link <?php if ($this->uri->segment(2)=='mulaiujian') echo "active";?>" <?php if (($biodata['syarat2']=='Sudah')) { ?> href="<?=base_url()?>main_user/mulaiujian?act=det" <?php } else { ?>  onclick="alert('Upload Dokumen terlebih dahulu, Mohon tunggu Dokumen anda diproses oleh Petugas')" <?php }  ?>  ><i class="fa fa-info-circle"></i>  Ujian Online</a></li>
 
         <li class="nav-item" id="ribbon4" >
         <a class="nav-link <?php if ($this->uri->segment(2)=='info') echo "active";?>" <?php if (!empty($biodata)) { ?> href="<?=base_url()?>main_user/info?act=det" <?php } else { ?>  onclick="alert('Isi Biodata Terlebih Dahulu')" <?php }  ?>  ><i class="fa fa-info-circle"></i> Informasi</a></li>

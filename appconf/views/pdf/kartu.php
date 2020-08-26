@@ -90,7 +90,7 @@ $dokumen=$this->model_crud->selectData('dokumen_pmb',array('nodaf'=>$biodata['no
 		<?php 
 			if (!empty($dokumen)) {
 		?>
-				<div style=" border: 1px solid black;width: 100px;height:50px;"><img src="/var/www/clients/client1/web1/web/pmb-amikom/dokumen/foto/<?=$dokumen['nama_dokumen']?>" style="width: 100%"></div>
+			<div style="border: 1px solid black;width: 100px;height:50px;"><img src="<?php echo base_url();?>/dokumen/foto/<?=$dokumen['nama_dokumen']?>" width="100"></div>
 		<?php
 			} else {
 		?>
@@ -111,12 +111,4 @@ $dokumen=$this->model_crud->selectData('dokumen_pmb',array('nodaf'=>$biodata['no
 </table>
 <br />
 <div style=" border-bottom: 2px dashed black;"></div>
-  <?php
-    $html = ob_get_contents();
-        ob_end_clean();
-        
-        require_once('./assets/html2pdf/html2pdf.class.php');
-    $pdf = new HTML2PDF('P','A4','en');
-    $pdf->WriteHTML($html);
-    $pdf->Output('Data Siswa.pdf', 'I');
-?>
+

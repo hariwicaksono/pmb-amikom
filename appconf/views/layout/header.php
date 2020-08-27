@@ -7,24 +7,31 @@
         <title>PMB Universitas Amikom Purwokerto</title>
         <link rel="shortcut icon" type="image/x-icon" href="<?php echo base_url(); ?>amikompurwokerto.ico"/>
         <!--google fonts--> 
-        <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
-        <!-- Bootstrap -->
-        <link href="<?php echo base_url(); ?>assets/css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
         <!-- custom css-->
-        <link href="<?php echo base_url(); ?>assets/css/theme.css" rel="stylesheet">
-        <link href="<?php echo base_url(); ?>assets/css/index.css" rel="stylesheet">
+        <link href="<?php echo base_url(); ?>assets/css/bootstrap.css" rel="stylesheet">
+        <link href="<?php echo base_url(); ?>assets/css/style.css" rel="stylesheet">
         <link href="<?php echo base_url(); ?>assets/offline-js/themes/offline-theme-default.css" rel="stylesheet">
         <link href="<?php echo base_url(); ?>assets/offline-js/themes/offline-language-english.css" rel="stylesheet">
         <!-- font awesome for icons -->
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
         
          <!--must need plugin jquery-->
-        <script src="<?php echo base_url('assets/js');?>/jquery-3.5.1.min.js"></script>    
+        <script src="<?php echo base_url('assets/js');?>/jquery.min.js"></script>    
         <!--bootstrap js plugin-->
-        <script src="<?php echo base_url('assets/js');?>/bootstrap.bundle.min.js" type="text/javascript"></script>    
+        <script src="<?php echo base_url('assets/js');?>/bootstrap.js" type="text/javascript"></script>    
+        <script src="<?php echo base_url('assets/js');?>/popper.min.js" type="text/javascript"></script>
+        
         <script src="<?php echo base_url('assets');?>/offline-js/offline.js" type="text/javascript"></script>   
         <script src="https://cdn.jsdelivr.net/npm/bootstrap-notify@3.1.3/bootstrap-notify.min.js" type="text/javascript"></script> 
-   
+        <script type="text/javascript">
+        var $jQuery=jQuery.noConflict();
+        $jQuery(document).ready(function () {
+            $jQuery('#sidebarCollapse').on('click', function () {
+                $jQuery('#sidebar').toggleClass('active');
+            });
+        });
+    </script>
 </head>
 <body>
 
@@ -65,9 +72,9 @@
       </li>
     </ul>
     
-    <form class="mx-3 my-auto w-100">
+    <form class="mx-1 my-auto w-100">
     <div class="input-group">
-        <input name="query" placeholder="Pencarian..." required="" type="text" class="form-control border py-3">
+        <input name="query" placeholder="Pencarian..." required="" type="text" class="form-control border py-2">
         <span class="input-group-append">
         <button type="submit" class="btn btn-warning border"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="18" height="18" fill="currentColor"><path fill-rule="evenodd" d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z"></path><path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"></path></svg></button>
         </span>
@@ -80,7 +87,7 @@
     <a href="<?php echo base_url('page/faq');?>" class="nav-link"><i class="fa fa-question-circle-o fa-2x" aria-hidden="true"></i></a>
     </li>
     
-    <form class="form-inline my-2 my-lg-0"><a class="btn btn-info btn-sm mt-1" href="<?php echo base_url('page/login');?>" style="font-weight: 600;padding-top: 8px;padding-bottom:8px;">Daftar/Masuk</a></form>
+    <form class="form-inline my-2 my-lg-0"><a class="btn btn-info" href="<?php echo base_url('page/login');?>">Daftar/Masuk</a></form>
     </ul>
             
     <?php }else{ ?>

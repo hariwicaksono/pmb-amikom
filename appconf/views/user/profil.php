@@ -5,13 +5,28 @@
 }
 
 ?>
-<link href="<?php echo base_url(); ?>assets/wizard/css/smart_wizard_all.min.css" rel="stylesheet">
-<script src="<?php echo base_url(); ?>assets/wizard/js/jquery.smartWizard.min.js"></script>
+<link href="<?php echo base_url(); ?>assets/css/select2.min.css" rel="stylesheet">
+<link href="<?php echo base_url(); ?>assets/css/select2-bootstrap4.min.css" rel="stylesheet">
+<script src="<?php echo base_url(); ?>assets/js/select2.min.js"></script>
+<script type="text/javascript">
+var $jquery=jQuery.noConflict();
+      $jquery(document).ready(function(){
+$jquery('.select2').select2({
+    theme: 'bootstrap4',
+});
+});
+</script>
+
+    <!-- jQuery smartWizard facilitates steppable wizard content -->
+    <script type="text/javascript" src="https://wingman.mediumra.re/assets/js/jquery.smartWizard.min.js"></script>
+
 
 <script type="text/javascript">
 var $jquery=jQuery.noConflict();
       $jquery(document).ready(function(){
-         
+        
+        $jquery(".wizard").smartWizard({ transitionEffect: "fade", showStepURLhash: !1, toolbarSettings: { toolbarPosition: "none" } });
+     
           // Step show event
           $jquery("#smartwizard").on("showStep", function(e, anchorObject, stepNumber, stepDirection, stepPosition) {
               $jquery("#prev-btn").removeClass('disabled');
@@ -62,9 +77,10 @@ var $jquery=jQuery.noConflict();
 
 <style type="text/css">
 input[type="radio"],input[type="checkbox"] {
-    -ms-transform: scale(1.4); /* IE 9 */
-    -webkit-transform: scale(1.4); /* Chrome, Safari, Opera */
-    transform: scale(1.4);
+    -ms-transform: scale(1.6); /* IE 9 */
+    -webkit-transform: scale(1.6); /* Chrome, Safari, Opera */
+    transform: scale(1.6);
+    margin: 0 0.5rem;
 }
 </style>
 
@@ -75,37 +91,162 @@ $gelombang=$this->mgelombang->cek_daftar(array('thn_akademik'=>'2018/2019'));
 ?>   
 
 <div class="card">
-    
     <div class="card-body">
-
+    <form class="row justify-content-around wizard">
+            <ul class="col-12 col-md-auto nav nav-tabs flex-md-column justify-content-between justify-content-md-start">
+              <li><a href="#first" class="step-circle step-circle-sm">1</a>
+              </li>
+              <li><a href="#second" class="step-circle step-circle-sm">2</a>
+              </li>
+              <li><a href="#third" class="step-circle step-circle-sm">3</a>
+              </li>
+              <li><a href="#fourth" class="step-circle step-circle-sm">4</a>
+              </li>
+            </ul>
+            <!--end of col-->
+            <div class="col col-lg-9 tab-content">
+              <div id="first">
+                <div class="row align-items-center mb-5">
+                  <div class="col-12 col-md-7">
+                    <h6 class="title-decorative">Step One</h6>
+                    <h3 class="h1">Create your account</h3>
+                    <span class="lead">Let's begin by creating your account. You can always change these details later</span>
+                  </div>
+                  <!--end of col-->
+                  <div class="col-12 col-md-5">
+                    <img alt="Image" src="assets/img/graphic-man-box.svg" class="w-100" />
+                  </div>
+                  <!--end of col-->
+                </div>
+                <!--end of row-->
+                <div class="form-row form-group">
+                  <div class="col">
+                    <input class="form-control form-control-lg" type="text" id="company" placeholder="Company Name" />
+                  </div>
+                </div>
+                <div class="form-row form-group">
+                  <div class="col">
+                    <input class="form-control form-control-lg" type="text" id="firstname" placeholder="First Name" />
+                  </div>
+                  <div class="col">
+                    <input class="form-control form-control-lg" type="text" id="lastname" placeholder="Last Name" />
+                  </div>
+                </div>
+                <div class="form-row form-group">
+                  <div class="col">
+                    <input class="form-control form-control-lg" type="email" id="email" placeholder="Email Address" />
+                  </div>
+                </div>
+                <div class="form-row form-group">
+                  <div class="col">
+                    <input class="form-control form-control-lg" type="password" id="password" placeholder="Password" />
+                    <small>Password must be at least 7 characters</small>
+                  </div>
+                </div>
+                <button class="btn btn-success sw-btn-next mt-4" type="button">Next Step</button>
+              </div>
+              <div id="second">
+                <div class="row align-items-center mb-5">
+                  <div class="col-12 col-md-7">
+                    <h6 class="title-decorative">Step Two</h6>
+                    <h3 class="h1">Tell us about you</h3>
+                    <span class="lead">Add some detail to your profile to personalise it and let others know who you are</span>
+                  </div>
+                  <!--end of col-->
+                  <div class="col-12 col-md-4">
+                    <img alt="Image" src="assets/img/graphic-woman-writing-2.svg" class="w-100" />
+                  </div>
+                  <!--end of col-->
+                </div>
+                <!--end of row-->
+                <div class="form-group">
+                  <label for="about-me">Profile Text:</label>
+                  <textarea rows="4" class="form-control form-control-lg" id="about-me"></textarea>
+                  <small>This information will be shown on your public profile</small>
+                </div>
+                <div>
+                  <div class="custom-control custom-switch">
+                    <input type="checkbox" class="custom-control-input" id="box-2">
+                    <label class="custom-control-label" for="box-2">Make profile public</label>
+                  </div>
+                </div>
+                <button class="btn btn-success sw-btn-next mt-4" type="button">Next Step</button>
+              </div>
+              <div id="third">
+                <div class="row align-items-center mb-5">
+                  <div class="col-12 col-md-7">
+                    <h6 class="title-decorative">Step Three</h6>
+                    <h3 class="h1">Choose preferences</h3>
+                    <span class="lead">Select some of the options below to personalise your daily news feed</span>
+                  </div>
+                  <!--end of col-->
+                  <div class="col-12 col-md-5">
+                    <img alt="Image" src="assets/img/graphic-man-computer.svg" class="w-100" />
+                  </div>
+                  <!--end of col-->
+                </div>
+                <!--end of row-->
+                <div>
+                  <button class="btn btn-outline-secondary mb-1" data-toggle="button">Design</button>
+                  <button class="btn btn-outline-secondary mb-1" data-toggle="button">Development</button>
+                  <button class="btn btn-outline-secondary mb-1" data-toggle="button">VR</button>
+                  <button class="btn btn-outline-secondary mb-1" data-toggle="button">Photography</button>
+                  <button class="btn btn-outline-secondary mb-1" data-toggle="button">User Experience</button>
+                  <button class="btn btn-outline-secondary mb-1" data-toggle="button">Marketing</button>
+                  <button class="btn btn-outline-secondary mb-1" data-toggle="button">Finance</button>
+                  <button class="btn btn-outline-secondary mb-1" data-toggle="button">Technology</button>
+                  <button class="btn btn-outline-secondary mb-1" data-toggle="button">Software</button>
+                  <button class="btn btn-outline-secondary mb-1" data-toggle="button">Engineering</button>
+                </div>
+                <button class="btn btn-success sw-btn-next mt-4" type="button">Next Step</button>
+              </div>
+              <div id="fourth">
+                <div class="row align-items-center mb-5">
+                  <div class="col-12 col-md-6">
+                    <h6 class="title-decorative">Step Four</h6>
+                    <h3 class="h1">You're all set</h3>
+                    <span class="lead">We've set up your account and some basic details, now let's move on to your dashboard</span>
+                    <button type="submit" class="btn btn-success btn-lg">Go to dashboard</button>
+                  </div>
+                  <!--end of col-->
+                  <div class="col-12 col-md-6">
+                    <img alt="Image" src="assets/img/graphic-woman-writing.svg" class="w-100" />
+                  </div>
+                  <!--end of col-->
+                </div>
+                <!--end of row-->
+              </div>
+            </div>
+            <!--end of col-->
+          </form>
     <form  method="post" action="<?=base_url()?>main_user/setting_biodata" enctype="multipart/form-data" id="form">
     <input type="hidden" name="relasi" value="1"> 
     <!-- SmartWizard html -->
-    <div id="smartwizard">
+    <div id="smartwizard2">
 
     <ul class="nav">
         <li class="nav-item">
-        <a class="nav-link" href="#step-1">Biodata</a>
+        <a class="nav-link" href="#step-1" style="left: -5px">Biodata</a>
         </li>
         <li class="nav-item">
-        <a class="nav-link" href="#step-2">Jurusan</a>
+        <a class="nav-link" href="#step-2" style="left: -5px">Jurusan</a>
         </li>
         <li class="nav-item">
-        <a class="nav-link" href="#step-3">Sekolah</a>
+        <a class="nav-link" href="#step-3" style="left: -5px">Sekolah</a>
         </li>
         <li class="nav-item">
-        <a class="nav-link" href="#step-4">Alamat</a>
+        <a class="nav-link" href="#step-4" style="left: -5px">Alamat</a>
         </li>
         <li class="nav-item">
-        <a class="nav-link" href="#step-5">Orang Tua</a>
+        <a class="nav-link" href="#step-5" style="left: -5px">Orang Tua</a>
         </li>
     </ul>
 
     <div class="tab-content">
    
     <!--step 1-->
-    <div id="step-1" class="tab-pane" role="tabpanel" aria-labelledby="step-1">
-    <div class="panel px-1">
+    <div id="step-1" class="tab-pane px-3 pt-2" role="tabpanel" aria-labelledby="step-1" >
+    <div class="panel" style="padding-bottom: 1px !important">
 
     <div class="form-group">
 
@@ -184,12 +325,12 @@ $gelombang=$this->mgelombang->cek_daftar(array('thn_akademik'=>'2018/2019'));
     
         <div class="pl-1">
         <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="jk" value="Pria" id="inlineRadio1" <?php if (!empty($biodata)) { if ($biodata['jk']=='Pria') { echo 'checked=checked'; }} ?>  > <label class="form-check-label" for="inlineRadio1">Laki-laki</label>
+        <input class="form-check-input" type="radio" name="jk" value="Pria" id="inlineRadio1" <?php if (!empty($biodata)) { if ($biodata['jk']=='Pria') { echo 'checked=checked'; }} ?>  > <label class="form-check-label" for="inlineRadio1">&nbsp;Laki-laki</label>
         </div>
-
+        &nbsp;
         <div class="form-check form-check-inline">
         <input class="form-check-input" type="radio" name="jk" id="inlineRadio2" value="Wanita" <?php if (!empty($biodata)) { if ($biodata['jk']=='Wanita') { echo 'checked=checked'; }} ?> > 
-        <label class="form-check-label" for="inlineRadio2">Perempuan</label>
+        <label class="form-check-label" for="inlineRadio2">&nbsp;Perempuan</label>
         </div>
         </div>
 
@@ -241,8 +382,8 @@ $gelombang=$this->mgelombang->cek_daftar(array('thn_akademik'=>'2018/2019'));
     </div><!--step 1-->
 
     <!--step 2-->
-    <div id="step-2" class="tab-pane" role="tabpanel" aria-labelledby="step-2">
-    <div class="panel px-1">
+    <div id="step-2" class="tab-pane px-3 pt-2" role="tabpanel" aria-labelledby="step-2">
+    <div class="panel">
     <div class="form-group">
     <label class="control-label" style="font-weight:600">Jenis Pendaftaran *</label><br/>
     <label class="control-label">Pilih Jenis Pendaftaran</label>
@@ -336,9 +477,9 @@ $gelombang=$this->mgelombang->cek_daftar(array('thn_akademik'=>'2018/2019'));
 
     <div class="form-group">
     <label class="control-label">Informasi tentang Universitas Amikom Purwokerto</label><br/>
-        <div class="pl-1">
+        <div>
         <?php
-            $info=array(' &nbsp;Brosur',' &nbsp;Televisi',' &nbsp;Internet',' &nbsp;Teman/Saudara',' &nbsp;Lainnya');
+            $info=array('Brosur&nbsp;','Televisi&nbsp;','Internet&nbsp;','Teman/Saudara&nbsp;','Lainnya&nbsp;');
             $info2=array('brosur','televisi','internet','teman/saudara','lainnya');
             
                 $i=0;
@@ -350,7 +491,7 @@ $gelombang=$this->mgelombang->cek_daftar(array('thn_akademik'=>'2018/2019'));
                                 foreach ($pecah as $data_info) {
                                     if ($data_info==$key) { echo 'checked=checked'; }
                                 }
-                            } ?> required><?=$info[$i];?>
+                            } ?> required><?=$info[$i];?> 
                         </label>
                 <?php   
                         $i++;
@@ -363,8 +504,8 @@ $gelombang=$this->mgelombang->cek_daftar(array('thn_akademik'=>'2018/2019'));
     </div><!--step 2-->
 
     <!--step 3-->
-    <div id="step-3" class="tab-pane" role="tabpanel" aria-labelledby="step-3">
-    <div class="panel px-1">
+    <div id="step-3" class="tab-pane px-3 pt-2" role="tabpanel" aria-labelledby="step-3">
+    <div class="panel">
     <div class="form-group">
          
             <label class="control-label">Asal Sekolah*</label>
@@ -407,8 +548,8 @@ $gelombang=$this->mgelombang->cek_daftar(array('thn_akademik'=>'2018/2019'));
     </div><!--step 3-->
 
     <!--step 4-->
-    <div id="step-4" class="tab-pane" role="tabpanel" aria-labelledby="step-4">
-    <div class="panel px-1">
+    <div id="step-4" class="tab-pane px-3 pt-2"  role="tabpanel" aria-labelledby="step-4">
+    <div class="panel">
     <div class="form-group">
                 <label class="control-label">Alamat lengkap*</label>
                 
@@ -451,7 +592,7 @@ $gelombang=$this->mgelombang->cek_daftar(array('thn_akademik'=>'2018/2019'));
                 <div class="col-sm-6">
                 <label class="control-label">Kabupaten*</label>
                 
-                    <select name="kabupaten" class="form-control" id="kab_siswa" required >
+                    <select name="kabupaten" class="form-control select2" id="kab_siswa" required >
                         <option value="">PILIH</option>
                         <?php $kab=$this->model_crud->selectData("kabupaten");
                             $i=1;
@@ -501,8 +642,8 @@ $gelombang=$this->mgelombang->cek_daftar(array('thn_akademik'=>'2018/2019'));
     </div><!--step 4-->
 
     <!--step 5-->
-    <div id="step-5" class="tab-pane" role="tabpanel" aria-labelledby="step-5">
-    <div class="panel px-1">
+    <div id="step-5" class="tab-pane px-3 pt-2" role="tabpanel" aria-labelledby="step-5">
+    <div class="panel">
         <div class="form-group">
             <label class="control-label">
                 Nama Ibu Kandung*
@@ -561,7 +702,7 @@ $gelombang=$this->mgelombang->cek_daftar(array('thn_akademik'=>'2018/2019'));
                 Kabupaten*
             </label>
             
-                <select name="kabupaten_ortu" class="form-control" id="kab_ortu" required >
+                <select name="kabupaten_ortu" class="form-control select2" id="kab_ortu" required >
                     <option value="">PILIH</option>
                     <?php $kab=$this->model_crud->selectData("kabupaten");
                         $i=1;
@@ -623,7 +764,7 @@ $gelombang=$this->mgelombang->cek_daftar(array('thn_akademik'=>'2018/2019'));
 
   
     </div>
-    <button id="submit-btn" class="btn btn-primary btn-block"<?php if (!empty($biodata)) { if ($biodata['syarat2']=='Sudah') echo "disabled";} ?>>SIMPAN</button>     
+    <button id="submit-btn" class="btn btn-primary btn-block btn-lg"<?php if (!empty($biodata)) { if ($biodata['syarat2']=='Sudah') echo "disabled";} ?>>SIMPAN</button>     
     </div>    <!-- smartwizard -->
     </form>
 
@@ -631,11 +772,7 @@ $gelombang=$this->mgelombang->cek_daftar(array('thn_akademik'=>'2018/2019'));
 </div>
 
 
-<script src="http://cdn.jsdelivr.net/jquery.validation/1.15.1/jquery.validate.min.js"></script>
-<link rel="stylesheet" type="text/css" href="<?=base_url(); ?>assets/datepicker/css/datepicker.css">
-<script type="text/javascript"
-src="<?=base_url(); ?>assets/datepicker/js/bootstrap-datepicker.js">
-</script>    
+<script src="http://cdn.jsdelivr.net/jquery.validation/1.15.1/jquery.validate.min.js"></script> 
 
 <script type="text/javascript">
 var $jne=jQuery.noConflict();
@@ -793,14 +930,6 @@ return false;
 return true;
 }
 }
-</script>
-<script>
-var $jne2=jQuery.noConflict();
-$jne2('#date').datepicker({
-format: 'dd-mm-yyyy',
-startDate: '-3d'
-})
-
 </script>
 
 <script>

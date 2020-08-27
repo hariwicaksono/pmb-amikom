@@ -12,7 +12,7 @@
 <div class="row justify-content-center">
 
          <div class="col-md-8">
-         <ul class="nav nav-tabs nav-fill bg-white" style="font-size: 1.125rem; font-weight: 700">
+         <ul class="nav nav-tabs nav-fill bg-white" style="font-size: 1.125rem; font-weight: 500">
                 <li class="nav-item">
                     <a class="nav-link active" href='<?php echo base_url();?>page/login'>Masuk</a>
                 </li>
@@ -25,9 +25,8 @@
 
          <img src="<?php echo base_url('files/3.jpeg'); ?>" class="card-img-top mb-0" alt="Universitas Amikom Purwokerto" />
             <div class="card-body">
-            <h4>Masuk</h4>
+            <h4 class="mb-2">Masuk</h4>
             <form role="form" method="post" action="" id="formlogin">
-
             <div id="alerts"></div>
 
                 <div class="form-group">

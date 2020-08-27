@@ -5,22 +5,22 @@ input[type="radio"],input[type="checkbox"] {
     transform: scale(1.5);
 }
 </style>
-<div class="panel panel-info">
-    <div class="panel-heading">
-        <h3 class="panel-title">Informasi Ujian Online PMB</h3>
+<div class="card">
+    <div class="card-header">
+       Informasi Ujian Online PMB
     </div>
-    <div class="panel-body">
-    <div class="row">
-    <div class="col-md-8 col-md-offset-2">
+    <div class="card-body">
+    <div class="row justify-content-center">
+    <div class="col-md-8">
 <?php
 $jumlah = $jumlah_soal;
 foreach ($aturan_ujian->result_array() as $row) {
 echo "
-		<h2 align='center'>$row[nama_ujian]</h2>
+		<h3 align='center'>$row[nama_ujian]</h3>
 		Waktu Pengerjaan : $row[waktu] menit<br/>
 		Jumlah Soal : $jumlah<br/>
 		<p/>
-		<h3>PERATURAN</h3>
+		<h4 class='mb-2'>PERATURAN</h4>
 		$row[peraturan]<br/>
         ";
         
@@ -36,12 +36,12 @@ echo "
 			}
 		}
 </script>
-<br/>
+
 <div style='text-align:center;'>
 <form name="fValidate" method="post" action="<?=base_url()?>main_user/postattempt">
-<input type="checkbox" name="agree" id="agree" value="1" required> &nbsp;<span style="text-size:16px">Saya Mengerti dan Siap Untuk Mengikuti Tes</span><br/><br/>
-   
-   <input type="submit" name="submit" class="btn btn-primary btn-lg" value="MULAI" onclick="cekForm()">
+<input type="checkbox" name="agree" id="agree" value="1" required> &nbsp;<span style="text-size:16px">Saya Mengerti dan Siap Untuk Mengikuti Tes</span>
+ <br/>  
+<input type="submit" name="submit" class="btn btn-primary btn-lg mt-2" value="MULAI" onclick="cekForm()">
    
 </form>
 </div>

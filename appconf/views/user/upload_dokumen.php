@@ -4,9 +4,6 @@ display: block;
 color: transparent;
 padding-left: 10px;
 }
-.well{
-min-height: 200px;
-}
 @keyframes blink{
 0%{opacity: 0;}
 50%{opacity: .5;}
@@ -28,7 +25,7 @@ $jfile(this).css('color', 'transparent');
 </script>
 
 <div class="card">
-    <div class="card-header">
+    <div class="card-header card-header-borderless">
         <strong>Upload Dokumen</strong>
     </div>
     <div class="card-body">
@@ -68,10 +65,11 @@ $jfile(this).css('color', 'transparent');
                         <input type="hidden" name="nodaf" value="<?=$biodata['nodaf']?>">
                         <center>
                             <b>BUKTI BAYAR</b>
-                        </center>
-                        <label for="fileToUpload5" style="text-align: center;">
+                        <br/>
+                        <label for="fileToUpload5">
                             <img src="<?=base_url()?>assets/main/images/file.png" width="100">
                         </label>
+                        </center>
                         <div class="custom-file mb-3">
                         <input type="file" name="bukti_bayar" class="custom-file-input" id="fileToUpload5">
                         <label class="custom-file-label" for="fileToUpload5">Choose file</label>
@@ -89,9 +87,8 @@ $jfile(this).css('color', 'transparent');
                     <a href="<?=base_url()?>main_user/post_dokumen?act=hapus&id=<?=$bukti['id_dokumen']?>" class="btn btn-danger" onclick="return confirm('Hapus dokumen ini?')"  style="width: 100%;">Hapus</a>
                     </center>
                 <?php } ?>
-            <div class="alert alert-primary mt-3 mb-0" style="font-weight:600">   
-            <h4 class="alert-heading" style="font-weight:700">Biaya Pendaftaran Sebesar Rp.150.000,-</h4>
-                <br />
+            <div class="alert alert-primary mt-3 mb-0" style="font-weight:500">   
+            <h4 class="alert-heading mb-2" style="font-weight:700">Biaya Pendaftaran Sebesar Rp.150.000,-</h4>
                 Dibayarkan Via :
                 <br />
                 1. Bank MUAMALAT 541-008-0445 a/n Universitas Amikom Purwokerto
@@ -105,10 +102,11 @@ $jfile(this).css('color', 'transparent');
                         <input type="hidden" name="nodaf" value="<?=$biodata['nodaf']?>">
                         <center>
                             <b>FOTO</b>
-                        </center>
-                        <label for="fileToUpload3" style="text-align: center;">
+                        <br/>
+                        <label for="fileToUpload3">
                             <img src="<?=base_url()?>assets/main/images/foto.png" width="100">
                         </label>
+                        </center>
                         <div class="custom-file mb-3">
                         <input type="file" name="foto" class="custom-file-input" id="fileToUpload3">
                         <label class="custom-file-label" for="fileToUpload3">Choose file</label>
@@ -133,10 +131,11 @@ $jfile(this).css('color', 'transparent');
                         <input type="hidden" name="nodaf" value="<?=$biodata['nodaf']?>">
                         <center>
                             <b>KTP</b>
-                        </center>
-                        <label for="fileToUpload4" style="text-align: center;">
+                        <br/>
+                        <label for="fileToUpload4">
                             <img src="<?=base_url()?>assets/main/images/ktp.png" width="150" height="100">
                         </label>
+                        </center>
                         <div class="custom-file mb-3">
                         <input type="file" name="ktp" class="custom-file-input" id="fileToUpload4">
                         <label class="custom-file-label" for="fileToUpload4">Choose file</label>
@@ -161,10 +160,11 @@ $jfile(this).css('color', 'transparent');
                         <input type="hidden" name="nodaf" value="<?=$biodata['nodaf']?>">
                         <center>
                             <b>IJAZAH</b>
-                        </center>
-                        <label for="fileToUpload" style="text-align: center;">
+                        <br/>
+                        <label for="fileToUpload">
                             <img src="<?=base_url()?>assets/main/images/ijazah.png" width="100">
                         </label>
+                        </center>
                         <div class="custom-file mb-3">
                         <input type="file" name="ijazah" class="custom-file-input" id="fileToUpload">
                         <label class="custom-file-label" for="fileToUpload">Choose file</label>
@@ -190,10 +190,11 @@ $jfile(this).css('color', 'transparent');
                         <input type="hidden" name="nodaf" value="<?=$biodata['nodaf']?>">
                         <center>
                             <b>SKHU</b>
-                        </center>
-                        <label for="fileToUpload2" style="text-align: center;">
+                        <br/>
+                        <label for="fileToUpload2">
                             <img src="<?=base_url()?>assets/main/images/buku.png" width="100">
                         </label>
+                        </center>
                         <div class="custom-file mb-3">
                         <input type="file" name="skhu" class="custom-file-input" id="fileToUpload2">
                         <label class="custom-file-label" for="fileToUpload2">Choose file</label>
@@ -220,7 +221,7 @@ $jfile(this).css('color', 'transparent');
 
     
         
-<div class="alert alert-info mt-3">
+<div class="alert alert-info mt-3 mb-2">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
         </button>

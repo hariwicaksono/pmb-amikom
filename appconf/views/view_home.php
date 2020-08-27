@@ -1,6 +1,6 @@
 
 
-<div class="row mb-3">
+<div class="row mb-2">
 <div class="col-md-8">
 <div class="card h-100 shadow">
 <div class="card-body">
@@ -49,19 +49,19 @@
 
 </div>
 
-<div class="container-fluid">
+<div class="container">
 
-<div class="row mb-3">
+<div class="row mb-2">
             <div class="col-md-12">
             <div class="card bg-danger text-white shadow px-3 py-3">
             <div class="card-body">
-            <div class="card-title" style="font-size: 2.4rem; font-weight: 700">Daftar Sekarang
+            <div class="card-title" style="font-size: 2.4rem; font-weight: 500">Daftar Sekarang
 			</div>
 			<p>
             Buruan gabung yuk sob, di kampus dengan tenaga pengajar yang kompeten di bidangnya.
             <br/>JOIN AMIKOM PURWOKERTO NOW!
 			</p>
-            <a href='<?php echo base_url();?>page/register' class="btn btn-outline-light rounded-pill" style="font-weight: 600;padding-top: 10px;padding-bottom:10px">Daftar Sekarang </a>
+            <a href='<?php echo base_url();?>page/register' class="btn btn-light rounded-pill" style="padding-top: 10px;padding-bottom:10px">Daftar Sekarang </a>
 			</div>
 			</div>
 			</div>

@@ -58,7 +58,15 @@ function makeTimer() {
 		
 	}else{
        clearInterval(timer);
-	   alert('Waktu anda habis. Silahkan klik tombol JAWAB & SELESAI untuk melihat hasil ujian anda.');
+       $.notify({
+                        title: "<strong>Perhatian!</strong>",
+                        message: "Waktu anda habis. Silahkan klik tombol <strong class='blinker'>Jawab & Selesai</strong> untuk melihat hasil ujian anda."
+                    },{
+                        allow_dismiss: false,
+                        type: 'danger',
+                        timer: 0,
+                    });
+	   //alert('Waktu anda habis. Silahkan klik tombol JAWAB & SELESAI untuk melihat hasil ujian anda.');
 	   document.getElementById("overlay").style.display = "block";
        $("#hours").html("00");
 	     $("#minutes").html("00");
@@ -72,16 +80,16 @@ timer = setInterval(function() { makeTimer(); }, 1000);
 
 <div id="overlay"></div>
 
-<div class="panel panel-info">
-      <div class="panel-heading">
-          <h3 class="panel-title">Ujian Online PMB <span class="pull-right" style="font-size:16px;font-weight:bold;">Waktu: <span id="hours"></span>:<span id="minutes"></span>:<span id="seconds"></span></span></h3>
+<div class="card">
+      <div class="card-header">
+         <strong>Ujian Online PMB</strong> <span class="pull-right" style="font-size:16px;font-weight:bold;">Waktu: <span id="hours"></span>:<span id="minutes"></span>:<span id="seconds"></span></span>
       </div>
 
-  <div class="panel-body">
+  <div class="card-body">
     
   <form name="form1" method="post" action="<?=base_url()?>main_user/postjawaban">
     <div class="row">
-      <div class="col-md-9" style="max-height: 400px;overflow: auto;">
+      <div class="col-md-9" style="max-height: 600px;overflow: auto;">
               <?php 
               $jumlah=$jumlah_soal;
               $no=0;
@@ -98,40 +106,42 @@ timer = setInterval(function() { makeTimer(); }, 1000);
 
               <a id="<?php echo $no=$no+1; ?>"></a>
 
-        <div class="panel panel-default">   
+        <div class="card">   
 
               <input type="hidden" name="id[]" value=<?php echo $id; ?>>
               <input type="hidden" name="jumlah" value=<?php echo $jumlah; ?>>
-              <div class="panel-heading"><h3 class="panel-title"><?php echo $urut=$urut+1; ?>. <?php echo "$pertanyaan"; ?></h3></div>
+              <div class="card-header">
+                <h5 class="card-title mb-0"><?php echo $urut=$urut+1; ?>. <?php echo "$pertanyaan"; ?></h5>
+              </div>
 
-          <div class="panel-body">
+          <div class="card-body">
               <div class="radio">
                 <label>
-                  <input name="pilihan[<?php echo $id; ?>]" type="radio" value="A"> 
+                  <input name="pilihan[<?php echo $id; ?>]" type="radio" value="A">&nbsp;
                   <span style="font-size:18px;color:#000">A. <?php echo "$pilihan_a";?></span>
                 </label>
               </div>
               <div class="radio">
                 <label> 
-                  <input name="pilihan[<?php echo $id; ?>]" type="radio" value="B"> 
+                  <input name="pilihan[<?php echo $id; ?>]" type="radio" value="B">&nbsp; 
                   <span style="font-size:18px;color:#000">B. <?php echo "$pilihan_b";?></span>
                 </label>
               </div>
               <div class="radio">
                 <label> 
-                  <input name="pilihan[<?php echo $id; ?>]" type="radio" value="C"> 
+                  <input name="pilihan[<?php echo $id; ?>]" type="radio" value="C">&nbsp; 
                   <span style="font-size:18px;color:#000">C. <?php echo "$pilihan_c";?></span>
                 </label>
               </div>
               <div class="radio">
                 <label> 
-                  <input name="pilihan[<?php echo $id; ?>]" type="radio" value="D"> 
+                  <input name="pilihan[<?php echo $id; ?>]" type="radio" value="D">&nbsp; 
                   <span style="font-size:18px;color:#000">D. <?php echo "$pilihan_d";?></span>
                 </label>
               </div>
               <div class="radio">
                 <label> 
-                  <input name="pilihan[<?php echo $id; ?>]" type="radio" value="E"> 
+                  <input name="pilihan[<?php echo $id; ?>]" type="radio" value="E">&nbsp; 
                   <span style="font-size:18px;color:#000">E. <?php echo "$pilihan_e";?></span>
                 </label>
               </div>

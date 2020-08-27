@@ -1,9 +1,9 @@
-<div class="container-fluid">
+<div class="container">
  	<div class="wow animated fadeInDown">
 
 <div class="row justify-content-center">
      <div class="col-md-8">
-     <ul class="nav nav-tabs nav-fill bg-white" style="font-size: 1.125rem; font-weight: 700">
+     <ul class="nav nav-tabs nav-fill bg-white" style="font-size: 1.125rem; font-weight: 500">
                 <li class="nav-item">
                     <a class="nav-link" href='<?php echo base_url();?>page/login'>Masuk</a>
                 </li>
@@ -17,7 +17,7 @@
      <div class="card shadow bg-white border-0">
     
      <div class="card-body">
-     <h4 class="mb-3">Daftar Akun PMB<small> Universitas AMIKOM Purwokerto</small></h4>
+     <h4 class="mb-2">Daftar Akun PMB</h4>
     <?php  $info=$this->session->flashdata('info');
                             if (!empty($info)) { ?>
     <div class="alert alert-success alert-dismissable" role="alert">

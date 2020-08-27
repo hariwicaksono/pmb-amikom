@@ -1,9 +1,9 @@
 <div class="card">
-    <div class="card-header">
+    <div class="card-header card-header-borderless">
         <strong>Informasi</strong>
     </div>
     <div class="card-body">
-        <h4 class="mb-3">Status Pendaftaran</h4>
+        
         <?php
         if ($biodata['syarat2']=='Belum') $status='Belum diproses'; elseif ($biodata['syarat2']=='Sudah') $status="Diterima";
         else $status=$biodata['syarat2'];
@@ -11,8 +11,10 @@
         $tgldaftar=$this->mkonversi->TglIndonesia(date('d-m-Y',strtotime($biodata['tgldaftar']))); 
 		 ?>
 		 
-		 <div class="table-responsive">
-        	<table id="example" class="table">
+		 <div class="card">
+		 <div class="card-body mb-0">
+		 <h4 class="card-title">Status Pendaftaran</h4>
+        	<table id="example" class="table table-sm mb-0">
 				<tbody>
 					<tr>
 						<td>NODAF</td>
@@ -45,6 +47,7 @@
 
 				</tbody>
 			</table>
+			</div>
 			</div>
 			
 			<div class="alert alert-info"> 

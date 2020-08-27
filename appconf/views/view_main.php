@@ -2,9 +2,9 @@
     $this->load->view('layout/header'); 
 ?>
          
-<div class="container-fluid my-3">
+<div class="container my-2">
 <?php if($this->uri->segment(1)=='' || $this->uri->segment(1)=='page' && $this->uri->segment(2)=='' ) {?>
-<div class="shadow mb-3">
+<div class="shadow mb-2">
 
   <div id="carousel" class="carousel slide" data-ride="carousel">
     <ol class="carousel-indicators">

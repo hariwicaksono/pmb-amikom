@@ -11,32 +11,19 @@
         <!-- custom css-->
         <link href="<?php echo base_url(); ?>assets/css/bootstrap.css" rel="stylesheet">
         <link href="<?php echo base_url(); ?>assets/css/style.css" rel="stylesheet">
+        <link href="<?php echo base_url(); ?>assets/css/animate.min.css" rel="stylesheet">
         <link href="<?php echo base_url(); ?>assets/offline-js/themes/offline-theme-default.css" rel="stylesheet">
         <link href="<?php echo base_url(); ?>assets/offline-js/themes/offline-language-english.css" rel="stylesheet">
         <!-- font awesome for icons -->
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-        
-         <!--must need plugin jquery-->
+        <!--must need plugin jquery-->
         <script src="<?php echo base_url('assets/js');?>/jquery.min.js"></script>    
-        <!--bootstrap js plugin-->
-        <script src="<?php echo base_url('assets/js');?>/bootstrap.js" type="text/javascript"></script>    
-        <script src="<?php echo base_url('assets/js');?>/popper.min.js" type="text/javascript"></script>
         
-        <script src="<?php echo base_url('assets');?>/offline-js/offline.js" type="text/javascript"></script>   
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap-notify@3.1.3/bootstrap-notify.min.js" type="text/javascript"></script> 
-        <script type="text/javascript">
-        var $jQuery=jQuery.noConflict();
-        $jQuery(document).ready(function () {
-            $jQuery('#sidebarCollapse').on('click', function () {
-                $jQuery('#sidebar').toggleClass('active');
-            });
-        });
-    </script>
 </head>
 <body>
 
 
-<nav class="navbar navbar-expand-lg navbar-dark sticky-top" style="background-color: rgb(55, 18, 96)">
+<nav class="navbar navbar-expand-lg navbar-dark sticky-top" style="z-index:99 !important;background-color: rgb(55, 18, 96)">
 
 <button type="button" id="sidebarCollapse" class="btn btn-warning">
 <i class="fa fa-align-left" aria-hidden="true"></i>
@@ -87,7 +74,7 @@
     <a href="<?php echo base_url('page/faq');?>" class="nav-link"><i class="fa fa-question-circle-o fa-2x" aria-hidden="true"></i></a>
     </li>
     
-    <form class="form-inline my-2 my-lg-0"><a class="btn btn-info" href="<?php echo base_url('page/login');?>">Daftar/Masuk</a></form>
+    <form class="form-inline my-2 my-lg-0"><a class="btn btn-info" href="<?php echo base_url('page/login');?>" style="font-size: .9rem">DAFTAR/MASUK</a></form>
     </ul>
             
     <?php }else{ ?>

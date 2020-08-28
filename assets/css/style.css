@@ -254,45 +254,76 @@ input.error {
 .offline-ui {
     font-size: 0.875rem;
 }
-.sw > .nav {
-    font-size: 14px;
-}
-.sw > .nav .nav-link {
-    display: block;
-    padding: .5rem 0 !important;
-    text-decoration: none;
-}
-.sw > .tab-content {
-    margin-bottom: -20px !important;
- }
-.sw-theme-arrows > .nav .nav-link.active {
-    color: #ffffff;
-    border-color: #6610f2 !important;
-    background: #6610f2 !important;
-    cursor: pointer;
-}
-
-.sw-theme-arrows > .nav .nav-link.active::after {
-    border-left-color: #6610f2 !important;
-}
-
-.sw-theme-arrows > .nav .nav-link.done {
-    color: #ffffff;
-    border-color: #6f42c1 !important;
-    background: #6f42c1 !important;
-    cursor: pointer;
-}
-
-.sw-theme-arrows > .nav .nav-link.done::after {
-    border-left-color: #6f42c1 !important;
-}
-
 .blinker {
     animation: blinker 1s linear infinite;
-  }
-  
+} 
 @keyframes blinker {
     50% {
         opacity: 0;
+    }
+}
+label {
+    width: 100%;
+    font-size: 1rem;
+}
+.card-input-element+.card {
+    height: calc(26px + 2*1rem);
+    color: var(--gray-dark);
+    font-size: 1rem;
+    font-weight: 400;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    margin-bottom: -5px;
+}
+  
+.card-input-element+.card:hover {
+    cursor: pointer;
+}
+  
+.card-input-element:checked+.card {
+    border: 2px solid var(--success);
+    color: var(--success);
+    -webkit-transition: border .3s;
+    -o-transition: border .3s;
+    transition: border .3s;
+    font-weight: 400;
+}
+  
+.card-input-element:checked+.card::after {
+    content:'\2713';
+    display:inline-block;
+    padding:0 6px 0 0;
+    color: var(--success);
+    font-size: 30px;
+    font-weight: 700;
+    -webkit-animation-name: fadeInCheckbox;
+    animation-name: fadeInCheckbox;
+    -webkit-animation-duration: .5s;
+    animation-duration: .5s;
+    -webkit-animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+  
+@-webkit-keyframes fadeInCheckbox {
+    from {
+      opacity: 0;
+      -webkit-transform: rotateZ(-20deg);
+    }
+    to {
+      opacity: 1;
+      -webkit-transform: rotateZ(0deg);
+    }
+  }
+  
+@keyframes fadeInCheckbox {
+    from {
+      opacity: 0;
+      transform: rotateZ(-20deg);
+    }
+    to {
+      opacity: 1;
+      transform: rotateZ(0deg);
     }
 }

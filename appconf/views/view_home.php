@@ -49,9 +49,8 @@
 
 </div>
 
-<div class="container">
 
-<div class="row mb-2">
+<div class="row-fluid">
             <div class="col-md-12">
             <div class="card bg-danger text-white shadow px-3 py-3">
             <div class="card-body">
@@ -61,13 +60,13 @@
             Buruan gabung yuk sob, di kampus dengan tenaga pengajar yang kompeten di bidangnya.
             <br/>JOIN AMIKOM PURWOKERTO NOW!
 			</p>
-            <a href='<?php echo base_url();?>page/register' class="btn btn-light rounded-pill" style="padding-top: 10px;padding-bottom:10px">Daftar Sekarang </a>
+            <a href='<?php echo base_url();?>page/register' class="btn btn-light btn-lg rounded-pill">Daftar Sekarang</a>
 			</div>
 			</div>
 			</div>
 </div>
 
-</div>
+
 			
 <script src="https://cdn.jsdelivr.net/jquery.validation/1.15.1/jquery.validate.min.js"></script>
 

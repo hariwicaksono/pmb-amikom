@@ -23,7 +23,24 @@
             <div class="text-white mt-3">© 2020. Universitas Amikom Purwokerto - www.amikompurwokerto.ac.id</div>
             </div>
             </div>
-
+<!--bootstrap js plugin-->
+<script src="<?php echo base_url('assets/js');?>/bootstrap.js" type="text/javascript"></script>    
+        <script src="<?php echo base_url('assets/js');?>/popper.min.js" type="text/javascript"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js" integrity="sha512-Eak/29OTpb36LLo2r47IpVzPBLXnAMPAVypbSZiZ4Qkf8p/7S/XRG5xp7OKWPPYfJT6metI+IORkR5G8F900+g==" crossorigin="anonymous"></script>
+        <script>
+            new WOW().init();
+        </script>
+        <script src="<?php echo base_url('assets');?>/offline-js/offline.js" type="text/javascript"></script>   
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap-notify@3.1.3/bootstrap-notify.min.js" type="text/javascript"></script> 
+        <script type="text/javascript">
+        var $jQuery=jQuery.noConflict();
+        $jQuery(document).ready(function () {
+            $jQuery('#sidebarCollapse').on('click', function () {
+                $jQuery('#sidebar').toggleClass('active');
+            });
+        });
+        </script>
+        <script type="text/javascript" src="https://wingman.mediumra.re/assets/js/zoom.min.js"></script>
     </body>
 </html>
 

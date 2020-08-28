@@ -1,14 +1,14 @@
 <div class="container">
- 	<div class="wow animated fadeInDown">
+<div class="animate__animated animate__slideInDown">
 
 <div class="row justify-content-center">
      <div class="col-md-8">
      <ul class="nav nav-tabs nav-fill bg-white" style="font-size: 1.125rem; font-weight: 500">
                 <li class="nav-item">
-                    <a class="nav-link" href='<?php echo base_url();?>page/login'>Masuk</a>
+                    <a class="nav-link" href='<?php echo base_url();?>page/login'>MASUK</a>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link active" href='<?php echo base_url();?>page/register'>Daftar</a>
+                <a class="nav-link active" href='<?php echo base_url();?>page/register'>DAFTAR</a>
                 </li>
 
         </ul>

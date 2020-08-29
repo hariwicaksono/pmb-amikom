@@ -1,5 +1,5 @@
-            <div class="text-white border-0 py-5" style="background-color:#2C0E4C">
-            <div class="container">
+    <div class="text-white border-0 py-5" style="background-color:#2C0E4C">
+        <div class="container">
             <div class="row">
             <div class="col-md-3">
                 <img src="<?php echo base_url(); ?>assets/main/images/amikom-map.png" class="img-fluid py-3" width="350" alt="" />
@@ -21,17 +21,13 @@
             </div>
            
             <div class="text-white mt-3">© 2020. Universitas Amikom Purwokerto - www.amikompurwokerto.ac.id</div>
-            </div>
-            </div>
+    </div>
+</div>
 <!--bootstrap js plugin-->
 <script src="<?php echo base_url('assets/js');?>/bootstrap.js" type="text/javascript"></script>    
         <script src="<?php echo base_url('assets/js');?>/popper.min.js" type="text/javascript"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js" integrity="sha512-Eak/29OTpb36LLo2r47IpVzPBLXnAMPAVypbSZiZ4Qkf8p/7S/XRG5xp7OKWPPYfJT6metI+IORkR5G8F900+g==" crossorigin="anonymous"></script>
-        <script>
-            new WOW().init();
-        </script>
         <script src="<?php echo base_url('assets');?>/offline-js/offline.js" type="text/javascript"></script>   
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap-notify@3.1.3/bootstrap-notify.min.js" type="text/javascript"></script> 
+        <script src="<?php echo base_url('assets/js');?>/bootstrap-notify.min.js" type="text/javascript"></script> 
         <script type="text/javascript">
         var $jQuery=jQuery.noConflict();
         $jQuery(document).ready(function () {
@@ -40,7 +36,31 @@
             });
         });
         </script>
-        <script type="text/javascript" src="https://wingman.mediumra.re/assets/js/zoom.min.js"></script>
+        <script type="text/javascript" src="<?php echo base_url('assets/js');?>/zoom.min.js"></script>
+
+        <script type="text/javascript">
+        var $jQuery=jQuery.noConflict();
+        v = 
+            ((h = $jQuery),
+            {
+                activateIframeSrc: function (t) {
+                    var e = h(t);
+                    e.attr("data-src") && e.attr("src", e.attr("data-src"));
+                }
+            });
+        $jQuery(document).ready(function () {
+            $jQuery(".video-cover .video-play-icon").on("click touchstart", function () {
+            var t = $jQuery(this).closest(".video-cover").find("iframe");
+            v.activateIframeSrc(t), $jQuery(this).parent(".video-cover").addClass("video-cover-playing");
+        }),
+            !0 === "ontouchstart" in document.documentElement &&
+            $jQuery(".video-cover").each(function () {
+                $jQuery(this).addClass("video-cover-touch");
+                    var t = $jQuery(this).closest(".video-cover").find("iframe");
+                    v.activateIframeSrc(t);
+                });
+        });
+        </script>
     </body>
 </html>
 

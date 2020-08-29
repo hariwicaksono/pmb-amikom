@@ -1,20 +1,86 @@
 
-
-<div class="row mb-2">
-<div class="col-md-8">
-<div class="card h-100 shadow">
+<div class="card shadow mb-0">
 <div class="card-body">
 
+<div class="row">
+<div class="col-md-8">
+<div class="card mb-0">
+<div class="card-body">
+<h4 class="card-title">Program Studi</h4>
+<ul class="feature-list feature-list-sm row mb-0">
+
+            <li class="col-md-6 mb-0">
+              <div class="card">
+                <div class="card-header d-flex justify-content-between">
+                  <div>
+                    <span class="h6">Fakultas Ilmu Komputer</span>
+                   
+                  </div>
+                
+                </div>
+                <div class="card-body">
+                  <ul class="list-unstyled list-spacing-sm">
+                    <li>
+                      <i class="icon-text-document text-muted"></i>
+                      <a href="#">INFORMATIKA (S1)</a>
+                    </li>
+                    <li>
+                      <i class="icon-text-document text-muted"></i>
+                      <a href="#">SISTEM INFORMASI (S1)</a>
+                    </li>
+                    <li>
+                      <i class="icon-text-document text-muted"></i>
+                      <a href="#">TEKNOLOGI INFORMASI (S1)</a>
+                    </li>
+
+                  </ul>
+                </div>
+              </div>
+              <!--end of card-->
+            </li>
+            <!--end of col-->
+
+            <li class="col-md-6 mb-0">
+              <div class="card">
+                <div class="card-header d-flex justify-content-between">
+                  <div>
+                    <span class="h6">Fakultas Bisnis &amp; Ilmu Sosial</span>
+                   
+                  </div>
+                 
+                </div>
+                <div class="card-body">
+                  <ul class="list-unstyled list-spacing-sm">
+                    <li>
+                      <i class="icon-text-document text-muted"></i>
+                      <a href="#">ILMU KOMUNIKASI (S1)</a>
+                    </li>
+                    <li>
+                      <i class="icon-text-document text-muted"></i>
+                      <a href="#">BISNIS DIGITAL (S1)</a>
+                    </li>
+                    <li>
+                      <i class="icon-text-document text-muted"></i>
+                      <a href="#">BAHASA INGGRIS (D3/PSDKU)</a>
+                    </li>
+
+                  </ul>
+                </div>
+              </div>
+              <!--end of card-->
+            </li>
+            <!--end of col-->
+        </ul>
 
 </div>
 </div>
 </div>
 
 <div class="col-md-4">
-<div class="card h-100 shadow">
+<div class="card">
 	
 <div class="card-body">
-<h5 class="card-title">Login</h5>
+<h4 class="card-title">Masuk</h4>
 <form role="form" method="post" action="" id="formlogin">
 
             <div id="alerts"></div>
@@ -46,28 +112,60 @@
 </div>
 </div>
 </div>
+</div>
 
+</div>
+</div>
+
+<div class="container">
+<div class="card shadow mb-2">
+<div class="card-body">
+<div class="row justify-content-center text-center">
+            <div class="col-12 col-md-9 col-lg-8">
+              <h2 class="h1">Bergabung Bersama Kami</h2>
+              <span class="lead">Siapkan masa depanmu dengan belajar di perguruan tinggi unggulan yang berwawasan technopreneur</span>
+            </div>
+            <!--end of col-->
+          </div>
+          <!--end of row-->
+<div class="row justify-content-center">
+            <div class="col-md-8 col-sm-10">
+              <div class="video-cover">
+                <img alt="Image" src="<?php echo base_url();?>assets/main/images/cover-amikom.jpg" class="bg-image" />
+                <div class="video-play-icon">
+                <i class="fa fa-play" aria-hidden="true"></i>
+                </div>
+                <div class="embed-responsive embed-responsive-16by9">
+                <iframe class="embed-responsive-item" data-src="https://www.youtube.com/embed/4vcF1cVH9Rk?autoplay=1&amp;mute=0&amp;showinfo=0&amp;rel=0" allowfullscreen></iframe>
+                </div>
+              </div>
+              <!--end of video cover-->
+            </div>
+            <!--end of col-->
+          </div>
+          <!--end of row-->
+</div>
 </div>
 
 
-<div class="row-fluid">
-            <div class="col-md-12">
-            <div class="card bg-danger text-white shadow px-3 py-3">
-            <div class="card-body">
-            <div class="card-title" style="font-size: 2.4rem; font-weight: 500">Daftar Sekarang
-			</div>
-			<p>
-            Buruan gabung yuk sob, di kampus dengan tenaga pengajar yang kompeten di bidangnya.
-            <br/>JOIN AMIKOM PURWOKERTO NOW!
-			</p>
-            <a href='<?php echo base_url();?>page/register' class="btn btn-light btn-lg rounded-pill">Daftar Sekarang</a>
-			</div>
-			</div>
-			</div>
+
+
+<div class="card bg-danger text-white shadow px-3 py-3 mb-2">
+    <div class="card-body">
+    <div class="card-title" style="font-size: 2.4rem; font-weight: 500">Daftar Sekarang
+    </div>
+    <p>
+    Buruan gabung yuk sob, di kampus dengan tenaga pengajar yang kompeten di bidangnya.
+    <br/>JOIN AMIKOM PURWOKERTO NOW!
+    </p>
+    <a href='<?php echo base_url();?>page/register' class="btn btn-light btn-lg rounded-pill">Daftar Sekarang</a>
+    </div>
+    </div>
 </div>
 
 
-			
+
+</div>		
 <script src="https://cdn.jsdelivr.net/jquery.validation/1.15.1/jquery.validate.min.js"></script>
 
 <script type="text/javascript">

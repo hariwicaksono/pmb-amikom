@@ -15,36 +15,6 @@ input[type="radio"],input[type="checkbox"] {
 }
 </style>
 
-<!-- jQuery smartWizard facilitates steppable wizard content -->
-<script type="text/javascript" src="<?php echo base_url('assets/js');?>/jquery.smartWizard.min.js"></script>
-
-<script type="text/javascript">
-var $jquery=jQuery.noConflict();
-      $jquery(document).ready(function(){
-        
-        $jquery(".wizard").smartWizard({ 
-            selected: <?php echo $start;?>,
-            transitionEffect: "fade", 
-            //showStepURLhash: !1, 
-            toolbarSettings: { toolbarPosition: "none" } 
-        });
-
-        $jquery('.wizard').on("leaveStep", function(e, anchorObject, stepNumber, stepDirection) {
-            var elmForm = $jquery(".step-" + stepNumber);
-            if (stepDirection === 'forward' && elmForm) {
-                if ($jquery('#form').valid()) {
-                    return true
-                } else {
-                    return false
-                }
-            }
-            return true;
-        })
-     
-         
-      });
-</script>
-
 <?php
 if ($biodata['syarat2']=='Sudah') $status='Readonly';
 $this->data['tahun_pmb']=$this->mtahun->getThaPmb();
@@ -70,7 +40,7 @@ $gelombang=$this->mgelombang->cek_daftar(array('thn_akademik'=>'2018/2019'));
             </ul>
             <!--end of col-->
             <div class="col col-lg-9 tab-content">
-              <div id="first" class="step-0">
+              <div id="first">
                 <div class="row align-items-center mb-1">
                   <div class="col-9">
                     <h6 class="title-decorative">Step 1</h6>
@@ -84,6 +54,7 @@ $gelombang=$this->mgelombang->cek_daftar(array('thn_akademik'=>'2018/2019'));
                   <!--end of col-->
                 </div>
                 <!--end of row-->
+                <div id="form-step-0">
                 <div class="form-group">
                     <input type="text" name="nama" class="form-control form-control-lg" placeholder="Nama Lengkap" <?php if (!empty($biodata['nama'])) echo 'value="'.$biodata['nama'].'"'; else echo 'value="'.$akun['nama'].'"';?> required>
                 </div>
@@ -139,20 +110,16 @@ $gelombang=$this->mgelombang->cek_daftar(array('thn_akademik'=>'2018/2019'));
 
                 </div>
 
-                <div class="form-row form-group" id="jk">
+                <div class="form-row form-group mb-1" id="jk">
              
                     <div class="col-md-6">
-                    <label>
-                    <input class="card-input-element d-none" type="radio" name="jk" value="Pria" <?php if (!empty($biodata)) { if ($biodata['jk']=='Pria') { echo 'checked=checked'; }} ?> > 
-                    <div class="card card-body d-flex flex-row justify-content-between align-items-center">Laki-Laki</div>
-                    </label>
+                    <input class="radio-btn positive" type="radio" name="jk" value="Pria" <?php if (!empty($biodata)) { if ($biodata['jk']=='Pria') { echo 'checked=checked'; }} ?> id="radio-1">
+                    <label class="radio-label" for="radio-1">Laki-Laki</label>
                     </div>     
                     
                    <div class="col-md-6">
-                    <label>
-                    <input class="card-input-element d-none" type="radio" name="jk" value="Wanita" <?php if (!empty($biodata)) { if ($biodata['jk']=='Wanita') { echo 'checked=checked'; }} ?> > 
-                    <div class="card card-body d-flex flex-row justify-content-between align-items-center">Perempuan</div>
-                    </label>
+                   <input class="radio-btn positive" type="radio" name="jk" value="Wanita" <?php if (!empty($biodata)) { if ($biodata['jk']=='Wanita') { echo 'checked=checked'; }} ?> id="radio-2"> 
+                    <label class="radio-label"  for="radio-2">Perempuan</label>
                     </div>
     
                 </div>
@@ -183,11 +150,12 @@ $gelombang=$this->mgelombang->cek_daftar(array('thn_akademik'=>'2018/2019'));
                     <input type="text" name="email" class="form-control form-control-lg" placeholder="Alamat Email" <?php if (!empty($biodata['email'])) echo 'value="'.$biodata['email'].'"'; else echo 'value="'.$this->session->userdata['email'],'"' ; ?> >
                     </div>
                 </div>
+                </div>
 
                 <button class="btn btn-success sw-btn-next mt-2" type="button">Selanjutnya</button>
               </div>
 
-              <div id="second" class="step-1">
+              <div id="second">
                 <div class="row align-items-center mb-1">
                   <div class="col-9">
                     <h6 class="title-decorative">Step 2</h6>
@@ -201,6 +169,7 @@ $gelombang=$this->mgelombang->cek_daftar(array('thn_akademik'=>'2018/2019'));
                   <!--end of col-->
                 </div>
                 <!--end of row-->
+                <div id="form-step-1">
                 <div class="form-group">
                 <label class="control-label">Jenis Pendaftaran &amp; Pilihan Program Studi *</label>
                 <select name="status_reg" class="form-control form-control-lg" id="status_reg">
@@ -281,7 +250,7 @@ $gelombang=$this->mgelombang->cek_daftar(array('thn_akademik'=>'2018/2019'));
                     <span style="font-size:11px">Jika kelas tidak muncul klik kembali form pilihan 2</span>
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group" id="informasi">
                     <label class="control-label">Informasi tentang Universitas Amikom Purwokerto</label><br/>
                         <div>
                         <?php
@@ -305,6 +274,7 @@ $gelombang=$this->mgelombang->cek_daftar(array('thn_akademik'=>'2018/2019'));
                                 ?>
                         </div>
                     </div>
+                    </div>
 
                     <div class="mt-2">
                     <button class="btn btn-secondary sw-btn-prev" type="button">Sebelumnya</button>
@@ -312,7 +282,7 @@ $gelombang=$this->mgelombang->cek_daftar(array('thn_akademik'=>'2018/2019'));
                     </div>
                 </div>
 
-                <div id="third" class="step-2">
+                <div id="third">
                     <div class="row align-items-center mb-1">
                     <div class="col-9">
                         <h6 class="title-decorative">Step 3</h6>
@@ -326,6 +296,7 @@ $gelombang=$this->mgelombang->cek_daftar(array('thn_akademik'=>'2018/2019'));
                     <!--end of col-->
                     </div>
                     <!--end of row-->
+                    <div id="form-step-2">
                     <div class="form-group">
                     <label class="control-label">Nama Sekolah *</label>
                     <input type="text" name="sekolah" class="form-control form-control-lg" placeholder="Nama SMK/SMA/PTS/PTN/DLL" <?php if (!empty($biodata['sekolah'])) echo 'value="'.$biodata['sekolah'].'"'; ?> required>
@@ -356,6 +327,7 @@ $gelombang=$this->mgelombang->cek_daftar(array('thn_akademik'=>'2018/2019'));
                         <input type="text" name="thn_lulus" class="form-control form-control-lg" placeholder="Tahun Lulus" onkeypress="return hanyaAngka(this)" maxlength="4" <?php if (!empty($biodata['tahun_lulus'])) echo 'value='.$biodata['tahun_lulus']; ?> >
                         </div>
                     </div>
+                    </div>
 
                     <div class="mt-3">
                     <button class="btn btn-secondary sw-btn-prev" type="button">Sebelumnya</button>
@@ -378,6 +350,7 @@ $gelombang=$this->mgelombang->cek_daftar(array('thn_akademik'=>'2018/2019'));
                         <!--end of col-->
                         </div>
                         <!--end of row-->
+                        <div id="form-step-3">
                         <div class="form-group">
                         <input type="text" name="alamat" class="form-control form-control-lg otom" id="alamat_siswa" placeholder="Alamat Lengkap Jalan"  <?php if (!empty($biodata['alamat'])) echo 'value="'.$biodata['alamat'].'"'; ?> >
                     
@@ -406,8 +379,7 @@ $gelombang=$this->mgelombang->cek_daftar(array('thn_akademik'=>'2018/2019'));
                         </div>
                     </div>
 
-                    <div class="form-row form-group">
-                        <div class="col-sm-6">
+                    <div class="form-group">
                         <select name="kabupaten" class="form-control form-control-lg" id="kab_siswa" required >
                                 <option value="">Pilih Kabupaten</option>
                                 <?php $kab=$this->model_crud->selectData("kabupaten");
@@ -417,7 +389,8 @@ $gelombang=$this->mgelombang->cek_daftar(array('thn_akademik'=>'2018/2019'));
                                 <?php } ?>
                             </select>
                         </div>
-                        <div class="col-sm-6">
+
+                    <div class="form-group">
                         <!--<select name="propinsi" class="form-control" id="prop" <?php //if (empty($biodata['propinsi'])) echo "disabled"; ?> >-->
                         <select name="propinsi" class="form-control form-control-lg" id="prop" required>
                                 <option value="">Pilih Provinsi</option>
@@ -429,8 +402,9 @@ $gelombang=$this->mgelombang->cek_daftar(array('thn_akademik'=>'2018/2019'));
                                 ?>
                         </select>
                         <span style="font-size:11px">Jika propinsi tidak muncul klik kembali form Kabupaten</span>
-                        </div>
+                        
                     
+                    </div>
                     </div>
 
                     <div class="mt-2">
@@ -444,98 +418,70 @@ $gelombang=$this->mgelombang->cek_daftar(array('thn_akademik'=>'2018/2019'));
                   <div class="col-9">
                     <h6 class="title-decorative">Step 5</h6>
                     <h3 class="h1">Orang Tua/Wali</h3>
-                    <span class="lead"></span>
+                    <span class="lead">Data Nama Ibu Kandung dan Alamat Orang Tua</span>
    
                   </div>
                   <!--end of col-->
                   <div class="col-3">
-                    <img alt="Image" src="" class="img-fluid" />
+                    <img alt="Image" src="<?php echo base_url(); ?>assets/main/images/iconpack/mother-846212.png" class="img-fluid" />
                   </div>
                   <!--end of col-->
                 </div>
                 <!--end of row-->
-                <div class="form-group">
-                        <label class="control-label">
-                            Nama Ibu Kandung*
-                        </label>
-                        
-                        <input type="text" name="nama_ortu" class="form-control" placeholder="Nama Orang Tua" <?php if (!empty($biodata['NAMA_ORTU'])) echo 'value="'.$biodata['NAMA_ORTU'].'"'; ?> required>
-                        
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label">Alamat lengkap*</label>
-                        
-                        <input type="text" name="alamat_ortu" class="form-control otom" id="alamat_ortu" placeholder="Jalan" <?php if (!empty($biodata['ALAMATORTU'])) echo 'value="'.$biodata['ALAMATORTU'].'"'; ?> >
-                        
-                        
-                    </div>
-
-                    <div class="form-group">
-
-                    <div class="row">
-                            <div class="col-sm-3">
-                            <label class="control-label">RT*</label>
-                        
-                            <input type="text" name="rt_ortu" class="form-control otom" id="rt_ortu" placeholder="00" maxlength="2" <?php if (!empty($biodata['RT_ORTU'])) echo 'value="'.$biodata['RT_ORTU'].'"'; ?> >
-                            </div>
-                            
-                            <div class="col-sm-3">
-                            <label class="control-label">RW*</label>
-                        
-                        <input type="text" name="rw_ortu" class="form-control otom" id="rw_ortu" placeholder="00" maxlength="2" <?php if (!empty($biodata['RW_ORTU'])) echo 'value="'.$biodata['RW_ORTU'].'"'; ?> >
-                            </div>
-                            <div class="col-sm-6">
-                            <label class="control-label">
-                        Kelurahan/Desa*
-                        </label>
-                        
-                        <input type="text" name="kelurahan_ortu" class="form-control otom" id="desa_ortu" placeholder="Kelurahan/Desa" <?php if (!empty($biodata['KELURAHAN_ORTU'])) echo 'value="'.$biodata['KELURAHAN_ORTU'].'"'; ?> >
-                            </div>
+                <div id="form-step-4">
+                    <label class="control-label">Nama Ibu Kandung *</label>
+                    <div class="form-row form-group">
+                        <div class="col-md-7">
+                        <input type="text" name="nama_ortu" class="form-control form-control-lg" placeholder="Nama Ibu Kandung" <?php if (!empty($biodata['NAMA_ORTU'])) echo 'value="'.$biodata['NAMA_ORTU'].'"'; ?> >
                         </div>
-                        
+
+                        <div class="col-md-5">
+                            <input type="number" name="telp_ortu" class="form-control form-control-lg" placeholder="No Telp/HP" maxlength="15" <?php if (!empty($biodata['TELP_ORTU'])) echo 'value="'.$biodata['TELP_ORTU'].'"'; ?> required>
+                        </div>
                     </div>
-
-                    <div class="form-group">
-
-                    <div class="row">
-
-                            <div class="col-sm-6">
-                            <label class="control-label">
-                            Kecamatan*
-                        </label>
                     
-                        <input type="text" name="kecamatan_ortu" class="form-control otom" id="kecamatan_ortu" placeholder="Kecamatan" <?php if (!empty($biodata['KECAMATAN_ORTU'])) echo 'value="'.$biodata['KECAMATAN_ORTU'].'"'; ?> >
-                            </div>
+                    <div class="form-group">
+                        <input type="text" name="alamat_ortu" class="form-control form-control-lg otom" id="alamat_ortu" placeholder="Alamat Lengkap Orang Tua" <?php if (!empty($biodata['ALAMATORTU'])) echo 'value="'.$biodata['ALAMATORTU'].'"'; ?> >
+                    </div>
 
-                            <div class="col-sm-6">
-                            <label class="control-label">
-                            Kabupaten*
-                        </label>
-                        
-                            <select name="kabupaten_ortu" class="form-control" id="kab_ortu" required >
-                                <option value="">PILIH</option>
-                                <?php $kab=$this->model_crud->selectData("kabupaten");
-                                    $i=1;
-                                    foreach ($kab->result() as $key) { ?>
-                                        <option value="<?=$key->KdKab?>" <?php if (!empty($biodata)) { if ($biodata['KABUPATEN_ORTU']==$key->KdKab) { echo 'selected=selected'; }} ?>><?=$key->NamaKab?></option>
-                                <?php } ?>
-                            </select>
-                            </div>
-
-
+                    <div class="form-row form-group">
+                        <div class="col-sm-3">
+                        <input type="text" name="rt_ortu" class="form-control form-control-lg otom" id="rt_ortu" placeholder="RT" maxlength="2" <?php if (!empty($biodata['RT_ORTU'])) echo 'value="'.$biodata['RT_ORTU'].'"'; ?> >
                         </div>
                         
+                        <div class="col-sm-3">
+                        <input type="text" name="rw_ortu" class="form-control form-control-lg otom" id="rw_ortu" placeholder="RW" maxlength="2" <?php if (!empty($biodata['RW_ORTU'])) echo 'value="'.$biodata['RW_ORTU'].'"'; ?> >
+                        </div>
+
+                        <div class="col-sm-6">
+                        <input type="text" name="kelurahan_ortu" class="form-control form-control-lg otom" id="desa_ortu" placeholder="Kelurahan/Desa" <?php if (!empty($biodata['KELURAHAN_ORTU'])) echo 'value="'.$biodata['KELURAHAN_ORTU'].'"'; ?> >
+                        </div>
                         
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-row form-group">
+                        <div class="col-sm-6">
+                        <input type="text" name="kecamatan_ortu" class="form-control form-control-lg otom" id="kecamatan_ortu" placeholder="Kecamatan" <?php if (!empty($biodata['KECAMATAN_ORTU'])) echo 'value="'.$biodata['KECAMATAN_ORTU'].'"'; ?> >
+                        </div>
+                        <div class="col-sm-6">
+                        <input type="text" name="kodepos_ortu" class="form-control form-control-lg otom" id="kodepos_ortu" placeholder="Kode Pos" <?php if (!empty($biodata['KODEPOS_ORTU'])) echo 'value="'.$biodata['KODEPOS_ORTU'].'"'; ?>>
+                        </div>
+                    </div>
 
-                    <label class="control-label">
-                        Propinsi*
-                        </label>
+                    <div class="form-group">
+                        <select name="kabupaten_ortu" class="form-control form-control-lg" id="kab_ortu" required >
+                            <option value="">Pilih Kabupaten</option>
+                            <?php $kab=$this->model_crud->selectData("kabupaten");
+                                $i=1;
+                                foreach ($kab->result() as $key) { ?>
+                                    <option value="<?=$key->KdKab?>" <?php if (!empty($biodata)) { if ($biodata['KABUPATEN_ORTU']==$key->KdKab) { echo 'selected=selected'; }} ?>><?=$key->NamaKab?></option>
+                            <?php } ?>
+                        </select>
+                    </div>
+                    <div class="form-group">
                         <!--<select name="propinsi_ortu" class="form-control" id="prop2" <?php //if (empty($biodata['PROPINSI_ORTU'])) echo "disabled"; ?> >-->
-                            <select name="propinsi_ortu" class="form-control" id="prop2" required>
-                                <option value="">PILIH</option>
+                            <select name="propinsi_ortu" class="form-control form-control-lg" id="prop2" required>
+                                <option value="">Pilih Provinsi</option>
                                 <?php
                                     if (!empty($biodata['PROPINSI_ORTU']) ) {
                                             $prop=$this->model_crud->selectData("propinsi",array('kdProp'=>$biodata['PROPINSI_ORTU']))->row_array();
@@ -543,33 +489,13 @@ $gelombang=$this->mgelombang->cek_daftar(array('thn_akademik'=>'2018/2019'));
                                     }
                                 ?>
                             </select>
-                            <span class="text-muted" style="font-size:11px">*Jika propinsi tidak muncul klik kembali form Kabupaten</span>
+                            <span style="font-size:11px">Jika propinsi tidak muncul klik kembali form Kabupaten</span>
+
                     </div>
-
-                    <div class="form-group">
-
-                    <div class="row">
-                            <div class="col-sm-6">
-                            <label class="control-label">
-                            Kode Pos*
-                        </label>
-                        
-                            <input type="text" name="kodepos_ortu" class="form-control otom" id="kodepos_ortu" placeholder="Kode Pos" <?php if (!empty($biodata['KODEPOS_ORTU'])) echo 'value="'.$biodata['KODEPOS_ORTU'].'"'; ?>>
-                            </div>
-                            
-                            <div class="col-sm-6">
-                            <label class="control-label">
-                            Telp/HP Orang Tua*
-                        </label>
-                        
-                            <input type="text" name="telp_ortu" class="form-control" placeholder="Telp/HP" maxlength="15" <?php if (!empty($biodata['TELP_ORTU'])) echo 'value="'.$biodata['TELP_ORTU'].'"'; ?> required>
-                            </div>
-                        </div>    
-                        
                     </div>
 
                     <button class="btn btn-secondary sw-btn-prev" type="button">Sebelumnya</button>
-                    <button id="submit-btn" type="submit" class="btn btn-primary"<?php if (!empty($biodata)) { if ($biodata['syarat2']=='Sudah') echo "disabled";} ?> >Selesai &amp; Simpan</button> 
+                    <button id="submit-btn" type="submit" class="btn btn-success"<?php if (!empty($biodata)) { if ($biodata['syarat2']=='Sudah') echo "disabled";} ?> ><i class="fa fa-check" aria-hidden="true"></i> Selesai &amp; Simpan</button> 
 
               </div>
             </div>
@@ -582,171 +508,6 @@ $gelombang=$this->mgelombang->cek_daftar(array('thn_akademik'=>'2018/2019'));
 
 <script src="http://cdn.jsdelivr.net/jquery.validation/1.15.1/jquery.validate.min.js"></script> 
 
-<script type="text/javascript">
-var $jne=jQuery.noConflict();
-$jne(document).ready(function() {
-$jne("#form").validate({
-    ignore: "",
-rules:{     
-nama:"required",
-nik : { required : true, number : true, minlength:16},
-pilihan1 : {required:true},
-pilihan2 : {required:true},
-tempatlahir :{required : true},
-tgllahir : {required: true},
-blnlahir : {required: true},
-thnlahir : {required: true},
-jk : {required : true},
-agama :{required : true},
-nama_ortu : {required : true},
-sekolah : {required : true},
-jurusan : { required : true },
-nem : { required : true },
-thn_lulus : { required : true, number : true, minlength:4},
-alamat : {required : true},
-rt : { required : true, number : true, minlength : 2},
-rw : { required : true, number : true, minlength : 2},
-kelurahan : { required : true},
-kecamatan : { required : true},
-kabupaten : { required : true },
-alamat_ortu : {required : true},
-rt_ortu : { required : true, number : true, minlength : 2},
-rw_ortu: { required : true, number : true, minlength : 2},
-kelurahan_ortu : { required : true },
-kecamatan_ortu : { required : true },
-kabupaten_ortu : { required : true },
-kodepos : { required : true, number : true },
-kodepos_ortu : { required : true ,  number : true },
-telepon : {required : true, number : true, minlength : 6},
-telp_ortu : {required : true, number : true, minlength : 6},
-status_reg : {required : true},
-jenis_mhs : {required : true},
-relasi : { required : true},
-kelas : { required : true },
-'info[]' : {required : true},
-},
-messages:{ 
-nama: {
-    required:'<span>Nama Mahasiswa wajib diisi</span>'},
-nik : {
-    required:'<span>NIK KTP wajib diisi</span>',
-    number :'<span>Wajib Berupa Angka</span>',
-    minlength:'<span>Min 16 Angka</span>',
-},
-pilihan1: {
-    required:'<span>Program Studi Wajib dipilih</span>'},
-pilihan2: {
-    required:'<span>Progaram Studi Wajib dipilih</span>'},
-tempatlahir :{
-    required :'<span>Tempat lahir wajib diisi</span>'
-},
-tgllahir :{
-    required :'<span>Tanggal lahir wajib diisi</span>'
-},
-blnlahir :{
-    required :'<span>Bulan lahir wajib diisi</span>'
-},
-thnlahir :{
-    required :'<span>Tahun lahir wajib diisi</span>'
-},
-jk : {
-    required : '<span>Jenis kelamin wajib dipilih</span>'
-},
-agama : {
-    required : '<span>Agama wajib dipilih</span>'
-},
-nama_ortu : {
-    required : '<span>Nama Orang Tua (Ibu) wajib diisi</span>'
-},
-sekolah : {
-    required : '<span>Asal Sekolah wajib diisi</span>'
-},
-jurusan : {
-    required : '<span>Jurusan wajib dipilih</span>'
-},
-nem : {
-    required : '<span>Nilai UAS wajib diisi</span>',
-},
-thn_lulus : {
-    required : '<span>Tahun lulus wajib diisi</span>',
-    number : '<span>Tahun lulus wajib berupa angka</span>',
-    minlength : '<span>Tahun lulus min 4 angka</span>'
-},
-alamat : {
-    required : '<span>Jalan wajib diisi</span>',
-},
-rt : {
-    required : '<span>RT wajib diisi</span>',
-    number : '<span>RT wajib berupa angka</span>',
-    minlength : '<span>RT min 2 angka</span>',
-},
-rw : {
-    required : '<span>RW wajib diisi</span>',
-    number : '<span><RW wajib berupa angka</span>',
-    minlength : '<span>RW min 2 angka</span>',
-},
-kodepos : {
-    required : '<span>Kodepos wajib diisi</span>',
-    number : '<span>Kodepos wajib berupa angka</span>',
-},
-telepon : {
-    required : '<span>Telepon wajib diisi</span>',
-    number : '<span>Telepon wajib berupa angka</span>',
-    minlength : '<span>Telepon min 6 angka</span>',
-},
-alamat_ortu : {
-    required : '<span>Jalan wajib diisi</span>',
-},
-rt_ortu : {
-    required : '<span>RT wajib diisi</span>',
-    number : '<span>RT wajib berupa angka</span>',
-    minlength : '<span>RT min 2 angka</span>',
-},
-rw_ortu : {
-    required : '<span>RW wajib diisi</span>',
-    number : '<span><RW wajib berupa angka</span>',
-    minlength : '<span>RW min 2 angka</span>',
-},
-kodepos_ortu : {
-    required : '<span>Kodepos wajib diisi</span>',
-    number : '<span>Kodepos wajib berupa angka</span>',
-},
-telp_ortu : {
-    required : '<span>Telepon wajib diisi</span>',
-    number : '<span>Telepon wajib berupa angka</span>',
-    minlength : '<span>Telepon min 6 angka</span>',
-},
-status_reg : {
-    required: '<span>Jenis Pendaftaran wajib dipilih</span>'
-},
-jenis_mhs : {
-    required: '<span>Jenis Mahasiswa wajib dipilih</span>'
-},
-relasi : {
-    required: '<span>Relasi wajib dipilih</span>'
-},
-kelas : {
-    required : '<span>Kelas wajib dipilih</span>'
-},
-info : {
-    required : '<span>Wajib dipilih</span>'
-}
-
-},
-errorPlacement: function(error, element) 
-        {
-            if ( element.is(":radio") ) 
-            {
-                error.appendTo( element.parents('#jk') );
-            }
-            else 
-            {
-                error.insertAfter( element );
-            }
-         }
-});
-});
-</script>
 <script>
 function hanyaAngka(evt) {
 if(!/^[0-9.]+$/.test(evt.value))
@@ -944,4 +705,221 @@ $(this).val(function(index, value) {
 });
 
 });
+</script>
+<!-- jQuery smartWizard facilitates steppable wizard content -->
+<script type="text/javascript" src="<?php echo base_url('assets/js');?>/jquery.smartWizard.min.js"></script>
+
+<script type="text/javascript">
+var $jquery=jQuery.noConflict();
+      $jquery(document).ready(function(){
+        
+        $jquery(".wizard").smartWizard({ 
+            selected: <?php echo $start;?>,
+            transitionEffect: "fade", 
+            //showStepURLhash: !1, 
+            toolbarSettings: { toolbarPosition: "none" } 
+        });
+
+        $jquery("#form").validate({
+            //ignore: "",
+            rules:{     
+            nama:"required",
+            nik : { required : true, number : true, minlength:16},
+            pilihan1 : {required:true},
+            pilihan2 : {required:true},
+            tempatlahir :{required : true},
+            tgllahir : {required: true},
+            blnlahir : {required: true},
+            thnlahir : {required: true},
+            jk : {required : true},
+            agama :{required : true},
+            nama_ortu : {required : true},
+            sekolah : {required : true},
+            jurusan : { required : true },
+            nem : { required : true },
+            thn_lulus : { required : true, number : true, minlength:4},
+            alamat : {required : true},
+            rt : { required : true, number : true, minlength : 2},
+            rw : { required : true, number : true, minlength : 2},
+            kelurahan : { required : true},
+            kecamatan : { required : true},
+            kabupaten : { required : true },
+            alamat_ortu : {required : true},
+            rt_ortu : { required : true, number : true, minlength : 2},
+            rw_ortu: { required : true, number : true, minlength : 2},
+            kelurahan_ortu : { required : true },
+            kecamatan_ortu : { required : true },
+            kabupaten_ortu : { required : true },
+            kodepos : { required : true, number : true },
+            kodepos_ortu : { required : true ,  number : true },
+            telepon : {required : true, number : true, minlength : 6},
+            telp_ortu : {required : true, number : true, minlength : 6},
+            status_reg : {required : true},
+            jenis_mhs : {required : true},
+            relasi : { required : true},
+            kelas : { required : true },
+            'info[]' : {required : true},
+            },
+            messages:{ 
+            nama: {
+                required:'<span>Nama Mahasiswa wajib diisi</span>'},
+            nik : {
+                required:'<span>NIK KTP wajib diisi</span>',
+                number :'<span>Wajib Berupa Angka</span>',
+                minlength:'<span>Min 16 Angka</span>',
+            },
+            pilihan1: {
+                required:'<span>Program Studi Wajib dipilih</span>'},
+            pilihan2: {
+                required:'<span>Program Studi Wajib dipilih</span>'},
+            tempatlahir :{
+                required :'<span>Tempat lahir wajib diisi</span>'
+            },
+            tgllahir :{
+                required :'<span>Tanggal lahir wajib diisi</span>'
+            },
+            blnlahir :{
+                required :'<span>Bulan lahir wajib diisi</span>'
+            },
+            thnlahir :{
+                required :'<span>Tahun lahir wajib diisi</span>'
+            },
+            jk : {
+                required : '<span>Jenis kelamin wajib dipilih</span>'
+            },
+            agama : {
+                required : '<span>Agama wajib dipilih</span>'
+            },
+            nama_ortu : {
+                required : '<span>Nama Orang Tua (Ibu) wajib diisi</span>'
+            },
+            sekolah : {
+                required : '<span>Asal Sekolah wajib diisi</span>'
+            },
+            jurusan : {
+                required : '<span>Jurusan wajib dipilih</span>'
+            },
+            nem : {
+                required : '<span>Nilai UAS wajib diisi</span>',
+            },
+            thn_lulus : {
+                required : '<span>Tahun lulus wajib diisi</span>',
+                number : '<span>Tahun lulus wajib berupa angka</span>',
+                minlength : '<span>Tahun lulus min 4 angka</span>'
+            },
+            alamat : {
+                required : '<span>Jalan wajib diisi</span>',
+            },
+            rt : {
+                required : '<span>RT wajib diisi</span>',
+                number : '<span>RT wajib berupa angka</span>',
+                minlength : '<span>RT min 2 angka</span>',
+            },
+            rw : {
+                required : '<span>RW wajib diisi</span>',
+                number : '<span><RW wajib berupa angka</span>',
+                minlength : '<span>RW min 2 angka</span>',
+            },
+            kelurahan : {
+                required : '<span>Kelurahan/Desa wajib diisi</span>',
+            },
+            kecamatan : {
+                required : '<span>Kecamatan wajib diisi</span>',
+            },
+            kabupaten : {
+                required : '<span>Kabupaten wajib dipilih</span>',
+            },
+            propinsi : {
+                required : '<span>Provinsi wajib dipilih</span>',
+            },
+            kodepos : {
+                required : '<span>Kodepos wajib diisi</span>',
+                number : '<span>Kodepos wajib berupa angka</span>',
+            },
+            telepon : {
+                required : '<span>Telepon wajib diisi</span>',
+                number : '<span>Telepon wajib berupa angka</span>',
+                minlength : '<span>Telepon min 6 angka</span>',
+            },
+            alamat_ortu : {
+                required : '<span>Alamat Orang Tua wajib diisi</span>',
+            },
+            rt_ortu : {
+                required : '<span>RT Orang Tua wajib diisi</span>',
+                number : '<span>RT wajib berupa angka</span>',
+                minlength : '<span>RT min 2 angka</span>',
+            },
+            rw_ortu : {
+                required : '<span>RW Orang Tua wajib diisi</span>',
+                number : '<span><RW wajib berupa angka</span>',
+                minlength : '<span>RW min 2 angka</span>',
+            },
+            kelurahan_ortu : {
+                required : '<span>Kelurahan/Desa Orang Tua wajib diisi</span>',
+            },
+            kecamatan_ortu : {
+                required : '<span>Kecamatan Orang Tua wajib diisi</span>',
+            },
+            kodepos_ortu : {
+                required : '<span>Kodepos Orang Tua wajib diisi</span>',
+                number : '<span>Kodepos wajib berupa angka</span>',
+            },
+            telp_ortu : {
+                required : '<span>Telepon Orang Tua wajib diisi</span>',
+                number : '<span>Telepon wajib berupa angka</span>',
+                minlength : '<span>Telepon min 6 angka</span>',
+            },
+            kabupaten_ortu : {
+                required : '<span>Kabupaten Orang Tua wajib dipilih</span>',
+            },
+            propinsi_ortu : {
+                required : '<span>Provinsi Orang Tua wajib dipilih</span>',
+            },
+            status_reg : {
+                required: '<span>Jenis Pendaftaran wajib dipilih</span>'
+            },
+            jenis_mhs : {
+                required: '<span>Jenis Mahasiswa wajib dipilih</span>'
+            },
+            relasi : {
+                required: '<span>Relasi wajib dipilih</span>'
+            },
+            kelas : {
+                required : '<span>Kelas wajib dipilih</span>'
+            },
+            'info[]' : {
+                required : '<span>Informasi Wajib dipilih</span>'
+            }
+
+            },
+            errorPlacement: function(error, element) 
+                    {
+                        if ( element.is(":radio") ) 
+                        {
+                            error.appendTo( element.parents('#jk') );
+                        } else if ( element.is(":checkbox") ) 
+                        {
+                            error.appendTo( element.parents('#informasi') );
+                        }
+                        else 
+                        {
+                            error.insertAfter( element );
+                        }
+                    }
+            });
+
+        $jquery('.wizard').on("leaveStep", function(e, anchorObject, stepNumber, stepDirection) {
+            var elmForm = $jquery("#form-step-" + stepNumber);
+            if (stepDirection === 'forward' && elmForm) {
+                if ($jquery('#form').valid()) {
+                    return true
+                } else {
+                    return false
+                }
+            }
+            return true;
+        })
+     
+         
+      });
 </script>

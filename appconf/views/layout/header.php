@@ -9,11 +9,10 @@
         <!--google fonts--> 
         <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
         <!-- custom css-->
-        <link href="<?php echo base_url(); ?>assets/css/bootstrap.css" rel="stylesheet">
-        <link href="<?php echo base_url(); ?>assets/css/style.css" rel="stylesheet">
-        <link href="<?php echo base_url(); ?>assets/css/animate.min.css" rel="stylesheet">
-        <link href="<?php echo base_url(); ?>assets/offline-js/themes/offline-theme-default.css" rel="stylesheet">
-        <link href="<?php echo base_url(); ?>assets/offline-js/themes/offline-language-english.css" rel="stylesheet">
+        <link href="<?php echo base_url('assets/css');?>/bootstrap.css" rel="stylesheet">
+        <link href="<?php echo base_url('assets/css');?>/style.css" rel="stylesheet">
+        <link href="<?php echo base_url('assets');?>/offline-js/themes/offline-theme-default.css" rel="stylesheet">
+        <link href="<?php echo base_url('assets');?>/offline-js/themes/offline-language-english.css" rel="stylesheet">
         <!-- font awesome for icons -->
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
         <!--must need plugin jquery-->

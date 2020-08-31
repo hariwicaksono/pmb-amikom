@@ -83,16 +83,16 @@ class Main_user extends CI_Controller {
 	{
 		if (empty($this->session->userdata['username'])) { redirect(base_url()); }
 
-		error_reporting(0);
-		if (!preg_match("/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/",$_POST['tgllahir'])) {
-			echo "<center>Format pengisian tanggal lahir tidak sesuai <input type=button value=Go Back onclick=history.back(-1) /></center>";
-		} 
+		error_reporting(1);
+		//if (!preg_match("/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/",$_POST['tgllahir'])) {
+			//echo "<center>Format pengisian tanggal lahir tidak sesuai <input type=button value=Go Back onclick=history.back(-1) /></center>";
+		//} 
 
 		$nodaf=$this->model_crud->genNodaf($this->data['tahun_pmb']);
 		$noref=$this->model_crud->nomor_referensi($nodaf);
 		$gelombang=$this->mgelombang->cek_daftar(array('thn_akademik'=>$this->data['tahun_pmb']));
 		$pecah=explode('/',$_POST['jenis_mhs']);
-		$tgllahir=date('Y-m-d',strtotime($_POST['tgllahir']));
+		$tgllahir=$_POST['thnlahir'].'-'.$_POST['blnlahir'].'-'.$_POST['tgllahir'];
 		$jenis_mhs=$pecah[0];
 		$id_jenismhs=$pecah[1];
 		$info=$_POST['info'];
@@ -154,6 +154,8 @@ class Main_user extends CI_Controller {
 				'syarat2'=>'Belum',
 				'catatan'=>'Test',
 				'wawancara'=>'Belum',
+				'status_registrasi'=>$_POST['status_reg'],
+				'no_kipk'=>$_POST['no_kipk'],
 				'tahun_lulus'=>$_POST['thn_lulus']
 			);
 			$this->model_crud->insertData('calonsiswa',$data);
@@ -196,6 +198,8 @@ class Main_user extends CI_Controller {
 				'komentar'=>$data_checkbox,
 				'jk'=>$_POST['jk'],
 				'id_relasi'=>$_POST['relasi'],
+				'status_registrasi'=>$_POST['status_reg'],
+				'no_kipk'=>$_POST['no_kipk'],
 				'tahun_lulus'=>$_POST['thn_lulus']
 			);
 			$this->model_crud->updateData('calonsiswa',$data2,array('nodaf'=>$this->data['biodata']['nodaf']));
@@ -517,63 +521,4 @@ class Main_user extends CI_Controller {
 
 	}
 
-
-
-	public function lihatattempt(){
-		if (empty($this->session->userdata['username'])) { redirect(base_url()); }
-		if (empty($this->data['biodata'])) { redirect(base_url('main_user')); }
-
-		$this->load->model('mattempt');
-		$this->data['content_title']='SELAMAT DATANG CALON MAHASISWA BARU UNIVERSITAS AMIKOM PURWOKERTO';
-		$this->data['data'] = $this->mattempt->get_all();
-		$this->data['konten']='user/view_biodata';
-		$this->load->view('view_main',$this->data);
-	}
-
-	function deleteattempt ($id = null)
-    {
-		$this->load->model('mattempt');
-
-        if (! $id) {
-            $this->session->set_flashdata('info',"ID tidak boleh kosong");
-            redirect('main_user/lihatattempt');
-        }
-        if ($this->mattempt->delete($id)) {
-			$this->session->set_flashdata('info',"Hapus data berhasil");
-        } else {
-            $this->session->set_flashdata('info',"Hapus data gagal");
-        }
-        redirect('main_user/lihatattempt');
-	}
-	
-	public function lihatnilai(){
-		if (empty($this->session->userdata['username'])) { redirect(base_url()); }
-		if (empty($this->data['biodata'])) { redirect(base_url('main_user')); }
-
-		$this->load->model('mnilai');
-		$this->data['content_title']='SELAMAT DATANG CALON MAHASISWA BARU UNIVERSITAS AMIKOM PURWOKERTO';
-		$this->data['data'] = $this->mnilai->get_all();
-		$this->data['konten']='user/view_biodata';
-		$this->load->view('view_main',$this->data);
-	}
-
-	function deletenilai ($id = null)
-    {
-		$this->load->model('mnilai');
-
-        if (! $id) {
-            $this->session->set_flashdata('info',"ID tidak boleh kosong");
-            redirect('main_user/lihatnilai');
-        }
-        if ($this->mnilai->delete($id)) {
-			$this->session->set_flashdata('info',"Hapus data berhasil");
-        } else {
-            $this->session->set_flashdata('info',"Hapus data gagal");
-        }
-        redirect('main_user/lihatnilai');
-    }
-
-
-	
-	
 }

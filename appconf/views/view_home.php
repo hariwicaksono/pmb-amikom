@@ -4,7 +4,7 @@
 
 <ul class="feature-list feature-list-sm row">
 
-                <li class="col-6 col-md-6 mb-0" data-aos="fade-up" data-aos-delay="50">
+                <li class="col-md-6 mb-0" data-aos="fade-up" data-aos-delay="50">
                   <a class="card text-center" href="http://fik.amikompurwokerto.ac.id">
                     <div class="card-body">
                     <img src="<?php echo base_url('assets/main/images/iconpack/web-development_2210153.png'); ?>" alt="Fakultas Ilmu Komputer" width="80">
@@ -14,7 +14,7 @@
                   </a>
                 </li>
 
-                <li class="col-6 col-md-6 mb-0" data-aos="fade-up" data-aos-delay="100">
+                <li class="col-md-6 mb-0" data-aos="fade-up" data-aos-delay="100">
                   <a class="card text-center" href="http://fbis.amikompurwokerto.ac.id">
                     <div class="card-body">
                     <img src="<?php echo base_url('assets/main/images/iconpack/diagram_2210211.png'); ?>" alt="Fakultas Bisnis &amp; Ilmu Sosial" width="80">
@@ -44,7 +44,7 @@
             <div class="col-md-10">
               <ul class="feature-list feature-list-sm row">
 
-                <li class="col-6 col-md-6">
+                <li class="col-md-6">
                   <a class="card text-center" href="<?=base_url()?>page/fasilitas">
                     <div class="card-body">
                     <h4>Akreditasi B</h4>
@@ -53,7 +53,7 @@
                   </a>
                 </li>
 
-                <li class="col-6 col-md-6">
+                <li class="col-md-6">
                   <a class="card text-center" href="<?=base_url()?>page/fakultas_programstudi">
                     <div class="card-body">
                       <h4>Program Studi Prospektif</h4>
@@ -62,7 +62,7 @@
                   </a>
                 </li>                
 
-                <li class="col-6 col-md-6">
+                <li class="col-md-6">
                   <a class="card text-center" href="http://amikompurwokerto.ac.id">
                     <div class="card-body">
                     <h4>Alumni</h4>
@@ -71,7 +71,7 @@
                   </a>
                 </li>
 
-                <li class="col-6 col-md-6">
+                <li class="col-md-6">
                   <a class="card text-center" href="http://amikompurwokerto.ac.id">
                     <div class="card-body">
                    <h4>Revolusi 4.0</h4>

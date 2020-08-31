@@ -1,10 +1,10 @@
 html,
 body {
-    height: 100%;
+    max-height: 100%;
     margin: 0;
 }
 body {
-    background: linear-gradient(#2c0e4c 50%, transparent 50%) no-repeat;
+    background: linear-gradient(#2c0e4c 60%, transparent 60%) no-repeat;
     margin: 0;
      -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -276,7 +276,7 @@ input.error {
     font-weight: 400;
     margin: 0 auto 10px;
     /* This 65px padding makes room for the custom input */
-    padding: 20px 20px 20px 65px;
+    padding: 10px 10px 10px 55px;
     position: relative;
     transition: .3s ease all;
     width: 100%;
@@ -297,13 +297,13 @@ input.error {
     background: #eee;
     border-radius: 50%;
     content:'';
-    height: 30px;
+    height: 25px;
     left: 20px;
     position: absolute;
     /* Half the height of it's parent minus half of it's own height */
-    top: calc(50% - 15px);
+    top: calc(50% - 12px);
     transition: .3s ease background-color;
-    width: 30px;
+    width: 25px;
 }
 .radio-btn:checked + .radio-label {
     background: #ECF5FF;

@@ -1,10 +1,10 @@
 <?php
     $this->load->view('layout/header'); 
 ?>
-         
-<div class="container my-2">
+      
 <?php if($this->uri->segment(1)=='' || $this->uri->segment(1)=='page' && $this->uri->segment(2)=='' ) {?>
-<div class="shadow mb-2">
+<div class="container">
+<div class="shadow mt-2 mb-2">
 
   <div id="carousel" class="carousel slide" data-ride="carousel">
     <ol class="carousel-indicators">
@@ -37,13 +37,10 @@
   </a>
   </div>
 
-    <!--<div class="flexslider">
-        <img alt="UNIVERSITAS AMIKOM PURWOKERTO" src="<?php echo base_url('files/amikom2019.jpg'); ?>" width="100%">
-    </div>-->
-
+</div> 
 </div>        
 <?php } ?>
-  
+
 
     <?php
       

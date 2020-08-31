@@ -87,11 +87,11 @@ class Main extends CI_Controller {
     }
     function get_kelas_sore(){
         if ($_POST['jenis_mhs']=='44/4') {
-        echo '<option value=Sore>Sore</option>';
+        echo '<option value="Sore">Sore</option>';
         } elseif($_POST['jenis_mhs']=='43/3') {
-            echo '<option value=Transfer>Transfer</option>';
+            echo '<option value="Transfer">Transfer</option>';
         } else {
-            echo '<option value=Pagi>Pagi</option>';
+            echo '<option value="Pagi">Pagi</option>';
             
         }
         

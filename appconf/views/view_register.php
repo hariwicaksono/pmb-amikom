@@ -1,5 +1,5 @@
 <div class="container">
-<div class="animate__animated animate__slideInDown">
+<div class="mt-2 mb-2">
 
 <div class="row justify-content-center">
      <div class="col-md-8">
@@ -14,7 +14,7 @@
         </ul>
 
 
-     <div class="card shadow bg-white border-0">
+     <div class="card shadow bg-white border-0" data-aos="fade-down">
     
      <div class="card-body">
      <h4 class="mb-2">Daftar Akun PMB</h4>
@@ -30,7 +30,7 @@
          <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
          
  			<div class="form-group">
- 				<label class="control-label" style="font-size: 1.2rem;">
+ 				<label class="control-label">
  					Nama Lengkap*
  				</label>
  				<div class="">
@@ -41,7 +41,7 @@
              <div class="row">
                 <div class="col-sm-6">
                 <div class="form-group">
- 				<label class="control-label" style="font-size: 1.2rem;">
+ 				<label class="control-label">
  					Telp/HP*
  				</label>
  				<div class="">
@@ -52,11 +52,11 @@
                 </div>
                 <div class="col-sm-6">
                 <div class="form-group">
- 				<label class="control-label" style="font-size: 1.2rem;">
+ 				<label class="control-label">
  					Email*
  				</label>
  				<div class="">
- 					<input type="text" name="email" class="form-control input-lg" id="email" placeholder="sample@sample.com">
+ 					<input type="text" name="email" class="form-control input-lg" id="email" placeholder="contoh@mail.com">
                     <div id="pesan" style="color: red;font-size: 1rem;"></div>
  				</div>
  			</div>
@@ -66,19 +66,19 @@
  			
  			
             <div class="form-group">
-                <label class="control-label" style="font-size: 1.2rem;">
+                <label class="control-label">
                     Username*
                 </label>
                 <div class="">
-                    <input type="text" name="username" class="form-control input-lg" id="username" placeholder="Nama Pengguna">
+                    <input type="text" name="username" class="form-control input-lg" id="username" placeholder="Username">
                 </div>
             </div>
              <div class="form-group">
-                <label class="control-label" style="font-size: 1.2rem;">
+                <label class="control-label">
                     Password*
                 </label>
                 <div class="">
-                    <input type="password" name="password" class="form-control input-lg" id="password" placeholder="Kata Sandi">
+                    <input type="password" name="password" class="form-control input-lg" id="password" placeholder="Password">
                 </div>
             </div>
  			<div class="form-group">
@@ -107,7 +107,7 @@ var $jne=jQuery.noConflict();
 $jne("#form").validate({
     rules:{     
             nama:"required",
-           	email : { required : true, email: true,},
+           	email : { required : true, email: true},
             telp : { required : true, number:true, minlength : 6 },
             username : { required : true },
             password : { required : true },
@@ -126,6 +126,7 @@ $jne("#form").validate({
             password: {
                 required:'<span>Password wajib diisi</span>'},
             email: {
+                required:'<span>Email wajib diisi</span>',
                 email:'<span>Email tidak valid</span>'}
 
 

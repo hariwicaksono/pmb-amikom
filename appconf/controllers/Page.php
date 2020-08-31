@@ -138,7 +138,7 @@ class Page extends CI_Controller{
 
 				function biaya_pendidikan($judul=''){
 					//Menu PMB
-					$hasil=$this->mmenupmb->get_judul_tupoksi(36);
+					$hasil=$this->mmenupmb->get_judul_tupoksi(38);
 					foreach($hasil as $row){
 						$this->judul=$row['judul_tupoksi'];
 						$this->isi=$row['isi_tupoksi'];

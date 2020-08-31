@@ -39,11 +39,11 @@ $gelombang=$this->mgelombang->cek_daftar(array('thn_akademik'=>'2018/2019'));
               </li>
             </ul>
             <!--end of col-->
-            <div class="col col-lg-9 tab-content">
+            <div class="col col-lg-10 tab-content">
               <div id="first">
                 <div class="row align-items-center mb-1">
                   <div class="col-9">
-                    <h6 class="title-decorative">Step 1</h6>
+                    <h6 class="title-decorative mb-1">Step 1</h6>
                     <h3 class="h1">Data Diri</h3>
                     <span class="lead">Mari mulai dengan mengisi Data Diri Anda. Semua Kolom Harus Diisi</span>
                   </div>
@@ -68,8 +68,7 @@ $gelombang=$this->mgelombang->cek_daftar(array('thn_akademik'=>'2018/2019'));
                 </div>
                 </div>
                     
-                <div class="form-group"> 
-                    <div class="row">
+                <div class="form-row form-group"> 
                     <div class="col-sm-4">
                     <select name="tgllahir" class="form-control">
                     <option value="">Tanggal Lahir</option>
@@ -104,9 +103,7 @@ $gelombang=$this->mgelombang->cek_daftar(array('thn_akademik'=>'2018/2019'));
                         <option value='<?php echo $i;?>' <?php if (!empty($biodata)) { if (date('Y',strtotime($biodata['tgllahir']))==$i) { echo 'selected=selected'; }} ?> ><?php echo $i ?></option>
                             <?php } ?>
                     </select>
-                    </div>
-
-                </div>  
+                    </div>  
 
                 </div>
 
@@ -158,7 +155,7 @@ $gelombang=$this->mgelombang->cek_daftar(array('thn_akademik'=>'2018/2019'));
               <div id="second">
                 <div class="row align-items-center mb-1">
                   <div class="col-9">
-                    <h6 class="title-decorative">Step 2</h6>
+                    <h6 class="title-decorative mb-1">Step 2</h6>
                     <h3 class="h1">Program Studi</h3>
                     <span class="lead">Pilih Jenis Pendaftaran dan Program Studi Sesuai Minat Anda</span>
                   </div>
@@ -238,7 +235,7 @@ $gelombang=$this->mgelombang->cek_daftar(array('thn_akademik'=>'2018/2019'));
 
                     <div class="form-group">
                     
-                    <select name="kelas" class="form-control form-control-lg" id="kelas" <?php //if (empty($biodata['KELAS'])) echo "disabled"; ?> >
+                    <select name="kelas" class="form-control form-control-lg" id="kelas" <?php if (empty($biodata['KELAS'])) echo "disabled"; ?> >
                         <option value="">Pilih Kelas</option>
                         <?php $kelas=array('Pagi','Transfer','Sore');
                             foreach ($kelas as $key) { ?>
@@ -285,7 +282,7 @@ $gelombang=$this->mgelombang->cek_daftar(array('thn_akademik'=>'2018/2019'));
                 <div id="third">
                     <div class="row align-items-center mb-1">
                     <div class="col-9">
-                        <h6 class="title-decorative">Step 3</h6>
+                        <h6 class="title-decorative mb-1">Step 3</h6>
                         <h3 class="h1">Asal Sekolah</h3>
                         <span class="lead">Informasi Pendidikan Terakhir Anda.</span>
                     </div>
@@ -339,7 +336,7 @@ $gelombang=$this->mgelombang->cek_daftar(array('thn_akademik'=>'2018/2019'));
                     <div id="fourth" class="step-3">
                         <div class="row align-items-center mb-1">
                         <div class="col-9">
-                            <h6 class="title-decorative">Step 4</h6>
+                            <h6 class="title-decorative mb-1">Step 4</h6>
                             <h3 class="h1">Alamat</h3>
                             <span class="lead">Informasi Alamat Rumah/Domisili</span>
                         </div>
@@ -416,7 +413,7 @@ $gelombang=$this->mgelombang->cek_daftar(array('thn_akademik'=>'2018/2019'));
               <div id="fifth" class="step-4">
                 <div class="row align-items-center mb-1">
                   <div class="col-9">
-                    <h6 class="title-decorative">Step 5</h6>
+                    <h6 class="title-decorative mb-1">Step 5</h6>
                     <h3 class="h1">Orang Tua/Wali</h3>
                     <span class="lead">Data Nama Ibu Kandung dan Alamat Orang Tua</span>
    
@@ -495,7 +492,7 @@ $gelombang=$this->mgelombang->cek_daftar(array('thn_akademik'=>'2018/2019'));
                     </div>
 
                     <button class="btn btn-secondary sw-btn-prev" type="button">Sebelumnya</button>
-                    <button id="submit-btn" type="submit" class="btn btn-success"<?php if (!empty($biodata)) { if ($biodata['syarat2']=='Sudah') echo "disabled";} ?> ><i class="fa fa-check" aria-hidden="true"></i> Selesai &amp; Simpan</button> 
+                    <button id="submit-btn" type="submit" class="btn btn-success" <?php if (!empty($biodata)) { if ($biodata['syarat2']=='Sudah') echo "disabled";} ?> ><i class="fa fa-check" aria-hidden="true"></i> Selesai &amp; Simpan</button> 
 
               </div>
             </div>

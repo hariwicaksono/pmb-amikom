@@ -1,5 +1,5 @@
 <div class="container">
-<div class="animate__animated animate__slideInDown">
+<div class="mt-2 mb-2">
 
      <?php  $info=$this->session->flashdata('info');
                             if (!empty($info)) { ?>
@@ -21,7 +21,7 @@
                 </li>
 
         </ul>
-         <div class="card shadow bg-white border-0">
+         <div class="card shadow bg-white border-0" data-aos="fade-down">
 
          <img src="<?php echo base_url('files/3.jpeg'); ?>" class="card-img-top mb-0" alt="Universitas Amikom Purwokerto" />
             <div class="card-body">
@@ -76,7 +76,7 @@
 
                 if(username.length == "") {
                     $jquery.notify({
-                        title: "Perhatian",
+                        title: "<strong>Perhatian!</strong>",
                         message: "Username harus diisi"
                     },{
                         type: 'danger'
@@ -84,7 +84,7 @@
 
                 } else if(password.length == "") {
                     $jquery.notify({
-                        title: "Perhatian",
+                        title: "<strong>Perhatian!</strong>",
                         message: "Password harus diisi"
                     },{
                         type: 'warning'

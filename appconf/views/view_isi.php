@@ -1,10 +1,11 @@
-<div class="card shadow">
+<div class="container" data-aos="fade-down">
+<div class="card shadow mt-2 mb-2">
   <div class="card-body">
 
 <?php if($modul=='datamhs'){;?>
 	<div class="row">
 <div class="col-sm-12">
-	<div class="wow animated fadeInDown" >
+	<div>
 	
 		<ul style="list-style-type: none;text-align: center;font-weight: bold;">
 			<li style="display: inline;"><?php echo anchor('page/datamhs/','[Semua]');?></li>
@@ -153,5 +154,7 @@ else{
 }
 ?>
 
+</div>
+</div>
 </div>
 </div>

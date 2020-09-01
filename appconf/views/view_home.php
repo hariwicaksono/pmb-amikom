@@ -8,7 +8,7 @@
                   <a class="card text-center" href="http://fik.amikompurwokerto.ac.id">
                     <div class="card-body">
                     <img src="<?php echo base_url('assets/main/images/iconpack/web-development_2210153.png'); ?>" alt="Fakultas Ilmu Komputer" width="80">
-                    <h4>Fakultas Ilmu Komputer</h4>
+                    <h5>Fakultas Ilmu Komputer</h5>
                     
                     </div>
                   </a>
@@ -18,7 +18,7 @@
                   <a class="card text-center" href="http://fbis.amikompurwokerto.ac.id">
                     <div class="card-body">
                     <img src="<?php echo base_url('assets/main/images/iconpack/diagram_2210211.png'); ?>" alt="Fakultas Bisnis &amp; Ilmu Sosial" width="80">
-                      <h4>Fakultas Bisnis &amp; Ilmu Sosial</h4>
+                      <h5>Fakultas Bisnis &amp; Ilmu Sosial</h5>
                       
                     </div>
                   </a>

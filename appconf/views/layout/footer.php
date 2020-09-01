@@ -22,7 +22,9 @@
            
             <div class="text-white mt-3">© 2020. Universitas Amikom Purwokerto - www.amikompurwokerto.ac.id</div>
     </div>
+    
 </div>
+<div id="myDiv"></div>
 <!--bootstrap js plugin-->
     <script src="<?php echo base_url('assets/js');?>/bootstrap.js" type="text/javascript"></script>    
     <script src="<?php echo base_url('assets/js');?>/popper.min.js" type="text/javascript"></script>
@@ -76,6 +78,17 @@
     $jQuery("#carousel").LoadingOverlay("hide", true);
     
     </script> 
+    <script src="<?php echo base_url('assets/js');?>/floating-wpp.min.js" type="text/javascript"></script> 
+    <script type="text/javascript">
+    var $jQuery=jQuery.noConflict();
+    $jQuery(function () {
+        $jQuery('#myDiv').floatingWhatsApp({
+        phone: '6285848888445',
+        popupMessage: 'Halo, ada yang bisa kami bantu?',
+        showPopup: true
+        });
+    });
+    </script>
     </body>
 </html>
 

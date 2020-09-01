@@ -24,6 +24,7 @@
         <link href="<?php echo base_url('assets/css');?>/style.css" rel="stylesheet">
         <link href="<?php echo base_url('assets');?>/offline-js/themes/offline-theme-default.css" rel="stylesheet">
         <link href="<?php echo base_url('assets');?>/offline-js/themes/offline-language-english.css" rel="stylesheet">
+        <link href="<?php echo base_url('assets/css');?>/floating-wpp.min.css" rel="stylesheet">
         <!-- font awesome for icons -->
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
         <!--must need plugin jquery-->

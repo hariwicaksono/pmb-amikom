@@ -39,28 +39,28 @@ input.error {
     margin-top: 1px;
 }
 .alert-primary {
-    border-left: 4px solid #563d7c;
+    border-left: 3px solid #563d7c;
 }
 .alert-secondary {
-    border-left: 4px solid #584b6e;
+    border-left: 3px solid #584b6e;
 }
 .alert-success {
-    border-left: 4px solid #28a745;
+    border-left: 3px solid #28a745;
 }
 .alert-danger {
-    border-left: 4px solid #dc3545;
+    border-left: 3px solid #dc3545;
 }
 .alert-warning {
-    border-left: 4px solid #ffc107;
+    border-left: 3px solid #ffc107;
 }
 .alert-info {
-    border-left: 4px solid #17a2b8;
+    border-left: 3px solid #17a2b8;
 }
 .alert-light {
-    border-left: 4px solid #f8f9fa;
+    border-left: 3px solid #f8f9fa;
 }
 .alert-dark {
-    border-left: 4px solid #343434;
+    border-left: 3px solid #343434;
 }
 #sidebar a,
 #sidebar a:hover,

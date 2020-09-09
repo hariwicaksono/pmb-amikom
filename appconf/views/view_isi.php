@@ -1,4 +1,4 @@
-<div class="container" data-aos="fade-down">
+<div class="container-fluid" data-aos="fade-down">
 <div class="card shadow mt-2 mb-2">
   <div class="card-body">
 

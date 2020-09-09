@@ -1,38 +1,31 @@
-<div class="container">
+<div class="container-fluid">
+
 <div class="card shadow mb-2">
 <div class="card-body">
+    <ul class="feature-list feature-list-sm row">
+      <li class="col-md-6 mb-0" data-aos="fade-up" data-aos-delay="50">
+        <a class="card text-center" href="http://fik.amikompurwokerto.ac.id">
+          <div class="card-body">
+          <img src="<?php echo base_url('assets/main/images/iconpack/web-development_2210153.png'); ?>" alt="Fakultas Ilmu Komputer" width="80">
+          <h5>Fakultas Ilmu Komputer</h5>
+          </div>
+        </a>
+      </li>
 
-<ul class="feature-list feature-list-sm row">
-
-                <li class="col-md-6 mb-0" data-aos="fade-up" data-aos-delay="50">
-                  <a class="card text-center" href="http://fik.amikompurwokerto.ac.id">
-                    <div class="card-body">
-                    <img src="<?php echo base_url('assets/main/images/iconpack/web-development_2210153.png'); ?>" alt="Fakultas Ilmu Komputer" width="80">
-                    <h5>Fakultas Ilmu Komputer</h5>
-                    
-                    </div>
-                  </a>
-                </li>
-
-                <li class="col-md-6 mb-0" data-aos="fade-up" data-aos-delay="100">
-                  <a class="card text-center" href="http://fbis.amikompurwokerto.ac.id">
-                    <div class="card-body">
-                    <img src="<?php echo base_url('assets/main/images/iconpack/diagram_2210211.png'); ?>" alt="Fakultas Bisnis &amp; Ilmu Sosial" width="80">
-                      <h5>Fakultas Bisnis &amp; Ilmu Sosial</h5>
-                      
-                    </div>
-                  </a>
-                </li>
-</ul>
-
-</div>
+      <li class="col-md-6 mb-0" data-aos="fade-up" data-aos-delay="100">
+        <a class="card text-center" href="http://fbis.amikompurwokerto.ac.id">
+          <div class="card-body">
+          <img src="<?php echo base_url('assets/main/images/iconpack/diagram_2210211.png'); ?>" alt="Fakultas Bisnis &amp; Ilmu Sosial" width="80">
+            <h5>Fakultas Bisnis &amp; Ilmu Sosial</h5> 
+          </div>
+        </a>
+      </li>
+    </ul>
 </div>
 </div>
 
-<div class="container">
 <div class="card shadow mb-2">
 <div class="card-body">
- 
           <div class="row justify-content-center mb-3">
             <div class="col-auto">
               <h2 data-aos="fade-up" data-aos-delay="50">Kenapa Pilih Amikom Purwokerto?</h2>
@@ -52,7 +45,6 @@
                     </div>
                   </a>
                 </li>
-
                 <li class="col-md-6">
                   <a class="card text-center" href="<?=base_url()?>page/fakultas_programstudi">
                     <div class="card-body">
@@ -61,7 +53,6 @@
                     </div>
                   </a>
                 </li>                
-
                 <li class="col-md-6">
                   <a class="card text-center" href="http://amikompurwokerto.ac.id">
                     <div class="card-body">
@@ -70,7 +61,6 @@
                     </div>
                   </a>
                 </li>
-
                 <li class="col-md-6">
                   <a class="card text-center" href="http://amikompurwokerto.ac.id">
                     <div class="card-body">
@@ -79,26 +69,18 @@
                     </div>
                   </a>
                 </li>
-
-               
-
               </ul>
             </div>
             <!--end of col-->
           </div>
           <!--end of row-->
-        </div>
-    
-</div>
-    <!--end of container-->
+</div>   
 </div>
 
 
-
-<div class="container">
 <div class="card shadow mb-2">
 <div class="card-body">
-<div class="row justify-content-center text-center">
+        <div class="row justify-content-center text-center">
             <div class="col-12">
               <h2 data-aos="fade-up" data-aos-delay="100">Bergabung Bersama Kami</h2>
               <span class="lead" data-aos="fade-up" data-aos-delay="300">Siapkan masa depanmu dengan belajar di perguruan tinggi unggulan yang berwawasan technopreneur</span>
@@ -106,7 +88,7 @@
             <!--end of col-->
           </div>
           <!--end of row-->
-<div class="row justify-content-center">
+        <div class="row justify-content-center">
             <div class="col-md-8">
               <div class="video-cover">
                 <img alt="Image" src="<?php echo base_url();?>assets/main/images/cover-amikom.jpg" class="bg-image" />
@@ -125,9 +107,6 @@
 </div>
 </div>
 
-
-
-
 <div class="card text-white shadow px-3 py-3 mb-2" style="background-color: #822985;">
     <div class="card-body">
     <div class="card-title" style="font-size: 2.4rem; font-weight: 700" data-aos="fade-up" data-aos-delay="100">Daftar Sekarang
@@ -140,7 +119,5 @@
     </div>
     </div>
 </div>
-
-
 
 </div>		

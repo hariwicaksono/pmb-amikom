@@ -11,7 +11,7 @@
                 Purwanegara, Purwokerto, Banyumas 53127<br/>
                 Telp: (0281) 623321<br/>
                 Whatsapp: 0858 4888 8445</h6>
-                <a href="https://pesan.link/tanyaAmikom" target="_blank" class="btn btn-success mb-2" title="Chat Kami" alt="Chat Kami" rel="noopener noreferrer"><i class="fa fa-whatsapp" aria-hidden="true"></i> Chat Kami</a>
+                <!--<a href="https://pesan.link/tanyaAmikom" target="_blank" class="btn btn-success mb-2" title="Chat Kami" alt="Chat Kami" rel="noopener noreferrer"><i class="fa fa-whatsapp" aria-hidden="true"></i> Chat Kami</a>-->
                 </div>
 
                 <div class="col-md-3">
@@ -24,7 +24,7 @@
     </div>
     
 </div>
-<div id="myDiv"></div>
+<div id="WhatsApp"></div>
 <!--bootstrap js plugin-->
     <script src="<?php echo base_url('assets/js');?>/bootstrap.js" type="text/javascript"></script>    
     <script src="<?php echo base_url('assets/js');?>/popper.min.js" type="text/javascript"></script>
@@ -82,7 +82,7 @@
     <script type="text/javascript">
     var $jQuery=jQuery.noConflict();
     $jQuery(function () {
-        $jQuery('#myDiv').floatingWhatsApp({
+        $jQuery('#WhatsApp').floatingWhatsApp({
         phone: '6285848888445',
         popupMessage: 'Halo, ada yang bisa kami bantu?',
         showPopup: true

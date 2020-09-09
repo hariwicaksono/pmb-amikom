@@ -3,7 +3,7 @@
 ?>
       
 <?php if($this->uri->segment(1)=='' || $this->uri->segment(1)=='page' && $this->uri->segment(2)=='' ) {?>
-<div class="container">
+<div class="container-fluid">
 <div class="shadow mt-2 mb-2">
 
   <div id="carousel" class="carousel slide" data-ride="carousel">

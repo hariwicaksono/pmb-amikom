@@ -9,13 +9,6 @@
         <meta name="description" content="PMB Universitas Amikom Purwokerto, Kampus IT Terbaik di Jawa Tengah">
         <meta name="keywords" content="PMB, Amikom, Purwokerto, Amikom Purwokerto, Kampus IT Generasi Millenial, SPIRIT KREATIF SUKSES⠀⠀">
         <meta name="author" content="UPT. PLT Amikom Purwokerto">
-        <!-- Open Graph / Facebook -->
-        <meta property="og:type" content="website">
-        <meta property="og:url" content="https://metatags.io/">
-        <meta property="og:title" content="Meta Tags — Preview, Edit and Generate">
-        <meta property="og:description" content="With Meta Tags you can edit and experiment with your content then preview how your webpage will look on Google, Facebook, Twitter and more!">
-        <meta property="og:image" content="https://metatags.io/assets/meta-tags-16a33a6a8531e519cc0936fbba0ad904e52d35f34a46c97a2c9f6f7dd7d336f2.png">
-
         <link rel="shortcut icon" type="image/x-icon" href="<?php echo base_url(); ?>amikompurwokerto.ico"/>
         <!--google fonts--> 
         <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">

@@ -18,6 +18,7 @@
         <link href="<?php echo base_url('assets');?>/offline-js/themes/offline-theme-default.css" rel="stylesheet">
         <link href="<?php echo base_url('assets');?>/offline-js/themes/offline-language-english.css" rel="stylesheet">
         <link href="<?php echo base_url('assets/css');?>/floating-wpp.min.css" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" rel="stylesheet">
         <!-- font awesome for icons -->
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
         <!--must need plugin jquery-->
@@ -63,9 +64,9 @@
       </li>
     </ul>
     
-    <form class="mx-1 my-auto w-100">
+    <form id="form_search" class="mx-1 my-auto w-100" action="<?php echo site_url('main/search');?>" method="POST">
     <div class="input-group">
-        <input name="query" placeholder="Pencarian..." required="" type="text" class="form-control border py-2">
+        <input name="title" id="title" placeholder="Pencarian..." required="" type="text" class="form-control border py-2" minlength="4">
         <span class="input-group-append">
         <button type="submit" class="btn btn-warning border"><i class="fa fa-search" aria-hidden="true"></i></button>
         </span>

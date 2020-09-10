@@ -14,10 +14,8 @@ class Main extends CI_Controller {
         $this->load->model('mmenupmb');
         $this->load->model('mgelombang');
         $this->load->model('mmhsbaru');
+        $this->load->model('msearch');
     }
-
-
-    
 
 	function getprop(){
         $kab=$this->input->post('kab');
@@ -96,7 +94,7 @@ class Main extends CI_Controller {
         }
         
     } 
-
+ 
     function validasi_email (){
         $cek=$this->model_crud->selectData('registrasi_pmb',array('email'=>$_POST['email']))->result_array();
 
@@ -121,6 +119,27 @@ class Main extends CI_Controller {
                 <option value="<?=$key['KODE_JENIS'].'/'.$key['ID_JENISMHS']?>"><?=$key['NAMA']?></option>
             <?php
             }
+        }
+
+        function get_search(){
+            if (isset($_GET['term'])) {
+                $result = $this->msearch->search($_GET['term']);
+                if (count($result) > 0) {
+                foreach ($result as $row)
+                    $arr_result[] = array(
+                        'label' => $row['nama'],
+                        'value' => $row['nodaf'],
+                    );
+                    echo json_encode($arr_result);
+                }
+            }
+        }
+
+        function search(){
+            $title=$this->input->get('title');
+            $this->data['data']=$this->msearch->search($title);
+            $this->data['konten']='view_search';
+		    $this->load->view('view_main',$this->data);
         }
 
 }

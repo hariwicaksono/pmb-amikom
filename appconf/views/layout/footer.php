@@ -1,4 +1,4 @@
-    <div class="text-white border-0 py-5" style="background-color:#2C0E4C">
+    <div class="text-white border-0 py-5" style="background-color:#361261">
         <div class="container">
             <div class="row">
             <div class="col-md-3">
@@ -13,7 +13,7 @@
                 Whatsapp: 0858 4888 8445</h6>
                 <!--<a href="https://pesan.link/tanyaAmikom" target="_blank" class="btn btn-success mb-2" title="Chat Kami" alt="Chat Kami" rel="noopener noreferrer"><i class="fa fa-whatsapp" aria-hidden="true"></i> Chat Kami</a>-->
                 </div>
-
+ 
                 <div class="col-md-3">
                 <h4 class="mb-3">Scan Lokasi</h4>
                 <img src="<?php echo base_url(); ?>assets/main/images/amikom-qr.png" class="img-fluid" width="120" alt="" />
@@ -88,6 +88,22 @@
         showPopup: true
         });
     });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" integrity="sha512-uto9mlQzrs59VwILcLiRYeLKPPbS/bT71da/OEBYEwcdNUk8jYIy+D176RYoop1Da+f9mvkYrmj5MCLZWEtQuA==" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+    var $jQuery=jQuery.noConflict();
+        $jQuery(document).ready(function(){
+ 
+            $jQuery('#title').autocomplete({
+                source: "<?php echo site_url('main/get_search');?>",
+                minLength: 4,
+                select: function (event, ui) {
+                    $jQuery(this).val(ui.item.label);
+                    $jQuery("#form_search").submit(); 
+                }
+            });
+ 
+        });
     </script>
     </body>
 </html>

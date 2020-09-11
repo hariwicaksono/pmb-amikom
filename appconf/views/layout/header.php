@@ -64,7 +64,7 @@
       </li>
     </ul>
     
-    <form id="form_search" class="mx-1 my-auto w-100" action="<?php echo site_url('main/search');?>" method="POST">
+    <form id="form_search" class="mx-1 my-auto w-100" action="<?php echo site_url('main/search');?>" method="GET">
     <div class="input-group">
         <input name="title" id="title" placeholder="Pencarian..." required="" type="text" class="form-control border py-2" minlength="4">
         <span class="input-group-append">

@@ -254,20 +254,20 @@ class Page extends CI_Controller{
 					$this->data['konten']='view_isi';
 					$this->load->view('view_main',$this->data);
 				}
-				function datamhs(){					
-					$this->form_validation->set_rules('katakunci', '<b>Kata kunci untuk pencarian</b>', 'required|alpha_dash|xss_clean');
-					$this->form_validation->run();	
-					$this->data['searchkey']=$this->input->post('katakunci');
-					$this->data['kodegel']=$this->uri->segment(3);
-					$this->data['tahun_pmb']=$this->mtahun->getThaPmb();
-					$this->data['glmb']=$this->mgelombang->getNmKdGel($this->data['tahun_pmb']);
-					$this->data['datamhs']=$this->mmhsbaru->getmhsbaru($this->data['tahun_pmb'],$this->data['kodegel'],strtoupper($this->data['searchkey']));				
-					$this->data['modul']='datamhs';
-					$this->data['content_title']='DAFTAR CALON MAHASISWA BARU';
-					$this->data['konten']='view_isi';
-					$this->load->view('view_main',$this->data);
-				}
-				function biodata(){
+				//function datamhs(){					
+					//$this->form_validation->set_rules('katakunci', '<b>Kata kunci untuk pencarian</b>', 'required|alpha_dash|xss_clean');
+					//$this->form_validation->run();	
+					//$this->data['searchkey']=$this->input->post('katakunci');
+					//$this->data['kodegel']=$this->uri->segment(3);
+					//$this->data['tahun_pmb']=$this->mtahun->getThaPmb();
+					//$this->data['glmb']=$this->mgelombang->getNmKdGel($this->data['tahun_pmb']);
+					//$this->data['datamhs']=$this->mmhsbaru->getmhsbaru($this->data['tahun_pmb'],$this->data['kodegel'],strtoupper($this->data['searchkey']));				
+					//$this->data['modul']='datamhs';
+					//$this->data['content_title']='DAFTAR CALON MAHASISWA BARU';
+					//$this->data['konten']='view_isi';
+					//$this->load->view('view_main',$this->data);
+				//}
+				/*function biodata(){
 					$this->data['content_title']='BIODATA MAHASISWA BARU';
 					$this->data['nodaf']=$this->uri->segment(3);
 					$this->data['biodata']=$this->mmhsbaru->getmhsbaruLengkap($this->data['nodaf']);
@@ -288,7 +288,7 @@ class Page extends CI_Controller{
 					$this->data['modul']='biodata';
 					$this->data['konten']='view_isi';
 					$this->load->view('view_main',$this->data);
-				}
+				}*/
 				
 //kulum
 				function Tentang_Kuliah_Umum(){
@@ -318,7 +318,7 @@ class Page extends CI_Controller{
 				}
 
 //Jadwal Kuliah Umum
-				function Jadwal_Kuliah_Umum(){
+				/*function Jadwal_Kuliah_Umum(){
 
 					$kulum=$this->mmenupmb->get_jadwal_kulum($this->data['tahun_pmb']) ;
 					$h1 = array('data' => 'NO', 'class' => 'highlight', 'bgcolor' => '#663399');
@@ -347,7 +347,7 @@ class Page extends CI_Controller{
 					$this->data['modul']=$this->uri->segment(2);
 					$this->data['konten']='view_isi';
 					$this->load->view('view_main',$this->data);
-				}
+				}*/
 //Jadwal PSU
 				function Jadwal_kegiatan(){
 
@@ -362,7 +362,7 @@ class Page extends CI_Controller{
 					$this->data['konten']='view_isi';
 					$this->load->view('view_main',$this->data);
 				}
-				function list_angkatan_psu($id_jadwal_psu=''){
+				/*function list_angkatan_psu($id_jadwal_psu=''){
 					$id_jadwal_psu=$this->uri->segment(3);
 
 					$kulum=$this->mmenupmb->get_peserta_PSU($id_jadwal_psu) ;
@@ -390,7 +390,7 @@ class Page extends CI_Controller{
 					$this->data['modul']=$this->uri->segment(2);
 					$this->data['konten']='view_isi';
 					$this->load->view('view_main',$this->data);
-				}
+				}*/
 				function download(){
 					$nama_file=$this->uri->segment(3);
 					$tahun=str_replace("/","-",$this->mtahun->getThaPmb());
@@ -411,21 +411,21 @@ class Page extends CI_Controller{
 
 
 						$this->load->helper('download');
-    $data = file_get_contents($filePath); // Read the file's contents
+						$data = file_get_contents($filePath); // Read the file's contents
 
-    force_download($nama_download, $data); 
-/*  
-  // force_download($filename, $url.$ket."/");
-			header('HTTP/1.1 200 OK');
-			header('Date: ' . date("D M j G:i:s T Y"));
-			header('Last-Modified: ' . date("D M j G:i:s T Y"));
-			header("Content-Type: application/force-download");
-			#header("Content-Lenght: " . (string)(filesize($url)));
-			header("Content-Transfer-Encoding: Binary");
-			header("Content-Disposition: attachment; filename=".basename($nama_download));
-*/
-		}
-	}
+						force_download($nama_download, $data); 
+					/*  
+					// force_download($filename, $url.$ket."/");
+								header('HTTP/1.1 200 OK');
+								header('Date: ' . date("D M j G:i:s T Y"));
+								header('Last-Modified: ' . date("D M j G:i:s T Y"));
+								header("Content-Type: application/force-download");
+								#header("Content-Lenght: " . (string)(filesize($url)));
+								header("Content-Transfer-Encoding: Binary");
+								header("Content-Disposition: attachment; filename=".basename($nama_download));
+					*/
+					}
+				}
 	function hari($tgl){
 		$nama_hari = date("l",strtotime($tgl)); 
 		switch($nama_hari) 

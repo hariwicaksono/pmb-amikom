@@ -42,13 +42,13 @@ $gelombang=$this->mgelombang->cek_daftar(array('thn_akademik'=>'2018/2019'));
             <div class="col col-lg-10 tab-content">
               <div id="first">
                 <div class="row align-items-center mb-1">
-                  <div class="col-9">
+                  <div class="col-10">
                     <h6 class="title-decorative mb-1">Step 1</h6>
                     <h3 class="h1">Data Diri</h3>
                     <span class="lead">Mari mulai dengan mengisi Data Diri Anda. Semua Kolom Harus Diisi</span>
                   </div>
                   <!--end of col-->
-                  <div class="col-3">
+                  <div class="col-2">
                   <img alt="Image" class="img-fluid" src="<?php echo base_url(); ?>assets/main/images/iconpack/personal-data_2904566.png" />
                   </div>
                   <!--end of col-->
@@ -154,13 +154,13 @@ $gelombang=$this->mgelombang->cek_daftar(array('thn_akademik'=>'2018/2019'));
 
               <div id="second">
                 <div class="row align-items-center mb-1">
-                  <div class="col-9">
+                  <div class="col-10">
                     <h6 class="title-decorative mb-1">Step 2</h6>
                     <h3 class="h1">Program Studi</h3>
                     <span class="lead">Pilih Jenis Pendaftaran dan Program Studi Sesuai Minat Anda</span>
                   </div>
                   <!--end of col-->
-                  <div class="col-3">
+                  <div class="col-2">
                     <img alt="Image" src="<?php echo base_url(); ?>assets/main/images/iconpack/idea_926368.png" class="img-fluid" />
                   </div>
                   <!--end of col-->
@@ -281,13 +281,13 @@ $gelombang=$this->mgelombang->cek_daftar(array('thn_akademik'=>'2018/2019'));
 
                 <div id="third">
                     <div class="row align-items-center mb-1">
-                    <div class="col-9">
+                    <div class="col-10">
                         <h6 class="title-decorative mb-1">Step 3</h6>
                         <h3 class="h1">Asal Sekolah</h3>
                         <span class="lead">Informasi Pendidikan Terakhir Anda.</span>
                     </div>
                     <!--end of col-->
-                    <div class="col-3">
+                    <div class="col-2">
                         <img alt="Image" src="<?php echo base_url(); ?>assets/main/images/iconpack/school_926379.png" class="img-fluid" />
                     </div>
                     <!--end of col-->
@@ -335,13 +335,13 @@ $gelombang=$this->mgelombang->cek_daftar(array('thn_akademik'=>'2018/2019'));
 
                     <div id="fourth" class="step-3">
                         <div class="row align-items-center mb-1">
-                        <div class="col-9">
+                        <div class="col-10">
                             <h6 class="title-decorative mb-1">Step 4</h6>
                             <h3 class="h1">Alamat</h3>
                             <span class="lead">Informasi Alamat Rumah/Domisili</span>
                         </div>
                         <!--end of col-->
-                        <div class="col-3">
+                        <div class="col-2">
                             <img alt="Image" src="<?php echo base_url(); ?>assets/main/images/iconpack/location_1986736.png" class="img-fluid" />
                         </div>
                         <!--end of col-->
@@ -412,14 +412,14 @@ $gelombang=$this->mgelombang->cek_daftar(array('thn_akademik'=>'2018/2019'));
 
               <div id="fifth" class="step-4">
                 <div class="row align-items-center mb-1">
-                  <div class="col-9">
+                  <div class="col-10">
                     <h6 class="title-decorative mb-1">Step 5</h6>
                     <h3 class="h1">Orang Tua/Wali</h3>
                     <span class="lead">Data Nama Ibu Kandung dan Alamat Orang Tua</span>
    
                   </div>
                   <!--end of col-->
-                  <div class="col-3">
+                  <div class="col-2">
                     <img alt="Image" src="<?php echo base_url(); ?>assets/main/images/iconpack/mother-846212.png" class="img-fluid" />
                   </div>
                   <!--end of col-->

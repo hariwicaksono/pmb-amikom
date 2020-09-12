@@ -344,5 +344,5 @@ input.error {
     overflow-x: hidden;
 }
 .ui-autocomplete-loading {
-    background: white url("https://raw.githubusercontent.com/jquery/codeorigin.jquery.com/master/cdn/ui/1.8.2/themes/base/images/ui-anim_basic_16x16.gif") right center no-repeat;
+    background: white url("../main/images/ui-anim_basic_16x16.gif") right center no-repeat;
   }

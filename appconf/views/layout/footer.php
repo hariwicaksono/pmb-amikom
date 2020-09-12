@@ -94,11 +94,11 @@
     var $jQuery=jQuery.noConflict();
         $jQuery(document).ready(function(){
  
-            $jQuery('#title').autocomplete({
+            $jQuery('#search').autocomplete({
                 source: "<?php echo site_url('main/get_search');?>",
                 minLength: 4,
                 select: function (event, ui) {
-                    $jQuery(this).val(ui.item.label);
+                    $jQuery(this).val(ui.item.value);
                     $jQuery("#form_search").submit(); 
                 }
             });

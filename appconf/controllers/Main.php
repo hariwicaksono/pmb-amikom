@@ -15,6 +15,7 @@ class Main extends CI_Controller {
         $this->load->model('mgelombang');
         $this->load->model('mmhsbaru');
         $this->load->model('msearch');
+        $this->data['menupmb']=$this->mmenupmb->list_menu_pmb();
     }
 
 	function getprop(){
@@ -93,7 +94,7 @@ class Main extends CI_Controller {
             
         }
         
-    } 
+    }  
  
     function validasi_email (){
         $cek=$this->model_crud->selectData('registrasi_pmb',array('email'=>$_POST['email']))->result_array();
@@ -136,8 +137,8 @@ class Main extends CI_Controller {
         }
 
         function search(){
-            $title=$this->input->get('title');
-            $this->data['data']=$this->msearch->search($title);
+            $query=$this->input->get('query');
+            $this->data['data']=$this->msearch->search($query);
             $this->data['konten']='view_search';
 		    $this->load->view('view_main',$this->data);
         }

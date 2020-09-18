@@ -521,7 +521,7 @@ return true;
 var $jne3=jQuery.noConflict();
 $jne3(document).ready(function(){
 
-$jne3('#kab_siswa').click(function(event){
+$jne3('#kab_siswa').change(function(event){
     event.preventDefault();
 var country_id = $jne3('#kab_siswa').val();
 var KdProp = $jne3('#prop').val();
@@ -542,7 +542,7 @@ $jne3.ajax({
 }
 });
 
-$jne3('#kab_ortu').click(function(event){
+$jne3('#kab_ortu').change(function(event){
     event.preventDefault();
 var kab2 = $jne3('#kab_ortu').val();
 if(kab2 != '')

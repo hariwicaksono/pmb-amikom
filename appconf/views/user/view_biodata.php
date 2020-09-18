@@ -7,9 +7,9 @@
         if (empty($gelombang)) {
             ?>
         <div class="tab-content" style="min-height: 500px;">
-        <div class="tab-pane fade active">
+        <div class="tab-pane fade show active">
             <?php
-            echo "<b>Maaf Pendaftaran Telah Ditutup</b>";
+            echo "<div class='row justify-content-center py-3'><h3>Maaf Pendaftaran Telah Ditutup</h3></div>";
             ?>
         </div>
         </div>

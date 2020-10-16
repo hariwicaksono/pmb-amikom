@@ -430,7 +430,7 @@ $config['global_xss_filtering'] = FALSE;
 
 $config['csrf_protection'] 	= FALSE; 
 if (isset($_SERVER["REQUEST_URI"])) {
-    if(stripos($_SERVER["REQUEST_URI"],'/page/register') !== FALSE ) {
+    if(stripos($_SERVER["REQUEST_URI"],'/page/register') !== FALSE || stripos($_SERVER["REQUEST_URI"],'/main_user/upload?act=det') !== FALSE ) {
         $config['csrf_protection'] = TRUE;
     }
 } 

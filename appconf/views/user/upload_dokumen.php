@@ -62,6 +62,8 @@ $jfile(this).css('color', 'transparent');
       <div class="tab-pane fade show active" id="v-pills-1" role="tabpanel" aria-labelledby="v-pills-1-tab">
       <?php if (empty($bukti)) { ?>
                     <form class="form-horizontal" method="post" action="<?=base_url()?>main_user/post_dokumen?act=bukti_bayar" enctype="multipart/form-data" id="form">
+                    <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
+         
                         <input type="hidden" name="nodaf" value="<?=$biodata['nodaf']?>">
                         <center>
                             <b>BUKTI BAYAR</b>
@@ -99,6 +101,8 @@ $jfile(this).css('color', 'transparent');
       <div class="tab-pane fade" id="v-pills-2" role="tabpanel" aria-labelledby="v-pills-2-tab">
       <?php if (empty($foto)) { ?>
                     <form class="form-horizontal" method="post" action="<?=base_url()?>main_user/post_dokumen?act=foto" enctype="multipart/form-data" id="form">
+                    <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
+         
                         <input type="hidden" name="nodaf" value="<?=$biodata['nodaf']?>">
                         <center>
                             <b>FOTO</b>
@@ -128,6 +132,8 @@ $jfile(this).css('color', 'transparent');
       <div class="tab-pane fade" id="v-pills-3" role="tabpanel" aria-labelledby="v-pills-3-tab">
       <?php if (empty($ktp)) { ?>
                     <form class="form-horizontal" method="post" action="<?=base_url()?>main_user/post_dokumen?act=ktp" enctype="multipart/form-data" id="form">
+                    <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
+         
                         <input type="hidden" name="nodaf" value="<?=$biodata['nodaf']?>">
                         <center>
                             <b>KTP</b>
@@ -157,6 +163,8 @@ $jfile(this).css('color', 'transparent');
       <div class="tab-pane fade" id="v-pills-4" role="tabpanel" aria-labelledby="v-pills-4-tab">
       <?php if (empty($ijazah)) { ?>
                     <form class="form-horizontal" method="post" action="<?=base_url()?>main_user/post_dokumen?act=ijazah" enctype="multipart/form-data" id="form">
+                    <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
+         
                         <input type="hidden" name="nodaf" value="<?=$biodata['nodaf']?>">
                         <center>
                             <b>IJAZAH</b>
@@ -187,6 +195,8 @@ $jfile(this).css('color', 'transparent');
       <div class="tab-pane fade" id="v-pills-5" role="tabpanel" aria-labelledby="v-pills-5-tab">
       <?php if (empty($skhu)) { ?>
                     <form class="form-horizontal" method="post" action="<?=base_url()?>main_user/post_dokumen?act=skhu" enctype="multipart/form-data" id="form">
+                    <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
+         
                         <input type="hidden" name="nodaf" value="<?=$biodata['nodaf']?>">
                         <center>
                             <b>SKHU</b>

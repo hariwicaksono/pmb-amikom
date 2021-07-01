@@ -7,7 +7,7 @@ class Download extends CI_Controller {
 		parent::__construct();
 	   	date_default_timezone_set('Asia/Jakarta');
 	   	$this->load->library('session');
-	   	//$this->load->library('fpdf.php');
+	   	$this->load->library('fpdf.php');
 	   	$this->load->helper(array('form', 'url','file'));
 		$this->load->model('model_crud');
 		$this->load->model('mberita');
@@ -37,10 +37,38 @@ class Download extends CI_Controller {
 
 		$pdfFilePath ="registrasi-".time()."-download.pdf";
  
+        
         //actually, you can pass mPDF parameter on this load() function
         //$pdf = $this->m_pdf->load();
-        $mpdf = new \mPDF();
+        $mpdf = new \Mpdf\Mpdf();
         $html=$this->load->view('pdf/kartu.php',$this->data, true);
+
+        //generate the PDF!
+        $mpdf->WriteHTML($html);
+        
+        //offer it to user via browser download! (The PDF won't be saved on your server HDD)
+		$mpdf->Output($pdfFilePath, "I");
+ 
+
+	}
+
+	function surat_lolos_seleksi() {
+		if (empty($this->session->userdata['username'])) redirect(base_url());
+		if (empty($this->data['biodata'])) { redirect(base_url('main_user')); }	
+		if (!empty($this->data['biodata'])) { 
+			if ($this->data['biodata']['ket_lulus']!='Lulus') {
+				$this->session->set_flashdata('info',"Proses Seleksi belum selesai, mohon tunggu terlebih dahulu");
+				redirect(base_url('main_user'));
+			}
+		}	
+
+		$pdfFilePath ="registrasi-".time()."-download.pdf";
+ 
+        
+        //actually, you can pass mPDF parameter on this load() function
+        //$pdf = $this->m_pdf->load();
+        $mpdf = new \Mpdf\Mpdf(['mode' => 'c']);
+        $html=$this->load->view('pdf/surat_lolos_seleksi.php',$this->data, true);
 
         //generate the PDF!
         $mpdf->WriteHTML($html);

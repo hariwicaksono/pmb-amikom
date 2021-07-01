@@ -32,11 +32,11 @@ class Mgelombang extends CI_Model
 
 	function cek_daftar($data=array()){
 		$tamp=$this->db->get_where('data_gelombang',$data)->result_array();
-			if(!empty($tamp)){
+		if(!empty($tamp)){
 			foreach ($tamp as $key => $value) {
 				$waktu_sekarang=mktime(date("H"),date("i"),date("s"),date("m"),date("d"),date("Y"));
-			$waktu_awal=mktime(date("H",strtotime($value['tgl_mulai'])),date("i",strtotime($value['tgl_mulai'])),date("s",strtotime($value['tgl_mulai'])),date("m",strtotime($value['tgl_mulai'])),date("d",strtotime($value['tgl_mulai'])),date("Y",strtotime($value['tgl_mulai'])));
-			$waktu_akhir=mktime(date("H",strtotime($value['tgl_selesai'])),date("i",strtotime($value['tgl_selesai'])),date("s",strtotime($value['tgl_selesai'])),date("m",strtotime($value['tgl_selesai'])),date("d",strtotime($value['tgl_selesai'])),date("Y",strtotime($value['tgl_selesai'])));
+				$waktu_awal=mktime(date("H",strtotime($value['tgl_mulai'])),date("i",strtotime($value['tgl_mulai'])),date("s",strtotime($value['tgl_mulai'])),date("m",strtotime($value['tgl_mulai'])),date("d",strtotime($value['tgl_mulai'])),date("Y",strtotime($value['tgl_mulai'])));
+				$waktu_akhir=mktime(date("H",strtotime($value['tgl_selesai'])),date("i",strtotime($value['tgl_selesai'])),date("s",strtotime($value['tgl_selesai'])),date("m",strtotime($value['tgl_selesai'])),date("d",strtotime($value['tgl_selesai'])),date("Y",strtotime($value['tgl_selesai'])));
   				if($waktu_sekarang >= $waktu_awal && $waktu_sekarang <= $waktu_akhir) return $value;
 			}
 			

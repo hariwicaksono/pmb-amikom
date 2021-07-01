@@ -9,7 +9,7 @@ class Memail extends CI_Model
     }
 
     public function email_reg($receiver){
-        $from = "hari@amikompurwokerto.ac.id";    //senders email address
+        $from = "hello@amikompurwokerto.ac.id";    //senders email address
         $subject = 'Pendaftaran Akun PMB Berhasil - Universitas AMIKOM Purwokerto';  //email subject
         
         //sending confirmEmail($receiver) function calling link to the user, inside message body
@@ -21,7 +21,7 @@ class Memail extends CI_Model
         $config['smtp_host'] = 'ssl://smtp.gmail.com';
         $config['smtp_port'] = '465';
         $config['smtp_user'] = $from;
-        $config['smtp_pass'] = 'amikom123456789';  //sender's password
+        $config['smtp_pass'] = 'masajiganteng';  //sender's password
         $config['mailtype'] = 'html';
         $config['charset'] = 'iso-8859-1';
         $config['wordwrap'] = 'TRUE';

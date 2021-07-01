@@ -23,9 +23,9 @@
         </ul>
          <div class="card shadow bg-white border-0" data-aos="fade-down">
 
-         <img src="<?php echo base_url('files/3.jpeg'); ?>" class="card-img-top mb-0" alt="Universitas Amikom Purwokerto" />
+         <img src="<?php echo base_url('files/JalurPenerimaanB.png'); ?>" class="card-img-top mb-0" alt="Universitas Amikom Purwokerto" />
             <div class="card-body">
-            <h4 class="mb-2">Masuk</h4>
+            <h4 class="mb-2">Login</h4>
             <form role="form" method="post" action="" id="formlogin">
             <div id="alerts"></div>
 
@@ -38,16 +38,24 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <div class="input-group">
+                    <div class="input-group mb-1">
                         <div class="input-group-prepend">
                         <div class="input-group-text"><i class="fa fa-lock"></i></div>
                         </div>
                         <input type="password" class="form-control input-lg" placeholder="Password" id="passwords" name="password" required="required">
                     </div>
+                    <!-- An element to toggle between password visibility -->
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" onclick="myPassword()" id="defaultCheck1">
+                        <label for="defaultCheck1">
+                        Show Password
+                        </label>
+                    </div>
                 </div>
-                
+
                 <div class="form-group">
-                <a href="#" class="btn btn-primary btn-block btn-lg" id="btnLogin" onclick="masuk_log();"><i class="fa fa-sign-in" aria-hidden="true"></i> Login</a>
+                <a href="#" class="btn btn-primary btn-block btn-lg mb-3" id="btnLogin" onclick="masuk_log();"><i class="fa fa-sign-in" aria-hidden="true"></i> Masuk</a>
+                <a href="<?php echo base_url('page/register');?>">Belum punya Akun? Daftar</a>
                 </div>
                    
                 </div>
@@ -111,6 +119,17 @@
                 
             }
      
+        </script>
+
+        <script>
+        function myPassword() {
+        var x = document.getElementById("passwords");
+        if (x.type === "password") {
+            x.type = "text";
+        } else {
+            x.type = "password";
+        }
+        }
         </script>
 
 

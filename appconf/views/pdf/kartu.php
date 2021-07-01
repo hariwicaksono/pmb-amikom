@@ -9,7 +9,7 @@ ob_start();
   	}
   </style>
 <div style=" border-bottom: 1px solid black;margin-bottom: 10px">
-<img src="/var/www/clients/client1/web1/web/student-amikom/style/kop/kop_atas.jpg" style="width: 50%;margin-top: 10px;padding-left: 10px;margin-bottom: 5px;">
+<img src="/home/pmbacid1/public_html/assets/kop/kop_atas.jpg" style="width: 50%;margin-top: 10px;padding-left: 10px;margin-bottom: 5px;">
 </div>
 <table style="border:1px solid; padding:1px 150px 1px 150px;margin:auto;">
 	<tr>
@@ -90,7 +90,7 @@ $dokumen=$this->model_crud->selectData('dokumen_pmb',array('nodaf'=>$biodata['no
 		<?php 
 			if (!empty($dokumen)) {
 		?>
-			<div style="border: 1px solid black;width: 100px;height:50px;"><img src="/var/www/clients/client1/web1/web/pmb-amikom/dokumen/foto/<?=$dokumen['nama_dokumen']?>" width="100"></div>
+			<div style="border: 1px solid black;width: 100px;height:50px;"><img src="/home/pmbacid1/public_html/dokumen/foto/<?=$dokumen['nama_dokumen']?>" width="100"></div>
 		<?php
 			} else {
 		?>

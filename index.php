@@ -123,7 +123,7 @@ if (defined('ENVIRONMENT')) {
  * Include the path if the folder is not in the same directory
  * as this file.
  */
-	$system_path = 'sysconf';
+	$system_path = 'system';
 
 /*
  *---------------------------------------------------------------

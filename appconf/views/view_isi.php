@@ -60,46 +60,45 @@
 		</div>	
 	</div>
 	</div>
-<?php } elseif ($modul=='Prosedur_pendaftaran'){ ?>
+<?php } elseif ($modul=='Syarat_pendaftaran'){ ?>
 	<div class="row">
 
 	<div class="col-sm-12"> 
-	
-		<div class="alert alert-info wow animated fadeInDown" role="alert" style="background-color: #110d56;color:#fff;">
-			SYARAT PENDAFTARAN
-		</div>
-		<div class="wow animated fadeInDown" style="text-align: justify;">
-<ol type="1">
-	<li>Mahasiswa Reguler</li>
+	<h2>Syarat Pendaftaran</h2>
+	<h3>Persyaratan:</h3>
+	<p>1. Fotokopi / Scan nilai Rapor semester 1 s.d. 4</p>
+	<p>2. Fotokopi / Scan piagam dan sertifikat (olahraga, karya ilmiah, seni, dll)</p>
+	<p>3. Surat Rekomendasi dari sekolah yang menerangkan bakat dan minat siswa (bagi pendaftar jalur peminatan)</p>
+	<p>4. Fotokopi / Scan KTP atau KK.</p>
+	<p>&nbsp;</p>
+	<p>A. Mahasiswa <strong>Reguler</strong></p>
 	<ol type="a">
-		<li>Fotocopy KK & KTP (masing-masing 1 lembar)</li>
-		<li>Fotocopy Ijazah & Transkrip Nilai terakhir (masing-masing 1 lembar)</li>
-		<li>Pas Photo berwarna ukuran 3 x 4 cm (2 lembar)</li>
-		<li>Membayar Biaya Pendaftaran  Rp 150.000, (seratus lima puluh ribu rupiah)</li>
+	<li>Fotocopy KK &amp; KTP (masing-masing 1 lembar)</li>
+	<li>Fotocopy Ijazah &amp; Transkrip Nilai terakhir (masing-masing 1 lembar)</li>
+	<li>Pas Photo berwarna ukuran 3 x 4 cm (2 lembar)</li>
+	<li>Membayar Biaya Pendaftaran Rp 150.000, (seratus lima puluh ribu rupiah)</li>
 	</ol>
-	<li>Mahasiswa Transfer/pindahan</li>
+	<p>B. Mahasiswa <strong>Transfer/pindahan</strong></p>
 	<ol type="a">
-		<li>Fotocopy KK & KTP (masing-masing 1 lembar)</li>
-		<li>Dari prodi yang sejalur dan minimal terakretasi <b>B</b></li>
-		<li>Menyerahkan Transkrip dan Ijazah dari PT asal (Rangkap 2)</li>
-		<li>Surat Pindah dari Perguruan Tinggi Asal</li>
-		<li>Pas Photo berwarna ukuran 3 x 4 cm (2 lembar)</li>
-		<li>Membayar Biaya Pendaftaran  Rp 150.000, (seratus lima puluh ribu rupiah)</li>
-		<li>Membayar biaya pengakuan SKS (Rp 10.000,- per SKS)</li>
+	<li>Fotocopy KK &amp; KTP (masing-masing 1 lembar)</li>
+	<li>Dari prodi yang sejalur dan minimal terakretasi <strong>B</strong></li>
+	<li>Menyerahkan Transkrip dan Ijazah dari PT asal (Rangkap 2)</li>
+	<li>Surat Pindah dari Perguruan Tinggi Asal</li>
+	<li>Pas Photo berwarna ukuran 3 x 4 cm (2 lembar)</li>
+	<li>Membayar Biaya Pendaftaran Rp 150.000, (seratus lima puluh ribu rupiah)</li>
+	<li>Membayar biaya pengakuan SKS (Rp 10.000,- per SKS)</li>
 	</ol>
-	<li>Mahasiswa Kelas PNS</li>
+	<p>C. Mahasiswa <strong>Kelas PNS</strong></p>
 	<ol type="a">
-		<li>Fotocopy KK & KTP (masing-masing 1 lembar)</li>
-		<li>Dari prodi yang sejalur dan minimal terakretasi <b>B</b></li>
-		<li>Menyerahkan Transkrip dan Ijazah  dari PT asal (Rangkap 2)</li>
-		<li>Surat Ijin belajar dari perusahaan atau instansi</li>
-		<li>Pas Photo berwarna ukuran 3 x 4 cm (2 lembar)</li>
-		<li>Membayar Biaya Pendaftaran  Rp 150.000, (seratus lima puluh ribu rupiah)</li>
+	<li>Fotocopy KK &amp; KTP (masing-masing 1 lembar)</li>
+	<li>Dari prodi yang sejalur dan minimal terakretasi <strong>B</strong></li>
+	<li>Menyerahkan Transkrip dan Ijazah dari PT asal (Rangkap 2)</li>
+	<li>Surat Ijin belajar dari perusahaan atau instansi</li>
+	<li>Pas Photo berwarna ukuran 3 x 4 cm (2 lembar)</li>
+	<li>Membayar Biaya Pendaftaran Rp 150.000, (seratus lima puluh ribu rupiah)</li>
 	</ol>
-</ol>
-		</div>
 
-</div>	
+	</div>	
 </div>
 <?php  
  }elseif ($modul=='perlengkapan') {

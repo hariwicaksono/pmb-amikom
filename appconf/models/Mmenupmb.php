@@ -5,12 +5,13 @@ function list_menu_pmb(){
 $menucs=array(
 'page/Alur_pendaftaran'=>'Alur Pendaftaran',
 'page/Jenis_Pendaftaran'=>'Jenis Pendaftaran',
-'page/Prosedur_Pendaftaran'=>'Prosedur Pendaftaran',
-'page/Prosedur_Registrasi'=>'Prosedur Registrasi',
+'page/Syarat_Pendaftaran'=>'Syarat Pendaftaran',
+'page/Jalur_penerimaan'=>'Jalur Penerimaan',
+'page/Beasiswa'=>'Beasiswa',
 'page/Kegiatan_Pra_Kuliah_Mahasiswa_Baru'=>'Kegiatan Pra Kuliah Mahasiswa Baru',
 'page/Tata_Tertib_Penerimaan_Mahasiswa_Baru'=>'Tata Tertib Penerimaan Mahasiswa Baru',
-'page/Beasiswa'=>'Beasiswa'
-
+'page/jadwal_kegiatan'=>'Jadwal Kegiatan PMB',
+'page/perlengkapan'=>'Perlengkapan PSU',
 );
 return $menucs;
 }

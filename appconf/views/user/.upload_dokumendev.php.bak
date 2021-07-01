@@ -1,0 +1,241 @@
+<style type="text/css">
+form input[type="file"] {
+display: block;
+color: transparent;
+padding-left: 10px;
+}
+@keyframes blink{
+0%{opacity: 0;}
+50%{opacity: .5;}
+100%{opacity: 1;}
+}
+</style>
+
+<script type="text/javascript">
+var $jfile=jQuery.noConflict();
+$jfile(function () {
+$jfile('input[type="file"]').change(function () {
+if ($jfile(this).val() != "") {
+$jfile(this).css('color', '#333');
+}else{
+$jfile(this).css('color', 'transparent');
+}
+});
+})
+</script>
+
+<!-- Dropzone css -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.6/dropzone.css"
+            integrity="sha512-7uSoC3grlnRktCWoO4LjHMjotq8gf9XDFQerPuaph+cqR7JC9XKGdvN+UwZMC14aAaBDItdRj3DcSDs4kMWUgg=="
+            crossorigin="anonymous" />
+
+<div class="card">
+    <div class="card-body">
+
+    <?php if (empty($bukti)) { ?>
+    <div class="alert alert-secondary" style="background-color: #fafafa;">
+    <p class="blink mb-0" style="font-size:16px;font-weight:600;color:red;animation: blink 2s linear infinite"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Perhatian! Harap Mengupload Bukti Bayar (Struk Transfer Pendaftaran).<br/><span style="font-size:24px;font-weight:700">Biaya Pendaftaran Sebesar Rp.150.000,-</span></p>
+    <p class="mb-2" style="font-size:16px;font-weight:600;color:red;">Setelah Mengupload Bukti Bayar (Struk Transfer Pendaftaran) harap konfirmasi via WA dengan no. 0858-48888-445.</p>
+        <div>
+        <b>Dibayarkan Via Transfer ke:</b>
+        <br />
+        Bank MANDIRI Nomor Rekenin 18000-2299-2244 - Universitas Amikom Purwokerto
+        <br/>
+        Bank BRI Nomor Rekening 0077-01-001-851302 - Universitas Amikom Purwokerto
+        <br/>
+        Bank MUAMALAT Nomor Rekening 541-008-1993 - Yayasan Amikom Purwokerto
+        </div>
+    </div>
+
+    <?php } ?> 
+
+    <div class="row">
+    <div class="col-10">
+
+    <?php if (empty($bukti)) { ?>
+    <h5>1. BUKTI BAYAR</h5>
+    <form class="dropzone" method="post" action="<?=base_url()?>main_user/post_dokumen?act=bukti_bayar2" enctype="multipart/form-data" id="buktiDropzone">
+        <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
+        <input type="hidden" name="nodaf" value="<?=$biodata['nodaf']?>">
+        <div class="fallback">
+        <input type="file" name="bukti_bayar">
+        </div>   
+    </form>
+    <?php } else { ?>
+    <div class="row">
+    <div class="col-sm-2">
+    <h5>1. BUKTI BAYAR</h5>
+    </div>
+    <div class="col-sm-10">
+        <div id="data">
+            <!-- file yang telah disimpan di database akan ditampilkan disini -->
+        </div>  
+    </div>
+    </div>
+    <?php } ?>
+
+    <hr class="my-3"/>
+
+    <?php if (empty($foto)) { ?>
+    <form class="form-horizontal" method="post" action="<?=base_url()?>main_user/post_dokumen?act=foto" enctype="multipart/form-data" id="form">
+        <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
+        <input type="hidden" name="nodaf" value="<?=$biodata['nodaf']?>">
+        <div class="form-group row">
+        <label class="col-sm-2 col-form-label" for="fileToUpload3"><h5>2. FOTO</h5></label>
+        <div class="col-sm-10">
+        <input type="file" name="foto" class="dropify" data-height="150" id="fileToUpload3">
+        <button class="btn btn-primary mt-1"><i class="fa fa-upload" aria-hidden="true"></i> Upload</button>
+        </div>
+        </div>  
+    </form>
+    <?php } else { ?>
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label"><h5>2. FOTO</h5></label>
+        <div class="col-sm-10">
+        <img src="<?=base_url()?>dokumen/foto/<?=$foto['nama_dokumen']?>" width="80" class="mr-3" alt="<?=$foto['nama_dokumen']?>">
+        <a href="<?=base_url()?>dokumen/foto/<?=$foto['nama_dokumen']?>" target="pdf-frame" class="btn btn-success"><i class="fa fa-print"></i> Preview</a>
+        <input type="hidden" name="nama_dokumen" value="<?=$foto['nama_dokumen']?>">
+        <a href="<?=base_url()?>main_user/post_dokumen?act=hapus&id=<?=$foto['id_dokumen']?>" class="btn btn-danger" onclick="return confirm('Hapus dokumen ini?')"><i class="fa fa-times" aria-hidden="true"></i> Hapus</a>
+        </div>
+    </div>
+    <?php } ?>
+
+    <hr class="my-3"/>
+
+    <?php if (empty($ktp)) { ?>
+    <form class="form-horizontal" method="post" action="<?=base_url()?>main_user/post_dokumen?act=ktp" enctype="multipart/form-data" id="form">
+        <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
+        <input type="hidden" name="nodaf" value="<?=$biodata['nodaf']?>">
+        <div class="form-group row">
+        <label class="col-sm-2 col-form-label" for="fileToUpload4"><h5>3. KTP</h5></label>
+        <div class="col-sm-10">
+        <input type="file" name="ktp" class="dropify" data-height="150" id="fileToUpload4">
+        <button class="btn btn-primary mt-1"><i class="fa fa-upload" aria-hidden="true"></i> Unggah</button>
+        </div>
+        </div>
+    </form>
+    <?php } else { ?>
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label"><h5>3. KTP</h5></label>
+        <div class="col-sm-10">
+        <img src="<?=base_url()?>dokumen/ktp/<?=$ktp['nama_dokumen']?>" width="80" class="mr-3" alt="<?=$ktp['nama_dokumen']?>">
+        <a href="<?=base_url()?>dokumen/ktp/<?=$ktp['nama_dokumen']?>" target="pdf-frame" class="btn btn-success"><i class="fa fa-print"></i> Preview</a>
+        <input type="hidden" name="nama_dokumen" value="<?=$ktp['nama_dokumen']?>">
+        <a href="<?=base_url()?>main_user/post_dokumen?act=hapus&id=<?=$ktp['id_dokumen']?>" class="btn btn-danger" onclick="return confirm('Hapus dokumen ini?')"  ><i class="fa fa-times" aria-hidden="true"></i> Hapus</a>
+        </div>
+    </div>
+    <?php } ?>
+
+    <hr class="my-3"/>
+
+    <?php if (empty($ijazah)) { ?>
+    <form class="form-horizontal" method="post" action="<?=base_url()?>main_user/post_dokumen?act=ijazah" enctype="multipart/form-data" id="form">
+        <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
+        <input type="hidden" name="nodaf" value="<?=$biodata['nodaf']?>">
+        <div class="form-group row">
+        <label class="col-sm-2 col-form-label" for="fileToUpload"><h5>4. IJAZAH</h5></label>
+        <div class="col-sm-10">
+        <input type="file" name="ijazah" class="dropify" data-height="150" id="fileToUpload">
+        <button class="btn btn-primary mt-1"><i class="fa fa-upload" aria-hidden="true"></i> Upload</button>
+        </div>
+        </div>    
+    </form>
+    <?php } else { ?>
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label"><h5>4. IJAZAH</h5></label>
+        <div class="col-sm-10">
+        <img src="<?=base_url()?>dokumen/ijazah/<?=$ijazah['nama_dokumen']?>" width="80" class="mr-3" alt="<?=$ijazah['nama_dokumen']?>">
+        <a href="<?=base_url()?>dokumen/ijazah/<?=$ijazah['nama_dokumen']?>" target="pdf-frame" class="btn btn-info"><i class="fa fa-print"></i> Preview</a>
+        <input type="hidden" name="nama_dokumen" value="<?=$ijazah['nama_dokumen']?>">
+        <a href="<?=base_url()?>main_user/post_dokumen?act=hapus&id=<?=$ijazah['id_dokumen']?>" class="btn btn-danger" onclick="return confirm('Hapus dokumen ini?')"><i class="fa fa-times" aria-hidden="true"></i> Hapus</a>
+        </div>
+    </div>
+    <?php } ?>
+
+    <hr class="my-3"/>
+
+    <?php if (empty($skhu)) { ?>
+    <form class="form-horizontal" method="post" action="<?=base_url()?>main_user/post_dokumen?act=skhu" enctype="multipart/form-data" id="form">
+        <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
+        <input type="hidden" name="nodaf" value="<?=$biodata['nodaf']?>">
+        <div class="form-group row">
+        <label class="col-sm-2 col-form-label" for="fileToUpload2"><h5>5. SKHU</h5></label>
+            <div class="col-sm-10">
+            <input type="file" name="skhu" class="dropify" data-height="150" id="fileToUpload2" >
+            <button class="btn btn-primary mt-1"><i class="fa fa-upload" aria-hidden="true"></i> Upload</button>
+            </div>
+        </div>   
+    </form>
+    <?php } else { ?>
+    <div class="form-group row">
+    <label class="col-sm-2 col-form-label"><h5>5. SKHU</h5></label>
+        <div class="col-sm-10">
+        <img src="<?=base_url()?>dokumen/skhu/<?=$skhu['nama_dokumen']?>" width="80" class="mr-3" alt="<?=$skhu['nama_dokumen']?>">
+        <a href="<?=base_url()?>dokumen/skhu/<?=$skhu['nama_dokumen']?>" target="pdf-frame" class="btn btn-success"><i class="fa fa-print"></i> Preview</a>
+        <input type="hidden" name="nama_dokumen" value="<?=$skhu['nama_dokumen']?>">
+        <a href="<?=base_url()?>main_user/post_dokumen?act=hapus&id=<?=$skhu['id_dokumen']?>" class="btn btn-danger" onclick="return confirm('Hapus dokumen ini?')">Hapus</a>
+        </div>
+    </div>   
+    <?php } ?>
+
+    </div>
+
+    <div class="col-2">
+        
+    <div class="alert alert-warning">
+        <small>
+        <i class="fa fa-info-circle" aria-hidden="true"></i> Informasi:<br/>
+            1. File yang diunggah berupa PDF, PNG, JPG atau JPEG. Maksimal file berukuran 4MB.<br/>
+            2. Klik pada icon untuk mengunggah file yang diperlukan.<br />
+            3. Setelah mengunggah file, klik tombol "Unggah".<br />
+            4. Anda dapat menghapus dengan cara klik tombol hapus. Kemudian unggah kembali file yang benar.
+        </small>
+    </div> 
+    </div>
+
+    </div>
+
+
+    </div>
+</div>
+
+<!-- <script src="js/dropzone.js"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.6/dropzone.js"
+            integrity="sha512-/diY7kiMCU8WBbgrhBMJjMDtrsJGPP2LQG4gaw9tHRYlQ50sJLhAQZH/MSpEPdQHcY0YXYfsosyjMArCDTa3SA=="
+            crossorigin="anonymous"></script>
+
+<script>
+            var $jquery=jQuery.noConflict();
+    Dropzone.autoDiscover = false;
+            // saat dokumen selesai dibuat maka jalankan fungsi update 
+            $jquery(document).ready(function () {
+                update_bukti();
+            });
+    
+            // myDropzone adalah id form 
+            Dropzone.options.myDropzone = {
+                // saat upload file berhasil maka jalankan fungsi update 
+                success: function (file, data) {
+                    update_bukti()
+                }
+            }
+    
+            var myDropzone = new Dropzone("#buktiDropzone");
+    
+            //jika proses upload selesai, maka hapus field atau thumbnail upload
+            myDropzone.on("complete", function (file) {
+                myDropzone.removeFile(file);
+            });
+    
+            //fungsi tampil data
+            function update_bukti() {
+                $jquery.ajax({
+                    url: '<?=base_url()?>main_userdev/upload_data_bukti',
+                    type: 'get',
+                    success: function (data) {
+                        $jquery('#data').html(data);
+                    }
+                });
+            }
+    
+</script>

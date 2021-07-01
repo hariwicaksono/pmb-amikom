@@ -83,7 +83,7 @@
             </div>
  			<div class="form-group">
  				
- 					<button class="btn btn-primary btn-block" id="simpan"><i class="fa fa-check-square-o" aria-hidden="true"></i> Daftar</button>
+ 					<button class="btn btn-primary btn-block" id="simpan" onClick="fbq('track', 'SubmitApplication');"><i class="fa fa-check-square-o" aria-hidden="true"></i> Daftar</button>
  			
  			</div>
 

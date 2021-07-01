@@ -15,6 +15,8 @@ class Page extends CI_Controller{
 		$this->load->model('mgelombang');
 		$this->load->model('mmhsbaru');
 		$this->load->model('mkonversi');
+		$this->load->model('mjumlah');
+		$this->load->model('Mslideshow');
 		$this->load->library('form_validation');
 		$this->load->helper('url');
 		$this->load->library('table');
@@ -34,11 +36,17 @@ class Page extends CI_Controller{
 		}
 		$this->data['content_title']=$this->judul;
 		$this->data['isi_tupoksi']=$this->isi;
+		$tahun_lalu = '2020/2021';
+		$this->data['jumlah_akun'] = $this->mjumlah->count_akun();
+		$this->data['jumlah_calonsiswa'] = $this->mjumlah->count_calonsiswa();
+		$this->data['jumlah_tahunlalu'] = $this->mjumlah->count_tahunlalu($tahun_lalu);
+		$this->data['jumlah_beasiswa'] = $this->mjumlah->count_beasiswa($tahun_lalu);
+		$this->data['slideshow'] = $this->Mslideshow->get_all();
 		$this->data['konten']='view_home';
 		$this->load->view('view_main',$this->data);
 	}
 
-	function Prosedur_pendaftaran($judul='',$hasil=''){
+	function Syarat_pendaftaran($judul='',$hasil=''){
 //Menu PMB
 		$this->data['segment']=$this->uri->segment(3);
 		if ($this->data['segment']=='Calon_mahasiswa_prestasi'){
@@ -68,7 +76,7 @@ class Page extends CI_Controller{
 
 					$this->data['content_title']=$this->judul;
 					$this->data['isi_tupoksi']=$this->isi;
-					$this->data['modul'] ='Prosedur_pendaftaran';
+					$this->data['modul'] ='Syarat_pendaftaran';
 					$this->data['konten']='view_isi';
 					$this->load->view('view_main',$this->data);
 				}
@@ -80,7 +88,7 @@ class Page extends CI_Controller{
 					$this->data['konten']='view_isi';
 					$this->load->view('view_main',$this->data);
 				}
-				function Prosedur_Registrasi($judul=''){
+				function Jalur_penerimaan($judul=''){
 //Menu PMB
 					$hasil=$this->mmenupmb->get_judul_tupoksi(18);
 					foreach($hasil as $row){
@@ -89,11 +97,10 @@ class Page extends CI_Controller{
 					}
 					$this->data['content_title']=$this->judul;
 					$this->data['isi_tupoksi']=$this->isi;
-					$this->data['modul'] ='Prosedur_Registrasi';
+					$this->data['modul'] ='Jalur_penerimaan';
 					$this->data['konten']='view_isi';
 					$this->load->view('view_main',$this->data);
 				}
-
 				function petunjuk($judul=''){
 					//Menu PMB
 					$hasil=$this->mmenupmb->get_judul_tupoksi(37);
@@ -149,7 +156,6 @@ class Page extends CI_Controller{
 					$this->data['konten']='view_isi';
 					$this->load->view('view_main',$this->data);
 				}
-
 				function Beasiswa($judul=''){
 //Menu PMB
 					$hasil=$this->mmenupmb->get_judul_tupoksi(30);
@@ -172,7 +178,7 @@ class Page extends CI_Controller{
 					}
 					$this->data['content_title']=$this->judul;
 					$this->data['isi_tupoksi']=$this->isi;
-					$this->data['modul'] ='Beasiswa';
+					$this->data['modul'] ='Alur_Pendaftaran';
 					$this->data['konten']='view_isi';
 					$this->load->view('view_main',$this->data);
 				}
@@ -185,7 +191,7 @@ class Page extends CI_Controller{
 					}
 					$this->data['content_title']=$this->judul;
 					$this->data['isi_tupoksi']=$this->isi;
-					$this->data['modul'] ='Beasiswa';
+					$this->data['modul'] ='faq';
 					$this->data['konten']='view_isi';
 					$this->load->view('view_main',$this->data);
 				}
@@ -254,20 +260,20 @@ class Page extends CI_Controller{
 					$this->data['konten']='view_isi';
 					$this->load->view('view_main',$this->data);
 				}
-				//function datamhs(){					
-					//$this->form_validation->set_rules('katakunci', '<b>Kata kunci untuk pencarian</b>', 'required|alpha_dash|xss_clean');
-					//$this->form_validation->run();	
-					//$this->data['searchkey']=$this->input->post('katakunci');
-					//$this->data['kodegel']=$this->uri->segment(3);
-					//$this->data['tahun_pmb']=$this->mtahun->getThaPmb();
-					//$this->data['glmb']=$this->mgelombang->getNmKdGel($this->data['tahun_pmb']);
-					//$this->data['datamhs']=$this->mmhsbaru->getmhsbaru($this->data['tahun_pmb'],$this->data['kodegel'],strtoupper($this->data['searchkey']));				
-					//$this->data['modul']='datamhs';
-					//$this->data['content_title']='DAFTAR CALON MAHASISWA BARU';
-					//$this->data['konten']='view_isi';
-					//$this->load->view('view_main',$this->data);
-				//}
-				/*function biodata(){
+				/*function datamhs(){					
+					$this->form_validation->set_rules('katakunci', '<b>Kata kunci untuk pencarian</b>', 'required|alpha_dash|xss_clean');
+					$this->form_validation->run();	
+					$this->data['searchkey']=$this->input->post('katakunci');
+					$this->data['kodegel']=$this->uri->segment(3);
+					$this->data['tahun_pmb']=$this->mtahun->getThaPmb();
+					$this->data['glmb']=$this->mgelombang->getNmKdGel($this->data['tahun_pmb']);
+					$this->data['datamhs']=$this->mmhsbaru->getmhsbaru($this->data['tahun_pmb'],$this->data['kodegel'],strtoupper($this->data['searchkey']));				
+					$this->data['modul']='datamhs';
+					$this->data['content_title']='DAFTAR CALON MAHASISWA BARU';
+					$this->data['konten']='view_isi';
+					$this->load->view('view_main',$this->data);
+				}
+				function biodata(){
 					$this->data['content_title']='BIODATA MAHASISWA BARU';
 					$this->data['nodaf']=$this->uri->segment(3);
 					$this->data['biodata']=$this->mmhsbaru->getmhsbaruLengkap($this->data['nodaf']);
@@ -403,7 +409,7 @@ class Page extends CI_Controller{
 					else if ($nama_file=='PSU'){
 						$nama_download="psu-$tahun.pdf";
 					}
-					$url="/var/www/clients/client1/web1/web/pmb-amikom/doc/";
+					$url="/home/pmbacid1/public_html/doc/";
 
 					$filePath=$url.$nama_download;
 					
@@ -411,21 +417,21 @@ class Page extends CI_Controller{
 
 
 						$this->load->helper('download');
-						$data = file_get_contents($filePath); // Read the file's contents
+					$data = file_get_contents($filePath); // Read the file's contents
 
-						force_download($nama_download, $data); 
-					/*  
-					// force_download($filename, $url.$ket."/");
-								header('HTTP/1.1 200 OK');
-								header('Date: ' . date("D M j G:i:s T Y"));
-								header('Last-Modified: ' . date("D M j G:i:s T Y"));
-								header("Content-Type: application/force-download");
-								#header("Content-Lenght: " . (string)(filesize($url)));
-								header("Content-Transfer-Encoding: Binary");
-								header("Content-Disposition: attachment; filename=".basename($nama_download));
-					*/
+					force_download($nama_download, $data); 
+				/*  
+				// force_download($filename, $url.$ket."/");
+							header('HTTP/1.1 200 OK');
+							header('Date: ' . date("D M j G:i:s T Y"));
+							header('Last-Modified: ' . date("D M j G:i:s T Y"));
+							header("Content-Type: application/force-download");
+							#header("Content-Lenght: " . (string)(filesize($url)));
+							header("Content-Transfer-Encoding: Binary");
+							header("Content-Disposition: attachment; filename=".basename($nama_download));
+				*/
+						}
 					}
-				}
 	function hari($tgl){
 		$nama_hari = date("l",strtotime($tgl)); 
 		switch($nama_hari) 
@@ -470,7 +476,16 @@ class Page extends CI_Controller{
 					history.go(-1);
 				</script>
 			<?php } else {
-				$this->model_crud->insertData('registrasi_pmb',array('username'=>$_POST['username'],'nama'=>$_POST['nama'],'telp'=>$_POST['telp'],'email'=>$_POST['email'],'password'=>$_POST['password']));
+				$this->model_crud->insertData('registrasi_pmb',array(
+					'username'=>$_POST['username'],
+					'nama'=>$_POST['nama'],
+					'telp'=>$_POST['telp'],
+					'email'=>$_POST['email'],
+					'password'=>$_POST['password'],
+					'tahun_daftar'=> date("Y"),
+					'tanggal_daftar'=> date("Y-m-d H:i:s")
+					)
+				);
 				
 				$this->memail->email_reg($_POST['email']);
 				$this->session->set_flashdata('info',"Proses daftar akun berhasil, silahkan Login untuk melakukan Pendaftaran PMB");

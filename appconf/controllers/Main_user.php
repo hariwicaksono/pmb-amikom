@@ -91,8 +91,8 @@ class Main_user extends CI_Controller {
 		$nodaf=$this->model_crud->genNodaf($this->data['tahun_pmb']);
 		$noref=$this->model_crud->nomor_referensi($nodaf);
 		$gelombang=$this->mgelombang->cek_daftar(array('thn_akademik'=>$this->data['tahun_pmb']));
-		$pecah=explode('/',$_POST['jenis_mhs']);
 		$tgllahir=$_POST['thnlahir'].'-'.$_POST['blnlahir'].'-'.$_POST['tgllahir'];
+		$pecah=explode('/',$_POST['jenis_mhs']);
 		$jenis_mhs=$pecah[0];
 		$id_jenismhs=$pecah[1];
 		$info=$_POST['info'];
@@ -111,10 +111,12 @@ class Main_user extends CI_Controller {
 				'kelas'=>$_POST['kelas'],
 				'pilihan1'=>$_POST['pilihan1'],
 				'pilihan2'=>$_POST['pilihan2'],
+				'pilihan3'=>$_POST['pilihan3'],
 				'nama'=>$_POST['nama'],
 				'nikktp'=>$_POST['nik'],
 				'tempatlahir'=>$_POST['tempatlahir'],
 				'tgllahir'=>$tgllahir,
+				'status_pernikahan'=>$_POST['status_pernikahan'],
 				'sekolah'=>$_POST['sekolah'],
 				'jurusan'=>$_POST['jurusan'],
 				'alamat'=>$_POST['alamat'],
@@ -126,9 +128,15 @@ class Main_user extends CI_Controller {
 				'kabupaten'=>$_POST['kabupaten'],
 				'propinsi'=>$_POST['propinsi'],
 				'kodepos'=>$_POST['kodepos'],
+				'deskripsi_alamat'=>$this->input->post('deskripsi_alamat', TRUE),
 				'agama'=>$_POST['agama'],
 				'telepon'=>$_POST['telepon'],
 				'nama_ortu'=>$_POST['nama_ortu'],
+				'nama_ayah'=>$_POST['nama_ayah'],
+				'telp_ortu'=>$_POST['telp_ortu'],
+				'telp_ayah'=>$_POST['telp_ayah'],
+				'pekerjaan_ortu'=>$_POST['pekerjaan_ortu'],
+				'pekerjaan_ayah'=>$_POST['pekerjaan_ayah'],
 				'alamatortu'=>$_POST['alamat_ortu'],
 				'rt_ortu'=>$_POST['rt_ortu'],
 				'rw_ortu'=>$_POST['rw_ortu'],
@@ -137,7 +145,6 @@ class Main_user extends CI_Controller {
 				'kabupaten_ortu'=>$_POST['kabupaten_ortu'],
 				'propinsi_ortu'=>$_POST['propinsi_ortu'],
 				'kodepos_ortu'=>$_POST['kodepos_ortu'],
-				'telp_ortu'=>$_POST['telp_ortu'],
 				'email'=>$_POST['email'],
 				'komentar'=>$data_checkbox,
 				'jk'=>$_POST['jk'],
@@ -145,7 +152,7 @@ class Main_user extends CI_Controller {
 				'gelombang'=>$gelombang['kode'],
 				'tgldaftar'=>date('Y-m-d'),
 				'id_relasi'=>$_POST['relasi'],
-					//'tgl_tes'=>date('Y-m-d'),
+				//'tgl_tes'=>date('Y-m-d'),
 				'biaya_pendaftaran'=>150000,
 				'status'=>0,
 				'nama_cs'=>'ADMINTEST',
@@ -156,7 +163,8 @@ class Main_user extends CI_Controller {
 				'wawancara'=>'Belum',
 				'status_registrasi'=>$_POST['status_reg'],
 				'no_kipk'=>$_POST['no_kipk'],
-				'tahun_lulus'=>$_POST['thn_lulus']
+				'tahun_lulus'=>$_POST['thn_lulus'],
+				'ukuran_jas'=>$_POST['ukuran_jas']
 			);
 			$this->model_crud->insertData('calonsiswa',$data);
 		} else {
@@ -167,10 +175,12 @@ class Main_user extends CI_Controller {
 				'kelas'=>$_POST['kelas'],
 				'pilihan1'=>$_POST['pilihan1'],
 				'pilihan2'=>$_POST['pilihan2'],
+				'pilihan3'=>$_POST['pilihan3'],
 				'nama'=>$_POST['nama'],
 				'nikktp'=>$_POST['nik'],
 				'tempatlahir'=>$_POST['tempatlahir'],
 				'tgllahir'=>$tgllahir,
+				'status_pernikahan'=>$_POST['status_pernikahan'],
 				'sekolah'=>$_POST['sekolah'],
 				'jurusan'=>$_POST['jurusan'],
 				'alamat'=>$_POST['alamat'],
@@ -182,9 +192,15 @@ class Main_user extends CI_Controller {
 				'kabupaten'=>$_POST['kabupaten'],
 				'propinsi'=>$_POST['propinsi'],
 				'kodepos'=>$_POST['kodepos'],
+				'deskripsi_alamat'=>$this->input->post('deskripsi_alamat', TRUE),
 				'agama'=>$_POST['agama'],
 				'telepon'=>$_POST['telepon'],
 				'nama_ortu'=>$_POST['nama_ortu'],
+				'nama_ayah'=>$_POST['nama_ayah'],
+				'telp_ortu'=>$_POST['telp_ortu'],
+				'telp_ayah'=>$_POST['telp_ayah'],
+				'pekerjaan_ortu'=>$_POST['pekerjaan_ortu'],
+				'pekerjaan_ayah'=>$_POST['pekerjaan_ayah'],
 				'alamatortu'=>$_POST['alamat_ortu'],
 				'rt_ortu'=>$_POST['rt_ortu'],
 				'rw_ortu'=>$_POST['rw_ortu'],
@@ -193,22 +209,22 @@ class Main_user extends CI_Controller {
 				'kabupaten_ortu'=>$_POST['kabupaten_ortu'],
 				'propinsi_ortu'=>$_POST['propinsi_ortu'],
 				'kodepos_ortu'=>$_POST['kodepos_ortu'],
-				'telp_ortu'=>$_POST['telp_ortu'],
 				'email'=>$_POST['email'],
 				'komentar'=>$data_checkbox,
 				'jk'=>$_POST['jk'],
 				'id_relasi'=>$_POST['relasi'],
 				'status_registrasi'=>$_POST['status_reg'],
 				'no_kipk'=>$_POST['no_kipk'],
-				'tahun_lulus'=>$_POST['thn_lulus']
+				'tahun_lulus'=>$_POST['thn_lulus'],
+				'ukuran_jas'=>$_POST['ukuran_jas']
 			);
 			$this->model_crud->updateData('calonsiswa',$data2,array('nodaf'=>$this->data['biodata']['nodaf']));
 			
 		}
 
 		
-		$this->session->set_flashdata('info',"Data Berhasil diubah");
-		redirect(base_url('main_user'));
+		$this->session->set_flashdata('info',"Data Berhasil diperbarui");
+		redirect(base_url('main_user/profil'));
 
 
 	}
@@ -216,13 +232,12 @@ class Main_user extends CI_Controller {
 	function post_dokumen(){
 		if (empty($this->session->userdata['username'])) { redirect(base_url()); }
 
-
 		if ($_GET['act']=='ijazah') {
-			$config['upload_path']    ='/var/www/clients/client1/web1/web/pmb-amikom/dokumen/ijazah';
+			$config['upload_path']    ='/home/pmbacid1/public_html/dokumen/ijazah';
 			$config['allowed_types']  = 'jpg|jpeg|png|pdf';
-			$config['max_size']       = '4000';
-			$config['max_width']      = '4000';
-			$config['max_height']     = '4000';
+			$config['max_size']       = '40000';
+			//$config['max_width']      = '4000';
+			//$config['max_height']     = '4000';
 			$config['file_name']      = 'ijazah-'.$_POST['nodaf'];
 			$this->load->library('upload', $config);
 			$this->upload->initialize($config);
@@ -230,20 +245,19 @@ class Main_user extends CI_Controller {
 			if (!$this->upload->do_upload("ijazah")) {
 				echo "<center>File belum dipilih atau tipe file yang diupload tidak sesuai <input type=button value=<<Back onclick=history.back(-1) /></center>";
 			}else{
-
 				$this->model_crud->insertData('dokumen_pmb',array('jenis_dokumen'=>'ijazah','nodaf'=>$_POST['nodaf'],'nama_dokumen'=>$this->upload->data('file_name')));
 				$this->session->set_flashdata('info',"Data Berhasil ditambahkan");
-				redirect(base_url('main_user/upload?act=det'));
+				//redirect(base_url('main_user/upload?act=det'));
 			} 
 			
 		}
 
 		if ($_GET['act']=='skhu') {
-			$config['upload_path']    ='/var/www/clients/client1/web1/web/pmb-amikom/dokumen/skhu';
+			$config['upload_path']    ='/home/pmbacid1/public_html/dokumen/skhu';
 			$config['allowed_types']  = 'jpg|jpeg|png|pdf';
-			$config['max_size']       = '4000';
-			$config['max_width']      = '4000';
-			$config['max_height']     = '4000';
+			$config['max_size']       = '40000';
+			//$config['max_width']      = '4000';
+			//$config['max_height']     = '4000';
 			$config['file_name']      = 'skhu-'.$_POST['nodaf'];
 			$this->load->library('upload', $config);
 			$this->upload->initialize($config);
@@ -251,20 +265,19 @@ class Main_user extends CI_Controller {
 			if (!$this->upload->do_upload("skhu")) {
 				echo "<center>File belum dipilih atau tipe file yang diupload tidak sesuai <input type=button value=Go Back onclick=history.back(-1) /></center>";
 			}else{
-
 				$this->model_crud->insertData('dokumen_pmb',array('jenis_dokumen'=>'skhu','nodaf'=>$_POST['nodaf'],'nama_dokumen'=>$this->upload->data('file_name')));
 				$this->session->set_flashdata('info',"Data Berhasil ditambahkan");
-				redirect(base_url('main_user/upload?act=det'));
+				//redirect(base_url('main_user/upload?act=det'));
 			} 
 			
 		}
 
 		if ($_GET['act']=='foto') {
-			$config['upload_path']    ='/var/www/clients/client1/web1/web/pmb-amikom/dokumen/foto';
+			$config['upload_path']    ='/home/pmbacid1/public_html/dokumen/foto';
 			$config['allowed_types']  = 'jpg|jpeg|png|pdf';
-			$config['max_size']       = '4000';
-			$config['max_width']      = '4000';
-			$config['max_height']     = '4000';
+			$config['max_size']       = '40000';
+			//$config['max_width']      = '4000';
+			//$config['max_height']     = '4000';
 			$config['file_name']      = 'foto-'.$_POST['nodaf'];
 			$this->load->library('upload', $config);
 			$this->upload->initialize($config);
@@ -272,20 +285,19 @@ class Main_user extends CI_Controller {
 			if (!$this->upload->do_upload("foto")) {
 				echo "<center>File belum dipilih atau tipe file yang diupload tidak sesuai <input type=button value=Go Back onclick=history.back(-1) /></center>";
 			}else{
-
 				$this->model_crud->insertData('dokumen_pmb',array('jenis_dokumen'=>'foto','nodaf'=>$_POST['nodaf'],'nama_dokumen'=>$this->upload->data('file_name')));
 				$this->session->set_flashdata('info',"Data Berhasil ditambahkan");
-				redirect(base_url('main_user/upload?act=det'));
+				//redirect(base_url('main_user/upload?act=det'));
 			} 
 			
 		}
 
 		if ($_GET['act']=='ktp') {
-			$config['upload_path']    ='/var/www/clients/client1/web1/web/pmb-amikom/dokumen/ktp';
+			$config['upload_path']    ='/home/pmbacid1/public_html/dokumen/ktp';
 			$config['allowed_types']  = 'jpg|jpeg|png|pdf';
-			$config['max_size']       = '4000';
-			$config['max_width']      = '4000';
-			$config['max_height']     = '4000';
+			$config['max_size']       = '40000';
+			//$config['max_width']      = '4000';
+			//$config['max_height']     = '4000';
 			$config['file_name']      = 'ktp-'.$_POST['nodaf'];
 			$this->load->library('upload', $config);
 			$this->upload->initialize($config);
@@ -293,20 +305,19 @@ class Main_user extends CI_Controller {
 			if (!$this->upload->do_upload("ktp")) {
 				echo "<center>File belum dipilih atau tipe file yang diupload tidak sesuai <input type=button value=Go Back onclick=history.back(-1) /></center>";
 			}else{
-
 				$this->model_crud->insertData('dokumen_pmb',array('jenis_dokumen'=>'ktp','nodaf'=>$_POST['nodaf'],'nama_dokumen'=>$this->upload->data('file_name')));
 				$this->session->set_flashdata('info',"Data Berhasil ditambahkan");
-				redirect(base_url('main_user/upload?act=det'));
+				//redirect(base_url('main_user/upload?act=det'));
 			} 
 			
 		}
 
 		if ($_GET['act']=='bukti_bayar') {
-			$config['upload_path']    ='/var/www/clients/client1/web1/web/pmb-amikom/dokumen/bukti_bayar';
+			$config['upload_path']    ='/home/pmbacid1/public_html/dokumen/bukti_bayar';
 			$config['allowed_types']  = 'jpg|jpeg|png|pdf';
-			$config['max_size']       = '4000';
-			$config['max_width']      = '4000';
-			$config['max_height']     = '4000';
+			$config['max_size']       = '40000';
+			//$config['max_width']      = '4000';
+			//$config['max_height']     = '4000';
 			$config['file_name']      = 'bukti_bayar-'.$_POST['nodaf'];
 			$this->load->library('upload', $config);
 			$this->upload->initialize($config);
@@ -314,10 +325,9 @@ class Main_user extends CI_Controller {
 			if (!$this->upload->do_upload("bukti_bayar")) {
 				echo "<center>File belum dipilih atau tipe file yang diupload tidak sesuai <input type=button value=Go Back onclick=history.back(-1) /></center>";
 			}else{
-
 				$this->model_crud->insertData('dokumen_pmb',array('jenis_dokumen'=>'bukti_bayar','nodaf'=>$_POST['nodaf'],'nama_dokumen'=>$this->upload->data('file_name')));
 				$this->session->set_flashdata('info',"Data Berhasil ditambahkan");
-				redirect(base_url('main_user/upload?act=det'));
+				//redirect(base_url('main_user/upload?act=det'));
 			} 
 			
 		}
@@ -327,13 +337,11 @@ class Main_user extends CI_Controller {
 
 			$cari=$this->model_crud->selectData('dokumen_pmb',array('id_dokumen'=>$_GET['id']))->row_array();
 			$dokumen=$cari['jenis_dokumen'];
-			$target='/var/www/clients/client1/web1/web/pmb-amikom/dokumen/'.$dokumen.'/'.$cari['nama_dokumen'];
+			$target='/home/pmbacid1/public_html/dokumen/'.$dokumen.'/'.$cari['nama_dokumen'];
 			if (file_exists($target)) {
 				unlink($target);
 			}
 			$this->model_crud->deleteData('dokumen_pmb',array('id_dokumen'=>$_GET['id']));
-
-
 
 			$this->session->set_flashdata('info',"Data Berhasil dihapus");
 			redirect(base_url('main_user/upload?act=det'));
@@ -357,12 +365,44 @@ class Main_user extends CI_Controller {
 			redirect('main_user/ujianonline?act=det');
 		}
 
+		if ($this->data['biodata']['status_registrasi']=='KIP-Kuliah') {
+			$date_now = date("Y-m-d H:i:s");
+			if ($date_now <= '2021-06-21 09:00:00') {
+				$this->session->set_flashdata('info',"Ujian Online Belum Dibuka");
+				redirect('main_user');
+			}
+		}
+
 		$this->load->model('msoal');
 		$this->data['content_title']='SELAMAT DATANG CALON MAHASISWA BARU UNIVERSITAS AMIKOM PURWOKERTO';
-		$this->data['aturan_ujian']=$this->model_crud->selectData('tbl_pengaturan_ujian');
+		$this->data['aturan_ujian']=$this->model_crud->selectData('tbl_pengaturan_ujian',array('id'=>'1'));
+		$this->data['aturan_ujian_kipk']=$this->model_crud->selectData('tbl_pengaturan_ujian',array('id'=>'2'));
 		$this->data['jumlah_soal']=$this->msoal->count_all();
 		$this->data['konten']='user/view_biodata';
 		$this->load->view('view_main',$this->data);
+	}
+
+	function postattempt(){
+		if (empty($this->session->userdata['username'])) { redirect(base_url()); }
+		
+		if ($this->cek_attempt()) {
+			$this->session->set_flashdata('info',"Sudah pernah ujian");
+			redirect('main_user/mulaiujian?act=det');
+		}
+		$data = array(
+			'id_user' => $this->session->userdata['username'],
+			'waktu_mulai' => date('Y-m-d H:i:s'),
+			'waktu_selesai' => date("Y-m-d H:i:s",strtotime(date("Y-m-d H:i:s")." +50 minutes"))
+		);
+
+		$this->model_crud->insertData('tbl_attempt',$data);
+		$this->session->set_flashdata('info',"Berhasil mendapatkan Soal, Selamat Mengerjakan");
+		if (!$this->data['biodata']['status_registrasi']=='KIP-Kuliah') {
+			redirect(base_url('main_user/ujianonline'));
+		} else {
+			redirect(base_url('main_user/ujianonline_kipk'));
+		}
+
 	}
 
 	public function ujianonline(){
@@ -378,6 +418,11 @@ class Main_user extends CI_Controller {
 			$this->session->set_flashdata('info',"Anda sudah melakukan Ujian");
 			redirect('main_user/hasilujian?act=det');
 		}
+
+		if ($this->data['biodata']['status_registrasi']=='KIP-Kuliah') {
+			//$this->session->set_flashdata('info',"Hanya untuk Pendaftar Reguler");
+			redirect('main_user/ujianonline_kipk');
+		}
 		
 		$this->load->model('msoal');
 		$this->data['content_title']='SELAMAT DATANG CALON MAHASISWA BARU UNIVERSITAS AMIKOM PURWOKERTO';
@@ -389,23 +434,41 @@ class Main_user extends CI_Controller {
 		$this->load->view('view_main',$this->data);
 	}
 
-	function postattempt(){
+
+	public function ujianonline_kipk(){
 		if (empty($this->session->userdata['username'])) { redirect(base_url()); }
-		
-		if ($this->cek_attempt()) {
-			$this->session->set_flashdata('info',"Sudah pernah ujian");
+		if (empty($this->data['biodata'])) { redirect(base_url('main_user')); }
+
+		$date_now = date("Y-m-d H:i:s");
+		if ($date_now <= '2021-06-21 09:00:00') {
+			$this->session->set_flashdata('info',"Ujian Online Belum Dibuka");
+			redirect('main_user');
+		}
+
+		if (!$this->data['biodata']['status_registrasi']=='KIP-Kuliah') {
+			$this->session->set_flashdata('info',"Hanya untuk Pendaftar KIP-Kuliah");
+			redirect('main_user');
+		}
+
+		if (!$this->cek_attempt()) {
+			$this->session->set_flashdata('info',"Silakan memulai Ujian");
 			redirect('main_user/mulaiujian?act=det');
 		}
-		$data = array(
-			'id_user' => $this->session->userdata['username'],
-			'waktu_mulai' => date('Y-m-d H:i:s'),
-			'waktu_selesai' => date("Y-m-d H:i:s",strtotime(date("Y-m-d H:i:s")." +60 minutes"))
-		);
 
-		$this->model_crud->insertData('tbl_attempt',$data);
-		$this->session->set_flashdata('info',"Berhasil mendapatkan Soal, Selamat Mengerjakan");
-		redirect(base_url('main_user/ujianonline?act=det'));
+		if ($this->cek_nilai()) {
+			$this->session->set_flashdata('info',"Anda sudah melakukan Ujian");
+			redirect('main_user/hasilujian?act=det');
+		}
 
+		
+		$this->load->model('msoal_kipk');
+		$this->data['content_title']='SELAMAT DATANG CALON MAHASISWA BARU UNIVERSITAS AMIKOM PURWOKERTO';
+		$this->data['aturan_ujian']=$this->model_crud->selectData('tbl_pengaturan_ujian');
+		$this->data['soal']=$this->msoal_kipk->get_soal();
+		$this->data['jumlah_soal']=$this->msoal_kipk->count_all();
+		$this->data['waktu_selesai']=$this->get_attempt_selesai();
+		$this->data['konten']='user/view_biodata';
+		$this->load->view('view_main',$this->data);
 	}
 
 	function cek_attempt()
@@ -500,7 +563,7 @@ class Main_user extends CI_Controller {
 		$cek=$qry1->num_rows();
 		if ($cek < 1) {
 		//Pemberian kondisi lulus/ tidak lulus
-			$qry2=$this->db->query("SELECT nilai_min FROM tbl_pengaturan_ujian");
+			$qry2=$this->db->query("SELECT nilai_min FROM tbl_pengaturan_ujian WHERE id='1'");
 			$q2=$qry2->result_array();
 			foreach( $q2 as $row ) {
 				$ceknilai= $row['nilai_min'];
@@ -521,4 +584,123 @@ class Main_user extends CI_Controller {
 
 	}
 
+	function postjawaban_kipk(){
+		if (empty($this->session->userdata['username'])) { redirect(base_url()); }
+		$this->data['biodata']=$this->model_crud->selectData('calonsiswa',array('email'=>$this->session->userdata['email']))->row_array();
+
+		if(isset($_POST['submit'])){
+			$pilihan=$_POST['pilihan'];
+			$id_soal=$_POST['id'];
+			$jumlah=$_POST['jumlah'];
+			
+			$score=0;
+			$benar=0;
+			$salah=0;
+			$kosong=0;
+			
+			for ($i=0;$i<$jumlah;$i++){
+				//id nomor soal
+				$nomor=$id_soal[$i];
+				
+				//jika user tidak memilih jawaban
+				if (empty($pilihan[$nomor])){
+					$kosong++;
+				}else{
+					//jawaban dari user
+					$jawaban=$pilihan[$nomor];
+					
+					//cocokan jawaban user dengan jawaban di database
+					$query=$this->db->query("select * from tbl_soal_kipk where id_soal='$nomor' and knc_jawaban='$jawaban'");
+					$cek=$query->num_rows();
+					
+					if($cek){
+						//jika jawaban cocok (benar)
+						$benar++;
+					}else{
+						//jika salah
+						$salah++;
+					}
+					
+				} 
+				
+				$result=$this->db->query("select * from tbl_soal_kipk WHERE aktif='Y'");
+				$jumlah_soal=$result->num_rows();
+				$score = ($benar*3)-($kosong);
+				$hasil = number_format($score);
+				//$score = 100/$jumlah_soal*$benar;
+				//$hasil = number_format($score,1);
+			}
+		}
+		//Lakukan Pengecekan  Data  dalam Database
+		$id=$this->session->userdata['username'];
+		$tgl_sekarang=date('Y-m-d');
+		$qry1=$this->db->query("SELECT id_user FROM tbl_nilai WHERE id_user='$id'");
+		$cek=$qry1->num_rows();
+		if ($cek < 1) {
+		//Pemberian kondisi lulus/ tidak lulus
+			$qry2=$this->db->query("SELECT nilai_min FROM tbl_pengaturan_ujian WHERE id='2'");
+			$q2=$qry2->result_array();
+			foreach( $q2 as $row ) {
+				$ceknilai= $row['nilai_min'];
+			}
+			if ($hasil >= $ceknilai) {
+		//Lakukan Penyimpanan Kedalam Database
+				$iduser= $this->session->userdata['username'];
+				$nodaf= $this->data['biodata']['nodaf'];
+				//var_dump($benar,$kosong,$score);
+				$this->db->query("INSERT INTO tbl_nilai (id_user,benar,salah,kosong,score,tanggal,keterangan,nodaf) Values ('$iduser','$benar','$salah','$kosong','$hasil','$tgl_sekarang','Lulus','$nodaf')");
+			}else {
+		//Lakukan Penyimpanan Kedalam Database
+				$iduser= $this->session->userdata['username'];
+				$nodaf= $this->data['biodata']['nodaf'];
+				//var_dump($benar,$kosong,$score);
+				$this->db->query("INSERT INTO tbl_nilai (id_user,benar,salah,kosong,score,tanggal,keterangan,nodaf) Values ('$iduser','$benar','$salah','$kosong','$hasil','$tgl_sekarang','Tidak Lulus','$nodaf')");
+			}
+		}
+		redirect(base_url('main_user/hasilujian?act=det'));
+
+	}
+
+	public function upload_data_bukti()
+	{
+		if(empty($this->session->userdata['username'])){ redirect(base_url());  }
+		if (empty($this->data['biodata'])) { redirect(base_url('main_user')); }	
+		$this->data['bukti']=$this->model_crud->selectData('dokumen_pmb',array('nodaf'=>$this->data['biodata']['nodaf'],'jenis_dokumen'=>'bukti_bayar'))->row_array();
+		$this->load->view('user/upload_data_bukti',$this->data);
+	}
+
+	public function upload_data_foto()
+	{
+		if(empty($this->session->userdata['username'])){ redirect(base_url());  }
+		if (empty($this->data['biodata'])) { redirect(base_url('main_user')); }	
+		$this->data['foto']=$this->model_crud->selectData('dokumen_pmb',array('nodaf'=>$this->data['biodata']['nodaf'],'jenis_dokumen'=>'foto'))->row_array();
+		$this->load->view('user/upload_data_foto',$this->data);
+		
+	}
+
+	public function upload_data_ktp()
+	{
+		if(empty($this->session->userdata['username'])){ redirect(base_url());  }
+		if (empty($this->data['biodata'])) { redirect(base_url('main_user')); }	
+		$this->data['ktp']=$this->model_crud->selectData('dokumen_pmb',array('nodaf'=>$this->data['biodata']['nodaf'],'jenis_dokumen'=>'ktp'))->row_array();
+		$this->load->view('user/upload_data_ktp',$this->data);
+		
+	}
+
+	public function upload_data_ijazah()
+	{
+		if(empty($this->session->userdata['username'])){ redirect(base_url());  }
+		if (empty($this->data['biodata'])) { redirect(base_url('main_user')); }	
+		$this->data['ijazah']=$this->model_crud->selectData('dokumen_pmb',array('nodaf'=>$this->data['biodata']['nodaf'],'jenis_dokumen'=>'ijazah'))->row_array();
+		$this->load->view('user/upload_data_ijazah',$this->data);
+	}
+
+	public function upload_data_skhu()
+	{
+		if(empty($this->session->userdata['username'])){ redirect(base_url());  }
+		if (empty($this->data['biodata'])) { redirect(base_url('main_user')); }	
+		$this->data['skhu']=$this->model_crud->selectData('dokumen_pmb',array('nodaf'=>$this->data['biodata']['nodaf'],'jenis_dokumen'=>'skhu'))->row_array();
+		$this->load->view('user/upload_data_skhu',$this->data);
+	}
+	
 }

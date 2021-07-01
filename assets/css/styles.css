@@ -4,7 +4,7 @@ body {
     margin: 0;
 }
 body {
-    background: linear-gradient(#2c0e4c 60%, transparent 60%) no-repeat;
+    background: linear-gradient(#602f66 50%, transparent 50%) no-repeat;
     margin: 0;
      -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -83,7 +83,7 @@ input.error {
     column-gap: 0px;
     min-width: 300px;
     max-width: 300px;
-    background: #371260;
+    background: #572654;
     color: #f2f2f2;
     transition: all 0.3s;
     padding: 20px 0px;
@@ -96,7 +96,7 @@ input.error {
     min-width: 80px;
     max-width: 80px;
     text-align: center;
-    background: #371260;
+    background: #572654;
 }
 
 #sidebar.active .sidebar-header h3 {
@@ -110,7 +110,7 @@ input.error {
 #sidebar ul li a {
     text-align: center;
     margin-bottom: 20px;
-    padding: 20px;
+    padding: 40px 0;
     font-size: 0.875em;
     font-weight: 400;
     line-height: 1.4;
@@ -154,8 +154,8 @@ input.error {
 #sidebar.active ul li a i {
     margin-right: 0;
     display: block;
-    font-size: 1.2em;
-    margin-bottom: 5px;
+    font-size: 2.6em;
+    margin-bottom: -16px;
 }
 
 #sidebar.active ul ul a {
@@ -358,4 +358,210 @@ input.error {
 }
 .ui-autocomplete-loading {
     background: white url("../main/images/ui-anim_basic_16x16.gif") right center no-repeat;
+  }
+
+.top {
+    padding-top: 5px;
+    padding-left: 13% !important;
+    padding-right: 13% !important
+}
+
+#progressbar {
+    margin-bottom: 20px;
+    overflow: hidden;
+    color: #455A64;
+    padding-left: 0px;
+    margin-top: 20px;
+}
+
+#progressbar li {
+    list-style-type: none;
+    font-size: 13px;
+    width: 25%;
+    float: left;
+    position: relative;
+    font-weight: 400;
+}
+
+#progressbar .step0:before {
+    font-family: FontAwesome;
+    content: "\f10c";
+    color: #fff
+}
+
+#progressbar li:before {
+    width: 30px;
+    height: 30px;
+    line-height: 34px;
+    display: block;
+    font-size: 16px;
+    background: #C5CAE9;
+    border-radius: 50%;
+    margin: auto;
+    padding: 0px;
+    position: relative;
+    z-index: 1 !important;
+}
+
+#progressbar li:after {
+    content: '';
+    width: 100%;
+    height: 8px;
+    background: #C5CAE9;
+    position: absolute;
+    left: 0;
+    top: 12px;
+    z-index: 0 !important;
+}
+
+#progressbar li:last-child:after {
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    position: absolute;
+    left: -50%
+}
+
+#progressbar li:nth-child(2):after,
+#progressbar li:nth-child(3):after {
+    left: -50%
+}
+
+#progressbar li:first-child:after {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    position: absolute;
+    left: 50%
+}
+
+#progressbar li:last-child:after {
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px
+}
+
+#progressbar li:first-child:after {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px
+}
+
+#progressbar li.activ:before,
+#progressbar li.activ:after {
+    background: #651FFF;
+}
+
+#progressbar li.activ:before {
+    font-family: FontAwesome;
+    content: "\f00c"
+}
+
+.icon {
+    width: 20px;
+    height: 20px;
+    margin-top: 3px;
+    margin-right: 5px
+}
+
+.icon-content {
+    padding-bottom: 20px
+}
+
+@media screen and (max-width: 560px) {
+    .icon {
+        display: none !important;
+    }
+}
+.dot {
+    width: var(--dot-size);
+    height: var(--dot-size);
+    background-color: red;
+    border-radius: 50%;
+  }
+  
+  
+  /* --- Animation --- */
+  
+  /* Define animation keyframes */
+  @keyframes blink {
+    0%, 100% { opacity: 0; }
+    50% { opacity: 1; }
+  }
+  
+  /* Minimal example */
+  .dot--basic {
+    animation: blink 2s infinite;
+  }
+  
+  /* Run animation once */
+  .dot--once {
+    animation: blink 2s 1;
+    /* animation-iteration-count: 1; */
+  }
+  
+  /* Wait 4s before running the animation */
+  .dot--delayed {
+    animation: blink 2s infinite 4s;
+    /* animation-delay: 4s; */
+  }
+  
+  /* Use frames with "from" and "to" */
+  @keyframes choppyBlink {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  .dot--choppy {
+    animation: choppyBlink 2s infinite;
+    /* animation-name: choppyBlink; */
+  }
+  
+  /* Animate multiple properties (transform and color) */
+  @keyframes pulse {
+    0%, 100% { 
+      transform: scale(0) translateY(-75%);
+      background-color: blue;
+    }
+    33% {
+      background-color: orange;
+    }
+    50% { 
+      transform: scale(1.125) translateY(0);
+      background-color: red;
+    }
+  }
+  .dot--pulse {
+    animation: pulse 8s infinite;
+  }
+  
+  /* Disable animation if user prefers reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .dot {
+      animation: none;
+    }
+  }
+  
+  
+  /* --- Dot Usage --- */
+  
+  .dots-item {
+    --dot-size: 0.8rem;
+    --offline-color: #999;
+    --offline-text-color: #666;
+    
+    display: inline-flex;
+    align-items: center;
+    border: 2px solid red;
+    border-radius: 3px;
+    padding: 0 10px;
+  }
+  
+  .dots-item .dot {
+    margin-right: .3rem;
+  }
+  
+  .dots-item--offline {
+    border-color: var(--offline-color);
+    color: var(--offline-text-color);
+  }
+  
+  .dots-item--offline .dot {
+    animation: none;
+    background-color: var(--offline-color);
   }

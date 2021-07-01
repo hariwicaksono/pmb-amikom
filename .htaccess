@@ -1,5 +1,7 @@
+AddHandler application/x-httpd-php73 .php
+ 
   RewriteEngine on
-  RewriteBase /pmb-amikom
+  RewriteBase /
   RewriteCond %[REQUEST_URI] ^sysconf*
   RewriteRule ^(.*)$ /index.php?/$1 [L]
   RewriteCond %[REQUEST_URI] ^appconf.*
@@ -7,6 +9,14 @@
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d
   RewriteRule ^(.*)$ index.php?/$1 [L]
+
+  RewriteCond %{HTTPS} off
+  RewriteRule ^.*$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+
+<IfModule pagespeed_module>
+ModPagespeed off
+</IfModule>
 
 <IfModule !mod_rewrite.c>
 ErrorDucument 404/index.php

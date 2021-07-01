@@ -38,6 +38,19 @@ class Main extends CI_Controller {
         }
     }
 
+    function get_jenismhs(){
+        if ( ($_POST['status_reg']=='Hanya Daftar') ) {
+            $jenis_mhs=$this->model_crud->selectData('MASTER_JENISMHS')->result_array();
+            foreach ($jenis_mhs as $key) {
+            ?>
+                <option value="<?=$key['KODE_JENIS'].'/'.$key['ID_JENISMHS']?>"><?=$key['NAMA']?></option>
+            <?php
+            }
+        }  else {
+            echo '<option value="41/1">MAHASISWA BARU</option>';
+        }
+    }
+
     function get_pilihan(){
         $list_prodi=$this->db->query("select * from DEPARTMENT")->result_array();
         foreach ($list_prodi as $key ) {
@@ -69,33 +82,34 @@ class Main extends CI_Controller {
     function get_kelas(){
 
         if ( ($_POST['jenis_mhs']=='44/4') ) {
-            echo '<option value="55201">INFORMATIKA</option>';
-        } else  if ( ($_POST['status_reg']=='Bidikmisi') ) {
-            echo '<option value="55201">INFORMATIKA</option>';
-            echo '<option value="55701">SISTEM INFORMASI</option>';
+            echo '<option value="55201">INFORMATIKA S1</option>';
+        } else  if ( ($_POST['status_reg']=='KIP-Kuliah2') ) {
+            echo '<option value="55201">INFORMATIKA S1</option>';
+            echo '<option value="55701">SISTEM INFORMASI S1</option>';
         } 
         else {
             $jurusan=$this->model_crud->selectData('department')->result_array();
             foreach ($jurusan as $key) {
             ?>
-                <option value="<?=$key['KD_DEPT']?>"><?=$key['NAMA_DEPT_id']?></option>
+                <option value="<?=$key['KD_DEPT']?>"><?=$key['NAMA_DEPT']?></option>
             <?php
             }
         }
 
     }
+    
     function get_kelas_sore(){
         if ($_POST['jenis_mhs']=='44/4') {
-        echo '<option value="Sore">Sore</option>';
+        echo '<option value=Sore>Sore</option>';
         } elseif($_POST['jenis_mhs']=='43/3') {
-            echo '<option value="Transfer">Transfer</option>';
+            echo '<option value=Transfer>Transfer</option>';
         } else {
-            echo '<option value="Pagi">Pagi</option>';
+            echo '<option value=Pagi>Pagi</option>';
             
         }
         
-    }  
- 
+    } 
+
     function validasi_email (){
         $cek=$this->model_crud->selectData('registrasi_pmb',array('email'=>$_POST['email']))->result_array();
 
@@ -112,16 +126,6 @@ class Main extends CI_Controller {
         redirect(base_url());
     }
 
-    function get_jenismhs(){
-
-        $jenis_mhs=$this->model_crud->selectData('MASTER_JENISMHS')->result_array();
-            foreach ($jenis_mhs as $key) {
-            ?>
-                <option value="<?=$key['KODE_JENIS'].'/'.$key['ID_JENISMHS']?>"><?=$key['NAMA']?></option>
-            <?php
-            }
-        }
-
     function get_search(){
         if (isset($_GET['term'])) {
             $result = $this->msearch->search($_GET['term']);
@@ -135,7 +139,7 @@ class Main extends CI_Controller {
             }
         }
     }
-
+    
     function search(){
         $query=$this->input->get('query');
         $this->data['data']=$this->msearch->search($query);

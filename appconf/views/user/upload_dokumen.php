@@ -1,3 +1,8 @@
+<!-- Dropzone css -->
+<link rel="stylesheet" href="<?=base_url()?>assets/dropzone/min/dropzone.min.css"/>
+<link rel="stylesheet" href="<?=base_url()?>assets/dropzone/min/basic.min.css"/>
+<script src="<?=base_url()?>assets/dropzone/min/dropzone.min.js"></script> 
+
 <style type="text/css">
 form input[type="file"] {
 display: block;
@@ -9,242 +14,348 @@ padding-left: 10px;
 50%{opacity: .5;}
 100%{opacity: 1;}
 }
+#dropzone {
+  margin-bottom: 3rem; }
+
+.dropzone {
+  border: 2px dashed #0087F7;
+  border-radius: 5px;
+  background: white; }
+  .dropzone .dz-message {
+    font-weight: 400; }
+    .dropzone .dz-message .note {
+      font-size: 0.8em;
+      font-weight: 200;
+      display: block;
+      margin-top: 1.4rem; }
 </style>
 
-<script type="text/javascript">
-var $jfile=jQuery.noConflict();
-$jfile(function () {
-$jfile('input[type="file"]').change(function () {
-if ($jfile(this).val() != "") {
-$jfile(this).css('color', '#333');
-}else{
-$jfile(this).css('color', 'transparent');
-}
-});
-})
-</script>
-
 <div class="card">
-    <div class="card-header card-header-borderless">
-        <strong>Upload Dokumen</strong>
-    </div>
     <div class="card-body">
-    
+
     <?php if (empty($bukti)) { ?>
-        <div class="alert alert-warning">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-    </button>
-        <span class="blink" style="font-size:14px;font-weight:600;color:red;animation: blink 2s linear infinite">Harap Mengupload Bukti Bayar (Struk Transfer Pendaftaran) <br />
-        Setela Mengupload Bukti Bayar (Struk Transfer Pendaftaran) harap konfirmasi via WA dengan no. 0858-48888-445. </span>
+    <div class="alert alert-secondary" style="background-color: #fafafa;">
+    <p class="blink mb-0" style="font-size:16px;font-weight:600;color:red;animation: blink 2s linear infinite"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Perhatian! Harap Mengupload Bukti Bayar (Struk Transfer Pendaftaran).<br/><span style="font-size:24px;font-weight:700">Biaya Pendaftaran Sebesar Rp.150.000,-</span></p>
+    <p class="mb-2" style="font-size:16px;font-weight:600;color:red;">Setelah Mengupload Bukti Bayar (Struk Transfer Pendaftaran) harap konfirmasi via WA dengan no. 0858-48888-445.</p>
+        <div>
+        <b>Dibayarkan Via Transfer ke:</b>
+        <br />
+        Bank MANDIRI Nomor Rekenin 18000-2299-2244 - Universitas Amikom Purwokerto
+        <br/>
+        Bank BRI Nomor Rekening 0077-01-001-851302 - Universitas Amikom Purwokerto
+        <br/>
+        Bank MUAMALAT Nomor Rekening 541-008-1993 - Yayasan Amikom Purwokerto
+        </div>
     </div>
+
     <?php } ?> 
-    
+
     <div class="row">
-  <div class="col-md-3">
-    <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-      <a class="nav-link active" id="v-pills-1-tab" data-toggle="pill" href="#v-pills-1" role="tab" aria-controls="v-pills-1" aria-selected="true">
-          <img src="<?=base_url()?>assets/main/images/file.png" width="25"> PEMBAYARAN</a>
-      <a class="nav-link" id="v-pills-2-tab" data-toggle="pill" href="#v-pills-2" role="tab" aria-controls="v-pills-2" aria-selected="false">
-          <img src="<?=base_url()?>assets/main/images/foto.png" width="25"> FOTO</a>
-      <a class="nav-link" id="v-pills-3-tab" data-toggle="pill" href="#v-pills-3" role="tab" aria-controls="v-pills-3" aria-selected="false">
-      <img src="<?=base_url()?>assets/main/images/ktp.png" width="25"> KTP</a>
-      <a class="nav-link" id="v-pills-4-tab" data-toggle="pill" href="#v-pills-4" role="tab" aria-controls="v-pills-4" aria-selected="false">
-      <img src="<?=base_url()?>assets/main/images/ijazah.png" width="25"> IJAZAH</a>
-      <a class="nav-link" id="v-pills-5-tab" data-toggle="pill" href="#v-pills-5" role="tab" aria-controls="v-pills-5" aria-selected="false">
-      <img src="<?=base_url()?>assets/main/images/buku.png" width="25"> SKHU</a>
+    <div class="col-sm-9">
+
+    <div class="row">
+    <div class="col-sm-3">
+    <h5>1. BUKTI BAYAR</h5>
+    </div>
+    <div class="col-sm-9">
+    <?php if (empty($bukti)) { ?>
+    <form class="dropzone" action="<?=base_url()?>main_user/post_dokumen?act=bukti_bayar" enctype="multipart/form-data" id="buktiDropzone">
+        <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
+        <input type="hidden" name="nodaf" value="<?=$biodata['nodaf']?>">
+        <div class="fallback">
+        <input type="file" name="bukti_bayar">
+        </div>   
+    </form>
+    <?php } else { ?>
+        <div id="data_bukti">
+       
+        </div>  
+    <?php } ?>
+    </div>
+    </div>
+
+    <hr class="my-3"/>
+
+    <div class="row">
+    <div class="col-sm-3">
+    <h5>2. FOTO</h5>
+    </div>
+    <div class="col-sm-9">
+    <?php if (empty($foto)) { ?>
+    <form class="dropzone" action="<?=base_url()?>main_user/post_dokumen?act=foto" enctype="multipart/form-data" id="fotoDropzone">
+        <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
+        <input type="hidden" name="nodaf" value="<?=$biodata['nodaf']?>">
+        <div class="fallback">
+        <input type="file" name="foto">
+        </div>  
+    </form>
+    <?php } else { ?>
+        <div id="data_foto">
+           
+        </div>  
+    <?php } ?>
+    </div>
+    </div>
+
+    <hr class="my-3"/>
+
+    <div class="row">
+    <div class="col-sm-3">
+    <h5>3. KTP</h5>
+    </div>
+    <div class="col-sm-9">
+    <?php if (empty($ktp)) { ?>
+    <form class="dropzone" method="post" action="<?=base_url()?>main_user/post_dokumen?act=ktp" enctype="multipart/form-data" id="ktpDropzone">
+        <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
+        <input type="hidden" name="nodaf" value="<?=$biodata['nodaf']?>">
+        <div class="fallback">
+        <input type="file" name="ktp">
+        </div> 
+    </form>
+    <?php } else { ?>
+        <div id="data_ktp">
+           
+           </div> 
+    <?php } ?>
+    </div>
+    </div>
+
+    <hr class="my-3"/>
+
+    <div class="row">
+    <div class="col-sm-3">
+    <h5>4. IJAZAH</h5>
+    </div>
+    <div class="col-sm-9">
+    <?php if (empty($ijazah)) { ?>
+    <form class="dropzone" method="post" action="<?=base_url()?>main_user/post_dokumen?act=ijazah" enctype="multipart/form-data" id="ijazahDropzone">
+        <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
+        <input type="hidden" name="nodaf" value="<?=$biodata['nodaf']?>">
+        <div class="fallback">
+        <input type="file" name="ijazah">
+        </div>     
+    </form>
+    <?php } else { ?>
+        <div id="data_ijazah">
+           
+        </div> 
+    <?php } ?>
+    </div>
+    </div>
+
+    <hr class="my-3"/>
+
+    <div class="row">
+    <div class="col-sm-3">
+    <h5>5. SKHU</h5>
+    </div>
+    <div class="col-sm-9">
+    <?php if (empty($skhu)) { ?>
+    <form class="dropzone" method="post" action="<?=base_url()?>main_user/post_dokumen?act=skhu" enctype="multipart/form-data" id="skhuDropzone">
+        <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
+        <input type="hidden" name="nodaf" value="<?=$biodata['nodaf']?>">
+        <div class="fallback">
+        <input type="file" name="skhu">
+        </div>    
+    </form>
+    <?php } else { ?>
+        <div id="data_skhu">
+           
+        </div> 
+    <?php } ?>
+    </div>
+    </div>
+
 
     </div>
-  </div>
-  <div class="col-md-9">
-    <div class="tab-content" id="v-pills-tabContent">
-    
-      <div class="tab-pane fade show active" id="v-pills-1" role="tabpanel" aria-labelledby="v-pills-1-tab">
-      <?php if (empty($bukti)) { ?>
-                    <form class="form-horizontal" method="post" action="<?=base_url()?>main_user/post_dokumen?act=bukti_bayar" enctype="multipart/form-data" id="form">
-                    <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
-         
-                        <input type="hidden" name="nodaf" value="<?=$biodata['nodaf']?>">
-                        <center>
-                            <b>BUKTI BAYAR</b>
-                        <br/>
-                        <label for="fileToUpload5">
-                            <img src="<?=base_url()?>assets/main/images/file.png" width="100">
-                        </label>
-                        </center>
-                        <div class="custom-file mb-3">
-                        <input type="file" name="bukti_bayar" class="custom-file-input" id="fileToUpload5">
-                        <label class="custom-file-label" for="fileToUpload5">Choose file</label>
-                        </div>
-                        <button class="btn btn-primary" style="width: 100%;">Unggah</button>
-                        
-                    </form>
-                <?php } else { ?>
-                    <center>
-                        <b>BUKTI BAYAR</b>
-                    <div class="my-3">
-                    <a href="<?=base_url()?>dokumen/bukti_bayar/<?=$bukti['nama_dokumen']?>" target="pdf-frame" class="btn btn-info"><i class="fa fa-print"></i> Preview</a>
-                    </div>
-                    <input type="hidden" name="nama_dokumen" value="<?=$bukti['nama_dokumen']?>">
-                    <a href="<?=base_url()?>main_user/post_dokumen?act=hapus&id=<?=$bukti['id_dokumen']?>" class="btn btn-danger" onclick="return confirm('Hapus dokumen ini?')"  style="width: 100%;">Hapus</a>
-                    </center>
-                <?php } ?>
-            <div class="alert alert-primary mt-3 mb-0" style="font-weight:500">   
-            <h4 class="alert-heading mb-2" style="font-weight:700">Biaya Pendaftaran Sebesar Rp.150.000,-</h4>
-                Dibayarkan Via :
-                <br />
-                1. Bank MUAMALAT 541-008-0445 a/n Universitas Amikom Purwokerto
-                <br />
-                2. Bank MANDIRI No Rek 18000-229922-44 a/n Universitas Amikom Purwokerto
-            </div>
-      </div>
-      <div class="tab-pane fade" id="v-pills-2" role="tabpanel" aria-labelledby="v-pills-2-tab">
-      <?php if (empty($foto)) { ?>
-                    <form class="form-horizontal" method="post" action="<?=base_url()?>main_user/post_dokumen?act=foto" enctype="multipart/form-data" id="form">
-                    <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
-         
-                        <input type="hidden" name="nodaf" value="<?=$biodata['nodaf']?>">
-                        <center>
-                            <b>FOTO</b>
-                        <br/>
-                        <label for="fileToUpload3">
-                            <img src="<?=base_url()?>assets/main/images/foto.png" width="100">
-                        </label>
-                        </center>
-                        <div class="custom-file mb-3">
-                        <input type="file" name="foto" class="custom-file-input" id="fileToUpload3">
-                        <label class="custom-file-label" for="fileToUpload3">Choose file</label>
-                        </div>
-                        <button class="btn btn-primary" style="width: 100%;">Unggah</button>
-                        
-                    </form>
-                <?php } else { ?>
-                    <center>
-                    <b>FOTO</b>
-                    <div class="my-3">
-                    <a href="<?=base_url()?>dokumen/foto/<?=$foto['nama_dokumen']?>" target="pdf-frame" class="btn btn-info"><i class="fa fa-print"></i> Preview</a>
-                    </div>
-                    <input type="hidden" name="nama_dokumen" value="<?=$foto['nama_dokumen']?>">
-                    <a href="<?=base_url()?>main_user/post_dokumen?act=hapus&id=<?=$foto['id_dokumen']?>" class="btn btn-danger" onclick="return confirm('Hapus dokumen ini?')"  style="width: 100%;">Hapus</a>
-                    </center>
-                <?php } ?>
-      </div>
-      <div class="tab-pane fade" id="v-pills-3" role="tabpanel" aria-labelledby="v-pills-3-tab">
-      <?php if (empty($ktp)) { ?>
-                    <form class="form-horizontal" method="post" action="<?=base_url()?>main_user/post_dokumen?act=ktp" enctype="multipart/form-data" id="form">
-                    <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
-         
-                        <input type="hidden" name="nodaf" value="<?=$biodata['nodaf']?>">
-                        <center>
-                            <b>KTP</b>
-                        <br/>
-                        <label for="fileToUpload4">
-                            <img src="<?=base_url()?>assets/main/images/ktp.png" width="150" height="100">
-                        </label>
-                        </center>
-                        <div class="custom-file mb-3">
-                        <input type="file" name="ktp" class="custom-file-input" id="fileToUpload4">
-                        <label class="custom-file-label" for="fileToUpload4">Choose file</label>
-                        </div>
-                        <button class="btn btn-primary" style="width: 100%;">Unggah</button>
-                        
-                    </form>
-                <?php } else { ?>
-                    <center>
-                        <b>KTP</b>
-                        <div class="my-3">
-                    <a href="<?=base_url()?>dokumen/ktp/<?=$ktp['nama_dokumen']?>" target="pdf-frame" class="btn btn-info"><i class="fa fa-print"></i> Preview</a>
-                    </div>
-                    <input type="hidden" name="nama_dokumen" value="<?=$ktp['nama_dokumen']?>">
-                    <a href="<?=base_url()?>main_user/post_dokumen?act=hapus&id=<?=$ktp['id_dokumen']?>" class="btn btn-danger" onclick="return confirm('Hapus dokumen ini?')"  style="width: 100%;">Hapus</a>
-                    </center>
-                <?php } ?>
-      </div>
-      <div class="tab-pane fade" id="v-pills-4" role="tabpanel" aria-labelledby="v-pills-4-tab">
-      <?php if (empty($ijazah)) { ?>
-                    <form class="form-horizontal" method="post" action="<?=base_url()?>main_user/post_dokumen?act=ijazah" enctype="multipart/form-data" id="form">
-                    <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
-         
-                        <input type="hidden" name="nodaf" value="<?=$biodata['nodaf']?>">
-                        <center>
-                            <b>IJAZAH</b>
-                        <br/>
-                        <label for="fileToUpload">
-                            <img src="<?=base_url()?>assets/main/images/ijazah.png" width="100">
-                        </label>
-                        </center>
-                        <div class="custom-file mb-3">
-                        <input type="file" name="ijazah" class="custom-file-input" id="fileToUpload">
-                        <label class="custom-file-label" for="fileToUpload">Choose file</label>
-                        </div>
-                        <button class="btn btn-primary" style="width: 100%;">Unggah</button>
-                        
-                    </form>
-                <?php } else { ?>
-                    
-                    <center>
-                    <b>IJAZAH</b>
-                    <div class="my-3">
-                    <a href="<?=base_url()?>dokumen/ijazah/<?=$ijazah['nama_dokumen']?>" target="pdf-frame" class="btn btn-info"><i class="fa fa-print"></i> Preview</a>
-                    </div>
-                    <input type="hidden" name="nama_dokumen" value="<?=$ijazah['nama_dokumen']?>">
-                    <a href="<?=base_url()?>main_user/post_dokumen?act=hapus&id=<?=$ijazah['id_dokumen']?>" class="btn btn-danger" onclick="return confirm('Hapus dokumen ini?')"  style="width: 100%;">Hapus</a></center>
-                        </center>
-                <?php } ?>
-      </div>
-      <div class="tab-pane fade" id="v-pills-5" role="tabpanel" aria-labelledby="v-pills-5-tab">
-      <?php if (empty($skhu)) { ?>
-                    <form class="form-horizontal" method="post" action="<?=base_url()?>main_user/post_dokumen?act=skhu" enctype="multipart/form-data" id="form">
-                    <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
-         
-                        <input type="hidden" name="nodaf" value="<?=$biodata['nodaf']?>">
-                        <center>
-                            <b>SKHU</b>
-                        <br/>
-                        <label for="fileToUpload2">
-                            <img src="<?=base_url()?>assets/main/images/buku.png" width="100">
-                        </label>
-                        </center>
-                        <div class="custom-file mb-3">
-                        <input type="file" name="skhu" class="custom-file-input" id="fileToUpload2">
-                        <label class="custom-file-label" for="fileToUpload2">Choose file</label>
-                        </div>
-                        <button class="btn btn-primary" style="width: 100%;">Unggah</button>
-                       
-                    </form>
-                <?php } else { ?>
-                    <center>
-                        <b>SKHU</b>
-                    <div class="my-3">
-                    <a href="<?=base_url()?>dokumen/skhu/<?=$skhu['nama_dokumen']?>" target="pdf-frame" class="btn btn-info"><i class="fa fa-print"></i> Preview</a>
-                    </div>
-                    <input type="hidden" name="nama_dokumen" value="<?=$skhu['nama_dokumen']?>">
-                    <a href="<?=base_url()?>main_user/post_dokumen?act=hapus&id=<?=$skhu['id_dokumen']?>" class="btn btn-danger" onclick="return confirm('Hapus dokumen ini?')"  style="width: 100%;">Hapus</a>
-                    </center>
-                <?php } ?>
-      </div>
-    </div>
-    
 
-  </div>
-</div>
-
-    
+    <div class="col-sm-3">
         
-<div class="alert alert-info mt-3 mb-2">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-        </button>
-        <small>
-            Note :<br/>
-            1. File yang diunggah berupa PDF, PNG, JPG atau JPEG. Maksimal file berukuran 4MB.<br/>
-            2. Klik pada icon untuk mengunggah file yang diperlukan.<br />
-            3. Setelah mengunggah file, klik tombol "Unggah".<br />
-            4. Anda dapat menghapus dengan cara klik tombol hapus. Kemudian unggah kembali file yang benar.
+    <div class="alert alert-warning">
+        <small class="text-break">
+        <h6 class="alert-heading">Informasi</h6>
+            1. File yang diunggah berupa JPG/JPEG/PNG/PDF. Max file berukuran 40MB.<br/>
+            2. Anda dapat menghapus dengan cara klik tombol hapus. Kemudian unggah kembali file yang benar.
         </small>
     </div> 
+    </div>
 
+    </div>
 
 
     </div>
 </div>
+
+<script>
+    var $jquery=jQuery.noConflict();
+    Dropzone.autoDiscover = false;
+            $jquery(document).ready(function () {
+                update_bukti();
+            });
+
+            if($jquery("#buktiDropzone").length){
+                Dropzone.options.buktiDropzone = {
+                    paramName: "bukti_bayar",
+                    maxFiles: 1,
+                    success: function (file, data) {
+                        location.reload(false);
+                    }
+                }
+                
+                var buktiDropzone = new Dropzone("#buktiDropzone");
+                buktiDropzone.on("complete", function (file) {
+                    buktiDropzone.removeFile(file);
+                });
+            }
+            function update_bukti() {
+                document.getElementById('data_bukti').innerHTML="<i class='fa fa-circle-o-notch fa-spin'></i> Please Wait...";
+                $jquery.ajax({
+                    url: '<?=base_url()?>main_user/upload_data_bukti',
+                    type  : 'GET',
+                    dataType: 'html',
+                    success: function (data) {
+                        $jquery('#data_bukti').html(data);
+                    }
+                });
+            }
+
+</script>
+<script>
+    var $jquery=jQuery.noConflict();
+    Dropzone.autoDiscover = false;
+            $jquery(document).ready(function () {
+                update_foto();
+            });
+
+            if($jquery("#fotoDropzone").length){
+                Dropzone.options.fotoDropzone = {
+                    paramName: "foto",
+                    maxFiles: 1,
+                    success: function (file, data) {
+                        location.reload(false);
+                    }
+                }
+                
+                var fotoDropzone = new Dropzone("#fotoDropzone");
+                fotoDropzone.on("complete", function (file) {
+                    fotoDropzone.removeFile(file);
+                });
+            }
+            function update_foto() {
+                document.getElementById('data_foto').innerHTML="<i class='fa fa-circle-o-notch fa-spin'></i> Please Wait...";
+                $jquery.ajax({
+                    url: '<?=base_url()?>main_user/upload_data_foto',
+                    type  : 'GET',
+                    dataType: 'html',
+                    success: function (data) {
+                        $jquery('#data_foto').html(data);
+                    }
+                });
+            }
+
+</script>
+<script>
+    var $jquery=jQuery.noConflict();
+    Dropzone.autoDiscover = false;
+            $jquery(document).ready(function () {
+                update_ktp();
+            });
+    
+            if($jquery("#ktpDropzone").length){
+                Dropzone.options.ktpDropzone = {
+                    paramName: "ktp",
+                    maxFiles: 1,
+                    success: function (file, data) {
+                        location.reload(false);
+                    }
+                }
+        
+                var ktpDropzone = new Dropzone("#ktpDropzone");
+                ktpDropzone.on("complete", function (file) {
+                    ktpDropzone.removeFile(file);
+                });
+            }
+    
+            function update_ktp() {
+                document.getElementById('data_ktp').innerHTML="<i class='fa fa-circle-o-notch fa-spin'></i> Please Wait...";
+                $jquery.ajax({
+                    url: '<?=base_url()?>main_user/upload_data_ktp',
+                    type: 'get',
+                    dataType: 'html',
+                    success: function (data) {
+                        $jquery('#data_ktp').html(data);
+                    }
+                });
+            }
+    
+</script>
+<script>
+    var $jquery=jQuery.noConflict();
+    Dropzone.autoDiscover = false;
+            $jquery(document).ready(function () {
+                update_ijazah();
+            });
+    
+            if($jquery("#ijazahDropzone").length){
+                Dropzone.options.ijazahDropzone = {
+                    paramName: "ijazah",
+                    maxFiles: 1,
+                    success: function (file, data) {
+                        location.reload(false); 
+                    }
+                }
+        
+                var ijazahDropzone = new Dropzone("#ijazahDropzone");
+                ijazahDropzone.on("complete", function (file) {
+                    ijazahDropzone.removeFile(file);
+                });
+            }
+    
+            function update_ijazah() {
+                document.getElementById('data_ijazah').innerHTML="<i class='fa fa-circle-o-notch fa-spin'></i> Please Wait...";
+                $jquery.ajax({
+                    url: '<?=base_url()?>main_user/upload_data_ijazah',
+                    type: 'get',
+                    dataType: 'html',
+                    success: function (data) {
+                        $jquery('#data_ijazah').html(data);
+                    }
+                });
+            }
+    
+</script>
+<script>
+    var $jquery=jQuery.noConflict();
+    Dropzone.autoDiscover = false;
+            $jquery(document).ready(function () {
+                update_skhu();
+            });
+           
+            if($jquery("#skhuDropzone").length){
+                Dropzone.options.skhuDropzone = {
+                    paramName: "skhu",
+                    maxFiles: 1,
+                    success: function (file, data) {
+                        location.reload(false); 
+                    }
+                }
+
+                var skhuDropzone = new Dropzone("#skhuDropzone");
+                skhuDropzone.on("complete", function (file) {
+                    skhuDropzone.removeFile(file);
+                });
+            }
+    
+            function update_skhu() {
+                document.getElementById('data_skhu').innerHTML="<i class='fa fa-circle-o-notch fa-spin'></i> Please Wait...";
+                $jquery.ajax({
+                    url: '<?=base_url()?>main_user/upload_data_skhu',
+                    type: 'get',
+                    dataType: 'html',
+                    success: function (data) {
+                        $jquery('#data_skhu').html(data);
+                    }
+                });
+            }
+       
+</script>

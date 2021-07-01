@@ -1,0 +1,1 @@
+<option value="KIP-Kuliah" <?php if (!empty($biodata)) { if ($biodata['status_registrasi']=="KIP-Kuliah") { echo 'selected=selected'; }} ?> disabled >BEASISWA KIP-Kuliah</option>

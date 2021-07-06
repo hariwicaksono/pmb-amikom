@@ -17,4 +17,5 @@ application/logs/*
 /vendor/
 
 appconf/config/database.php
+appconf/models/Memail.php
 /dokumen/

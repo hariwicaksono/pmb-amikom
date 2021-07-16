@@ -40,6 +40,7 @@ class Main extends CI_Controller {
 
     function get_jenismhs(){
         if ( ($_POST['status_reg']=='Hanya Daftar') ) {
+            echo '<option value="">Pilih Jenis</option>';
             $jenis_mhs=$this->model_crud->selectData('MASTER_JENISMHS')->result_array();
             foreach ($jenis_mhs as $key) {
             ?>
@@ -47,6 +48,7 @@ class Main extends CI_Controller {
             <?php
             }
         }  else {
+            echo '<option value="">Pilih Jenis</option>';
             echo '<option value="41/1">MAHASISWA BARU</option>';
         }
     }
@@ -83,7 +85,7 @@ class Main extends CI_Controller {
 
         if ( ($_POST['jenis_mhs']=='44/4') ) {
             echo '<option value="55201">INFORMATIKA S1</option>';
-        } else  if ( ($_POST['status_reg']=='KIP-Kuliah2') ) {
+        } else  if ( ($_POST['status_reg']=='KIP-Kuliah') || ($_POST['status_reg']=='KIP-Kuliah2') ) {
             echo '<option value="55201">INFORMATIKA S1</option>';
             echo '<option value="55701">SISTEM INFORMASI S1</option>';
         } 

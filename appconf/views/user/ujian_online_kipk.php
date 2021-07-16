@@ -60,7 +60,7 @@ function makeTimer() {
        clearInterval(timer);
        $.notify({
                         title: "<strong>Perhatian!</strong>",
-                        message: "Waktu anda habis. Silahkan klik tombol <strong class='blinker'>Jawab & Selesai</strong> untuk melihat hasil ujian anda."
+                        message: "Waktu anda habis. Silahkan klik tombol <a href='#buttonSubmit' alt='Button Submit'><strong class='blinker'>Jawab & Selesai</strong></a> untuk melihat hasil ujian anda."
                     },{
                         allow_dismiss: false,
                         type: 'danger',
@@ -89,7 +89,7 @@ timer = setInterval(function() { makeTimer(); }, 1000);
     
   <form name="form1" method="post" action="<?=base_url()?>main_user/postjawaban_kipk">
     <div class="row">
-      <div class="col-md-9" style="max-height: 600px;overflow: auto;">
+      <div class="col-md-12">
               <?php 
               $jumlah=$jumlah_soal;
               $no=0;
@@ -152,18 +152,37 @@ timer = setInterval(function() { makeTimer(); }, 1000);
 
       </div>
 
-      <div class="col-md-3" style="max-height: 600px;overflow: auto;">
+      <!--<div class="col-md-3" style="max-height: 600px;overflow: auto;">
               <input id="button" type="submit" name="submit" class="btn btn-primary btn-lg btn-block active" value="Jawab & Selesai" onclick="return confirm('Apakah Anda yakin dengan jawaban Anda?')">
               <br/>
               <?php
-              $no=0;
-              $urut=0;
-              foreach ($soal as $row) {?>
-                  <a class='btn btn-link' href='#<?php echo $no=$no+1;?>' role='button'><?php echo $urut=$urut+1;?></a>
+              //$no=0;
+              //$urut=0;
+              //foreach ($soal as $row) {?>
+                  <a class='btn btn-link' href='#<?php //echo $no=$no+1;?>' role='button'><?php //echo $urut=$urut+1;?></a>
               <?php 
-              }
+              //}
               ?>
-      </div>
+      </div>-->
+    </div>
+    <div class="fixed-bottom navbar-dark bg-dark py-2">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-10 text-nowrap overflow-auto">
+                  <?php
+                  $no=0;
+                  $urut=0;
+                  foreach ($soal as $row) {?>
+                      <a class='btn btn-default text-light' href='#<?php echo $no=$no+1;?>' role='button'><?php echo $urut=$urut+1;?></a>
+                  <?php 
+                  }
+                  ?>
+                </div>
+                <div class="col-md-2 ">
+                  <input id="buttonSubmit" type="submit" name="submit" class="btn btn-danger btn-lg btn-block" value="Jawab & Selesai" onclick="return confirm('Apakah Anda yakin dengan jawaban Anda?')">
+                </div>
+            </div>
+        </div>
     </div>
 
   </form>

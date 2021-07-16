@@ -63,6 +63,7 @@ class Main_user extends CI_Controller {
 		$this->data['konten']='user/view_biodata';
 		
 		$this->data['ijazah']=$this->model_crud->selectData('dokumen_pmb',array('nodaf'=>$this->data['biodata']['nodaf'],'jenis_dokumen'=>'ijazah'))->row_array();
+		$this->data['skl']=$this->model_crud->selectData('dokumen_pmb',array('nodaf'=>$this->data['biodata']['nodaf'],'jenis_dokumen'=>'skl'))->row_array();
 		$this->data['skhu']=$this->model_crud->selectData('dokumen_pmb',array('nodaf'=>$this->data['biodata']['nodaf'],'jenis_dokumen'=>'skhu'))->row_array();
 		$this->data['foto']=$this->model_crud->selectData('dokumen_pmb',array('nodaf'=>$this->data['biodata']['nodaf'],'jenis_dokumen'=>'foto'))->row_array();
 		$this->data['ktp']=$this->model_crud->selectData('dokumen_pmb',array('nodaf'=>$this->data['biodata']['nodaf'],'jenis_dokumen'=>'ktp'))->row_array();
@@ -155,7 +156,7 @@ class Main_user extends CI_Controller {
 				//'tgl_tes'=>date('Y-m-d'),
 				'biaya_pendaftaran'=>150000,
 				'status'=>0,
-				'nama_cs'=>'ADMINTEST',
+				'nama_cs'=>'ADMINTEST', 
 				'kode_kerjasama'=>1,
 				'syarat1'=>'Tidak Lengkap',
 				'syarat2'=>'Belum',
@@ -246,6 +247,26 @@ class Main_user extends CI_Controller {
 				echo "<center>File belum dipilih atau tipe file yang diupload tidak sesuai <input type=button value=<<Back onclick=history.back(-1) /></center>";
 			}else{
 				$this->model_crud->insertData('dokumen_pmb',array('jenis_dokumen'=>'ijazah','nodaf'=>$_POST['nodaf'],'nama_dokumen'=>$this->upload->data('file_name')));
+				$this->session->set_flashdata('info',"Data Berhasil ditambahkan");
+				//redirect(base_url('main_user/upload?act=det'));
+			} 
+			
+		}
+
+		if ($_GET['act']=='skl') {
+			$config['upload_path']    ='/home/pmbacid1/public_html/dokumen/skl';
+			$config['allowed_types']  = 'jpg|jpeg|png|pdf';
+			$config['max_size']       = '40000';
+			//$config['max_width']      = '4000';
+			//$config['max_height']     = '4000';
+			$config['file_name']      = 'skl-'.$_POST['nodaf'];
+			$this->load->library('upload', $config);
+			$this->upload->initialize($config);
+
+			if (!$this->upload->do_upload("skl")) {
+				echo "<center>File belum dipilih atau tipe file yang diupload tidak sesuai <input type=button value=<<Back onclick=history.back(-1) /></center>";
+			}else{
+				$this->model_crud->insertData('dokumen_pmb',array('jenis_dokumen'=>'skl','nodaf'=>$_POST['nodaf'],'nama_dokumen'=>$this->upload->data('file_name')));
 				$this->session->set_flashdata('info',"Data Berhasil ditambahkan");
 				//redirect(base_url('main_user/upload?act=det'));
 			} 
@@ -397,10 +418,10 @@ class Main_user extends CI_Controller {
 
 		$this->model_crud->insertData('tbl_attempt',$data);
 		$this->session->set_flashdata('info',"Berhasil mendapatkan Soal, Selamat Mengerjakan");
-		if (!$this->data['biodata']['status_registrasi']=='KIP-Kuliah') {
-			redirect(base_url('main_user/ujianonline'));
-		} else {
+		if (($this->data['biodata']['status_registrasi']=='KIP-Kuliah') || ($this->data['biodata']['status_registrasi']=='KIP-Kuliah2')) {
 			redirect(base_url('main_user/ujianonline_kipk'));
+		} else {
+			redirect(base_url('main_user/ujianonline'));
 		}
 
 	}
@@ -419,7 +440,7 @@ class Main_user extends CI_Controller {
 			redirect('main_user/hasilujian?act=det');
 		}
 
-		if ($this->data['biodata']['status_registrasi']=='KIP-Kuliah') {
+		if (($this->data['biodata']['status_registrasi']=='KIP-Kuliah') || ($this->data['biodata']['status_registrasi']=='KIP-Kuliah2')) {
 			//$this->session->set_flashdata('info',"Hanya untuk Pendaftar Reguler");
 			redirect('main_user/ujianonline_kipk');
 		}
@@ -445,9 +466,9 @@ class Main_user extends CI_Controller {
 			redirect('main_user');
 		}
 
-		if (!$this->data['biodata']['status_registrasi']=='KIP-Kuliah') {
-			$this->session->set_flashdata('info',"Hanya untuk Pendaftar KIP-Kuliah");
-			redirect('main_user');
+		if (($this->data['biodata']['status_registrasi']=='Hanya Daftar') || ($this->data['biodata']['status_registrasi']=='Angsur')) {
+			//$this->session->set_flashdata('info',"Hanya untuk Pendaftar KIP-Kuliah");
+			redirect('main_user/ujianonline');
 		}
 
 		if (!$this->cek_attempt()) {
@@ -459,7 +480,6 @@ class Main_user extends CI_Controller {
 			$this->session->set_flashdata('info',"Anda sudah melakukan Ujian");
 			redirect('main_user/hasilujian?act=det');
 		}
-
 		
 		$this->load->model('msoal_kipk');
 		$this->data['content_title']='SELAMAT DATANG CALON MAHASISWA BARU UNIVERSITAS AMIKOM PURWOKERTO';

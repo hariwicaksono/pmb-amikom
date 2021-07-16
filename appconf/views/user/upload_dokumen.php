@@ -122,26 +122,61 @@ padding-left: 10px;
 
     <hr class="my-3"/>
 
-    <div class="row">
+    <div class="row" id="formIjazah">
     <div class="col-sm-3">
-    <h5>4. IJAZAH</h5>
+    <h5>4. IJAZAH / SKL</h5>
     </div>
     <div class="col-sm-9">
-    <?php if (empty($ijazah)) { ?>
-    <form class="dropzone" method="post" action="<?=base_url()?>main_user/post_dokumen?act=ijazah" enctype="multipart/form-data" id="ijazahDropzone">
-        <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
-        <input type="hidden" name="nodaf" value="<?=$biodata['nodaf']?>">
-        <div class="fallback">
-        <input type="file" name="ijazah">
-        </div>     
-    </form>
-    <?php } else { ?>
-        <div id="data_ijazah">
-           
-        </div> 
-    <?php } ?>
+        <ul class="nav nav-pills mb-2 mt-1" id="myTab" role="tablist">
+        <li class="nav-item" role="presentation">
+            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Ijazah</a>
+        </li>
+        <li class="nav-item" role="presentation">
+            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">SKL</a>
+        </li>
+        </ul>
+        <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+            <?php if (empty($ijazah)) { ?>
+            <form class="dropzone" method="post" action="<?=base_url()?>main_user/post_dokumen?act=ijazah" enctype="multipart/form-data" id="ijazahDropzone">
+                <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
+                <input type="hidden" name="nodaf" value="<?=$biodata['nodaf']?>">
+                <div class="fallback">
+                <input type="file" name="ijazah">
+                </div>     
+            </form>
+            <?php } else { ?>
+                <div id="data_ijazah">
+                
+                </div> 
+            <?php } ?>
+        </div>
+        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+            <?php if (empty($skl)) { ?>
+            <form class="dropzone" method="post" action="<?=base_url()?>main_user/post_dokumen?act=skl" enctype="multipart/form-data" id="sklDropzone">
+                <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
+                <input type="hidden" name="nodaf" value="<?=$biodata['nodaf']?>">
+                <div class="fallback">
+                <input type="file" name="skl">
+                </div>     
+            </form>
+            <?php } else { ?>
+                <div id="data_skl">
+                
+                </div> 
+            <?php } ?>
+        
+        </div>
+
+        </div>
+   
     </div>
     </div>
+
+    <!--<div class="mb-0 form-check">
+        <input type="checkbox" class="form-check-input" id="Check1">
+        <label class="form-check-label" for="Check1">SKL</label>
+    </div>-->
 
     <hr class="my-3"/>
 
@@ -328,6 +363,41 @@ padding-left: 10px;
     var $jquery=jQuery.noConflict();
     Dropzone.autoDiscover = false;
             $jquery(document).ready(function () {
+                update_skl();
+            });
+    
+            if($jquery("#sklDropzone").length){
+                Dropzone.options.sklDropzone = {
+                    paramName: "skl",
+                    maxFiles: 1,
+                    success: function (file, data) {
+                        location.reload(false); 
+                    }
+                }
+        
+                var sklDropzone = new Dropzone("#sklDropzone");
+                sklDropzone.on("complete", function (file) {
+                    sklDropzone.removeFile(file);
+                });
+            }
+    
+            function update_skl() {
+                document.getElementById('data_skl').innerHTML="<i class='fa fa-circle-o-notch fa-spin'></i> Please Wait...";
+                $jquery.ajax({
+                    url: '<?=base_url()?>main_user/upload_data_skl',
+                    type: 'get',
+                    dataType: 'html',
+                    success: function (data) {
+                        $jquery('#data_skl').html(data);
+                    }
+                });
+            }
+    
+</script>
+<script>
+    var $jquery=jQuery.noConflict();
+    Dropzone.autoDiscover = false;
+            $jquery(document).ready(function () {
                 update_skhu();
             });
            
@@ -359,3 +429,21 @@ padding-left: 10px;
             }
        
 </script>
+
+<!--<script>
+var $jquery=jQuery.noConflict();
+$jquery(document).ready(function ($jquery) {
+    $jquery("#Check1").on('click', function() {
+    if($jquery(this).prop("checked")) {
+        $jquery("#yt-box").show();   
+		$jquery("#formIjazah").hide();           
+    } else  {
+        $jquery("#yt-box").hide();    
+		$jquery("#formIjazah").show();          
+    }
+
+    });
+
+});
+
+</script>-->

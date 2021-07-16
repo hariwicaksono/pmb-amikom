@@ -23,7 +23,7 @@
         </ul>
          <div class="card shadow bg-white border-0" data-aos="fade-down">
 
-         <img src="<?php echo base_url('files/JalurPenerimaanB.png'); ?>" class="card-img-top mb-0" alt="Universitas Amikom Purwokerto" />
+        <!-- <img src="<?php echo base_url('files/JalurPenerimaanB.png'); ?>" class="card-img-top mb-0" alt="Universitas Amikom Purwokerto" />-->
             <div class="card-body">
             <h4 class="mb-2">Login</h4>
             <form role="form" method="post" action="" id="formlogin">

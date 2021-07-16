@@ -1,3 +1,6 @@
+<link href="<?php echo base_url('assets/css');?>/select2.min.css" rel="stylesheet">
+<link href="<?php echo base_url('assets/css');?>/select2-bootstrap4.min.css" rel="stylesheet">
+
 <?php if (!empty($biodata)) {
    $start = "4";
 } else {
@@ -18,13 +21,18 @@ input[type="radio"],input[type="checkbox"] {
 <?php
 if ($biodata['syarat2']=='Sudah') $status='Readonly';
 $this->data['tahun_pmb']=$this->mtahun->getThaPmb();
-$gelombang=$this->mgelombang->cek_daftar(array('thn_akademik'=>'2018/2019'));
+$tha = $this->data['tahun_pmb'];
+$gelombang=$this->mgelombang->cek_daftar(array('thn_akademik'=>$tha));
 ?>   
 
 <div class="card">
     <div class="card-body">
     <form class="row justify-content-around wizard" method="post" action="<?=base_url()?>main_user/setting_biodata" enctype="multipart/form-data" id="form">
+    <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
+         
     <input type="hidden" name="relasi" value="1"> 
+    <input type="hidden" name="kode_gelombang" value="<?=$gelombang['kode']?>"> 
+    
 
             <ul class="col-12 col-md-auto nav nav-tabs flex-md-column justify-content-between justify-content-md-start">
               <li><a href="#first" class="step-circle step-circle-sm">1</a>
@@ -56,15 +64,15 @@ $gelombang=$this->mgelombang->cek_daftar(array('thn_akademik'=>'2018/2019'));
                 <!--end of row-->
                 <div id="form-step-0">
                 <div class="form-group">
-                    <input type="text" name="nama" class="form-control form-control-lg" placeholder="Nama Lengkap" <?php if (!empty($biodata['nama'])) echo 'value="'.$biodata['nama'].'"'; else echo 'value="'.$akun['nama'].'"';?> required>
+                    <input type="text" name="nama" class="form-control form-control-lg" placeholder="Nama Lengkap" <?php if (!empty($biodata['nama'])) echo 'value="'.$biodata['nama'].'"'; else echo 'value="'.htmlspecialchars($akun['nama']).'"';?> required>
                 </div>
 
                 <div class="form-row form-group">
                 <div class="col-sm-6">
-                    <input type="text" name="nik" class="form-control form-control-lg" placeholder="Nomor NIK/KTP" maxlength="16" <?php if (!empty($biodata['nikktp'])) echo 'value='.$biodata['nikktp']; ?> required="required">
+                    <input type="text" name="nik" class="form-control form-control-lg" placeholder="Nomor NIK/KTP" maxlength="16" <?php if (!empty($biodata['nikktp'])) echo 'value='.htmlspecialchars($biodata['nikktp']); ?> required="required">
                 </div>
                 <div class="col-sm-6">
-                <input type="text" name="tempatlahir" class="form-control form-control-lg" placeholder="Tempat Lahir" <?php if (!empty($biodata['tempatlahir'])) echo 'value='.$biodata['tempatlahir']; ?> required>
+                <input type="text" name="tempatlahir" class="form-control form-control-lg" placeholder="Tempat Lahir" <?php if (!empty($biodata['tempatlahir'])) echo 'value='.htmlspecialchars($biodata['tempatlahir']); ?> required>
                 </div>
                 </div>
                     
@@ -121,7 +129,8 @@ $gelombang=$this->mgelombang->cek_daftar(array('thn_akademik'=>'2018/2019'));
     
                 </div>
 
-                <div class="form-group">
+                <div class="form-row form-group">
+                <div class="col-md-6">
                 <?php $agama=array('I','P','K','B','H','KH','L');
                             $nama_agama=array('Islam','Protestan','Katholik','Buddha','Hindu','Konghucu','Lainnya');  
                         ?>
@@ -137,14 +146,31 @@ $gelombang=$this->mgelombang->cek_daftar(array('thn_akademik'=>'2018/2019'));
                             ?>
                     </select>
                 </div>
+                <div class="col-md-6">
+                <?php 
+                $status_pernikahan=array('Belum Menikah','Menikah');
+                    ?>
+                    <select name="status_pernikahan" class="form-control" >
+                        <option value="">Pilih Status Pernikahan</option>
+                            <?php
+                                $i=0;
+                                foreach ($status_pernikahan as $status) { ?>
+                                    <option value="<?=$status?>" <?php if (!empty($biodata)) { if ($biodata['status_pernikahan']==$status) { echo 'selected=selected'; }} ?> ><?=$status?></option>
+                            <?php
+                                $i++;
+                                }
+                            ?>
+                    </select>
+                </div>
+                </div>
 
                 <div class="form-row form-group">
                     <div class="col-sm-6">
-                    <input type="text" name="telepon" class="form-control form-control-lg" placeholder="No HP/WA" maxlength="15" <?php if (!empty($biodata['telepon'])) echo 'value="'.$biodata['telepon'].'"'; else echo 'value="'.$akun['telp'],'"' ;?> required>
+                    <input type="text" name="telepon" class="form-control form-control-lg" placeholder="No HP/WA" maxlength="15" <?php if (!empty($biodata['telepon'])) echo 'value="'.$biodata['telepon'].'"'; else echo 'value="'.htmlspecialchars($akun['telp']).'"' ;?> required>
                     </div>
                     
                     <div class="col-sm-6">
-                    <input type="text" name="email" class="form-control form-control-lg" placeholder="Alamat Email" <?php if (!empty($biodata['email'])) echo 'value="'.$biodata['email'].'"'; else echo 'value="'.$this->session->userdata['email'],'"' ; ?> >
+                    <input type="text" name="email" class="form-control form-control-lg" placeholder="Alamat Email" <?php if (!empty($biodata['email'])) echo 'value="'.$biodata['email'].'"'; else echo 'value="'.htmlspecialchars($this->session->userdata['email']).'"' ; ?> >
                     </div>
                 </div>
                 </div>
@@ -172,19 +198,20 @@ $gelombang=$this->mgelombang->cek_daftar(array('thn_akademik'=>'2018/2019'));
                 <select name="status_reg" class="form-control form-control-lg" id="status_reg">
                     <option value="">Pilih Jenis Pendaftaran</option>
                         <option value="Hanya Daftar" <?php if (!empty($biodata)) { if ($biodata['status_registrasi']=="Hanya Daftar") { echo 'selected=selected'; }} ?>>REGULER</option>
-                        <option value="Bidikmisi" <?php if (!empty($biodata)) { if ($biodata['status_registrasi']=="Bidikmisi") { echo 'selected=selected'; }} ?> disabled>BEASISWA KIP-K</option>
+                        <!-- KIPK -->
+                        <option value="KIP-Kuliah2" <?php if (!empty($biodata)) { if ($biodata['status_registrasi']=="KIP-Kuliah" || $biodata['status_registrasi']=="KIP-Kuliah2") { echo 'selected=selected'; }} ?> >BEASISWA KIP-Kuliah</option>
                 </select>
                 </div>
                 <div id="kipk-box" style="display:none;">
                     <div class="form-group">
                         <label>Nomor KIP-Kuliah *</label>
-                        <input type="text" name="no_kipk" class="form-control form-control-lg" placeholder="Nomor KIP-Kuliah, Contoh: 6012.0000.0000.0000"  <?php if (!empty($biodata['no_kipk'])) echo 'value='.$biodata['no_kipk']; ?> readonly>
-                        <span id="kipk-info" class="text-info" style="font-size:11px"><i class="fa fa-info-circle" aria-hidden="true"></i> Pastikan nomor anda telah terdaftar pada akun KIP Kuliah di website: <a href="https://kip-kuliah.kemdikbud.go.id" target="_blank">https://kip-kuliah.kemdikbud.go.id</a>. Nomor tersebut juga terdapat pada Kartu KIPK anda.</span>
+                        <input type="text" name="no_kipk" class="form-control form-control-lg" placeholder="Nomor KIP-Kuliah, Contoh: 6012.0000.0000.0000"  <?php if (!empty($biodata['no_kipk'])) echo 'value='.$biodata['no_kipk']; ?> >
+                        <span id="kipk-info" class="text-info" style="font-size:11px; font-weight: 500"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Pastikan nomor anda telah terdaftar pada akun KIP Kuliah di website: <a href="https://kip-kuliah.kemdikbud.go.id" target="_blank">https://kip-kuliah.kemdikbud.go.id</a>. Nomor tersebut juga terdapat pada Kartu KIPK anda.</span>
                     </div>
                     </div>
                 <div class="form-group">
                     
-                        <select name="jenis_mhs" class="form-control form-control-lg" id=jenis_mhs >
+                        <select name="jenis_mhs" class="form-control form-control-lg" id="jenis_mhs"  >
                             <option value="">Pilih Jenis Mahasiswa</option>
                         <?php
                             foreach ($jenis_mhs->result_array() as $key) { ?>
@@ -197,7 +224,7 @@ $gelombang=$this->mgelombang->cek_daftar(array('thn_akademik'=>'2018/2019'));
 
                 <div class="form-row form-group">
 
-                        <div class="col-sm-6">
+                        <div class="col-sm-4">
 
                         <?php
                         $list_prodi=$this->db->query("select * from DEPARTMENT")->result_array();
@@ -207,28 +234,43 @@ $gelombang=$this->mgelombang->cek_daftar(array('thn_akademik'=>'2018/2019'));
                             <?php 
                             foreach ($list_prodi as $key) {
                             ?>
-                                <option value="<?=$key['KD_DEPT']?>" <?php if($biodata['pilihan1']==$key['KD_DEPT']) echo 'selected="selected"'; ?>><?=$key['NAMA_DEPT_id']?></option>
+                                <option value="<?=$key['KD_DEPT']?>" <?php if($biodata['pilihan1']==$key['KD_DEPT']) echo 'selected="selected"'; ?>><?=$key['NAMA_DEPT']?></option>
                             <?php
                             }
                             ?>
                         </select>
-                            <span style="font-size:11px">Jika pilihan 1 tidak muncul klik kembali Jenis Mahasiswa</span>
+                            <span class="text-danger" style="font-size:11px;font-weight: 500"><i class="fa fa-info-circle" aria-hidden="true"></i> Jika pilihan 1 tidak muncul klik kembali Jenis Mahasiswa</span>
                     
                         </div>
                         
-                        <div class="col-sm-6">
+                        <div class="col-sm-4">
                     
                         <select name="pilihan2" class="form-control form-control-lg" id="pilihan2" <?php //if (empty($biodata['pilihan2'])) echo "disabled"; ?> >
                             <option value="">Pilihan 2</option>
                                 <?php 
                             foreach ($list_prodi as $key) {
                             ?>
-                                <option value="<?=$key['KD_DEPT']?>" <?php if($biodata['pilihan2']==$key['KD_DEPT']) echo 'selected="selected"'; ?>><?=$key['NAMA_DEPT_id']?></option>
+                                <option value="<?=$key['KD_DEPT']?>" <?php if($biodata['pilihan2']==$key['KD_DEPT']) echo 'selected="selected"'; ?>><?=$key['NAMA_DEPT']?></option>
                             <?php
                             }
                             ?>
                         </select>
-                        <span style="font-size:11px">Jika pilihan 2 tidak muncul klik kembali form pilihan 1</span>
+                        <span class="text-danger" style="font-size:11px;font-weight: 500"><i class="fa fa-info-circle" aria-hidden="true"></i> Jika pilihan 2 tidak muncul klik kembali form Pilihan 1</span>
+                        </div>
+
+                        <div class="col-sm-4">
+                    
+                        <select name="pilihan3" class="form-control form-control-lg" id="pilihan3" <?php //if (empty($biodata['pilihan3'])) echo "disabled"; ?> >
+                            <option value="">Pilihan 3</option>
+                                <?php 
+                            foreach ($list_prodi as $key) {
+                            ?>
+                                <option value="<?=$key['KD_DEPT']?>" <?php if($biodata['pilihan3']==$key['KD_DEPT']) echo 'selected="selected"'; ?>><?=$key['NAMA_DEPT']?></option>
+                            <?php
+                            }
+                            ?>
+                        </select>
+                        <span class="text-danger" style="font-size:11px;font-weight: 500"><i class="fa fa-info-circle" aria-hidden="true"></i> Jika pilihan 3 tidak muncul klik kembali form Pilihan 2</span>
                         </div>
 
                     </div>
@@ -244,15 +286,37 @@ $gelombang=$this->mgelombang->cek_daftar(array('thn_akademik'=>'2018/2019'));
                             }
                         ?>
                     </select>
-                    <span style="font-size:11px">Jika kelas tidak muncul klik kembali form pilihan 2</span>
+                    <span class="text-danger" style="font-size:11px;font-weight: 500"><i class="fa fa-info-circle" aria-hidden="true"></i> Jika kelas tidak muncul klik kembali form Pilihan 3</span>
+                    </div>
+
+                    <div class="form-group" id="jk">
+                    <label class="control-label">Ukuran Jas Almamater</label><br/>
+                        <?php
+                            $info=array('S&nbsp;','M&nbsp;','L&nbsp;','XL&nbsp;','XXL&nbsp;','3L&nbsp;','5L&nbsp;');
+                            $info2=array('S','M','L','XL','XXL','3L','5L');
+                            
+                                $i=0;
+                                foreach ($info2 as $key) { ?>
+                                        <label class="radio-inline">
+                                        <input type="radio" name="ukuran_jas" value="<?=$key?>" 
+                                        <?php if (!empty($biodata)) { 
+                                                $pecah=explode(',',$biodata['ukuran_jas']);
+                                                foreach ($pecah as $data_info) {
+                                                    if ($data_info==$key) { echo 'checked=checked'; }
+                                                }
+                                            } ?> required><?=$info[$i];?> 
+                                        </label>
+                                <?php   
+                                        $i++;
+                                        }
+                                ?>
                     </div>
 
                     <div class="form-group" id="informasi">
                     <label class="control-label">Informasi tentang Universitas Amikom Purwokerto</label><br/>
-                        <div>
                         <?php
-                            $info=array('Brosur&nbsp;','Televisi&nbsp;','Internet&nbsp;','Teman/Saudara&nbsp;','Lainnya&nbsp;');
-                            $info2=array('brosur','televisi','internet','teman/saudara','lainnya');
+                            $info=array('Brosur&nbsp;','Surat&nbsp;','Televisi&nbsp;','Internet&nbsp;','FB','IG','Teman/Saudara&nbsp;','Lainnya&nbsp;');
+                            $info2=array('brosur','surat','televisi','internet','fb','ig','teman/saudara','lainnya');
                             
                                 $i=0;
                                 foreach ($info2 as $key) { ?>
@@ -269,8 +333,8 @@ $gelombang=$this->mgelombang->cek_daftar(array('thn_akademik'=>'2018/2019'));
                                         $i++;
                                         }
                                 ?>
-                        </div>
                     </div>
+
                     </div>
 
                     <div class="mt-2">
@@ -296,7 +360,7 @@ $gelombang=$this->mgelombang->cek_daftar(array('thn_akademik'=>'2018/2019'));
                     <div id="form-step-2">
                     <div class="form-group">
                     <label class="control-label">Nama Sekolah *</label>
-                    <input type="text" name="sekolah" class="form-control form-control-lg" placeholder="Nama SMK/SMA/PTS/PTN/DLL" <?php if (!empty($biodata['sekolah'])) echo 'value="'.$biodata['sekolah'].'"'; ?> required>
+                    <input type="text" name="sekolah" class="form-control form-control-lg" placeholder="Nama SMK/SMA/PTS/PTN/DLL" <?php if (!empty($biodata['sekolah'])) echo 'value="'.htmlspecialchars($biodata['sekolah']).'"'; ?> required>
                     </div>
 
                      <div class="form-group">
@@ -315,13 +379,13 @@ $gelombang=$this->mgelombang->cek_daftar(array('thn_akademik'=>'2018/2019'));
 
                     <div class="form-row form-group">
                         <div class="col-md-6">
-                        <label class="control-label">Rata-rata NEM/RAPOR/UAN *</label>
+                        <label class="control-label">Rata-rata RAPOR/NEM/UAN *</label>
                         <input id="nem" type="text" name="nem" class="form-control form-control-lg" placeholder="00.00" onkeypress="return hanyaAngka(this)" maxlength="5"
-                        <?php if (!empty($biodata['nem'])) echo 'value='.$biodata['nem']; ?> >
+                        <?php if (!empty($biodata['nem'])) echo 'value='.htmlspecialchars($biodata['nem']); ?> >
                         </div>
                         <div class="col-md-6">
                         <label class="control-label">Tahun Lulus *</label>
-                        <input type="text" name="thn_lulus" class="form-control form-control-lg" placeholder="Tahun Lulus" onkeypress="return hanyaAngka(this)" maxlength="4" <?php if (!empty($biodata['tahun_lulus'])) echo 'value='.$biodata['tahun_lulus']; ?> >
+                        <input type="text" name="thn_lulus" class="form-control form-control-lg" placeholder="Tahun Lulus" onkeypress="return hanyaAngka(this)" maxlength="4" <?php if (!empty($biodata['tahun_lulus'])) echo 'value='.htmlspecialchars($biodata['tahun_lulus']); ?> >
                         </div>
                     </div>
                     </div>
@@ -349,59 +413,69 @@ $gelombang=$this->mgelombang->cek_daftar(array('thn_akademik'=>'2018/2019'));
                         <!--end of row-->
                         <div id="form-step-3">
                         <div class="form-group">
-                        <input type="text" name="alamat" class="form-control form-control-lg otom" id="alamat_siswa" placeholder="Alamat Lengkap Jalan"  <?php if (!empty($biodata['alamat'])) echo 'value="'.$biodata['alamat'].'"'; ?> >
+                        <label>Alamat *</label>
+                        <input type="text" name="alamat" class="form-control form-control-lg otom" id="alamat_siswa" placeholder="Alamat Lengkap Jalan"  <?php if (!empty($biodata['alamat'])) echo 'value="'.htmlspecialchars($biodata['alamat']).'"'; ?> >
                     
                         </div>
 
                     <div class="form-row form-group">
                         <div class="col-sm-3">
-                            <input type="text" name="rt" class="form-control form-control-lg otom" id="rt_siswa" placeholder="RT" maxlength="2" <?php if (!empty($biodata['rt'])) echo 'value="'.$biodata['rt'].'"'; ?> >
+                            <input type="text" name="rt" class="form-control form-control-lg otom" id="rt_siswa" placeholder="RT" maxlength="2" <?php if (!empty($biodata['rt'])) echo 'value="'.htmlspecialchars($biodata['rt']).'"'; ?> >
                         </div>
                         
                         <div class="col-sm-3">
-                            <input type="text" name="rw" class="form-control form-control-lg otom" id="rw_siswa" placeholder="RW" maxlength="2" <?php if (!empty($biodata['rw'])) echo 'value="'.$biodata['rw'].'"'; ?> >
+                            <input type="text" name="rw" class="form-control form-control-lg otom" id="rw_siswa" placeholder="RW" maxlength="2" <?php if (!empty($biodata['rw'])) echo 'value="'.htmlspecialchars($biodata['rw']).'"'; ?> >
                         </div>
                         <div class="col-sm-6">
-                        <input type="text" name="kelurahan" class="form-control form-control-lg otom" id="desa_siswa" placeholder="Kelurahan/Desa" <?php if (!empty($biodata['kelurahan'])) echo 'value="'.$biodata['kelurahan'].'"'; ?> >
+                        <input type="text" name="kelurahan" class="form-control form-control-lg otom" id="desa_siswa" placeholder="Kelurahan/Desa" <?php if (!empty($biodata['kelurahan'])) echo 'value="'.htmlspecialchars($biodata['kelurahan']).'"'; ?> >
                         </div>
                        
                     </div>
 
                     <div class="form-row form-group">
                         <div class="col-lg-6">  
-                        <input type="text" name="kecamatan" class="form-control form-control-lg otom" id="kecamatan_siswa" placeholder="Kecamatan" <?php if (!empty($biodata['kecamatan'])) echo 'value="'.$biodata['kecamatan'].'"'; ?> >
+                        <input type="text" name="kecamatan" class="form-control form-control-lg otom" id="kecamatan_siswa" placeholder="Kecamatan" <?php if (!empty($biodata['kecamatan'])) echo 'value="'.htmlspecialchars($biodata['kecamatan']).'"'; ?> >
                         </div>
                         <div class="col-lg-6">
-                        <input type="number" name="kodepos" class="form-control form-control-lg otom" id="kodepos_siswa" placeholder="Kode Pos" <?php if (!empty($biodata['kodepos'])) echo 'value="'.$biodata['kodepos'].'"'; ?> > 
+                        <input type="number" name="kodepos" class="form-control form-control-lg otom" id="kodepos_siswa" placeholder="Kode Pos" <?php if (!empty($biodata['kodepos'])) echo 'value="'.htmlspecialchars($biodata['kodepos']).'"'; ?> > 
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <select name="kabupaten" class="form-control form-control-lg" id="kab_siswa" required >
+                        <textarea rows="2" name="deskripsi_alamat" class="form-control" id="deskripsialamat_siswa" placeholder="Deskripsi Alamat (Dari Fasilitas Umum)" data-status-message="#counter" maxlength="150"><?php if (!empty($biodata['deskripsi_alamat'])) echo htmlspecialchars($biodata['deskripsi_alamat']); ?></textarea>
+                        <div id="counter" class="text-right"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <select name="kabupaten" class="form-control select2" id="kab_siswa" required >
                                 <option value="">Pilih Kabupaten</option>
                                 <?php $kab=$this->model_crud->selectData("kabupaten");
                                     $i=1;
-                                    foreach ($kab->result() as $key) { ?>
+                                    foreach ($kab->result() as $key) { 
+                                        //$idprop = $key->Kdprop;
+                                        ?>
                                         <option value="<?=$key->KdKab?>" <?php if (!empty($biodata)) { if ($biodata['kabupaten']==$key->KdKab) { echo 'selected=selected'; }} ?>><?=$key->NamaKab?></option>
                                 <?php } ?>
                             </select>
-                        </div>
+                        </div> 
 
                     <div class="form-group">
                         <!--<select name="propinsi" class="form-control" id="prop" <?php //if (empty($biodata['propinsi'])) echo "disabled"; ?> >-->
-                        <select name="propinsi" class="form-control form-control-lg" id="prop" required>
+                        <select name="propinsi" class="form-control" id="prop" required>
                                 <option value="">Pilih Provinsi</option>
-                                <?php
-                                    if (!empty($biodata['propinsi']) ) {
+                                <?php  //$prop=$this->model_crud->selectData("propinsi");
+                                   if (!empty($biodata['propinsi']) ) {
                                             $prop=$this->model_crud->selectData("propinsi",array('kdProp'=>$biodata['propinsi']))->row_array();
                                             echo '<option value='.$biodata['propinsi'].' selected=selected>'.$prop['NamaProp'].'</option>';
-                                    }
-                                ?>
+                                   // }
+                                   //$i=1;
+                                   //foreach ($prop->result() as $key) { ?>
+                                        <!--<option value="<?//=$key->kdProp?>" class="<?//=$idprop?>" <?php //if (!empty($biodata)) { if ($biodata['propinsi']==$key->kdProp) { echo 'selected=selected'; }} ?>><?//=$key->NamaProp?></option>-->
+                                    <?php } ?>
                         </select>
                         <span style="font-size:11px">Jika propinsi tidak muncul klik kembali form Kabupaten</span>
-                        
-                    
                     </div>
+
                     </div>
 
                     <div class="mt-2">
@@ -415,76 +489,120 @@ $gelombang=$this->mgelombang->cek_daftar(array('thn_akademik'=>'2018/2019'));
                   <div class="col-10">
                     <h6 class="title-decorative mb-1">Step 5</h6>
                     <h3 class="h1">Orang Tua/Wali</h3>
-                    <span class="lead">Data Nama Ibu Kandung dan Alamat Orang Tua</span>
+                    <span class="lead">Data Nama Orang Tua dan Alamat Orang Tua</span>
    
                   </div>
                   <!--end of col-->
                   <div class="col-2">
-                    <img alt="Image" src="<?php echo base_url(); ?>assets/main/images/iconpack/mother-846212.png" class="img-fluid" />
+                    <img alt="Image" src="<?php echo base_url(); ?>assets/main/images/iconpack/family.png" class="img-fluid" />
                   </div>
                   <!--end of col-->
                 </div>
                 <!--end of row-->
                 <div id="form-step-4">
-                    <label class="control-label">Nama Ibu Kandung *</label>
+                    <label class="control-label">Data Ibu Kandung dan Ayah *</label>
                     <div class="form-row form-group">
-                        <div class="col-md-7">
-                        <input type="text" name="nama_ortu" class="form-control form-control-lg" placeholder="Nama Ibu Kandung" <?php if (!empty($biodata['NAMA_ORTU'])) echo 'value="'.$biodata['NAMA_ORTU'].'"'; ?> >
+                        <div class="col-md-6">
+                        <input type="text" name="nama_ortu" class="form-control form-control-lg" placeholder="Nama Ibu Kandung" <?php if (!empty($biodata['NAMA_ORTU'])) echo 'value="'.htmlspecialchars($biodata['NAMA_ORTU']).'"'; ?> >
                         </div>
 
-                        <div class="col-md-5">
-                            <input type="number" name="telp_ortu" class="form-control form-control-lg" placeholder="No Telp/HP" maxlength="15" <?php if (!empty($biodata['TELP_ORTU'])) echo 'value="'.$biodata['TELP_ORTU'].'"'; ?> required>
+                        <div class="col-md-3">
+                            <input type="number" name="telp_ortu" class="form-control form-control-lg" placeholder="No Telp/HP WA Ibu" maxlength="15" <?php if (!empty($biodata['TELP_ORTU'])) echo 'value="'.htmlspecialchars($biodata['TELP_ORTU']).'"'; ?> required>
+                        </div>
+
+                        <div class="col-md-3">
+                            <select class="form-control form-control-lg" name="pekerjaan_ortu" >
+                                <option value="">Pilih Pekerjaan Ibu</option>
+                                <?php
+                                $pekerjaan1=array('IRT','WIRASWASTA','WIRAUSAHA','PEDAGANG','BURUH','KARYAWAN SWASTA','PEGAWAI SWASTA','PNS','PEGAWAI BUMN','PEGAWAI BUMD','GURU','TNI','POLRI','PENSIUNAN','NELAYAN','PETANI','PETERNAK','PENGRAJIN','TENAGA KERJA INDONESIA','PILOT','PRAMUGARI','CHEF','SENIMAN','ARSITEK','PENGACARA','NOTARIS');
+                                foreach ($pekerjaan1 as $kerja1) { ?>
+                                            <option value="<?=$kerja1?>" <?php if (!empty($biodata)) { if ($biodata['PEKERJAAN_ORTU']==$kerja1) { echo 'selected=selected'; }} ?>><?=$kerja1?></option>
+                                <?php   
+                                }
+                                    ?>
+                            </select>
                         </div>
                     </div>
+
+                    <div class="form-row form-group">
+                        <div class="col-md-6">
+                        <input type="text" name="nama_ayah" class="form-control form-control-lg" placeholder="Nama Ayah" <?php if (!empty($biodata['NAMA_AYAH'])) echo 'value="'.htmlspecialchars($biodata['NAMA_AYAH']).'"'; ?> >
+                        </div>
+
+                        <div class="col-md-3">
+                            <input type="number" name="telp_ayah" class="form-control form-control-lg" placeholder="No Telp/HP WA Ayah" maxlength="15" <?php if (!empty($biodata['TELP_AYAH'])) echo 'value="'.htmlspecialchars($biodata['TELP_AYAH']).'"'; ?> required>
+                        </div>
+
+                        <div class="col-md-3">
+                            <select class="form-control form-control-lg" name="pekerjaan_ayah" >
+                                <option value="">Pilih Pekerjaan Ayah</option>
+                                <?php
+                                $pekerjaan2=array('WIRASWASTA','WIRAUSAHA','PEDAGANG','BURUH','KARYAWAN SWASTA','PEGAWAI SWASTA','PNS','PEGAWAI BUMN','PEGAWAI BUMD','GURU','TNI','POLRI','PENSIUNAN','NELAYAN','PETANI','PETERNAK','PENGRAJIN','TENAGA KERJA INDONESIA','PILOT','PRAMUGARA','CHEF','SENIMAN','FOTOGRAFER','ARSITEK','PENGACARA','NOTARIS','SUPIR','PEKERJA PERTAMBANGAN','PEKERJA KONSTRUKSI');
+                                foreach ($pekerjaan2 as $kerja2) { ?>
+                                            <option value="<?=$kerja2?>" <?php if (!empty($biodata)) { if ($biodata['PEKERJAAN_AYAH']==$kerja2) { echo 'selected=selected'; }} ?>><?=$kerja2?></option>
+                                <?php   
+                                }
+                                    ?>
+                            </select>
+                        </div>
+
+                    </div>
+
+                    <label class="control-label">Alamat Orang Tua *</label>
                     
                     <div class="form-group">
-                        <input type="text" name="alamat_ortu" class="form-control form-control-lg otom" id="alamat_ortu" placeholder="Alamat Lengkap Orang Tua" <?php if (!empty($biodata['ALAMATORTU'])) echo 'value="'.$biodata['ALAMATORTU'].'"'; ?> >
+                        <input type="text" name="alamat_ortu" class="form-control form-control-lg otom" id="alamat_ortu" placeholder="Alamat Lengkap Orang Tua" <?php if (!empty($biodata['ALAMATORTU'])) echo 'value="'.htmlspecialchars($biodata['ALAMATORTU']).'"'; ?> >
                     </div>
 
                     <div class="form-row form-group">
                         <div class="col-sm-3">
-                        <input type="text" name="rt_ortu" class="form-control form-control-lg otom" id="rt_ortu" placeholder="RT" maxlength="2" <?php if (!empty($biodata['RT_ORTU'])) echo 'value="'.$biodata['RT_ORTU'].'"'; ?> >
+                        <input type="text" name="rt_ortu" class="form-control form-control-lg otom" id="rt_ortu" placeholder="RT" maxlength="2" <?php if (!empty($biodata['RT_ORTU'])) echo 'value="'.htmlspecialchars($biodata['RT_ORTU']).'"'; ?> >
                         </div>
                         
                         <div class="col-sm-3">
-                        <input type="text" name="rw_ortu" class="form-control form-control-lg otom" id="rw_ortu" placeholder="RW" maxlength="2" <?php if (!empty($biodata['RW_ORTU'])) echo 'value="'.$biodata['RW_ORTU'].'"'; ?> >
+                        <input type="text" name="rw_ortu" class="form-control form-control-lg otom" id="rw_ortu" placeholder="RW" maxlength="2" <?php if (!empty($biodata['RW_ORTU'])) echo 'value="'.htmlspecialchars($biodata['RW_ORTU']).'"'; ?> >
                         </div>
 
                         <div class="col-sm-6">
-                        <input type="text" name="kelurahan_ortu" class="form-control form-control-lg otom" id="desa_ortu" placeholder="Kelurahan/Desa" <?php if (!empty($biodata['KELURAHAN_ORTU'])) echo 'value="'.$biodata['KELURAHAN_ORTU'].'"'; ?> >
+                        <input type="text" name="kelurahan_ortu" class="form-control form-control-lg otom" id="desa_ortu" placeholder="Kelurahan/Desa" <?php if (!empty($biodata['KELURAHAN_ORTU'])) echo 'value="'.htmlspecialchars($biodata['KELURAHAN_ORTU']).'"'; ?> >
                         </div>
                         
                     </div>
 
                     <div class="form-row form-group">
                         <div class="col-sm-6">
-                        <input type="text" name="kecamatan_ortu" class="form-control form-control-lg otom" id="kecamatan_ortu" placeholder="Kecamatan" <?php if (!empty($biodata['KECAMATAN_ORTU'])) echo 'value="'.$biodata['KECAMATAN_ORTU'].'"'; ?> >
+                        <input type="text" name="kecamatan_ortu" class="form-control form-control-lg otom" id="kecamatan_ortu" placeholder="Kecamatan" <?php if (!empty($biodata['KECAMATAN_ORTU'])) echo 'value="'.htmlspecialchars($biodata['KECAMATAN_ORTU']).'"'; ?> >
                         </div>
                         <div class="col-sm-6">
-                        <input type="text" name="kodepos_ortu" class="form-control form-control-lg otom" id="kodepos_ortu" placeholder="Kode Pos" <?php if (!empty($biodata['KODEPOS_ORTU'])) echo 'value="'.$biodata['KODEPOS_ORTU'].'"'; ?>>
+                        <input type="text" name="kodepos_ortu" class="form-control form-control-lg otom" id="kodepos_ortu" placeholder="Kode Pos" <?php if (!empty($biodata['KODEPOS_ORTU'])) echo 'value="'.htmlspecialchars($biodata['KODEPOS_ORTU']).'"'; ?>>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <select name="kabupaten_ortu" class="form-control form-control-lg" id="kab_ortu" required >
+                        <select name="kabupaten_ortu" class="form-control select2" id="kab_ortu" required >
                             <option value="">Pilih Kabupaten</option>
                             <?php $kab=$this->model_crud->selectData("kabupaten");
                                 $i=1;
-                                foreach ($kab->result() as $key) { ?>
+                                foreach ($kab->result() as $key) { 
+                                    //$idprop2 = $key->Kdprop;
+                                    ?>
                                     <option value="<?=$key->KdKab?>" <?php if (!empty($biodata)) { if ($biodata['KABUPATEN_ORTU']==$key->KdKab) { echo 'selected=selected'; }} ?>><?=$key->NamaKab?></option>
                             <?php } ?>
                         </select>
                     </div>
                     <div class="form-group">
                         <!--<select name="propinsi_ortu" class="form-control" id="prop2" <?php //if (empty($biodata['PROPINSI_ORTU'])) echo "disabled"; ?> >-->
-                            <select name="propinsi_ortu" class="form-control form-control-lg" id="prop2" required>
+                            <select name="propinsi_ortu" class="form-control" id="prop2" required>
                                 <option value="">Pilih Provinsi</option>
-                                <?php
+                                <?php  //$prop2=$this->model_crud->selectData("propinsi");
                                     if (!empty($biodata['PROPINSI_ORTU']) ) {
-                                            $prop=$this->model_crud->selectData("propinsi",array('kdProp'=>$biodata['PROPINSI_ORTU']))->row_array();
+                                           $prop=$this->model_crud->selectData("propinsi",array('kdProp'=>$biodata['PROPINSI_ORTU']))->row_array();
                                             echo '<option value='.$biodata['PROPINSI_ORTU'].' selected=selected>'.$prop['NamaProp'].'</option>';
-                                    }
-                                ?>
+                                    //}
+                                    //$i=1;
+                                    //foreach ($prop2->result() as $key) { ?>
+                                         <!--<option value="<?//=$key->kdProp?>" class="<?//=$idprop2?>" <?php //if (!empty($biodata)) { if ($biodata['PROPINSI_ORTU']==$key->kdProp) { echo 'selected=selected'; }} ?>><?//=$key->NamaProp?></option>-->
+                                     <?php } ?>
                             </select>
                             <span style="font-size:11px">Jika propinsi tidak muncul klik kembali form Kabupaten</span>
 
@@ -503,8 +621,19 @@ $gelombang=$this->mgelombang->cek_daftar(array('thn_akademik'=>'2018/2019'));
 </div>
 
 
-<script src="http://cdn.jsdelivr.net/jquery.validation/1.15.1/jquery.validate.min.js"></script> 
-
+<script type="text/javascript" src="<?php echo base_url('assets/js');?>/jquery.validate.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url('assets/js');?>/jquery.chained.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url('assets/js');?>/select2.min.js"></script>
+<script type="text/javascript" charset="utf-8">
+var $j=jQuery.noConflict();
+  $j(document).ready(function() {  
+    //$j("#prop").chained("#kab_siswa");  
+    //$j("#prop2").chained("#kab_ortu");       
+    $j('.select2').select2({
+        theme: 'bootstrap4',
+    });
+});
+</script>
 <script>
 function hanyaAngka(evt) {
 if(!/^[0-9.]+$/.test(evt.value))
@@ -564,14 +693,14 @@ $jne3.ajax({
 
 $jne3('#status_reg').click(function(event){
     event.preventDefault();
-var kipk = $jne3('#status_reg').val();
-if(kipk != '')
+var status_reg = $jne3('#status_reg').val();
+if(status_reg != '')
 {
 
 $jne3.ajax({
     type:'post',
     url:"<?php echo base_url(); ?>" + "main/get_jenismhs",
-    data:{kipk:kipk},
+    data:{status_reg:status_reg},
     cache:false,
     beforeSend:function(){
         $jne3('#pilihan1').attr('disabled',false);
@@ -626,23 +755,25 @@ $jne3.ajax({
     success: function(returndata){
         $jne3('#pilihan2').html(returndata);
         $jne3("#pilihan2").attr('disabled',false);
+        $jne3('#pilihan3').html(returndata);
+        $jne3("#pilihan3").attr('disabled',false);
     }
 });
 
 }
 });
 
-$jne3('#pilihan2').click(function(event){
+$jne3('#pilihan3').click(function(event){
     event.preventDefault();
-var pilihan2 = $jne3('#pilihan2').val();
+var pilihan3 = $jne3('#pilihan3').val();
 var jenis_mhs= $jne3('#jenis_mhs').val();
-if(pilihan2 != '')
+if(pilihan3 != '')
 {
 
 $jne3.ajax({
     type:'post',
     url:"<?php echo base_url(); ?>" + "main/get_kelas_sore",
-    data:{pilihan2:pilihan2,jenis_mhs:jenis_mhs},
+    data:{pilihan3:pilihan3,jenis_mhs:jenis_mhs},
     cache:false,
     success: function(returndata){
         $jne3('#kelas').html(returndata);
@@ -670,7 +801,7 @@ $(".otom").change(function() {
 <script>
 jQuery(document).ready(function ($) {
     $("#status_reg").on('change', function() {
-    if(this.value == "Bidikmisi") {
+    if(this.value == "KIP-Kuliah2") {
         
         $("#kipk-box").show();           
     } else  {
@@ -679,7 +810,7 @@ jQuery(document).ready(function ($) {
 
     });
 
-    if(document.getElementById('status_reg').value == "Bidikmisi") {
+    if(document.getElementById('status_reg').value == "KIP-Kuliah2") {
         $('#kipk-box').show();  
     }
 
@@ -703,9 +834,19 @@ $(this).val(function(index, value) {
 
 });
 </script>
+<script type="text/javascript" src="<?php echo base_url('assets/js');?>/jquery.limitText.js"></script>
+<script>
+var $jquery=jQuery.noConflict();
+$jquery(document).ready(function() {
+    $jquery("#deskripsialamat_siswa").limitText({
+        limit: 150,
+        warningLimit: 10,
+        counterClass: 'text-dark',
+        warningClass:'text-danger'});
+});
+</script>
 <!-- jQuery smartWizard facilitates steppable wizard content -->
 <script type="text/javascript" src="<?php echo base_url('assets/js');?>/jquery.smartWizard.min.js"></script>
-
 <script type="text/javascript">
 var $jquery=jQuery.noConflict();
       $jquery(document).ready(function(){
@@ -724,13 +865,16 @@ var $jquery=jQuery.noConflict();
             nik : { required : true, number : true, minlength:16},
             pilihan1 : {required:true},
             pilihan2 : {required:true},
+            pilihan3 : {required:true},
             tempatlahir :{required : true},
             tgllahir : {required: true},
             blnlahir : {required: true},
             thnlahir : {required: true},
             jk : {required : true},
+            status_pernikahan :{required : true},
             agama :{required : true},
             nama_ortu : {required : true},
+            nama_ayah : {required : true},
             sekolah : {required : true},
             jurusan : { required : true },
             nem : { required : true },
@@ -751,10 +895,14 @@ var $jquery=jQuery.noConflict();
             kodepos_ortu : { required : true ,  number : true },
             telepon : {required : true, number : true, minlength : 6},
             telp_ortu : {required : true, number : true, minlength : 6},
+            telp_ayah : {required : true, number : true, minlength : 6},
+            pekerjaan_ortu : { required : true },
+            pekerjaan_ayah : { required : true },
             status_reg : {required : true},
             jenis_mhs : {required : true},
             relasi : { required : true},
             kelas : { required : true },
+            ukuran_jas : { required : true },
             'info[]' : {required : true},
             },
             messages:{ 
@@ -768,6 +916,8 @@ var $jquery=jQuery.noConflict();
             pilihan1: {
                 required:'<span>Program Studi Wajib dipilih</span>'},
             pilihan2: {
+                required:'<span>Program Studi Wajib dipilih</span>'},
+            pilihan3: {
                 required:'<span>Program Studi Wajib dipilih</span>'},
             tempatlahir :{
                 required :'<span>Tempat lahir wajib diisi</span>'
@@ -784,11 +934,17 @@ var $jquery=jQuery.noConflict();
             jk : {
                 required : '<span>Jenis kelamin wajib dipilih</span>'
             },
+            status_pernikahan : {
+                required : '<span>Status Pernikahan wajib dipilih</span>'
+            },
             agama : {
                 required : '<span>Agama wajib dipilih</span>'
             },
             nama_ortu : {
-                required : '<span>Nama Orang Tua (Ibu) wajib diisi</span>'
+                required : '<span>Nama Ibu Kandung wajib diisi</span>'
+            },
+            nama_ayah : {
+                required : '<span>Nama Ayah wajib diisi</span>'
             },
             sekolah : {
                 required : '<span>Asal Sekolah wajib diisi</span>'
@@ -862,9 +1018,20 @@ var $jquery=jQuery.noConflict();
                 number : '<span>Kodepos wajib berupa angka</span>',
             },
             telp_ortu : {
-                required : '<span>Telepon Orang Tua wajib diisi</span>',
+                required : '<span>Nomor Telp/HP Ibu wajib diisi</span>',
                 number : '<span>Telepon wajib berupa angka</span>',
                 minlength : '<span>Telepon min 6 angka</span>',
+            },
+            telp_ayah : {
+                required : '<span>Nomor Telp/HP Ayah wajib diisi</span>',
+                number : '<span>Telepon wajib berupa angka</span>',
+                minlength : '<span>Telepon min 6 angka</span>',
+            },
+            pekerjaan_ortu : {
+                required : '<span>Pekerjaan Ibu wajib dipilih</span>',
+            },
+            pekerjaan_ayah : {
+                required : '<span>Pekerjaan Ayah wajib dipilih</span>',
             },
             kabupaten_ortu : {
                 required : '<span>Kabupaten Orang Tua wajib dipilih</span>',
@@ -884,6 +1051,9 @@ var $jquery=jQuery.noConflict();
             kelas : {
                 required : '<span>Kelas wajib dipilih</span>'
             },
+            ukuran_jas : {
+                required : '<span>Ukuran Jas Almamater harus dipilih</span>'
+            },
             'info[]' : {
                 required : '<span>Informasi Wajib dipilih</span>'
             }
@@ -891,15 +1061,11 @@ var $jquery=jQuery.noConflict();
             },
             errorPlacement: function(error, element) 
                     {
-                        if ( element.is(":radio") ) 
-                        {
+                        if ( element.is(":radio") ) {
                             error.appendTo( element.parents('#jk') );
-                        } else if ( element.is(":checkbox") ) 
-                        {
+                        } else if ( element.is(":checkbox") ) {
                             error.appendTo( element.parents('#informasi') );
-                        }
-                        else 
-                        {
+                        } else {
                             error.insertAfter( element );
                         }
                     }

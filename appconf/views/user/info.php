@@ -23,7 +23,7 @@ $jur_lulus=$this->model_crud->selectData('department',array('kd_dept'=>$biodata[
 		 <?php if (empty($biodata)) { ?>
 			<div class="text-center my-1">
 				<img class="img-fluid" src="<?php echo base_url('assets/main/images/');?>notfound.png" alt="" width="350">
-				<h3>Anda Belum Melakukan Pendaftaran</h3>
+				<h4>Anda Belum Melakukan Pendaftaran</h4>
 				<hr class="mb-3 mt-1" />
                 <a class="btn btn-primary" href="<?=base_url()?>main_user/profil?act=det" alt="">Formulir Daftar</a>
             </div>

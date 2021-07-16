@@ -19,3 +19,4 @@ application/logs/*
 appconf/config/database.php
 appconf/models/Memail.php
 /dokumen/
+appconf/models/Model_email.php

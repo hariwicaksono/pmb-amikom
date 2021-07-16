@@ -47,7 +47,7 @@ $jur_lulus=$this->model_crud->selectData('department',array('kd_dept'=>$biodata[
 					</tr>
 					<tr>
 						<td>PILIHAN</td>
-						<td style="font-weight: 600">1.<?=$pilihan1['NAMA_DEPT']?> / 2.<?=$pilihan3['NAMA_DEPT']?> / 3.<?=$pilihan3['NAMA_DEPT']?></td>
+						<td style="font-weight: 600">1.<?=$pilihan1['NAMA_DEPT']?> / 2.<?=$pilihan2['NAMA_DEPT']?> / 3.<?=$pilihan3['NAMA_DEPT']?></td>
 					</tr>
 					<tr>
 						<td>GELOMBANG / TGL DAFTAR</td>

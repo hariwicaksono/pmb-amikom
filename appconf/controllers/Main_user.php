@@ -80,11 +80,161 @@ class Main_user extends CI_Controller {
 		$this->load->view('view_main',$this->data);
 	}
 
+	public function setting_nodaf()
+	{
+		if (empty($this->session->userdata['username'])) { redirect(base_url()); }
+
+		//error_reporting(1);
+		//if (!preg_match("/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/",$_POST['tgllahir'])) {
+			//echo "<center>Format pengisian tanggal lahir tidak sesuai <input type=button value=Go Back onclick=history.back(-1) /></center>";
+		//} 
+
+		$nodaf=$this->model_crud->genNodaf($this->data['tahun_pmb']);
+		$noref=$this->model_crud->nomor_referensi($nodaf);
+		$gelombang=$this->mgelombang->cek_daftar(array('thn_akademik'=>$this->data['tahun_pmb']));
+		$tgllahir=$_POST['thnlahir'].'-'.$_POST['blnlahir'].'-'.$_POST['tgllahir'];
+		$pecah=explode('/',$_POST['jenis_mhs']);
+		$jenis_mhs=$pecah[0];
+		$id_jenismhs=$pecah[1];
+		$info=$_POST['info'];
+		$data_checkbox="";	
+		foreach($info as $data){
+			$data_checkbox .= $data . ",";
+		}
+		$data_checkbox = substr($data_checkbox, 0, -1);	
+		$this->data['biodata']=$this->model_crud->selectData('calonsiswa',array('email'=>$this->session->userdata['email']))->row_array();
+
+		if (empty($this->data['biodata'])) {
+			$data=array('nodaf'=>$nodaf,
+				'noref'=>$noref,
+				'jenis_mhs'=>$jenis_mhs,
+				'id_jenismhs'=>$id_jenismhs,
+				'kelas'=>$_POST['kelas'],
+				'pilihan1'=>$_POST['pilihan1'],
+				'pilihan2'=>$_POST['pilihan2'],
+				'pilihan3'=>$_POST['pilihan3'],
+				'nama'=>$_POST['nama'],
+				'nikktp'=>$_POST['nik'],
+				'tempatlahir'=>$_POST['tempatlahir'],
+				'tgllahir'=>$tgllahir,
+				'status_pernikahan'=>$_POST['status_pernikahan'],
+				'sekolah'=>$_POST['sekolah'],
+				'jurusan'=>$_POST['jurusan'],
+				'alamat'=>$_POST['alamat'],
+				'rt'=>$_POST['rt'],
+				'rw'=>$_POST['rw'],
+				'nem'=>$_POST['nem'],
+				'kelurahan'=>$_POST['kelurahan'],
+				'kecamatan'=>$_POST['kecamatan'],
+				'kabupaten'=>$_POST['kabupaten'],
+				'propinsi'=>$_POST['propinsi'],
+				'kodepos'=>$_POST['kodepos'],
+				'deskripsi_alamat'=>$this->input->post('deskripsi_alamat', TRUE),
+				'agama'=>$_POST['agama'],
+				'telepon'=>$_POST['telepon'],
+				'nama_ortu'=>$_POST['nama_ortu'],
+				'nama_ayah'=>$_POST['nama_ayah'],
+				'telp_ortu'=>$_POST['telp_ortu'],
+				'telp_ayah'=>$_POST['telp_ayah'],
+				'pekerjaan_ortu'=>$_POST['pekerjaan_ortu'],
+				'pekerjaan_ayah'=>$_POST['pekerjaan_ayah'],
+				'alamatortu'=>$_POST['alamat_ortu'],
+				'rt_ortu'=>$_POST['rt_ortu'],
+				'rw_ortu'=>$_POST['rw_ortu'],
+				'kelurahan_ortu'=>$_POST['kelurahan_ortu'],
+				'kecamatan_ortu'=>$_POST['kecamatan_ortu'],
+				'kabupaten_ortu'=>$_POST['kabupaten_ortu'],
+				'propinsi_ortu'=>$_POST['propinsi_ortu'],
+				'kodepos_ortu'=>$_POST['kodepos_ortu'],
+				'email'=>$_POST['email'],
+				'komentar'=>$data_checkbox,
+				'jk'=>$_POST['jk'],
+				'thn_akademik'=>$this->data['tahun_pmb'],
+				'gelombang'=>$gelombang['kode'],
+				'tgldaftar'=>date('Y-m-d'),
+				'id_relasi'=>$_POST['relasi'],
+				//'tgl_tes'=>date('Y-m-d'),
+				'biaya_pendaftaran'=>150000,
+				'status'=>0,
+				'nama_cs'=>'ADMINTEST', 
+				'kode_kerjasama'=>1,
+				'syarat1'=>'Tidak Lengkap',
+				'syarat2'=>'Belum',
+				'catatan'=>'Test',
+				'wawancara'=>'Belum',
+				'status_registrasi'=>$_POST['status_reg'],
+				'no_kipk'=>$_POST['no_kipk'],
+				'tahun_lulus'=>$_POST['thn_lulus'],
+				'ukuran_jas'=>$_POST['ukuran_jas']
+			);
+			$this->model_crud->insertData('calonsiswa',$data);
+		} else {
+
+			$data2=array(
+				'jenis_mhs'=>$jenis_mhs,
+				'id_jenismhs'=>$id_jenismhs,
+				'kelas'=>$_POST['kelas'],
+				'pilihan1'=>$_POST['pilihan1'],
+				'pilihan2'=>$_POST['pilihan2'],
+				'pilihan3'=>$_POST['pilihan3'],
+				'nama'=>$_POST['nama'],
+				'nikktp'=>$_POST['nik'],
+				'tempatlahir'=>$_POST['tempatlahir'],
+				'tgllahir'=>$tgllahir,
+				'status_pernikahan'=>$_POST['status_pernikahan'],
+				'sekolah'=>$_POST['sekolah'],
+				'jurusan'=>$_POST['jurusan'],
+				'alamat'=>$_POST['alamat'],
+				'rt'=>$_POST['rt'],
+				'rw'=>$_POST['rw'],
+				'nem'=>$_POST['nem'],
+				'kelurahan'=>$_POST['kelurahan'],
+				'kecamatan'=>$_POST['kecamatan'],
+				'kabupaten'=>$_POST['kabupaten'],
+				'propinsi'=>$_POST['propinsi'],
+				'kodepos'=>$_POST['kodepos'],
+				'deskripsi_alamat'=>$this->input->post('deskripsi_alamat', TRUE),
+				'agama'=>$_POST['agama'],
+				'telepon'=>$_POST['telepon'],
+				'nama_ortu'=>$_POST['nama_ortu'],
+				'nama_ayah'=>$_POST['nama_ayah'],
+				'telp_ortu'=>$_POST['telp_ortu'],
+				'telp_ayah'=>$_POST['telp_ayah'],
+				'pekerjaan_ortu'=>$_POST['pekerjaan_ortu'],
+				'pekerjaan_ayah'=>$_POST['pekerjaan_ayah'],
+				'alamatortu'=>$_POST['alamat_ortu'],
+				'rt_ortu'=>$_POST['rt_ortu'],
+				'rw_ortu'=>$_POST['rw_ortu'],
+				'kelurahan_ortu'=>$_POST['kelurahan_ortu'],
+				'kecamatan_ortu'=>$_POST['kecamatan_ortu'],
+				'kabupaten_ortu'=>$_POST['kabupaten_ortu'],
+				'propinsi_ortu'=>$_POST['propinsi_ortu'],
+				'kodepos_ortu'=>$_POST['kodepos_ortu'],
+				'email'=>$_POST['email'],
+				'komentar'=>$data_checkbox,
+				'jk'=>$_POST['jk'],
+				'id_relasi'=>$_POST['relasi'],
+				'status_registrasi'=>$_POST['status_reg'],
+				'no_kipk'=>$_POST['no_kipk'],
+				'tahun_lulus'=>$_POST['thn_lulus'],
+				'ukuran_jas'=>$_POST['ukuran_jas']
+			);
+			$this->model_crud->updateData('calonsiswa',$data2,array('nodaf'=>$this->data['biodata']['nodaf']));
+			
+		}
+
+		
+		$this->session->set_flashdata('info',"Data Berhasil diperbarui");
+		redirect(base_url('main_user/profil'));
+
+
+	}
+
 	public function setting_biodata()
 	{
 		if (empty($this->session->userdata['username'])) { redirect(base_url()); }
 
-		error_reporting(1);
+		//error_reporting(1);
 		//if (!preg_match("/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/",$_POST['tgllahir'])) {
 			//echo "<center>Format pengisian tanggal lahir tidak sesuai <input type=button value=Go Back onclick=history.back(-1) /></center>";
 		//} 

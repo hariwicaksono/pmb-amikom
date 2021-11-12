@@ -23,7 +23,8 @@ class Mjumlah extends CI_Model {
     $this->db->where('THN_AKADEMIK',$tahun_lalu);
     $this->db->where('syarat2','Sudah');
     $this->db->where('ket_lulus','Lulus');
-    $this->db->where('status_registrasi','Bidikmisi');
+    $this->db->where('status_registrasi','KIP-Kuliah');
+    $this->db->or_where('status_registrasi','KIP-Kuliah2');
     return $this->db->count_all_results('calonsiswa');
     }
 

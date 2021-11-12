@@ -36,7 +36,7 @@ class Page extends CI_Controller{
 		}
 		$this->data['content_title']=$this->judul;
 		$this->data['isi_tupoksi']=$this->isi;
-		$tahun_lalu = '2020/2021';
+		$tahun_lalu = '2021/2022';
 		$this->data['jumlah_akun'] = $this->mjumlah->count_akun();
 		$this->data['jumlah_calonsiswa'] = $this->mjumlah->count_calonsiswa();
 		$this->data['jumlah_tahunlalu'] = $this->mjumlah->count_tahunlalu($tahun_lalu);

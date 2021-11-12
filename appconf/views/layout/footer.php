@@ -1,4 +1,4 @@
-    <div class="text-white border-0 py-5" style="background: rgb(70,19,50);background: -moz-radial-gradient(circle, rgba(70,19,50,1) 0%, rgba(96,47,102,1) 100%);background: -webkit-radial-gradient(circle, rgba(70,19,50,1) 0%, rgba(96,47,102,1) 100%);background: radial-gradient(circle, rgba(70,19,50,1) 0%, rgba(96,47,102,1) 100%);">
+    <div class="gdt-purple-1 text-white border-0 py-5">
         <div class="container"> 
             <div class="row">
                 <div class="col-md-3">
@@ -25,9 +25,16 @@
     </div>
     <div id="WhatsApp"></div>
     <!--bootstrap js plugin-->
-    <script src="<?php echo base_url('assets/js');?>/bootstrap.bundle.min.js" type="text/javascript"></script>    
-    <script src="<?php echo base_url('assets');?>/offline-js/offline.js" type="text/javascript"></script>   
-    <script src="<?php echo base_url('assets/js');?>/bootstrap-notify.min.js" type="text/javascript"></script> 
+    <script src="<?php echo base_url('assets/js/bootstrap.bundle.min.js');?>" type="text/javascript"></script>   
+    <script src="<?php echo base_url('assets/js/preloader.js');?>" type="text/javascript"></script>    
+    <script src="<?php echo base_url('assets/offline-js/offline.js');?>" type="text/javascript"></script>   
+    <script src="<?php echo base_url('assets/js/bootstrap-notify.min.js');?>" type="text/javascript"></script> 
+    <script src="<?php echo base_url('assets/js/zoom.min.js');?>" type="text/javascript"></script>
+    <script src="<?php echo base_url('assets/js/aos.js');?>" type="text/javascript"></script>
+    <script src="<?php echo base_url('assets/js/loadingoverlay.min.js');?>" type="text/javascript"></script>  
+    <script src="<?php echo base_url('assets/js/floating-wpp.min.js');?>" type="text/javascript"></script> 
+    <script src="<?php echo base_url('assets/jquery-ui-1.12.1.custom/jquery-ui.min.js');?>" type="text/javascript"></script>
+
     <script type="text/javascript">
         var $jQuery=jQuery.noConflict();
         $jQuery(document).ready(function () {
@@ -47,8 +54,7 @@
 
         })
     </script>
-    <script type="text/javascript" src="<?php echo base_url('assets/js');?>/zoom.min.js"></script>
-    <script type="text/javascript" src="<?php echo base_url('assets/js');?>/aos.js"></script>
+    
     <script>
         AOS.init();
     </script>
@@ -75,7 +81,7 @@
             });
         });
     </script>
-    <script src="<?php echo base_url('assets/js');?>/loadingoverlay.min.js" type="text/javascript"></script>  
+   
     <script>
         var $jQuery=jQuery.noConflict();
         $jQuery("#carousel").LoadingOverlay("show", {
@@ -87,7 +93,7 @@
         $jQuery("#carousel").LoadingOverlay("hide", true);
         
     </script> 
-    <script src="<?php echo base_url('assets/js');?>/floating-wpp.min.js" type="text/javascript"></script> 
+    
     <script type="text/javascript">
         var $jQuery=jQuery.noConflict();
         $jQuery(function () {
@@ -98,7 +104,7 @@
             });
         });
     </script>
-    <script type="text/javascript" src="<?php echo base_url('assets/jquery-ui-1.12.1.custom');?>/jquery-ui.min.js"></script>
+    
     <script type="text/javascript">
         var $jQuery=jQuery.noConflict();
         $jQuery(document).ready(function(){

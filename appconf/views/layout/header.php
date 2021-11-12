@@ -141,7 +141,27 @@
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K4TJ5JP" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- End Google Tag Manager (noscript) -->
 
-  <nav class="navbar navbar-expand-lg navbar-dark sticky-top" style="z-index:99 !important;background-color: rgb(78, 33, 98)">
+  <!-- ========================= preloader start ========================= -->
+  <div class="preloader">
+        <div class="loader">
+            <div class="loader-logo"><img src="<?= base_url('assets/images/Logo.png') ?>" alt="Preloader" width="64"></div>
+            <div class="spinner">
+                <div class="spinner-container">
+                    <div class="spinner-rotator">
+                        <div class="spinner-left">
+                            <div class="spinner-circle"></div>
+                        </div>
+                        <div class="spinner-right">
+                            <div class="spinner-circle"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- preloader end -->
+    
+  <nav class="navbar navbar-expand-lg navbar-dark sticky-top gde-purple-1" style="z-index:99 !important;">
 
     <button type="button" id="sidebarCollapse" class="btn btn-warning">
       <i class="fa fa-bars" aria-hidden="true"></i>
@@ -234,9 +254,9 @@
   <div class="wrapper">
 
     <?php if ($this->uri->segment(1) == 'main_user') { ?>
-      <nav id="sidebar" class="active ">
+      <nav id="sidebar" class="gdb-purple-1 active ">
       <?php } else { ?>
-        <nav id="sidebar" class=" ">
+        <nav id="sidebar" class="gdb-purple-1 ">
         <?php } ?>
 
         <ul class="list-unstyled components">

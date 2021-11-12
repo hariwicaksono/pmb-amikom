@@ -5,7 +5,7 @@ class Mslideshow extends CI_Model{
 
 	function get_all(){
 		$query=$this->db->select('*')
-				->from('pmb_slideshow')
+				->from('slideshow_pmb')
 				->where('aktif',1)
 				->order_by('urutan','ASC')
 				->get();

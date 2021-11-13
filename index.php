@@ -138,7 +138,7 @@ if (defined('ENVIRONMENT')) {
  *
  * NO TRAILING SLASH!
  */
-	$application_folder = 'appconf';
+	$application_folder = 'application';
 
 /*
  *---------------------------------------------------------------

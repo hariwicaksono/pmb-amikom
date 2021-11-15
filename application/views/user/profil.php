@@ -59,7 +59,7 @@ $gelombang = $this->mgelombang->cek_daftar(array('thn_akademik' => $tha));
                         <!--end of col-->
                     </div>
                     <!--end of row-->
-                    <div id="form-step-1">
+                    <div id="form-step-0">
                         <div class="form-group">
                             <label class="control-label">Jenis Pendaftaran *</label>
                             <select name="status_reg" class="form-control" id="status_reg">
@@ -253,7 +253,7 @@ $gelombang = $this->mgelombang->cek_daftar(array('thn_akademik' => $tha));
                         <!--end of col-->
                     </div>
                     <!--end of row-->
-                    <div id="form-step-0">
+                    <div id="form-step-1">
                         <div class="form-group">
                             <input type="text" name="nama" class="form-control" placeholder="Nama Lengkap" <?php if (!empty($biodata['nama'])) echo 'value="' . $biodata['nama'] . '"';else echo 'value="' . htmlspecialchars($akun['nama']) . '"'; ?> required>
                         </div>

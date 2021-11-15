@@ -1,0 +1,33 @@
+<div class="form-group">
+    <label class="control-label">Nama Sekolah *</label>
+    <input type="text" name="sekolah" class="form-control" placeholder="Nama SMK/SMA/PTS/PTN/DLL" <?php if (!empty($biodata['sekolah'])) echo 'value="' . htmlspecialchars($biodata['sekolah']) . '"'; ?> required>
+</div>
+
+<div class="form-group">
+    <select class="form-control" name="jurusan">
+        <option value="">Pilih Jurusan</option>
+        <?php
+        $jurusan = array('IPA', 'IPS', 'BAHASA', 'AKUNTANSI', 'PERKANTORAN', 'MESIN', 'LISTRIK', 'ELEKTRO', 'TKJ', 'MULTIMEDIA', 'RPL', 'Lainnya');
+        foreach ($jurusan as $jrs) { ?>
+            <option value="<?= $jrs ?>" <?php if (!empty($biodata)) {
+                                            if ($biodata['jurusan'] == $jrs) {
+                                                echo 'selected=selected';
+                                            }
+                                        } ?>><?= $jrs ?></option>
+        <?php
+        }
+        ?>
+    </select>
+
+</div>
+
+<div class="form-row form-group">
+    <div class="col-md-6">
+        <label class="control-label">Rata-rata RAPOR/NEM/UAN *</label>
+        <input id="nem" type="text" name="nem" class="form-control" placeholder="00.00" onkeypress="return hanyaAngka(this)" maxlength="5" <?php if (!empty($biodata['nem'])) echo 'value=' . htmlspecialchars($biodata['nem']); ?>>
+    </div>
+    <div class="col-md-6">
+        <label class="control-label">Tahun Lulus *</label>
+        <input type="text" name="thn_lulus" class="form-control" placeholder="Tahun Lulus" onkeypress="return hanyaAngka(this)" maxlength="4" <?php if (!empty($biodata['tahun_lulus'])) echo 'value=' . htmlspecialchars($biodata['tahun_lulus']); ?>>
+    </div>
+</div>

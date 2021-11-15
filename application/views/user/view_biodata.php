@@ -24,7 +24,7 @@
         </li>
 
         <li class="nav-item" id="ribbon2">
-        <a class="nav-link <?php if ($this->uri->segment(2)=='profil') echo 'active' ?>" href="<?=base_url()?>main_user/profil?act=det">Formulir</a>
+        <a class="nav-link <?php if ($this->uri->segment(2)=='daftar') echo 'active' ?>" href="<?=base_url()?>main_user/daftar?act=step1">Formulir</a>
         </li>
     
         <li class="nav-item" id="ribbon3" >
@@ -54,7 +54,7 @@
             <?php       
             }
             if ($this->uri->segment(2)=='') $this->load->view('user/info.php');
-                elseif ($this->uri->segment(2)=='profil') $this->load->view('user/profil.php'); 
+                elseif ($this->uri->segment(2)=='daftar') $this->load->view('user/daftar.php'); 
                 elseif ($this->uri->segment(2)=='upload') $this->load->view('user/upload_dokumen.php'); 
                 elseif ($this->uri->segment(2)=='mulaiujian') $this->load->view('user/mulai_ujian.php');
                 elseif ($this->uri->segment(2)=='ujianonline') $this->load->view('user/ujian_online.php');

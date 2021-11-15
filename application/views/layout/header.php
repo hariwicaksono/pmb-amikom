@@ -84,8 +84,8 @@
   <!-- custom css-->
   <link href="<?= base_url('assets/css/bootstrap.min.css'); ?>" rel="stylesheet">
   <link href="<?= base_url('assets/css/styles.css?v='); ?><?= substr(md5(time()), 0, 16); ?>" rel="stylesheet">
-  <link href="<?= base_url('assets/offline-js/themes/offline-theme-default.css'); ?>" rel="stylesheet">
-  <link href="<?= base_url('assets/offline-js/themes/offline-language-english.css'); ?>" rel="stylesheet">
+  <link href="<?= base_url('assets/plugins/offline-js/themes/offline-theme-default.css'); ?>" rel="stylesheet">
+  <link href="<?= base_url('assets/plugins/offline-js/themes/offline-language-english.css'); ?>" rel="stylesheet">
   <link href="<?= base_url('assets/css/floating-wpp.min.css'); ?>" rel="stylesheet">
   <link href="<?= base_url('assets/plugins/jquery-ui-1.12.1.custom/jquery-ui.min.css'); ?>" rel="stylesheet">
   <!--must need plugin jquery-->
@@ -212,7 +212,7 @@
             <a href="<?= base_url('page/faq'); ?>" class="nav-link">F.A.Q</a>
           </li>
 
-          <form class="form-inline my-2 my-lg-0"><a class="btn btn-success" href="<?php base_url('page/login'); ?>" style="font-size: .9rem">MASUK/DAFTAR</a></form>
+          <form class="form-inline my-2 my-lg-0"><a class="btn btn-success" href="<?= base_url('page/login'); ?>" style="font-size: .9rem">MASUK/DAFTAR</a></form>
         </ul>
 
       <?php } else { ?>
@@ -233,9 +233,10 @@
               } else {
                 $salam = 'Malam';
               }
-
+              ?>
+              <?=
               'Selamat ' . $salam;
-              ?>, <?php $this->session->userdata['username']; ?> <b class="caret"></b>
+              ?>, <?= $this->session->userdata['username']; ?> <b class="caret"></b>
             </a>
             <div class="dropdown-menu dropdown-menu-lg-right" aria-labelledby="navbarDropdown">
               <a class="dropdown-item" href="#"> <?= $this->session->userdata['nama']; ?></a>
@@ -261,19 +262,19 @@
         <ul class="list-unstyled components">
           <li>
             <a href="<?= base_url() ?>page/petunjuk" alt="">
-              <img src="<?= base_url() ?>/assets/main/images/iconpack/bulb_210969.png" alt="" width="35" /><br /><span>Petunjuk</span>
+              <img src="<?= base_url('assets/main/images/iconpack/bulb_210969.png') ?>" alt="" width="35" /><br /><span>Petunjuk</span>
             </a>
 
           </li>
           <li>
             <a href="<?= base_url() ?>page/Jalur_penerimaan">
-              <img src="<?= base_url() ?>/assets/main/images/iconpack/paper-plane.png" alt="" width="35" /><br /><span>Jalur Penerimaan</span>
+              <img src="<?= base_url('assets/main/images/iconpack/paper-plane.png') ?>" alt="" width="35" /><br /><span>Jalur Penerimaan</span>
             </a>
 
           </li>
           <li>
             <a href="<?= base_url() ?>page/fakultas_programstudi">
-              <img src="<?= base_url() ?>/assets/main/images/iconpack/home_240324.png" alt="" width="35" /><br /><span>Fakultas &amp; Prodi</span>
+              <img src="<?= base_url('assets/main/images/iconpack/home_240324.png') ?>" alt="" width="35" /><br /><span>Fakultas &amp; Prodi</span>
             </a>
           </li>
           <li>
@@ -281,17 +282,17 @@
           </li>
           <li>
             <a href="<?= base_url() ?>page/Beasiswa">
-              <img src="<?= base_url() ?>/assets/main/images/iconpack/folder_243935.png" alt="" width="35" /><br /><span>Beasiswa</span>
+              <img src="<?= base_url('assets/main/images/iconpack/folder_243935.png') ?>" alt="" width="35" /><br /><span>Beasiswa</span>
             </a>
           </li>
           <li>
             <a href="<?= base_url() ?>page/fasilitas">
-              <img src="<?= base_url() ?>/assets/main/images/iconpack/computer_210953.png" alt="" width="35" /><br /><span>Fasilitas</span>
+              <img src="<?= base_url('assets/main/images/iconpack/computer_210953.png') ?>" alt="" width="35" /><br /><span>Fasilitas</span>
             </a>
           </li>
           <li>
             <a href="https://bit.ly/brosuramikompwt21">
-              <img src="<?= base_url() ?>/assets/main/images/iconpack/smartphone.png" alt="" width="35" /><br /><span>Download Brosur</span>
+              <img src="<?= base_url('assets/main/images/iconpack/smartphone.png') ?>" alt="" width="35" /><br /><span>Download Brosur</span>
             </a>
           </li>
 

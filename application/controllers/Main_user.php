@@ -42,7 +42,7 @@ class Main_user extends CI_Controller {
 		$this->load->view('view_main',$this->data);
 	}
 
-	public function profil()
+	public function daftar()
 	{
 		if(empty($this->session->userdata['username'])){ redirect(base_url());  }
 

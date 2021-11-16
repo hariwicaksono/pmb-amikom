@@ -90,6 +90,8 @@
   <link href="<?= base_url('assets/plugins/jquery-ui-1.12.1.custom/jquery-ui.min.css'); ?>" rel="stylesheet">
   <!--must need plugin jquery-->
   <script src="<?= base_url('assets/js/jquery-3.5.1.min.js'); ?>" type="text/javascript"></script>
+  <script src="<?= base_url('assets/js/preloader.js');?>" type="text/javascript"></script> 
+  <script src="<?= base_url('assets/js/bootstrap-notify.min.js');?>" type="text/javascript"></script> 
   <style>
     /*--------------------------------------------------------------
         # Counts

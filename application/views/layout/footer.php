@@ -27,10 +27,8 @@
     <div id="WhatsApp"></div>
 
     <!--bootstrap js plugin-->
-    <script src="<?= base_url('assets/js/bootstrap.bundle.min.js');?>" type="text/javascript"></script>   
-    <script src="<?= base_url('assets/js/preloader.js');?>" type="text/javascript"></script>    
+    <script src="<?= base_url('assets/js/bootstrap.bundle.min.js');?>" type="text/javascript"></script>      
     <script src="<?= base_url('assets/plugins/offline-js/offline.js');?>" type="text/javascript"></script>   
-    <script src="<?= base_url('assets/js/bootstrap-notify.min.js');?>" type="text/javascript"></script> 
     <script src="<?= base_url('assets/js/zoom.min.js');?>" type="text/javascript"></script>
     <script src="<?= base_url('assets/js/aos.js');?>" type="text/javascript"></script>
     <script src="<?= base_url('assets/js/loadingoverlay.min.js');?>" type="text/javascript"></script>  

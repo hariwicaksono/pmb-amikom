@@ -1,7 +1,7 @@
 <!-- Dropzone css -->
-<link rel="stylesheet" href="<?=base_url()?>assets/dropzone/min/dropzone.min.css"/>
-<link rel="stylesheet" href="<?=base_url()?>assets/dropzone/min/basic.min.css"/>
-<script src="<?=base_url()?>assets/dropzone/min/dropzone.min.js"></script> 
+<link rel="stylesheet" href="<?=base_url('assets/plugins/dropzone/min/dropzone.min.css')?>"/>
+<link rel="stylesheet" href="<?=base_url('assets/plugins/dropzone/min/basic.min.css')?>"/>
+<script src="<?=base_url('assets/plugins/dropzone/min/dropzone.min.js')?>"></script> 
 
 <style type="text/css">
 form input[type="file"] {

@@ -50,7 +50,7 @@ $gelombang = $this->mgelombang->cek_daftar(array('thn_akademik' => $tha));
 
 <div class="card">
     <div class="card-body">
-        <?php
+        <?php 
         if ($_GET['act'] == 'step1') $this->load->view('user/daftar_step1.php');
         elseif ($_GET['act'] == 'step2') $this->load->view('user/daftar_step2.php');
         elseif ($_GET['act'] == 'step3') $this->load->view('user/daftar_step3.php');
@@ -65,6 +65,20 @@ $gelombang = $this->mgelombang->cek_daftar(array('thn_akademik' => $tha));
 <script type="text/javascript" src="<?= base_url('assets/js'); ?>/jquery.validate.min.js"></script>
 <script type="text/javascript" src="<?= base_url('assets/js'); ?>/jquery.chained.min.js"></script>
 <script type="text/javascript" src="<?= base_url('assets/js'); ?>/select2.min.js"></script>
+<script type="text/javascript">
+    var $jquery=jQuery.noConflict();
+    <?php $info=$this->session->flashdata('info');
+        if (!empty($info)) { ?>
+        $jquery.notify({
+            title: "<strong>Sukses</strong>",
+            message: "<?=$info?>"
+            },{
+            type: "success"
+         });
+         <?php       
+        }
+        ?>
+</script>
 <script type="text/javascript" charset="utf-8">
     var $j = jQuery.noConflict();
     $j(document).ready(function() {
@@ -281,8 +295,7 @@ $gelombang = $this->mgelombang->cek_daftar(array('thn_akademik' => $tha));
 <script>
     jQuery(document).ready(function($) {
         $("#status_reg").on('change', function() {
-            if (this.value == "KIP-Kuliah2") {
-
+            if (this.value == "KIP-Kuliah" || this.value == "KIP-Kuliah2") {
                 $("#kipk-box").show();
             } else {
                 $("#kipk-box").hide();
@@ -290,7 +303,8 @@ $gelombang = $this->mgelombang->cek_daftar(array('thn_akademik' => $tha));
 
         });
 
-        if (document.getElementById('status_reg').value == "KIP-Kuliah2") {
+        var elemStatusreg = document.getElementById("status_reg");
+        if (elemStatusreg != null && elemStatusreg.value == "KIP-Kuliah" || elemStatusreg != null && elemStatusreg.value == "KIP-Kuliah2") {
             $('#kipk-box').show();
         }
 

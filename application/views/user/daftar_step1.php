@@ -5,29 +5,23 @@ $tha = $this->data['tahun_pmb'];
 $gelombang = $this->mgelombang->cek_daftar(array('thn_akademik' => $tha));
 ?>
 
-<form method="post" action="<?= base_url() ?>main_user/setting_nodaf" enctype="multipart/form-data" id="form">
-    <input type="hidden" name="<?= $this->security->get_csrf_token_name(); ?>" value="<?= $this->security->get_csrf_hash(); ?>">
-
+<form method="post" action="<?= base_url() ?>main_user/save_nodaf" enctype="multipart/form-data" id="form">
     <input type="hidden" name="relasi" value="1">
     <input type="hidden" name="kode_gelombang" value="<?= $gelombang['kode'] ?>">
+    <input type="hidden" name="email" value="<?=$this->session->userdata['email']?>">
+    <input type="hidden" name="nama" value="<?=$this->session->userdata['nama']?>">
 
     <div class="form-group">
         <label class="control-label">Jenis Pendaftaran *</label>
         <select name="status_reg" class="form-control" id="status_reg">
-            <option value="">Pilih Jenis Pendaftaran</option>
-            <option value="Hanya Daftar" <?php if (!empty($biodata)) {
-                                                if ($biodata['status_registrasi'] == "Hanya Daftar") {
-                                                    echo 'selected=selected';
-                                                }
-                                            } ?>>REGULER
-            </option>
-            <!-- KIPK -->
-            <option value="KIP-Kuliah2" <?php if (!empty($biodata)) {
-                                            if ($biodata['status_registrasi'] == "KIP-Kuliah" || $biodata['status_registrasi'] == "KIP-Kuliah2") {
-                                                echo 'selected=selected';
-                                            }
-                                        } ?>>BEASISWA KIP-Kuliah
-            </option>
+            <option value="">-- Pilih Jenis Pendaftaran --</option>
+            <?php foreach ($list_statusreg->result_array() as $key) { ?>
+                <option value="<?= $key['status_registrasi'] ?>" <?php if (!empty($biodata)) {
+                                                                        if ($biodata['status_registrasi'] == $key['status_registrasi']) {
+                                                                            echo 'selected=selected';
+                                                                        }
+                                                                    } ?>><?= $key['status_registrasi'] ?></option>
+            <?php } ?>
         </select>
     </div>
 
@@ -119,7 +113,7 @@ $gelombang = $this->mgelombang->cek_daftar(array('thn_akademik' => $tha));
                                                     if ($biodata['KELAS'] == $key) {
                                                         echo 'selected=selected';
                                                     }
-                                                } ?>><?= $key ?></option>
+                                                } ?>>Kelas <?= $key ?></option>
             <?php
                 }
             }
@@ -161,7 +155,7 @@ $gelombang = $this->mgelombang->cek_daftar(array('thn_akademik' => $tha));
     </div>
 
     <div class="form-group" id="informasi">
-        <label class="control-label">Informasi tentang Universitas Amikom Purwokerto</label><br />
+        <label class="control-label">Info tentang Universitas Amikom Purwokerto</label><br />
         <?php
         $info = array('Brosur&nbsp;', 'Surat&nbsp;', 'Televisi&nbsp;', 'Internet&nbsp;', 'FB', 'IG', 'Teman/Saudara&nbsp;', 'Lainnya&nbsp;');
         $info2 = array('brosur', 'surat', 'televisi', 'internet', 'fb', 'ig', 'teman/saudara', 'lainnya');
@@ -184,6 +178,5 @@ $gelombang = $this->mgelombang->cek_daftar(array('thn_akademik' => $tha));
         ?>
     </div>
 
-
-    <button type="submit" class="btn btn-success sw-btn-next mt-2" type="button">Selanjutnya</button>
+    <button type="submit" class="btn btn-success btn-lg" type="button">Simpan & Lanjut</button>
 </form>

@@ -1,3 +1,4 @@
+<form method="post" action="<?= base_url() ?>main_user/save_ortu" enctype="multipart/form-data" id="form">
 <label class="control-label">Data Ibu Kandung dan Ayah *</label>
 <div class="form-row form-group">
     <div class="col-md-6">
@@ -123,3 +124,7 @@
     <span style="font-size:11px">Jika propinsi tidak muncul klik kembali form Kabupaten</span>
 
 </div>
+
+<a href="<?= base_url('main_user/daftar?act=step4') ?>" class="btn btn-primary btn-lg" type="button">Sebelumnya</a>
+    <button type="submit" class="btn btn-success btn-lg" type="button">Simpan & Selesai</button>
+</form>

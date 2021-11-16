@@ -28,14 +28,14 @@
         </li>
     
         <li class="nav-item" id="ribbon3" >
-        <a class="nav-link <?php if ($this->uri->segment(2)=='upload') echo "active";?>" <?php if (!empty($biodata)) { ?> href="<?=base_url()?>main_user/upload?act=det" <?php } else { ?>  onclick="alert1();" <?php }  ?>  >Upload Dokumen</a></li>
+        <a class="nav-link <?php if ($this->uri->segment(2)=='upload') echo "active";?>" <?php if (!empty($biodata)) { ?> href="<?=base_url()?>main_user/upload?act=det" <?php } else { ?>  onclick="alert1();" <?php }  ?>  >Upload</a></li>
 
         <?php if ($biodata['status_registrasi']=='KIP-Kuliah' || $biodata['status_registrasi']=='KIP-Kuliah2') { ?>
         <li class="nav-item" id="ribbon4">
-        <a class="nav-link font-weight-bold <?php if ($this->uri->segment(2)=='mulaiujian') echo "active";?>" <?php if (($biodata['syarat2']=='Sudah')) { ?> href="<?=base_url()?>main_user/mulaiujian?act=det" <?php } else { ?>  onclick="alert2();" <?php }  ?>  >Ujian Online KIPK</a></li>
+        <a class="nav-link font-weight-bold <?php if ($this->uri->segment(2)=='mulaiujian') echo "active";?>" <?php if (($biodata['syarat2']=='Sudah')) { ?> href="<?=base_url()?>main_user/mulaiujian?act=det" <?php } else { ?>  onclick="alert2();" <?php }  ?>  >Ujian KIPK</a></li>
         <?php } else {?> 
         <li class="nav-item" id="ribbon4">
-        <a class="nav-link <?php if ($this->uri->segment(2)=='mulaiujian') echo "active";?>" <?php if (($biodata['syarat2']=='Sudah')) { ?> href="<?=base_url()?>main_user/mulaiujian?act=det" <?php } else { ?>  onclick="alert2();" <?php }  ?>  >Ujian Online</a></li>
+        <a class="nav-link <?php if ($this->uri->segment(2)=='mulaiujian') echo "active";?>" <?php if (($biodata['syarat2']=='Sudah')) { ?> href="<?=base_url()?>main_user/mulaiujian?act=det" <?php } else { ?>  onclick="alert2();" <?php }  ?>  >Ujian</a></li>
         <?php }?>
 
         
@@ -43,16 +43,7 @@
         <div class="tab-content">
         <div class="tab-pane fade show active">
 
-            <?php  $info=$this->session->flashdata('info');
-            if (!empty($info)) { ?>
-                <div class="px-3">
-                <div class="alert alert-warning alert-dismissable mb-0" role="alert">
-                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                    <?=$info?>
-                </div>
-                </div>
-            <?php       
-            }
+            <?php  
             if ($this->uri->segment(2)=='') $this->load->view('user/info.php');
                 elseif ($this->uri->segment(2)=='daftar') $this->load->view('user/daftar.php'); 
                 elseif ($this->uri->segment(2)=='upload') $this->load->view('user/upload_dokumen.php'); 

@@ -1,3 +1,4 @@
+<form method="post" action="<?= base_url() ?>main_user/save_alamat" enctype="multipart/form-data" id="form">
 <div class="form-group">
     <label>Alamat *</label>
     <input type="text" name="alamat" class="form-control otom" id="alamat_siswa" placeholder="Alamat Lengkap Jalan" <?php if (!empty($biodata['alamat'])) echo 'value="' . htmlspecialchars($biodata['alamat']) . '"'; ?>>
@@ -71,3 +72,7 @@
     </select>
     <span style="font-size:11px">Jika propinsi tidak muncul klik kembali form Kabupaten</span>
 </div>
+
+<a href="<?= base_url('main_user/daftar?act=step3') ?>" class="btn btn-primary btn-lg" type="button">Sebelumnya</a>
+    <button type="submit" class="btn btn-success btn-lg" type="button">Simpan & Lanjut</button>
+</form>

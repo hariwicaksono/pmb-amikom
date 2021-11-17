@@ -1,4 +1,5 @@
 <form method="post" action="<?= base_url() ?>main_user/save_biodata" enctype="multipart/form-data" id="form">
+<label class="control-label">Biodata *</label>
     <div class="form-group">
         <input type="text" name="nama" class="form-control" placeholder="Nama Lengkap" <?php if (!empty($biodata['nama'])) echo 'value="' . $biodata['nama'] . '"';
                                                                                         else echo 'value="' . htmlspecialchars($akun['nama']) . '"'; ?> required>
@@ -14,7 +15,7 @@
     </div>
 
     <div class="form-row form-group">
-        <div class="col-sm-4">
+        <div class="col-4">
             <select name="tgllahir" class="form-control">
                 <option value="">Tanggal Lahir</option>
                 <?php
@@ -32,7 +33,7 @@
             </select>
         </div>
 
-        <div class="col-sm-4">
+        <div class="col-4">
             <select name="blnlahir" class="form-control">
                 <option value="">Bulan Lahir</option>
                 <?php
@@ -50,7 +51,7 @@
                 ?>
             </select>
         </div>
-        <div class="col-sm-4">
+        <div class="col-4">
             <select name="thnlahir" class="form-control">
                 <option value="">Tahun Lahir</option>
                 <?php
@@ -69,7 +70,7 @@
 
     <div class="form-row form-group mb-1" id="jk">
 
-        <div class="col-md-6">
+        <div class="col-6">
             <input class="radio-btn positive" type="radio" name="jk" value="Pria" <?php if (!empty($biodata)) {
                                                                                         if ($biodata['jk'] == 'Pria') {
                                                                                             echo 'checked=checked';
@@ -78,7 +79,7 @@
             <label class="radio-label" for="radio-1">Laki-Laki</label>
         </div>
 
-        <div class="col-md-6">
+        <div class="col-6">
             <input class="radio-btn positive" type="radio" name="jk" value="Wanita" <?php if (!empty($biodata)) {
                                                                                         if ($biodata['jk'] == 'Wanita') {
                                                                                             echo 'checked=checked';

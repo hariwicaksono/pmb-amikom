@@ -29,22 +29,22 @@ $gelombang = $this->mgelombang->cek_daftar(array('thn_akademik' => $tha));
 ?>
 
 
-<ul class="nav nav-tabs">
+<ul class="nav nav-tabs nav-fill">
 
     <li class="nav-item" id="ribbon1">
-        <a class="nav-link <?php if ($_GET['act'] == 'step1') echo "active"; ?>" href="<?= base_url() ?>main_user/daftar?act=step1">Step 1</a>
+        <a class="nav-link <?php if ($_GET['act'] == 'step1') echo "active"; ?>" href="<?= base_url() ?>main_user/daftar?act=step1">1</a>
     </li>
     <li class="nav-item" id="ribbon2">
-        <a class="nav-link <?php if ($_GET['act'] == 'step2') echo "active"; ?>" href="<?= base_url() ?>main_user/daftar?act=step2">Step 2</a>
+        <a class="nav-link <?php if ($_GET['act'] == 'step2') echo "active"; ?>" <?php if (!empty($biodata)) { ?> href="<?=base_url()?>main_user/daftar?act=step2" <?php } else { ?>  onclick="alertStep();" <?php }  ?> >2</a>
     </li>
     <li class="nav-item" id="ribbon3">
-        <a class="nav-link <?php if ($_GET['act'] == 'step3') echo "active"; ?>" href="<?= base_url() ?>main_user/daftar?act=step3">Step 3</a>
+        <a class="nav-link <?php if ($_GET['act'] == 'step3') echo "active"; ?>" <?php if (!empty($biodata)) { ?> href="<?=base_url()?>main_user/daftar?act=step3" <?php } else { ?>  onclick="alertStep();" <?php }  ?> >3</a>
     </li>
     <li class="nav-item" id="ribbon4">
-        <a class="nav-link <?php if ($_GET['act'] == 'step4') echo "active"; ?>" href="<?= base_url() ?>main_user/daftar?act=step4">Step 4</a>
+        <a class="nav-link <?php if ($_GET['act'] == 'step4') echo "active"; ?>" <?php if (!empty($biodata)) { ?> href="<?=base_url()?>main_user/daftar?act=step4" <?php } else { ?>  onclick="alertStep();" <?php }  ?> >4</a>
     </li>
     <li class="nav-item" id="ribbon5">
-        <a class="nav-link <?php if ($_GET['act'] == 'step5') echo "active"; ?>" href="<?= base_url() ?>main_user/daftar?act=step5">Step 5</a>
+        <a class="nav-link <?php if ($_GET['act'] == 'step5') echo "active"; ?>" <?php if (!empty($biodata)) { ?> href="<?=base_url()?>main_user/daftar?act=step5" <?php } else { ?>  onclick="alertStep();" <?php }  ?> >5</a>
     </li>
 </ul>
 
@@ -65,6 +65,17 @@ $gelombang = $this->mgelombang->cek_daftar(array('thn_akademik' => $tha));
 <script type="text/javascript" src="<?= base_url('assets/js'); ?>/jquery.validate.min.js"></script>
 <script type="text/javascript" src="<?= base_url('assets/js'); ?>/jquery.chained.min.js"></script>
 <script type="text/javascript" src="<?= base_url('assets/js'); ?>/select2.min.js"></script>
+<script type="text/javascript">
+    var $jquery=jQuery.noConflict();
+    function alertStep(){
+        $jquery.notify({
+            title: "<strong>Perhatian!</strong>",
+            message: "Isi Step 1 terlebih dahulu sebelum lanjut"
+            },{
+            type: 'danger'
+         });
+    };
+</script>
 <script type="text/javascript">
     var $jquery=jQuery.noConflict();
     <?php $info=$this->session->flashdata('info');
@@ -307,7 +318,22 @@ $gelombang = $this->mgelombang->cek_daftar(array('thn_akademik' => $tha));
         if (elemStatusreg != null && elemStatusreg.value == "KIP-Kuliah" || elemStatusreg != null && elemStatusreg.value == "KIP-Kuliah2") {
             $('#kipk-box').show();
         }
+    });
 
+    jQuery(document).ready(function($) {
+        $("#jurusan").on('change', function() {
+            if (this.value == "Lainnya") {
+                $("#jurusan-box").show();
+            } else {
+                $("#jurusan-box").hide();
+            }
+
+        });
+
+        var elemJur = document.getElementById("jurusan");
+        if (elemJur != null && elemJur.value == "Lainnya") {
+            $('#jurusan-box').show();
+        }
     });
 </script>
 

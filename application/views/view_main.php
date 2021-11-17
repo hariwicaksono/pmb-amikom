@@ -4,7 +4,7 @@ $this->load->view('layout/header');
 
 <?php if ($this->uri->segment(1) == '' || $this->uri->segment(1) == 'page' && $this->uri->segment(2) == '') { ?>
   <div class="container-fluid">
-    <div class="shadow mt-2 mb-2">
+    <div class="shadow mt-3 mb-2">
 
 
       <div id="carousel" class="carousel slide" data-bs-ride="carousel">

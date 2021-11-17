@@ -1,5 +1,5 @@
 <div class="container">
-    <div class="mt-3 mb-2">
+    <div class="mt-4 mb-3">
 
         <?php $info = $this->session->flashdata('info');
         if (!empty($info)) { ?>
@@ -54,7 +54,7 @@
                             </div>
 
                             <div class="form-group">
-                                <a href="#" class="btn btn-info btn-block btn-lg mb-3" id="btnLogin" onclick="masuk_log();"><i class="fa fa-sign-in" aria-hidden="true"></i> Masuk</a>
+                                <a href="#" class="btn btn-info btn-block mb-3" id="btnLogin" onclick="masuk_log();"><i class="fa fa-sign-in" aria-hidden="true"></i> Masuk</a>
                                 <a href="<?= base_url('page/register'); ?>">Belum punya Akun? Daftar</a>
                             </div>
 

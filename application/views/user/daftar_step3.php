@@ -5,10 +5,10 @@
     </div>
 
     <div class="form-group">
-        <select class="form-control" name="jurusan">
+        <select class="select2 form-control" name="jurusan" id="jurusan" style="width:100%;">
             <option value="">Pilih Jurusan</option>
             <?php
-            $jurusan = array('IPA', 'IPS', 'BAHASA', 'AKUNTANSI', 'PERKANTORAN', 'MESIN', 'LISTRIK', 'ELEKTRO', 'TKJ', 'MULTIMEDIA', 'RPL', 'Lainnya');
+            $jurusan = array('IPA', 'IPS', 'BAHASA', 'AKUNTANSI', 'ADMINISTRASI', 'OTKP', 'PERKANTORAN', 'KEUANGAN', 'PERBANKAN', 'PERBANKAN SYARIAH', 'BISNIS PEMASARAN', 'BISNIS DARING DAN PEMASARAN', 'MANAJEMEN', 'OTOMOTIF', 'TKR', 'TSM', 'MESIN', 'TEKNIK MEKANIK INDUSTRI', 'LISTRIK', 'ELEKTRO', 'BANGUNAN', 'INDUSTRI', 'AIRCRAFT ELECTRICITY', 'GEOMATIKA GEOSPASIAL', 'MIPA', 'KEPERAWATAN', 'KEPERAWATAN GIGI', 'FARMASI', 'FARMASI INDUSTRI', 'KESEHATAN', 'TKJ', 'MULTIMEDIA', 'RPL', 'INFORMATIKA', 'SISTEM INFORMASI', 'TEKNOLOGI INFORMASI', 'TELEKOMUNIKASI', 'TEKNIK JARINGAN AKSES TELEKOMUNIKASI', 'TAV', 'BROADCASTING', 'PERTANIAN', 'TEKNIK PERMINYAKAN', 'GEOLOGI PERTAMBANGAN', 'TEKNIK ENERGI', 'AGRIBISNIS', 'PELAYARAN', 'PARIWISATA', 'TATA BOGA', 'TATA KECANTIKAN', 'TATA BUSANA', 'PERHOTELAN', 'SENI RUPA', 'SENI MUSIK', 'SENI TARI', 'SENI TEATER', 'SENI PERTUNJUKAN', 'Lainnya');
             foreach ($jurusan as $jrs) { ?>
                 <option value="<?= $jrs ?>" <?php if (!empty($biodata)) {
                                                 if ($biodata['jurusan'] == $jrs) {
@@ -19,7 +19,11 @@
             }
             ?>
         </select>
-
+        <div id="jurusan-box" style="display:none;">
+        <div class="form-group">
+            <input type="text" name="jurusanlain" class="form-control" placeholder="Jurusan Sekolah" <?php if (!empty($biodata['jurusan'])) echo 'value=' . $biodata['jurusan']; ?>>
+        </div>
+    </div>
     </div>
 
     <div class="form-row form-group">

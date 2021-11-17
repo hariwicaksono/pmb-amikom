@@ -10,10 +10,10 @@
     </div>
 
     <div class="col-md-3">
-        <select class="form-control" name="pekerjaan_ortu">
+        <select class="select2 form-control" name="pekerjaan_ortu" style="width:100%;">
             <option value="">Pilih Pekerjaan Ibu</option>
             <?php
-            $pekerjaan1 = array('IRT', 'WIRASWASTA', 'WIRAUSAHA', 'PEDAGANG', 'BURUH', 'KARYAWAN SWASTA', 'PEGAWAI SWASTA', 'PNS', 'PEGAWAI BUMN', 'PEGAWAI BUMD', 'GURU', 'TNI', 'POLRI', 'PENSIUNAN', 'NELAYAN', 'PETANI', 'PETERNAK', 'PENGRAJIN', 'TENAGA KERJA INDONESIA', 'PILOT', 'PRAMUGARI', 'CHEF', 'SENIMAN', 'ARSITEK', 'PENGACARA', 'NOTARIS');
+            $pekerjaan1 = array('IBU RUMAH TANGGA', 'WIRASWASTA', 'WIRAUSAHA', 'PEDAGANG', 'BURUH', 'DIREKTUR', 'MANAGER', 'KARYAWAN SWASTA', 'PEGAWAI SWASTA', 'PNS', 'GUBERNUR', 'BUPATI', 'PEGAWAI BUMN', 'PEGAWAI BUMD', 'PENSIUNAN', 'GURU', 'DOSEN', 'TNI', 'POLRI', 'SATPAM', 'PEMADAM KEBAKARAN', 'DOKTER', 'PERAWAT', 'BIDAN', 'APOTEKER', 'NELAYAN', 'PETANI', 'PETERNAK', 'PENGRAJIN', 'TENAGA KERJA INDONESIA', 'PILOT', 'PRAMUGARA', 'MASINIS', 'PPKA KAI', 'KONDEKTUR', 'SOPIR', 'NAKHODA', 'PELAUT', 'KURIR', 'ULAMA', 'PASTOR', 'PENDETA', 'CHEF', 'SENIMAN', 'FOTOGRAFER', 'ARSITEK', 'PENGACARA', 'NOTARIS', 'WARTAWAN', 'KONSULTAN', 'POLITIKUS', 'PENULIS', 'PENERJEMAH', 'PEKERJA PERTAMBANGAN', 'PEKERJA KONSTRUKSI');
             foreach ($pekerjaan1 as $kerja1) { ?>
                 <option value="<?= $kerja1 ?>" <?php if (!empty($biodata)) {
                                                     if ($biodata['PEKERJAAN_ORTU'] == $kerja1) {
@@ -37,10 +37,10 @@
     </div>
 
     <div class="col-md-3">
-        <select class="form-control" name="pekerjaan_ayah">
+        <select class="select2 form-control" name="pekerjaan_ayah" style="width:100%;">
             <option value="">Pilih Pekerjaan Ayah</option>
             <?php
-            $pekerjaan2 = array('WIRASWASTA', 'WIRAUSAHA', 'PEDAGANG', 'BURUH', 'KARYAWAN SWASTA', 'PEGAWAI SWASTA', 'PNS', 'PEGAWAI BUMN', 'PEGAWAI BUMD', 'GURU', 'TNI', 'POLRI', 'PENSIUNAN', 'NELAYAN', 'PETANI', 'PETERNAK', 'PENGRAJIN', 'TENAGA KERJA INDONESIA', 'PILOT', 'PRAMUGARA', 'CHEF', 'SENIMAN', 'FOTOGRAFER', 'ARSITEK', 'PENGACARA', 'NOTARIS', 'SUPIR', 'PEKERJA PERTAMBANGAN', 'PEKERJA KONSTRUKSI');
+            $pekerjaan2 = array('WIRASWASTA', 'WIRAUSAHA', 'PEDAGANG', 'BURUH', 'DIREKTUR', 'MANAGER', 'KARYAWAN SWASTA', 'PEGAWAI SWASTA', 'PNS', 'GUBERNUR', 'BUPATI', 'PEGAWAI BUMN', 'PEGAWAI BUMD', 'PENSIUNAN', 'GURU', 'DOSEN', 'TNI', 'POLRI', 'SATPAM', 'PEMADAM KEBAKARAN', 'DOKTER', 'PERAWAT', 'BIDAN', 'APOTEKER', 'NELAYAN', 'PETANI', 'PETERNAK', 'PENGRAJIN', 'TENAGA KERJA INDONESIA', 'PILOT', 'PRAMUGARA', 'MASINIS', 'PPKA KAI', 'KONDEKTUR', 'SOPIR', 'NAKHODA', 'PELAUT', 'KURIR', 'ULAMA', 'PASTOR', 'PENDETA', 'CHEF', 'SENIMAN', 'FOTOGRAFER', 'ARSITEK', 'PENGACARA', 'NOTARIS', 'WARTAWAN', 'KONSULTAN', 'POLITIKUS', 'PENULIS', 'PENERJEMAH', 'PEKERJA PERTAMBANGAN', 'PEKERJA KONSTRUKSI');
             foreach ($pekerjaan2 as $kerja2) { ?>
                 <option value="<?= $kerja2 ?>" <?php if (!empty($biodata)) {
                                                     if ($biodata['PEKERJAAN_AYAH'] == $kerja2) {
@@ -86,7 +86,7 @@
 </div>
 
 <div class="form-group">
-    <select name="kabupaten_ortu" class="form-control select2" id="kab_ortu" required>
+    <select name="kabupaten_ortu" class="form-control select2" id="kab_ortu" style="width:100%;" required>
         <option value="">Pilih Kabupaten</option>
         <?php $kab = $this->model_crud->selectData("kabupaten");
         $i = 1;

@@ -1,6 +1,6 @@
 
 <div class="container-fluid">
-<div class="mt-2 mb-2">
+<div class="my-3">
     <div class="card shadow">
         <?php
         $gelombang=$this->mgelombang->cek_daftar(array('thn_akademik'=>$tahun_pmb));
@@ -17,10 +17,10 @@
         }else{
         ?>
         
-        <ul class="nav nav-tabs">
+        <ul class="nav nav-tabs nav-fill">
 
         <li class="nav-item" id="ribbon1" >
-        <a class="nav-link <?php if ($this->uri->segment(2)=='') echo "active";?>" href="<?=base_url()?>main_user/?act=det">Informasi</a>
+        <a class="nav-link <?php if ($this->uri->segment(2)=='') echo "active";?>" href="<?=base_url()?>main_user">Informasi</a>
         </li>
 
         <li class="nav-item" id="ribbon2">

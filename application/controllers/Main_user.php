@@ -50,6 +50,12 @@ class Main_user extends CI_Controller
 			redirect(base_url());
 		}
 
+		if ($_GET['act'] != 'step1') {
+			if (empty($this->data['biodata']['nodaf'])) {
+				redirect(base_url('main_user/daftar?act=step1'));
+			}
+		}
+
 		$this->data['content_title'] = 'SELAMAT DATANG CALON MAHASISWA BARU UNIVERSITAS AMIKOM PURWOKERTO';
 		$this->data['konten'] = 'user/view_biodata';
 
@@ -98,11 +104,6 @@ class Main_user extends CI_Controller
 		if (empty($this->session->userdata['username'])) {
 			redirect(base_url());
 		}
-
-		//error_reporting(1);
-		//if (!preg_match("/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/",$_POST['tgllahir'])) {
-		//echo "<center>Format pengisian tanggal lahir tidak sesuai <input type=button value=Go Back onclick=history.back(-1) /></center>";
-		//} 
 
 		$nodaf = $this->model_crud->genNodaf($this->data['tahun_pmb']);
 		$noref = $this->model_crud->nomor_referensi($nodaf);
@@ -166,8 +167,119 @@ class Main_user extends CI_Controller
 			$this->model_crud->updateData('calonsiswa', $data2, array('nodaf' => $this->data['biodata']['nodaf']));
 		}
 
-		$this->session->set_flashdata('info', "Data Berhasil diperbarui");
+		$this->session->set_flashdata('info', "Data Berhasil disimpan");
 		redirect(base_url('main_user/daftar?act=step2'));
+	}
+
+	public function save_biodata()
+	{
+		if (empty($this->session->userdata['username'])) {
+			redirect(base_url());
+		}
+
+		$tgllahir = $_POST['thnlahir'] . '-' . $_POST['blnlahir'] . '-' . $_POST['tgllahir'];
+		$this->data['biodata'] = $this->model_crud->selectData('calonsiswa', array('email' => $this->session->userdata['email']))->row_array();
+
+		$data2 = array(
+			'nama' => $this->input->post('nama', true),
+			'nikktp' => $this->input->post('nik', true),
+			'tempatlahir' => $this->input->post('tempatlahir', true),
+			'tgllahir' => $tgllahir,
+			'jk' => $_POST['jk'],
+			'agama' => $_POST['agama'],
+			'status_pernikahan' => $_POST['status_pernikahan'],
+			'telepon' => $_POST['telepon'],
+			'email' => $_POST['email'],
+		);
+		$this->model_crud->updateData('calonsiswa', $data2, array('nodaf' => $this->data['biodata']['nodaf']));
+
+		$this->session->set_flashdata('info', "Biodata Berhasil disimpan");
+		redirect(base_url('main_user/daftar?act=step3'));
+	}
+
+	public function save_sekolah()
+	{
+		if (empty($this->session->userdata['username'])) {
+			redirect(base_url());
+		}
+
+		$this->data['biodata'] = $this->model_crud->selectData('calonsiswa', array('email' => $this->session->userdata['email']))->row_array();
+
+		if ($_POST['jurusan'] == 'Lainnya') {
+			$jurusan = $this->input->post('jurusanlain', true);
+		} else {
+			$jurusan = $_POST['jurusan'];
+		}
+
+		$data2 = array(
+			'sekolah' => $this->input->post('sekolah', true),
+			'jurusan' => $jurusan,
+			'nem' => $_POST['nem'],
+			'tahun_lulus' => $_POST['thn_lulus']
+		);
+		$this->model_crud->updateData('calonsiswa', $data2, array('nodaf' => $this->data['biodata']['nodaf']));
+
+		$this->session->set_flashdata('info', "Data Berhasil disimpan");
+		redirect(base_url('main_user/daftar?act=step4'));
+	}
+
+	public function save_alamat()
+	{
+		if (empty($this->session->userdata['username'])) {
+			redirect(base_url());
+		}
+
+		$data2 = array(
+			'alamat' => $this->input->post('alamat', true),
+			'rt' => $_POST['rt'],
+			'rw' => $_POST['rw'],
+			'kelurahan' => $this->input->post('kelurahan', true),
+			'kecamatan' => $this->input->post('kecamatan', true),
+			'kabupaten' => $_POST['kabupaten'],
+			'propinsi' => $_POST['propinsi'],
+			'kodepos' => $_POST['kodepos'],
+			'deskripsi_alamat' => $this->input->post('deskripsi_alamat', TRUE),
+			'alamatortu' => $_POST['alamat'],
+			'rt_ortu' => $_POST['rt'],
+			'rw_ortu' => $_POST['rw'],
+			'kelurahan_ortu' => $_POST['kelurahan'],
+			'kecamatan_ortu' => $_POST['kecamatan'],
+			'kabupaten_ortu' => $_POST['kabupaten'],
+			'propinsi_ortu' => $_POST['propinsi'],
+			'kodepos_ortu' => $_POST['kodepos'],
+		);
+		$this->model_crud->updateData('calonsiswa', $data2, array('nodaf' => $this->data['biodata']['nodaf']));
+
+		$this->session->set_flashdata('info', "Data Berhasil disimpan");
+		redirect(base_url('main_user/daftar?act=step5'));
+	}
+
+	public function save_ortu()
+	{
+		if (empty($this->session->userdata['username'])) {
+			redirect(base_url());
+		}
+
+		$data2 = array(
+			'nama_ortu' => $_POST['nama_ortu'],
+			'nama_ayah' => $_POST['nama_ayah'],
+			'telp_ortu' => $_POST['telp_ortu'],
+			'telp_ayah' => $_POST['telp_ayah'],
+			'pekerjaan_ortu' => $_POST['pekerjaan_ortu'],
+			'pekerjaan_ayah' => $_POST['pekerjaan_ayah'],
+			'alamatortu' => $_POST['alamat_ortu'],
+			'rt_ortu' => $_POST['rt_ortu'],
+			'rw_ortu' => $_POST['rw_ortu'],
+			'kelurahan_ortu' => $_POST['kelurahan_ortu'],
+			'kecamatan_ortu' => $_POST['kecamatan_ortu'],
+			'kabupaten_ortu' => $_POST['kabupaten_ortu'],
+			'propinsi_ortu' => $_POST['propinsi_ortu'],
+			'kodepos_ortu' => $_POST['kodepos_ortu'],
+		);
+		$this->model_crud->updateData('calonsiswa', $data2, array('nodaf' => $this->data['biodata']['nodaf']));
+
+		$this->session->set_flashdata('info', "Data Berhasil disimpan");
+		redirect(base_url('main_user'));
 	}
 
 	public function setting_biodata()

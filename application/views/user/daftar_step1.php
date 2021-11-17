@@ -26,7 +26,6 @@ $gelombang = $this->mgelombang->cek_daftar(array('thn_akademik' => $tha));
     </div>
 
     <div class="form-group">
-        <label class="control-label">Jenis Mahasiswa *</label>
         <select name="jenis_mhs" class="form-control" id="jenis_mhs">
             <option value="">-- Pilih Jenis Pendaftaran dahulu --</option>
             <?php if (!empty($biodata['JENIS_MHS'])) {

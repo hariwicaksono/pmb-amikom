@@ -65,31 +65,7 @@ $gelombang = $this->mgelombang->cek_daftar(array('thn_akademik' => $tha));
 <script type="text/javascript" src="<?= base_url('assets/js'); ?>/jquery.validate.min.js"></script>
 <script type="text/javascript" src="<?= base_url('assets/js'); ?>/jquery.chained.min.js"></script>
 <script type="text/javascript" src="<?= base_url('assets/js'); ?>/select2.min.js"></script>
-<script type="text/javascript">
-    var $jquery=jQuery.noConflict();
-    function alertStep(){
-        $jquery.notify({
-            title: "<strong>Perhatian!</strong>",
-            message: "Isi Step 1 terlebih dahulu sebelum lanjut"
-            },{
-            type: 'danger'
-         });
-    };
-</script>
-<script type="text/javascript">
-    var $jquery=jQuery.noConflict();
-    <?php $info=$this->session->flashdata('info');
-        if (!empty($info)) { ?>
-        $jquery.notify({
-            title: "<strong>Sukses</strong>",
-            message: "<?=$info?>"
-            },{
-            type: "success"
-         });
-         <?php       
-        }
-        ?>
-</script>
+
 <script type="text/javascript" charset="utf-8">
     var $j = jQuery.noConflict();
     $j(document).ready(function() {
@@ -331,7 +307,8 @@ $gelombang = $this->mgelombang->cek_daftar(array('thn_akademik' => $tha));
         });
 
         var elemJur = document.getElementById("jurusan");
-        if (elemJur != null && elemJur.value == "Lainnya") {
+        var elemJurlain = document.getElementById("jurusanlain");
+        if (elemJurlain != null && elemJur.value == '') {
             $('#jurusan-box').show();
         }
     });
@@ -427,9 +404,9 @@ $gelombang = $this->mgelombang->cek_daftar(array('thn_akademik' => $tha));
                 sekolah: {
                     required: true
                 },
-                jurusan: {
-                    required: true
-                },
+                //jurusan: {
+                    //required: true
+                //},
                 nem: {
                     required: true
                 },

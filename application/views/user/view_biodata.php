@@ -85,6 +85,32 @@
     };
 </script>
 
+<script type="text/javascript">
+    var $jquery=jQuery.noConflict();
+    function alertStep(){
+        $jquery.notify({
+            title: "<strong>Perhatian!</strong>",
+            message: "Isi Step 1 terlebih dahulu sebelum lanjut"
+            },{
+            type: 'danger'
+         });
+    };
+</script>
+<script type="text/javascript">
+    var $jquery=jQuery.noConflict();
+    <?php $info=$this->session->flashdata('info');
+        if (!empty($info)) { ?>
+        $jquery.notify({
+            title: "<strong>Sukses</strong>",
+            message: "<?=$info?>"
+            },{
+            type: "success"
+         });
+         <?php       
+        }
+        ?>
+</script>
+
 <!--<?php //if (!$this->uri->segment(2)) { ?>
 <?php //if ($biodata['status_registrasi']=='KIP-Kuliah') { ?>
 <script type="text/javascript">

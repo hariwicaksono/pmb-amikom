@@ -20,10 +20,10 @@
             ?>
         </select>
         <div id="jurusan-box" style="display:none;">
-        <div class="form-group">
-            <input type="text" name="jurusanlain" class="form-control" placeholder="Jurusan Sekolah" <?php if (!empty($biodata['jurusan'])) echo 'value=' . $biodata['jurusan']; ?>>
+            <div class="form-group">
+                <input type="text" id="jurusanlain" name="jurusanlain" class="form-control" placeholder="Jurusan Sekolah" <?php if (!empty($biodata['jurusan'])) echo 'value="' . $biodata['jurusan'] . '"'; ?>>
+            </div>
         </div>
-    </div>
     </div>
 
     <div class="form-row form-group">
@@ -38,5 +38,7 @@
     </div>
 
     <a href="<?= base_url('main_user/daftar?act=step2') ?>" class="btn btn-primary btn-lg" type="button">Sebelumnya</a>
-    <button type="submit" class="btn btn-success btn-lg" type="button">Simpan & Lanjut</button>
+    <button type="submit" class="btn btn-success btn-lg" type="button" <?php if (!empty($biodata)) {
+                                                                            if ($biodata['syarat2'] == 'Sudah') echo "disabled";
+                                                                        } ?>>Simpan & Lanjut</button>
 </form>

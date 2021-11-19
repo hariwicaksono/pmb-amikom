@@ -205,7 +205,7 @@ class Main_user extends CI_Controller
 
 		$this->data['biodata'] = $this->model_crud->selectData('calonsiswa', array('email' => $this->session->userdata['email']))->row_array();
 
-		if ($_POST['jurusan'] == 'Lainnya') {
+		if ($_POST['jurusan'] == 'Lainnya' || $_POST['jurusan'] == '') {
 			$jurusan = $this->input->post('jurusanlain', true);
 		} else {
 			$jurusan = $_POST['jurusan'];
@@ -239,11 +239,11 @@ class Main_user extends CI_Controller
 			'propinsi' => $_POST['propinsi'],
 			'kodepos' => $_POST['kodepos'],
 			'deskripsi_alamat' => $this->input->post('deskripsi_alamat', TRUE),
-			'alamatortu' => $_POST['alamat'],
+			'alamatortu' =>  $this->input->post('alamat', true),
 			'rt_ortu' => $_POST['rt'],
 			'rw_ortu' => $_POST['rw'],
-			'kelurahan_ortu' => $_POST['kelurahan'],
-			'kecamatan_ortu' => $_POST['kecamatan'],
+			'kelurahan_ortu' => $this->input->post('kelurahan', true),
+			'kecamatan_ortu' => $this->input->post('kecamatan', true),
 			'kabupaten_ortu' => $_POST['kabupaten'],
 			'propinsi_ortu' => $_POST['propinsi'],
 			'kodepos_ortu' => $_POST['kodepos'],
@@ -261,24 +261,24 @@ class Main_user extends CI_Controller
 		}
 
 		$data2 = array(
-			'nama_ortu' => $_POST['nama_ortu'],
-			'nama_ayah' => $_POST['nama_ayah'],
+			'nama_ortu' => $this->input->post('nama_ortu',true),
+			'nama_ayah' => $this->input->post('nama_ayah',true),
 			'telp_ortu' => $_POST['telp_ortu'],
 			'telp_ayah' => $_POST['telp_ayah'],
 			'pekerjaan_ortu' => $_POST['pekerjaan_ortu'],
 			'pekerjaan_ayah' => $_POST['pekerjaan_ayah'],
-			'alamatortu' => $_POST['alamat_ortu'],
+			'alamatortu' => $this->input->post('alamat_ortu',true),
 			'rt_ortu' => $_POST['rt_ortu'],
 			'rw_ortu' => $_POST['rw_ortu'],
-			'kelurahan_ortu' => $_POST['kelurahan_ortu'],
-			'kecamatan_ortu' => $_POST['kecamatan_ortu'],
+			'kelurahan_ortu' => $this->input->post('kelurahan_ortu',true),
+			'kecamatan_ortu' => $this->input->post('kecamatan_ortu',true),
 			'kabupaten_ortu' => $_POST['kabupaten_ortu'],
 			'propinsi_ortu' => $_POST['propinsi_ortu'],
 			'kodepos_ortu' => $_POST['kodepos_ortu'],
 		);
 		$this->model_crud->updateData('calonsiswa', $data2, array('nodaf' => $this->data['biodata']['nodaf']));
 
-		$this->session->set_flashdata('info', "Data Berhasil disimpan");
+		$this->session->set_flashdata('info', "Terima kasih telah mendaftar di Univ. Amikom Purwokerto");
 		redirect(base_url('main_user'));
 	}
 

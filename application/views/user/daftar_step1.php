@@ -8,8 +8,8 @@ $gelombang = $this->mgelombang->cek_daftar(array('thn_akademik' => $tha));
 <form method="post" action="<?= base_url() ?>main_user/save_nodaf" enctype="multipart/form-data" id="form">
     <input type="hidden" name="relasi" value="1">
     <input type="hidden" name="kode_gelombang" value="<?= $gelombang['kode'] ?>">
-    <input type="hidden" name="email" value="<?=$this->session->userdata['email']?>">
-    <input type="hidden" name="nama" value="<?=$this->session->userdata['nama']?>">
+    <input type="hidden" name="email" value="<?= $this->session->userdata['email'] ?>">
+    <input type="hidden" name="nama" value="<?= $this->session->userdata['nama'] ?>">
 
     <div class="form-group">
         <label class="control-label">Jenis Pendaftaran *</label>
@@ -177,5 +177,7 @@ $gelombang = $this->mgelombang->cek_daftar(array('thn_akademik' => $tha));
         ?>
     </div>
 
-    <button type="submit" class="btn btn-success btn-lg" type="button">Simpan & Lanjut</button>
+    <button type="submit" class="btn btn-success btn-lg" type="button" <?php if (!empty($biodata)) {
+                                                                            if ($biodata['syarat2'] == 'Sudah') echo "disabled";
+                                                                        } ?>>Simpan & Lanjut</button>
 </form>

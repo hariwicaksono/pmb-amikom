@@ -1,5 +1,5 @@
 <form method="post" action="<?= base_url() ?>main_user/save_biodata" enctype="multipart/form-data" id="form">
-<label class="control-label">Biodata *</label>
+    <label class="control-label">Biodata *</label>
     <div class="form-group">
         <input type="text" name="nama" class="form-control" placeholder="Nama Lengkap" <?php if (!empty($biodata['nama'])) echo 'value="' . $biodata['nama'] . '"';
                                                                                         else echo 'value="' . htmlspecialchars($akun['nama']) . '"'; ?> required>
@@ -145,7 +145,9 @@
                                                                                             else echo 'value="' . htmlspecialchars($this->session->userdata['email']) . '"'; ?> readonly>
         </div>
     </div>
-    
+
     <a href="<?= base_url('main_user/daftar?act=step1') ?>" class="btn btn-primary btn-lg" type="button">Sebelumnya</a>
-    <button type="submit" class="btn btn-success btn-lg" type="button">Simpan & Lanjut</button>
+    <button type="submit" class="btn btn-success btn-lg" type="button" <?php if (!empty($biodata)) {
+                                                                            if ($biodata['syarat2'] == 'Sudah') echo "disabled";
+                                                                        } ?>>Simpan & Lanjut</button>
 </form>

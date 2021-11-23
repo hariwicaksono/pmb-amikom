@@ -20,7 +20,7 @@ $gelombang = $this->mgelombang->cek_daftar(array('thn_akademik' => $tha));
                                                                         if ($biodata['status_registrasi'] == $key['status_registrasi']) {
                                                                             echo 'selected=selected';
                                                                         }
-                                                                    } ?>><?= $key['status_registrasi'] ?></option>
+                                                                    } ?>><?= $key['nama_registrasi'] ?></option>
             <?php } ?>
         </select>
     </div>

@@ -35,7 +35,7 @@ class Main_user extends CI_Controller
 			redirect(base_url());
 		}
 
-		$this->data['content_title'] = 'SELAMAT DATANG CALON MAHASISWA BARU UNIVERSITAS AMIKOM PURWOKERTO';
+		$this->data['content_title'] = 'Selamat Datang Calon Mahasiswa Baru Universitas Amikom Purwokerto';
 		$this->data['konten'] = 'user/view_biodata';
 
 		$this->data['jenis_mhs'] = $this->model_crud->selectData('MASTER_JENISMHS');
@@ -56,7 +56,7 @@ class Main_user extends CI_Controller
 			}
 		}
 
-		$this->data['content_title'] = 'SELAMAT DATANG CALON MAHASISWA BARU UNIVERSITAS AMIKOM PURWOKERTO';
+		$this->data['content_title'] = 'Pendaftaran Mahasiswa Baru';
 		$this->data['konten'] = 'user/view_biodata';
 
 		$this->data['jenis_mhs'] = $this->model_crud->selectData('MASTER_JENISMHS');
@@ -74,7 +74,7 @@ class Main_user extends CI_Controller
 		if (empty($this->data['biodata'])) {
 			redirect(base_url('main_user'));
 		}
-		$this->data['content_title'] = 'SELAMAT DATANG CALON MAHASISWA BARU UNIVERSITAS AMIKOM PURWOKERTO';
+		$this->data['content_title'] = 'Upload Dokumen Persyaratan';
 		$this->data['konten'] = 'user/view_biodata';
 
 		$this->data['ijazah'] = $this->model_crud->selectData('dokumen_pmb', array('nodaf' => $this->data['biodata']['nodaf'], 'jenis_dokumen' => 'ijazah'))->row_array();
@@ -94,7 +94,7 @@ class Main_user extends CI_Controller
 		if (empty($this->data['biodata'])) {
 			redirect(base_url('main_user'));
 		}
-		$this->data['content_title'] = 'SELAMAT DATANG CALON MAHASISWA BARU UNIVERSITAS AMIKOM PURWOKERTO';
+		$this->data['content_title'] = 'Data Pendaftaran';
 		$this->data['konten'] = 'user/view_biodata';
 		$this->load->view('view_main', $this->data);
 	}

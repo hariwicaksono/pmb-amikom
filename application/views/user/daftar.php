@@ -35,22 +35,22 @@ $gelombang = $this->mgelombang->cek_daftar(array('thn_akademik' => $tha));
         <a class="nav-link <?php if ($_GET['act'] == 'step1') echo "active"; ?>" href="<?= base_url() ?>main_user/daftar?act=step1">1</a>
     </li>
     <li class="nav-item" id="ribbon2">
-        <a class="nav-link <?php if ($_GET['act'] == 'step2') echo "active"; ?>" <?php if (!empty($biodata)) { ?> href="<?=base_url()?>main_user/daftar?act=step2" <?php } else { ?>  onclick="alertStep();" <?php }  ?> >2</a>
+        <a class="nav-link <?php if ($_GET['act'] == 'step2') echo "active"; ?>" <?php if (!empty($biodata)) { ?> href="<?= base_url() ?>main_user/daftar?act=step2" <?php } else { ?> onclick="alertStep();" <?php }  ?>>2</a>
     </li>
     <li class="nav-item" id="ribbon3">
-        <a class="nav-link <?php if ($_GET['act'] == 'step3') echo "active"; ?>" <?php if (!empty($biodata)) { ?> href="<?=base_url()?>main_user/daftar?act=step3" <?php } else { ?>  onclick="alertStep();" <?php }  ?> >3</a>
+        <a class="nav-link <?php if ($_GET['act'] == 'step3') echo "active"; ?>" <?php if (!empty($biodata)) { ?> href="<?= base_url() ?>main_user/daftar?act=step3" <?php } else { ?> onclick="alertStep();" <?php }  ?>>3</a>
     </li>
     <li class="nav-item" id="ribbon4">
-        <a class="nav-link <?php if ($_GET['act'] == 'step4') echo "active"; ?>" <?php if (!empty($biodata)) { ?> href="<?=base_url()?>main_user/daftar?act=step4" <?php } else { ?>  onclick="alertStep();" <?php }  ?> >4</a>
+        <a class="nav-link <?php if ($_GET['act'] == 'step4') echo "active"; ?>" <?php if (!empty($biodata)) { ?> href="<?= base_url() ?>main_user/daftar?act=step4" <?php } else { ?> onclick="alertStep();" <?php }  ?>>4</a>
     </li>
     <li class="nav-item" id="ribbon5">
-        <a class="nav-link <?php if ($_GET['act'] == 'step5') echo "active"; ?>" <?php if (!empty($biodata)) { ?> href="<?=base_url()?>main_user/daftar?act=step5" <?php } else { ?>  onclick="alertStep();" <?php }  ?> >5</a>
+        <a class="nav-link <?php if ($_GET['act'] == 'step5') echo "active"; ?>" <?php if (!empty($biodata)) { ?> href="<?= base_url() ?>main_user/daftar?act=step5" <?php } else { ?> onclick="alertStep();" <?php }  ?>>5</a>
     </li>
 </ul>
 
 <div class="card">
     <div class="card-body">
-        <?php 
+        <?php
         if ($_GET['act'] == 'step1') $this->load->view('user/daftar_step1.php');
         elseif ($_GET['act'] == 'step2') $this->load->view('user/daftar_step2.php');
         elseif ($_GET['act'] == 'step3') $this->load->view('user/daftar_step3.php');
@@ -269,7 +269,7 @@ $gelombang = $this->mgelombang->cek_daftar(array('thn_akademik' => $tha));
     })
 </script>
 
-<script>
+<!--<script>
     jQuery(document).ready(function($) {
         $(".otom").change(function() {
             vals = $(this).val();
@@ -277,7 +277,7 @@ $gelombang = $this->mgelombang->cek_daftar(array('thn_akademik' => $tha));
             $("#" + id[0] + "_ortu").val(vals);
         });
     });
-</script>
+</script>-->
 
 <script>
     jQuery(document).ready(function($) {
@@ -405,7 +405,7 @@ $gelombang = $this->mgelombang->cek_daftar(array('thn_akademik' => $tha));
                     required: true
                 },
                 //jurusan: {
-                    //required: true
+                //required: true
                 //},
                 nem: {
                     required: true

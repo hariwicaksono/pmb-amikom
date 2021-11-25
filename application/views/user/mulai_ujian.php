@@ -8,7 +8,7 @@ input[type="radio"],input[type="checkbox"] {
 
 <div class="card">
     <div class="card-header">
-       Informasi Ujian Online PMB
+       Informasi Ujian PMB
     </div>
     <div class="card-body">
     <div class="row justify-content-center">

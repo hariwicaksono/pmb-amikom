@@ -28,7 +28,6 @@ class Main_user extends CI_Controller
 		$this->data['bukti'] = $this->model_crud->selectData('dokumen_pmb', array('nodaf' => $this->data['biodata']['nodaf'], 'jenis_dokumen' => 'bukti_bayar'))->row_array();
 	}
 
-
 	public function index()
 	{
 		if (empty($this->session->userdata['username'])) {
@@ -105,9 +104,12 @@ class Main_user extends CI_Controller
 			redirect(base_url());
 		}
 
+		$gelombang = $this->mgelombang->cek_daftar(array('thn_akademik' => $this->data['tahun_pmb']));
 		$nodaf = $this->model_crud->genNodaf($this->data['tahun_pmb']);
 		$noref = $this->model_crud->nomor_referensi($nodaf);
-		$gelombang = $this->mgelombang->cek_daftar(array('thn_akademik' => $this->data['tahun_pmb']));
+		$kode_bank='7510360000';
+		$unix_va=substr(ltrim($nodaf),0,6);
+		$va_calonmhs=$kode_bank.$unix_va;
 		$pecah = explode('/', $_POST['jenis_mhs']);
 		$jenis_mhs = $pecah[0];
 		$id_jenismhs = $pecah[1];
@@ -118,6 +120,9 @@ class Main_user extends CI_Controller
 		}
 		$data_checkbox = substr($data_checkbox, 0, -1);
 		$this->data['biodata'] = $this->model_crud->selectData('calonsiswa', array('email' => $this->session->userdata['email']))->row_array();
+
+		$dbjenismhs = $this->model_crud->selectData('MASTER_JENISMHS', array('ID_JENISMHS' => $id_jenismhs))->row_array();
+		$biayadaftar = $dbjenismhs['BIAYA_DAFTAR'];
 
 		if (empty($this->data['biodata'])) {
 			$data = array(
@@ -137,7 +142,7 @@ class Main_user extends CI_Controller
 				'tgldaftar' => date('Y-m-d'),
 				'id_relasi' => $_POST['relasi'],
 				//'tgl_tes'=>date('Y-m-d'),
-				'biaya_pendaftaran' => 150000,
+				'biaya_pendaftaran' => $biayadaftar,
 				'status' => 0,
 				'nama_cs' => 'ADMINTEST',
 				'kode_kerjasama' => 1,
@@ -147,7 +152,8 @@ class Main_user extends CI_Controller
 				'wawancara' => 'Belum',
 				'status_registrasi' => $_POST['status_reg'],
 				'no_kipk' => $_POST['no_kipk'],
-				'ukuran_jas' => $_POST['ukuran_jas']
+				'ukuran_jas' => $_POST['ukuran_jas'],
+				'va'=>$va_calonmhs
 			);
 			$this->model_crud->insertData('calonsiswa', $data);
 		} else {
@@ -162,13 +168,29 @@ class Main_user extends CI_Controller
 				'id_relasi' => $_POST['relasi'],
 				'status_registrasi' => $_POST['status_reg'],
 				'no_kipk' => $_POST['no_kipk'],
-				'ukuran_jas' => $_POST['ukuran_jas']
+				'ukuran_jas' => $_POST['ukuran_jas'],
 			);
 			$this->model_crud->updateData('calonsiswa', $data2, array('nodaf' => $this->data['biodata']['nodaf']));
 		}
 
 		$this->session->set_flashdata('info', "Data Berhasil disimpan");
 		redirect(base_url('main_user/daftar?act=step2'));
+	}
+
+	function generate_va(){
+		$nodaf=$_POST['nodaf'];
+		$kode_bank='7510360000';
+		$unix_va=substr(ltrim($nodaf),0,6);
+		$va_calonmhs=$kode_bank.$unix_va;
+		if(!empty($va_calonmhs)){
+			$this->model_crud->updateData('calonsiswa', array('va'=>$va_calonmhs), array('nodaf' => $this->data['biodata']['nodaf']));
+			echo $va_calonmhs;
+			redirect('main_user','refresh');	
+
+		}else{
+			redirect('main_user','refresh');		
+			echo " Generating va gagal!!!";
+		}
 	}
 
 	public function save_biodata()

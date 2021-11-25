@@ -1,10 +1,12 @@
 <?php
-class Page extends CI_Controller{
-//private $limit = 10;
+class Page extends CI_Controller
+{
+	//private $limit = 10;
 	var $isi;
 	var $judul;
 
-	function __construct(){
+	function __construct()
+	{
 		parent::__construct();
 		date_default_timezone_set('Asia/Jakarta');
 		$this->load->library('session');
@@ -20,247 +22,263 @@ class Page extends CI_Controller{
 		$this->load->library('form_validation');
 		$this->load->helper('url');
 		$this->load->library('table');
-		$this->data['tahun_pmb']=$this->mtahun->getThaPmb();
-		$this->data['menupmb']=$this->mmenupmb->list_menu_pmb();
-		$this->data['menukulum']=$this->mmenupmb->list_menu_kulum();
-		$this->data['menupsu']=$this->mmenupmb->list_menu_psu();
-		$this->data['menureg']=$this->mmenupmb->list_menu_reg();
-		$this->data['menudownload']=$this->mmenupmb->list_menu_download_center();
+		$this->data['tahun_pmb'] = $this->mtahun->getThaPmb();
+		$this->data['menupmb'] = $this->mmenupmb->list_menu_pmb();
+		$this->data['menukulum'] = $this->mmenupmb->list_menu_kulum();
+		$this->data['menupsu'] = $this->mmenupmb->list_menu_psu();
+		$this->data['menureg'] = $this->mmenupmb->list_menu_reg();
+		$this->data['menudownload'] = $this->mmenupmb->list_menu_download_center();
 	}
-	function index(){
-		if (!empty($this->session->userdata['username'])) { redirect(base_url('main_user')); }
-		$hasil=$this->mmenupmb->get_judul_tupoksi(13);
-		foreach($hasil as $row){
-			$this->judul=$row['judul_tupoksi'];
-			$this->isi=$row['isi_tupoksi'];
+	function index()
+	{
+		if (!empty($this->session->userdata['username'])) {
+			redirect(base_url('main_user'));
 		}
-		$this->data['content_title']=$this->judul;
-		$this->data['isi_tupoksi']=$this->isi;
+		$hasil = $this->mmenupmb->get_judul_tupoksi(13);
+		foreach ($hasil as $row) {
+			$this->judul = $row['judul_tupoksi'];
+			$this->isi = $row['isi_tupoksi'];
+		}
+		$this->data['content_title'] = $this->judul;
+		$this->data['isi_tupoksi'] = $this->isi;
 		$tahun_lalu = '2021/2022';
 		$this->data['jumlah_akun'] = $this->mjumlah->count_akun();
 		$this->data['jumlah_calonsiswa'] = $this->mjumlah->count_calonsiswa();
 		$this->data['jumlah_tahunlalu'] = $this->mjumlah->count_tahunlalu($tahun_lalu);
 		$this->data['jumlah_beasiswa'] = $this->mjumlah->count_beasiswa($tahun_lalu);
 		$this->data['slideshow'] = $this->Mslideshow->get_all();
-		$this->data['konten']='view_home';
-		$this->load->view('view_main',$this->data);
+		$this->data['konten'] = 'view_home';
+		$this->load->view('view_main', $this->data);
 	}
 
-	function Syarat_pendaftaran($judul='',$hasil=''){
-//Menu PMB
-		$this->data['segment']=$this->uri->segment(3);
-		if ($this->data['segment']=='Calon_mahasiswa_prestasi'){
-			$hasil=$this->mmenupmb->get_judul_tupoksi(16);
+	function Syarat_pendaftaran($judul = '', $hasil = '')
+	{
+		//Menu PMB
+		$this->data['segment'] = $this->uri->segment(3);
+		if ($this->data['segment'] == 'Calon_mahasiswa_prestasi') {
+			$hasil = $this->mmenupmb->get_judul_tupoksi(16);
+		} else
+			if ($this->data['segment'] == 'Calon_mahasiswa_reguler') {
+			$hasil = $this->mmenupmb->get_judul_tupoksi(17);
+		} else
+				if ($this->data['segment'] == 'Calon_mahasiswa_pindahan') {
+			$hasil = $this->mmenupmb->get_judul_tupoksi(27);
+		} else
+					if ($this->data['segment'] == 'Calon_mahasiswa_transfer') {
+			$hasil = $this->mmenupmb->get_judul_tupoksi(28);
 		}
-		else
-			if ($this->data['segment']=='Calon_mahasiswa_reguler')
-			{
-				$hasil=$this->mmenupmb->get_judul_tupoksi(17);
+		if (!empty($hasil)) {
+			foreach ($hasil as $row) {
+				$this->judul = $row['judul_tupoksi'];
+				$this->isi = $row['isi_tupoksi'];
 			}
-			else
-				if ($this->data['segment']=='Calon_mahasiswa_pindahan')
-				{
-					$hasil=$this->mmenupmb->get_judul_tupoksi(27);
-				}
-				else
-					if ($this->data['segment']=='Calon_mahasiswa_transfer')
-					{
-						$hasil=$this->mmenupmb->get_judul_tupoksi(28);
-					}
-					if(!empty($hasil)){
-						foreach($hasil as $row){
-							$this->judul=$row['judul_tupoksi'];
-							$this->isi=$row['isi_tupoksi'];
-						}
-					}
+		}
 
-					$this->data['content_title']=$this->judul;
-					$this->data['isi_tupoksi']=$this->isi;
-					$this->data['modul'] ='Syarat_pendaftaran';
-					$this->data['konten']='view_isi';
-					$this->load->view('view_main',$this->data);
-				}
+		$this->data['content_title'] = $this->judul;
+		$this->data['isi_tupoksi'] = $this->isi;
+		$this->data['modul'] = 'Syarat_pendaftaran';
+		$this->data['konten'] = 'view_isi';
+		$this->load->view('view_main', $this->data);
+	}
 
-				function perlengkapan(){
-					$this->data['content_title']=$this->judul;
-					$this->data['isi_tupoksi']=$this->isi;
-					$this->data['modul'] ='perlengkapan';
-					$this->data['konten']='view_isi';
-					$this->load->view('view_main',$this->data);
-				}
-				function Jalur_penerimaan($judul=''){
-//Menu PMB
-					$hasil=$this->mmenupmb->get_judul_tupoksi(18);
-					foreach($hasil as $row){
-						$this->judul=$row['judul_tupoksi'];
-						$this->isi=$row['isi_tupoksi'];
-					}
-					$this->data['content_title']=$this->judul;
-					$this->data['isi_tupoksi']=$this->isi;
-					$this->data['modul'] ='Jalur_penerimaan';
-					$this->data['konten']='view_isi';
-					$this->load->view('view_main',$this->data);
-				}
-				function petunjuk($judul=''){
-					//Menu PMB
-					$hasil=$this->mmenupmb->get_judul_tupoksi(37);
-					foreach($hasil as $row){
-						$this->judul=$row['judul_tupoksi'];
-						$this->isi=$row['isi_tupoksi'];
-					}
-					$this->data['content_title']=$this->judul;
-					$this->data['isi_tupoksi']=$this->isi;
-					$this->data['modul'] ='petunjuk';
-					$this->data['konten']='view_isi';
-					$this->load->view('view_main',$this->data);
-				}
+	function perlengkapan()
+	{
+		$this->data['content_title'] = $this->judul;
+		$this->data['isi_tupoksi'] = $this->isi;
+		$this->data['modul'] = 'perlengkapan';
+		$this->data['konten'] = 'view_isi';
+		$this->load->view('view_main', $this->data);
+	}
+	function Jalur_penerimaan($judul = '')
+	{
+		//Menu PMB
+		$hasil = $this->mmenupmb->get_judul_tupoksi(18);
+		foreach ($hasil as $row) {
+			$this->judul = $row['judul_tupoksi'];
+			$this->isi = $row['isi_tupoksi'];
+		}
+		$this->data['content_title'] = $this->judul;
+		$this->data['isi_tupoksi'] = $this->isi;
+		$this->data['modul'] = 'Jalur_penerimaan';
+		$this->data['konten'] = 'view_isi';
+		$this->load->view('view_main', $this->data);
+	}
+	function petunjuk($judul = '')
+	{
+		//Menu PMB
+		$hasil = $this->mmenupmb->get_judul_tupoksi(37);
+		foreach ($hasil as $row) {
+			$this->judul = $row['judul_tupoksi'];
+			$this->isi = $row['isi_tupoksi'];
+		}
+		$this->data['content_title'] = $this->judul;
+		$this->data['isi_tupoksi'] = $this->isi;
+		$this->data['modul'] = 'petunjuk';
+		$this->data['konten'] = 'view_isi';
+		$this->load->view('view_main', $this->data);
+	}
 
-				function fasilitas($judul=''){
-					//Menu PMB
-					$hasil=$this->mmenupmb->get_judul_tupoksi(35);
-					foreach($hasil as $row){
-						$this->judul=$row['judul_tupoksi'];
-						$this->isi=$row['isi_tupoksi'];
-					}
-					$this->data['content_title']=$this->judul;
-					$this->data['isi_tupoksi']=$this->isi;
-					$this->data['modul'] ='fasilitas';
-					$this->data['konten']='view_isi';
-					$this->load->view('view_main',$this->data);
-				}
+	function fasilitas($judul = '')
+	{
+		//Menu PMB
+		$hasil = $this->mmenupmb->get_judul_tupoksi(35);
+		foreach ($hasil as $row) {
+			$this->judul = $row['judul_tupoksi'];
+			$this->isi = $row['isi_tupoksi'];
+		}
+		$this->data['content_title'] = $this->judul;
+		$this->data['isi_tupoksi'] = $this->isi;
+		$this->data['modul'] = 'fasilitas';
+		$this->data['konten'] = 'view_isi';
+		$this->load->view('view_main', $this->data);
+	}
 
-				function fakultas_programstudi($judul=''){
-					//Menu PMB
-					$hasil=$this->mmenupmb->get_judul_tupoksi(36);
-					foreach($hasil as $row){
-						$this->judul=$row['judul_tupoksi'];
-						$this->isi=$row['isi_tupoksi'];
-					}
-					$this->data['content_title']=$this->judul;
-					$this->data['isi_tupoksi']=$this->isi;
-					$this->data['modul'] ='fakultas_programstudi';
-					$this->data['konten']='view_isi';
-					$this->load->view('view_main',$this->data);
-				}
+	function fakultas_programstudi($judul = '')
+	{
+		//Menu PMB
+		$hasil = $this->mmenupmb->get_judul_tupoksi(36);
+		foreach ($hasil as $row) {
+			$this->judul = $row['judul_tupoksi'];
+			$this->isi = $row['isi_tupoksi'];
+		}
+		$this->data['content_title'] = $this->judul;
+		$this->data['isi_tupoksi'] = $this->isi;
+		$this->data['modul'] = 'fakultas_programstudi';
+		$this->data['konten'] = 'view_isi';
+		$this->load->view('view_main', $this->data);
+	}
 
-				function biaya_pendidikan($judul=''){
-					//Menu PMB
-					$hasil=$this->mmenupmb->get_judul_tupoksi(38);
-					foreach($hasil as $row){
-						$this->judul=$row['judul_tupoksi'];
-						$this->isi=$row['isi_tupoksi'];
-					}
-					$this->data['content_title']=$this->judul;
-					$this->data['isi_tupoksi']=$this->isi;
-					$this->data['modul'] ='biaya_pendidikan';
-					$this->data['konten']='view_isi';
-					$this->load->view('view_main',$this->data);
-				}
-				function Beasiswa($judul=''){
-//Menu PMB
-					$hasil=$this->mmenupmb->get_judul_tupoksi(30);
-					foreach($hasil as $row){
-						$this->judul=$row['judul_tupoksi'];
-						$this->isi=$row['isi_tupoksi'];
-					}
-					$this->data['content_title']=$this->judul;
-					$this->data['isi_tupoksi']=$this->isi;
-					$this->data['modul'] ='Beasiswa';
-					$this->data['konten']='view_isi';
-					$this->load->view('view_main',$this->data);
-				}
-				function Alur_pendaftaran($judul=''){
-//Menu PMB
-					$hasil=$this->mmenupmb->get_judul_tupoksi(31);
-					foreach($hasil as $row){
-						$this->judul=$row['judul_tupoksi'];
-						$this->isi=$row['isi_tupoksi'];
-					}
-					$this->data['content_title']=$this->judul;
-					$this->data['isi_tupoksi']=$this->isi;
-					$this->data['modul'] ='Alur_Pendaftaran';
-					$this->data['konten']='view_isi';
-					$this->load->view('view_main',$this->data);
-				}
-				function faq($judul=''){
-//Menu PMB
-					$hasil=$this->mmenupmb->get_judul_tupoksi(33);
-					foreach($hasil as $row){
-						$this->judul=$row['judul_tupoksi'];
-						$this->isi=$row['isi_tupoksi'];
-					}
-					$this->data['content_title']=$this->judul;
-					$this->data['isi_tupoksi']=$this->isi;
-					$this->data['modul'] ='faq';
-					$this->data['konten']='view_isi';
-					$this->load->view('view_main',$this->data);
-				}
-				function Kegiatan_Pra_Kuliah_Mahasiswa_Baru($judul=''){
-//Menu PMB
-					$hasil=$this->mmenupmb->get_judul_tupoksi(19);
-					foreach($hasil as $row){
-						$this->judul=$row['judul_tupoksi'];
-						$this->isi=$row['isi_tupoksi'];
-					}
-					$this->data['content_title']=$this->judul;
-					$this->data['isi_tupoksi']=$this->isi;
-					$this->data['modul'] ='Prosedur_Registrasi';
-					$this->data['konten']='view_isi';
-					$this->load->view('view_main',$this->data);
-				}
-				function Bentuk_dan_Waktu_Pelaksanaan(){
+	function biaya_pendidikan($judul = '')
+	{
+		//Menu PMB
+		$hasil = $this->mmenupmb->get_judul_tupoksi(38);
+		foreach ($hasil as $row) {
+			$this->judul = $row['judul_tupoksi'];
+			$this->isi = $row['isi_tupoksi'];
+		}
+		$this->data['content_title'] = $this->judul;
+		$this->data['isi_tupoksi'] = $this->isi;
+		$this->data['modul'] = 'biaya_pendidikan';
+		$this->data['konten'] = 'view_isi';
+		$this->load->view('view_main', $this->data);
+	}
+	function Beasiswa($judul = '')
+	{
+		//Menu PMB
+		$hasil = $this->mmenupmb->get_judul_tupoksi(30);
+		foreach ($hasil as $row) {
+			$this->judul = $row['judul_tupoksi'];
+			$this->isi = $row['isi_tupoksi'];
+		}
+		$this->data['content_title'] = $this->judul;
+		$this->data['isi_tupoksi'] = $this->isi;
+		$this->data['modul'] = 'Beasiswa';
+		$this->data['konten'] = 'view_isi';
+		$this->load->view('view_main', $this->data);
+	}
+	function Alur_pendaftaran($judul = '')
+	{
+		//Menu PMB
+		$hasil = $this->mmenupmb->get_judul_tupoksi(31);
+		foreach ($hasil as $row) {
+			$this->judul = $row['judul_tupoksi'];
+			$this->isi = $row['isi_tupoksi'];
+		}
+		$this->data['content_title'] = $this->judul;
+		$this->data['isi_tupoksi'] = $this->isi;
+		$this->data['modul'] = 'Alur_Pendaftaran';
+		$this->data['konten'] = 'view_isi';
+		$this->load->view('view_main', $this->data);
+	}
+	function faq($judul = '')
+	{
+		//Menu PMB
+		$hasil = $this->mmenupmb->get_judul_tupoksi(33);
+		foreach ($hasil as $row) {
+			$this->judul = $row['judul_tupoksi'];
+			$this->isi = $row['isi_tupoksi'];
+		}
+		$this->data['content_title'] = $this->judul;
+		$this->data['isi_tupoksi'] = $this->isi;
+		$this->data['modul'] = 'faq';
+		$this->data['konten'] = 'view_isi';
+		$this->load->view('view_main', $this->data);
+	}
+	function Kegiatan_Pra_Kuliah_Mahasiswa_Baru($judul = '')
+	{
+		//Menu PMB
+		$hasil = $this->mmenupmb->get_judul_tupoksi(19);
+		foreach ($hasil as $row) {
+			$this->judul = $row['judul_tupoksi'];
+			$this->isi = $row['isi_tupoksi'];
+		}
+		$this->data['content_title'] = $this->judul;
+		$this->data['isi_tupoksi'] = $this->isi;
+		$this->data['modul'] = 'Prosedur_Registrasi';
+		$this->data['konten'] = 'view_isi';
+		$this->load->view('view_main', $this->data);
+	}
+	function Bentuk_dan_Waktu_Pelaksanaan()
+	{
 
-					$hasil=$this->mgelombang->getGelombang($this->data['tahun_pmb']);
-					$this->load->library('table');
-					foreach($hasil as $row){
-						$this->table->add_row('-','Gel. '.$row['gelombang'], ' : ',date('d-M-Y',strtotime($row['tgl_mulai'])) . ' - ' . date('d-M-Y',strtotime($row['tgl_selesai'] )));
-						if ($row['gelombang']=='Khusus'){ $ket='Tanpa Test Tertulis (Pendaftaran Dibatasi 70 Pendaftar Pertama)';} else {$ket='Setiap hari Sabtu Jam 10.00 WIB di Ruang Aula UNIVERSITAS AMIKOM Purwokerto';}
-						$this->table->add_row('','Test Tertulis',' : ',$ket);
-						$this->table->add_row('','Wawancara',' : ','Setiap Hari Senin Jam 09.00 WIB');
-					}
-					$this->data['isi_tupoksi'] = $this->table->generate();
-					$this->data['content_title']='Bentuk dan Waktu Pelaksanaan Penerimaan Mahasiswa Baru';
-					$this->data['modul'] ='Bentuk_dan_Waktu_Pelaksanaan';
-					$this->data['konten']='view_isi';
-					$this->load->view('view_main',$this->data);
-				}
-				function Jenis_Pendaftaran(){
-					$hasil=$this->mmenupmb->get_judul_tupoksi(14);
-					foreach($hasil as $row){
-						$this->judul=$row['judul_tupoksi'];
-						$this->isi=$row['isi_tupoksi'];
-					}
-					$this->data['content_title']=$this->judul;
-					$this->data['isi_tupoksi']=$this->isi;
-					$this->data['modul']=$this->uri->segment(2);
-					$this->data['konten']='view_isi';
-					$this->load->view('view_main',$this->data);
-				}
-				function Organisasi_Pelaksana_Penerimaan_Mahasiswa_Baru(){
-					$hasil=$this->mmenupmb->get_judul_tupoksi(20);
-					foreach($hasil as $row){
-						$this->judul=$row['judul_tupoksi'];
-						$this->isi=$row['isi_tupoksi'];
-					}
-					$this->data['content_title']=$this->judul;
-					$this->data['isi_tupoksi']=$this->isi;
-					$this->data['modul']=$this->uri->segment(2);
-					$this->data['konten']='view_isi';
-					$this->load->view('view_main',$this->data);
-				}
-				function Tata_Tertib_Penerimaan_Mahasiswa_Baru(){
-					$hasil=$this->mmenupmb->get_judul_tupoksi(21);
-					foreach($hasil as $row){
-						$this->judul=$row['judul_tupoksi'];
-						$this->isi=$row['isi_tupoksi'];
-					}
-					$this->data['content_title']=$this->judul;
-					$this->data['isi_tupoksi']=$this->isi;
-					$this->data['modul']=$this->uri->segment(2);
-					$this->data['konten']='view_isi';
-					$this->load->view('view_main',$this->data);
-				}
-				/*function datamhs(){					
+		$hasil = $this->mgelombang->getGelombang($this->data['tahun_pmb']);
+		$this->load->library('table');
+		foreach ($hasil as $row) {
+			$this->table->add_row('-', 'Gel. ' . $row['gelombang'], ' : ', date('d-M-Y', strtotime($row['tgl_mulai'])) . ' - ' . date('d-M-Y', strtotime($row['tgl_selesai'])));
+			if ($row['gelombang'] == 'Khusus') {
+				$ket = 'Tanpa Test Tertulis (Pendaftaran Dibatasi 70 Pendaftar Pertama)';
+			} else {
+				$ket = 'Setiap hari Sabtu Jam 10.00 WIB di Ruang Aula UNIVERSITAS AMIKOM Purwokerto';
+			}
+			$this->table->add_row('', 'Test Tertulis', ' : ', $ket);
+			$this->table->add_row('', 'Wawancara', ' : ', 'Setiap Hari Senin Jam 09.00 WIB');
+		}
+		$this->data['isi_tupoksi'] = $this->table->generate();
+		$this->data['content_title'] = 'Bentuk dan Waktu Pelaksanaan Penerimaan Mahasiswa Baru';
+		$this->data['modul'] = 'Bentuk_dan_Waktu_Pelaksanaan';
+		$this->data['konten'] = 'view_isi';
+		$this->load->view('view_main', $this->data);
+	}
+	function Jenis_Pendaftaran()
+	{
+		$hasil = $this->mmenupmb->get_judul_tupoksi(14);
+		foreach ($hasil as $row) {
+			$this->judul = $row['judul_tupoksi'];
+			$this->isi = $row['isi_tupoksi'];
+		}
+		$this->data['content_title'] = $this->judul;
+		$this->data['isi_tupoksi'] = $this->isi;
+		$this->data['modul'] = $this->uri->segment(2);
+		$this->data['konten'] = 'view_isi';
+		$this->load->view('view_main', $this->data);
+	}
+	function Organisasi_Pelaksana_Penerimaan_Mahasiswa_Baru()
+	{
+		$hasil = $this->mmenupmb->get_judul_tupoksi(20);
+		foreach ($hasil as $row) {
+			$this->judul = $row['judul_tupoksi'];
+			$this->isi = $row['isi_tupoksi'];
+		}
+		$this->data['content_title'] = $this->judul;
+		$this->data['isi_tupoksi'] = $this->isi;
+		$this->data['modul'] = $this->uri->segment(2);
+		$this->data['konten'] = 'view_isi';
+		$this->load->view('view_main', $this->data);
+	}
+	function Tata_Tertib_Penerimaan_Mahasiswa_Baru()
+	{
+		$hasil = $this->mmenupmb->get_judul_tupoksi(21);
+		foreach ($hasil as $row) {
+			$this->judul = $row['judul_tupoksi'];
+			$this->isi = $row['isi_tupoksi'];
+		}
+		$this->data['content_title'] = $this->judul;
+		$this->data['isi_tupoksi'] = $this->isi;
+		$this->data['modul'] = $this->uri->segment(2);
+		$this->data['konten'] = 'view_isi';
+		$this->load->view('view_main', $this->data);
+	}
+	/*function datamhs(){					
 					$this->form_validation->set_rules('katakunci', '<b>Kata kunci untuk pencarian</b>', 'required|alpha_dash|xss_clean');
 					$this->form_validation->run();	
 					$this->data['searchkey']=$this->input->post('katakunci');
@@ -295,36 +313,38 @@ class Page extends CI_Controller{
 					$this->data['konten']='view_isi';
 					$this->load->view('view_main',$this->data);
 				}*/
-				
-//kulum
-				function Tentang_Kuliah_Umum(){
-					$hasil=$this->mmenupmb->get_judul_tupoksi(25);
-					foreach($hasil as $row){ 
-						$this->judul=$row['judul_tupoksi'];
-						$this->isi=$row['isi_tupoksi'];
-					}
-					$this->data['content_title']=$this->judul;
-					$this->data['isi_tupoksi']=$this->isi;
-					$this->data['modul']=$this->uri->segment(2);
-					$this->data['konten']='view_isi';
-					$this->load->view('view_main',$this->data);
-				}
-//Tentang PSU
-				function Tentang_PSU(){
-					$hasil=$this->mmenupmb->get_judul_tupoksi(26);
-					foreach($hasil as $row){
-						$this->judul=$row['judul_tupoksi'];
-						$this->isi=$row['isi_tupoksi'];
-					}
-					$this->data['content_title']=$this->judul;
-					$this->data['isi_tupoksi']=$this->isi;
-					$this->data['modul']=$this->uri->segment(2);
-					$this->data['konten']='view_isi';
-					$this->load->view('view_main',$this->data);
-				}
 
-//Jadwal Kuliah Umum
-				/*function Jadwal_Kuliah_Umum(){
+	//kulum
+	function Tentang_Kuliah_Umum()
+	{
+		$hasil = $this->mmenupmb->get_judul_tupoksi(25);
+		foreach ($hasil as $row) {
+			$this->judul = $row['judul_tupoksi'];
+			$this->isi = $row['isi_tupoksi'];
+		}
+		$this->data['content_title'] = $this->judul;
+		$this->data['isi_tupoksi'] = $this->isi;
+		$this->data['modul'] = $this->uri->segment(2);
+		$this->data['konten'] = 'view_isi';
+		$this->load->view('view_main', $this->data);
+	}
+	//Tentang PSU
+	function Tentang_PSU()
+	{
+		$hasil = $this->mmenupmb->get_judul_tupoksi(26);
+		foreach ($hasil as $row) {
+			$this->judul = $row['judul_tupoksi'];
+			$this->isi = $row['isi_tupoksi'];
+		}
+		$this->data['content_title'] = $this->judul;
+		$this->data['isi_tupoksi'] = $this->isi;
+		$this->data['modul'] = $this->uri->segment(2);
+		$this->data['konten'] = 'view_isi';
+		$this->load->view('view_main', $this->data);
+	}
+
+	//Jadwal Kuliah Umum
+	/*function Jadwal_Kuliah_Umum(){
 
 					$kulum=$this->mmenupmb->get_jadwal_kulum($this->data['tahun_pmb']) ;
 					$h1 = array('data' => 'NO', 'class' => 'highlight', 'bgcolor' => '#663399');
@@ -354,21 +374,22 @@ class Page extends CI_Controller{
 					$this->data['konten']='view_isi';
 					$this->load->view('view_main',$this->data);
 				}*/
-//Jadwal PSU
-				function Jadwal_kegiatan(){
+	//Jadwal PSU
+	function Jadwal_kegiatan()
+	{
 
-					$hasil=$this->mmenupmb->get_judul_tupoksi(32);
-					foreach($hasil as $row){
-						$this->judul=$row['judul_tupoksi'];
-						$this->isi=$row['isi_tupoksi'];
-					}
-					$this->data['content_title']='KEGIATAN PENERIMAAN MAHASISWA BARU TAHUN AKADEMIK '.$this->data['tahun_pmb'];
-					$this->data['isi_tupoksi']=$this->isi;
-					$this->data['modul'] ='Jadwal Kegiatan';
-					$this->data['konten']='view_isi';
-					$this->load->view('view_main',$this->data);
-				}
-				/*function list_angkatan_psu($id_jadwal_psu=''){
+		$hasil = $this->mmenupmb->get_judul_tupoksi(32);
+		foreach ($hasil as $row) {
+			$this->judul = $row['judul_tupoksi'];
+			$this->isi = $row['isi_tupoksi'];
+		}
+		$this->data['content_title'] = 'KEGIATAN PENERIMAAN MAHASISWA BARU TAHUN AKADEMIK ' . $this->data['tahun_pmb'];
+		$this->data['isi_tupoksi'] = $this->isi;
+		$this->data['modul'] = 'Jadwal Kegiatan';
+		$this->data['konten'] = 'view_isi';
+		$this->load->view('view_main', $this->data);
+	}
+	/*function list_angkatan_psu($id_jadwal_psu=''){
 					$id_jadwal_psu=$this->uri->segment(3);
 
 					$kulum=$this->mmenupmb->get_peserta_PSU($id_jadwal_psu) ;
@@ -397,30 +418,29 @@ class Page extends CI_Controller{
 					$this->data['konten']='view_isi';
 					$this->load->view('view_main',$this->data);
 				}*/
-				function download(){
-					$nama_file=$this->uri->segment(3);
-					$tahun=str_replace("/","-",$this->mtahun->getThaPmb());
-					if ($nama_file=='brosur'){
-						$nama_download="brosur-$tahun.pdf";
-					}
-					else if($nama_file=='rincian_biaya'){
-						$nama_download="rincian_biaya-$tahun.pdf";
-					}
-					else if ($nama_file=='PSU'){
-						$nama_download="psu-$tahun.pdf";
-					}
-					$url="/home/pmbacid1/public_html/doc/";
+	function download()
+	{
+		$nama_file = $this->uri->segment(3);
+		$tahun = str_replace("/", "-", $this->mtahun->getThaPmb());
+		if ($nama_file == 'brosur') {
+			$nama_download = "brosur-$tahun.pdf";
+		} else if ($nama_file == 'rincian_biaya') {
+			$nama_download = "rincian_biaya-$tahun.pdf";
+		} else if ($nama_file == 'PSU') {
+			$nama_download = "psu-$tahun.pdf";
+		}
+		$url = "/home/pmbacid1/public_html/doc/";
 
-					$filePath=$url.$nama_download;
-					
-					if(!empty($filePath)){ 
+		$filePath = $url . $nama_download;
+
+		if (!empty($filePath)) {
 
 
-						$this->load->helper('download');
-					$data = file_get_contents($filePath); // Read the file's contents
+			$this->load->helper('download');
+			$data = file_get_contents($filePath); // Read the file's contents
 
-					force_download($nama_download, $data); 
-				/*  
+			force_download($nama_download, $data);
+			/*  
 				// force_download($filename, $url.$ket."/");
 							header('HTTP/1.1 200 OK');
 							header('Date: ' . date("D M j G:i:s T Y"));
@@ -430,78 +450,78 @@ class Page extends CI_Controller{
 							header("Content-Transfer-Encoding: Binary");
 							header("Content-Disposition: attachment; filename=".basename($nama_download));
 				*/
-						}
-					}
-	function hari($tgl){
-		$nama_hari = date("l",strtotime($tgl)); 
-		switch($nama_hari) 
-		{ 
-			case "Monday": 
-			$indonesian = "Senin"; 
-			break; 
-			case "Tuesday": 
-			$indonesian = "Selasa"; 
-			break; 
-			case "Wednesday": 
-			$indonesian = "Rabu"; 
-			break; 
-			case "Thursday": 
-			$indonesian = "Kamis"; 
-			break; 
-			case "Friday": 
-			$indonesian = "Jumat"; 
-			break; 
-			case "Saturday": 
-			$indonesian = "Sabtu";
-			break; 
-			default: 
-			$indonesian = "Minggu";
-
+		}
+	}
+	function hari($tgl)
+	{
+		$nama_hari = date("l", strtotime($tgl));
+		switch ($nama_hari) {
+			case "Monday":
+				$indonesian = "Senin";
+				break;
+			case "Tuesday":
+				$indonesian = "Selasa";
+				break;
+			case "Wednesday":
+				$indonesian = "Rabu";
+				break;
+			case "Thursday":
+				$indonesian = "Kamis";
+				break;
+			case "Friday":
+				$indonesian = "Jumat";
+				break;
+			case "Saturday":
+				$indonesian = "Sabtu";
+				break;
+			default:
+				$indonesian = "Minggu";
 		}
 		return $indonesian;
 	}
 
-	function register() {
+	function register()
+	{
 		$this->load->library('email');
 		$this->load->model('memail');
-		$this->data['konten']='view_register';
-		$this->data['content_title']='SELAMAT DATANG CALON MAHASISWA BARU UNIVERSITAS AMIKOM PURWOKERTO';
+		$this->data['konten'] = 'view_register';
+		$this->data['content_title'] = 'SELAMAT DATANG CALON MAHASISWA BARU UNIVERSITAS AMIKOM PURWOKERTO';
 		if (isset($_POST['nama'])) {
-			$cek=$this->model_crud->selectData('registrasi_pmb',array('email'=>$_POST['email']))->result_array();
-			$cekuser=$this->model_crud->selectData('registrasi_pmb',array('username'=>$_POST['username']))->result_array();
+			$cek = $this->model_crud->selectData('registrasi_pmb', array('email' => $_POST['email']))->result_array();
+			$cekuser = $this->model_crud->selectData('registrasi_pmb', array('username' => $_POST['username']))->result_array();
 			if (!empty($cek) || !empty($cekuser)) { ?>
-			<?php $this->session->set_flashdata('info',"Perhatian, Email atau Username telah terdaftar"); ?>
+				<?php $this->session->set_flashdata('info', "Perhatian, Email atau Username telah terdaftar"); ?>
 				<script type="text/javascript">
 					//alert('Email atau Username telah terdaftar');
 					history.go(-1);
 				</script>
-			<?php } else {
-				$this->model_crud->insertData('registrasi_pmb',array(
-					'username'=>$_POST['username'],
-					'nama'=>$_POST['nama'],
-					'telp'=>$_POST['telp'],
-					'email'=>$_POST['email'],
-					'password'=>$_POST['password'],
-					'tahun_daftar'=> date("Y"),
-					'tanggal_daftar'=> date("Y-m-d H:i:s")
+<?php } else {
+				$this->model_crud->insertData(
+					'registrasi_pmb',
+					array(
+						'username' => $_POST['username'],
+						'nama' => $_POST['nama'],
+						'telp' => $_POST['telp'],
+						'email' => $_POST['email'],
+						'password' => $_POST['password'],
+						'tahun_daftar' => date("Y"),
+						'tanggal_daftar' => date("Y-m-d H:i:s")
 					)
 				);
-				
+
 				$this->memail->email_reg($_POST['email']);
-				$this->session->set_flashdata('info',"Proses daftar akun berhasil, silahkan Login untuk melakukan Pendaftaran PMB");
+				$this->session->set_flashdata('info', "Proses daftar akun berhasil, silahkan Login untuk melakukan Pendaftaran PMB");
 				redirect(base_url('page/login'));
 			}
 		}
 
-		$this->load->view('view_main',$this->data);
+		$this->load->view('view_main', $this->data);
 	}
 
-	function login() {
-		$this->data['konten']='view_login';
-		$this->data['content_title']='SELAMAT DATANG CALON MAHASISWA BARU UNIVERSITAS AMIKOM PURWOKERTO';
-		$this->load->view('view_main',$this->data);
+	function login()
+	{
+		$this->data['konten'] = 'view_login';
+		$this->data['content_title'] = 'SELAMAT DATANG CALON MAHASISWA BARU UNIVERSITAS AMIKOM PURWOKERTO';
+		$this->load->view('view_main', $this->data);
 	}
-
-
 }
-

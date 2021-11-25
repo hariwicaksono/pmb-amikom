@@ -40,7 +40,6 @@ class Download extends CI_Controller
 
 		$pdfFilePath = "registrasi-" . time() . "-download.pdf";
 
-
 		//actually, you can pass mPDF parameter on this load() function
 		//$pdf = $this->m_pdf->load();
 		$mpdf = new \Mpdf\Mpdf();
@@ -67,7 +66,6 @@ class Download extends CI_Controller
 		}
 
 		$pdfFilePath = "registrasi-" . time() . "-download.pdf";
-
 
 		//actually, you can pass mPDF parameter on this load() function
 		//$pdf = $this->m_pdf->load();

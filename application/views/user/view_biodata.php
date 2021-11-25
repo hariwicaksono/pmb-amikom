@@ -51,8 +51,6 @@
                 elseif ($this->uri->segment(2)=='ujianonline') $this->load->view('user/ujian_online.php');
                 elseif ($this->uri->segment(2)=='ujianonline_kipk') $this->load->view('user/ujian_online_kipk.php');
                 elseif ($this->uri->segment(2)=='hasilujian') $this->load->view('user/hasil_ujian.php');
-                elseif ($this->uri->segment(2)=='lihatattempt') $this->load->view('user/lihatattempt.php');
-                elseif ($this->uri->segment(2)=='lihatnilai') $this->load->view('user/lihatnilai.php');
             ?>
         </div>
         </div>

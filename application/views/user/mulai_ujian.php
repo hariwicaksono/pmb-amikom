@@ -73,7 +73,7 @@ input[type="radio"],input[type="checkbox"] {
         <div style='text-align:center;'>
             <form name="fValidate" method="post" action="<?=base_url()?>main_user/postattempt">
             <br/>  
-            <input type="checkbox" name="agree" id="agree" value="1" required> &nbsp;<span style="text-size:16px">Saya Mengerti dan Siap Untuk Mengikuti Tes</span>
+            <input type="checkbox" name="agree" id="agree" value="1" required> &nbsp;<span style="font-size:16px">Saya Mengerti dan Siap Untuk Mengikuti Tes</span>
             <br/>  
             <input type="submit" name="submit" class="btn btn-primary btn-lg mt-2" value="MULAI" onclick="cekForm()">
             </form>

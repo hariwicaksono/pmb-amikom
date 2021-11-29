@@ -189,7 +189,7 @@ class Main_user extends CI_Controller
 
 		}else{
 			redirect('main_user','refresh');		
-			echo " Generating va gagal!!!";
+			echo "Generating va gagal!!!";
 		}
 	}
 
@@ -204,9 +204,10 @@ class Main_user extends CI_Controller
 
 		$data2 = array(
 			'nama' => $this->input->post('nama', true),
-			'nikktp' => $this->input->post('nik', true),
 			'tempatlahir' => $this->input->post('tempatlahir', true),
 			'tgllahir' => $tgllahir,
+			'kewargaan' => $_POST['kewargaan'],
+			'nikktp' => $this->input->post('nik', true),
 			'jk' => $_POST['jk'],
 			'agama' => $_POST['agama'],
 			'status_pernikahan' => $_POST['status_pernikahan'],
@@ -309,11 +310,6 @@ class Main_user extends CI_Controller
 		if (empty($this->session->userdata['username'])) {
 			redirect(base_url());
 		}
-
-		//error_reporting(1);
-		//if (!preg_match("/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/",$_POST['tgllahir'])) {
-		//echo "<center>Format pengisian tanggal lahir tidak sesuai <input type=button value=Go Back onclick=history.back(-1) /></center>";
-		//} 
 
 		$nodaf = $this->model_crud->genNodaf($this->data['tahun_pmb']);
 		$noref = $this->model_crud->nomor_referensi($nodaf);

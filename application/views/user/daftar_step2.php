@@ -5,13 +5,8 @@
                                                                                         else echo 'value="' . htmlspecialchars($akun['nama']) . '"'; ?> required>
     </div>
 
-    <div class="form-row form-group">
-        <div class="col-sm-6">
-            <input type="text" name="nik" class="form-control" placeholder="Nomor NIK/KTP" maxlength="16" <?php if (!empty($biodata['nikktp'])) echo 'value=' . htmlspecialchars($biodata['nikktp']); ?> required="required">
-        </div>
-        <div class="col-sm-6">
-            <input type="text" name="tempatlahir" class="form-control" placeholder="Tempat Lahir" <?php if (!empty($biodata['tempatlahir'])) echo 'value=' . htmlspecialchars($biodata['tempatlahir']); ?> required>
-        </div>
+    <div class="form-group">
+        <input type="text" name="tempatlahir" class="form-control" placeholder="Tempat Lahir" <?php if (!empty($biodata['tempatlahir'])) echo 'value=' . htmlspecialchars($biodata['tempatlahir']); ?> required>
     </div>
 
     <div class="form-row form-group">
@@ -66,6 +61,32 @@
             </select>
         </div>
 
+    </div>
+
+    <div class="form-row form-group mb-1">
+
+        <div class="col-6">
+            <input class="radio-btn positive" type="radio" name="kewargaan" value="WNI" <?php if (!empty($biodata)) {
+                                                                                        if ($biodata['kewargaan'] == 'WNI') {
+                                                                                            echo 'checked=checked';
+                                                                                        }
+                                                                                    } ?> id="radio-wni">
+            <label class="radio-label" for="radio-wni">WNI</label>
+        </div>
+
+        <div class="col-6">
+            <input class="radio-btn positive" type="radio" name="kewargaan" value="WNA" <?php if (!empty($biodata)) {
+                                                                                        if ($biodata['kewargaan'] == 'WNA') {
+                                                                                            echo 'checked=checked';
+                                                                                        }
+                                                                                    } ?> id="radio-wna">
+            <label class="radio-label" for="radio-wna">WNA</label>
+        </div>
+
+    </div>
+
+    <div class="form-group">
+        <input type="text" name="nik" class="form-control" placeholder="Nomor KTP/KITAS" maxlength="16" <?php if (!empty($biodata['nikktp'])) echo 'value=' . htmlspecialchars($biodata['nikktp']); ?> required="required">
     </div>
 
     <div class="form-row form-group mb-1" id="jk">

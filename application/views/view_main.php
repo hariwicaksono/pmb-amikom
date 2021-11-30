@@ -6,8 +6,7 @@ $this->load->view('layout/header');
   <div class="container-fluid">
     <div class="shadow mt-3 mb-2">
 
-
-      <div id="carousel" class="carousel slide" data-bs-ride="carousel">
+      <div id="carousel" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
           <?php
           for ($i = 0; $i < $slideshow->num_rows(); $i++) {

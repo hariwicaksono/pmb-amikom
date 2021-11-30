@@ -76,12 +76,16 @@ class Main_user extends CI_Controller
 		$this->data['content_title'] = 'Upload Dokumen Persyaratan';
 		$this->data['konten'] = 'user/view_biodata';
 
+		$dbjenismhs = $this->model_crud->selectData('MASTER_JENISMHS', array('ID_JENISMHS' => $this->data['biodata']['ID_JENISMHS']))->row_array();
+		$this->data['biayadaftar'] = $dbjenismhs['BIAYA_DAFTAR'];
+
 		$this->data['ijazah'] = $this->model_crud->selectData('dokumen_pmb', array('nodaf' => $this->data['biodata']['nodaf'], 'jenis_dokumen' => 'ijazah'))->row_array();
 		$this->data['skl'] = $this->model_crud->selectData('dokumen_pmb', array('nodaf' => $this->data['biodata']['nodaf'], 'jenis_dokumen' => 'skl'))->row_array();
 		$this->data['skhu'] = $this->model_crud->selectData('dokumen_pmb', array('nodaf' => $this->data['biodata']['nodaf'], 'jenis_dokumen' => 'skhu'))->row_array();
 		$this->data['foto'] = $this->model_crud->selectData('dokumen_pmb', array('nodaf' => $this->data['biodata']['nodaf'], 'jenis_dokumen' => 'foto'))->row_array();
 		$this->data['ktp'] = $this->model_crud->selectData('dokumen_pmb', array('nodaf' => $this->data['biodata']['nodaf'], 'jenis_dokumen' => 'ktp'))->row_array();
 		$this->data['bukti'] = $this->model_crud->selectData('dokumen_pmb', array('nodaf' => $this->data['biodata']['nodaf'], 'jenis_dokumen' => 'bukti_bayar'))->row_array();
+
 		$this->load->view('view_main', $this->data);
 	}
 
@@ -978,5 +982,17 @@ class Main_user extends CI_Controller
 		}
 		$this->data['skhu'] = $this->model_crud->selectData('dokumen_pmb', array('nodaf' => $this->data['biodata']['nodaf'], 'jenis_dokumen' => 'skhu'))->row_array();
 		$this->load->view('user/upload_data_skhu', $this->data);
+	}
+
+	public function upload_data_skl()
+	{
+		if (empty($this->session->userdata['username'])) {
+			redirect(base_url());
+		}
+		if (empty($this->data['biodata'])) {
+			redirect(base_url('main_user'));
+		}
+		$this->data['skl'] = $this->model_crud->selectData('dokumen_pmb', array('nodaf' => $this->data['biodata']['nodaf'], 'jenis_dokumen' => 'skl'))->row_array();
+		$this->load->view('user/upload_data_skl', $this->data);
 	}
 }

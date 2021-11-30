@@ -48,33 +48,29 @@
 
 <div class="card">
     <div class="card-body">
-        <!--<?php //if (empty($bukti)) { 
+        <?php if (empty($bukti)) { 
             ?>
             <div class="alert alert-secondary" style="background-color: #fafafa;">
-                <p class="blink mb-0" style="font-size:16px;font-weight:600;color:red;animation: blink 2s linear infinite"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Perhatian! Harap Mengupload Bukti Bayar (Struk Transfer Pendaftaran).<br /><span style="font-size:24px;font-weight:700">Biaya Pendaftaran Sebesar Rp.150.000,-</span></p>
-                <p class="mb-2" style="font-size:16px;font-weight:600;color:red;">Setelah Mengupload Bukti Bayar (Struk Transfer Pendaftaran) harap konfirmasi via WA dengan no. 0858-48888-445.</p>
+                <p class="blink mb-0" style="font-size:14px;font-weight:600;color:red;animation: blink 2s linear infinite"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Perhatian!<br/>Harap Membayar Biaya Pendaftaran.<br /><span style="font-size:16px;font-weight:700">Biaya Pendaftaran Rp.<?=  number_format("$biayadaftar",2,",",".");;?></span></p>
+                <!--<p class="mb-2" style="font-size:12px;font-weight:600;color:red;">Setelah Mengupload Bukti Bayar (Struk Transfer Pendaftaran) harap konfirmasi via WA dengan no. 0858-48888-445.</p>-->
                 <div>
-                    <b>Dibayarkan Via Transfer ke:</b>
+                    <b>Dibayarkan Via Transfer ke Nomor VA (Virtual Account) Bank Muamalat:</b>
                     <br />
-                    Bank MANDIRI Nomor Rekenin 18000-2299-2244 - Universitas Amikom Purwokerto
-                    <br />
-                    Bank BRI Nomor Rekening 0077-01-001-851302 - Universitas Amikom Purwokerto
-                    <br />
-                    Bank MUAMALAT Nomor Rekening 541-008-1993 - Yayasan Amikom Purwokerto
+                   <?= $biodata['va'];?>
                 </div>
             </div>
-        <?php //} 
-        ?>-->
+        <?php } 
+        ?>
 
         <div class="row">
             <div class="col-sm-9">
 
-                <!--<div class="row">
+                <div class="row">
                     <div class="col-sm-3">
-                        <h5>1. BUKTI BAYAR</h5>
+                        <h5>BUKTI BAYAR (Manual)</h5>
                     </div>
                     <div class="col-sm-9">
-                        <?php //if (empty($bukti)) { 
+                        <?php if (empty($bukti)) { 
                         ?>
                             <form class="dropzone" action="<?= base_url() ?>main_user/post_dokumen?act=bukti_bayar" enctype="multipart/form-data" id="buktiDropzone">
                                 <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
@@ -83,17 +79,17 @@
                                     <input type="file" name="bukti_bayar">
                                 </div>
                             </form>
-                        <?php //} else { 
+                        <?php } else { 
                         ?>
                             <div id="data_bukti">
 
                             </div>
-                        <?php //} 
+                        <?php } 
                         ?>
                     </div>
                 </div>
 
-                <hr class="my-3" />-->
+                <hr class="my-3" />
 
                 <div class="row">
                     <div class="col-sm-3">
@@ -232,7 +228,7 @@
     </div>
 </div>
 
-<!--<script>
+<script>
     var $jquery = jQuery.noConflict();
     Dropzone.autoDiscover = false;
     $jquery(document).ready(function() {
@@ -267,7 +263,7 @@
             }
         });
     }
-</script>-->
+</script>
 <script>
     var $jquery = jQuery.noConflict();
     Dropzone.autoDiscover = false;

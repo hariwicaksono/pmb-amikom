@@ -64,10 +64,10 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => '172.16.15.39,1433',
+	'hostname' => '172.16.15.37,1433',
 	'username' => 'pmb_ol',
 	'password' => 'pmb4m1k0mpurw0k3rt0_0l',
-	'database' => 'DB_TEST5',
+	'database' => 'DB_PWT',
 	'dbdriver' => 'sqlsrv',
 	'dbprefix' => '',
 	'pconnect' => FALSE,

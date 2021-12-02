@@ -76,7 +76,7 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <button type="submit" class="btn btn-success btn-block" id="simpan" onClick="fbq('track', 'SubmitApplication');"><i class="fa fa-check-square-o" aria-hidden="true"></i> Daftar</button>
+                                <button type="submit" class="btn btn-success btn-block" id="simpan"><i class="fa fa-check-square-o" aria-hidden="true"></i> Daftar</button>
                             </div>
                         </form>
                     </div>

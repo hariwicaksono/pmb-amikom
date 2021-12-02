@@ -4,7 +4,7 @@
     <div class="card shadow">
         <?php
         $gelombang=$this->mgelombang->cek_daftar(array('thn_akademik'=>$tahun_pmb));
-        if (empty($gelombang)) {
+        if (!empty($gelombang)) {
             ?>
         <div class="tab-content" style="min-height: 500px;">
         <div class="tab-pane fade show active">

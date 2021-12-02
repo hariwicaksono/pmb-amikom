@@ -16,7 +16,8 @@ application/logs/*
 !application/logs/.htaccess
 /vendor/
 
-appconf/config/database.php
-appconf/models/Memail.php
+application/config/database.php
+application/config/email.php
+application/helpers/email_helper.php
+application/models/Memail.php
 /dokumen/
-appconf/models/Model_email.php

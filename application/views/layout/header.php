@@ -293,7 +293,7 @@
             </a>
           </li>
           <li>
-            <a href="https://bit.ly/brosuramikompwt21">
+            <a href="https://bit.ly/jppo22">
               <img src="<?= base_url('assets/main/images/iconpack/smartphone.png') ?>" alt="" width="35" /><br /><span>Download Brosur</span>
             </a>
           </li>

@@ -482,8 +482,8 @@ class Page extends CI_Controller
 
 	function register()
 	{
-		$this->load->library('email');
-		$this->load->model('memail');
+		//$this->load->library('email');
+		//$this->load->model('memail');
 		$this->data['konten'] = 'view_register';
 		$this->data['content_title'] = 'SELAMAT DATANG CALON MAHASISWA BARU UNIVERSITAS AMIKOM PURWOKERTO';
 		if (isset($_POST['nama'])) {
@@ -496,20 +496,32 @@ class Page extends CI_Controller
 					history.go(-1);
 				</script>
 <?php } else {
-				$this->model_crud->insertData(
-					'registrasi_pmb',
-					array(
-						'username' => $_POST['username'],
-						'nama' => $_POST['nama'],
-						'telp' => $_POST['telp'],
-						'email' => $_POST['email'],
-						'password' => $_POST['password'],
-						'tahun_daftar' => date("Y"),
-						'tanggal_daftar' => date("Y-m-d H:i:s")
-					)
-				);
+				$this->model_crud->insertData('registrasi_pmb',array('username' => $_POST['username'],'nama' => $_POST['nama'],'telp' => $_POST['telp'],'email' => $_POST['email'],'password' => $_POST['password'],'tahun_daftar' => date("Y"),'tanggal_daftar' => date("Y-m-d H:i:s")));
+				//$this->memail->email_reg($_POST['email']);
+				$this->load->config('email');
+				$this->load->library('email');
+				//$this->email->set_newline("\r\n");
+            	//$this->email->set_header('MIME-Version', '1.0; charset=utf-8');
+            	//$this->email->set_header('Content-type', 'text/html');
+				$from = $this->config->item('smtp_user');
+				$to = $this->input->post('email');
+				$subject = 'Pendaftaran Akun PMB Online Universitas AMIKOM Purwokerto';
 
-				$this->memail->email_reg($_POST['email']);
+				$this->data['email'] = $_POST['email'];
+				$this->data['username'] = $_POST['username'];
+				$this->data['password'] = $_POST['password'];
+				$message = $this->load->view('email/email_register', $this->data,  TRUE);
+
+				$this->email->from($from);
+				$this->email->to($to);
+				$this->email->subject($subject);
+				$this->email->message($message);
+
+				if ($this->email->send()) {
+					echo 'Your Email has successfully been sent.';
+				} else {
+					show_error($this->email->print_debugger());
+				}
 				$this->session->set_flashdata('info', "Proses daftar akun berhasil, silahkan Login untuk melakukan Pendaftaran PMB");
 				redirect(base_url('page/login'));
 			}

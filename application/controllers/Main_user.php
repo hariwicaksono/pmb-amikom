@@ -160,6 +160,18 @@ class Main_user extends CI_Controller
 				'va'=>$va_calonmhs
 			);
 			$this->model_crud->insertData('calonsiswa', $data);
+			
+			$tagihan = array(
+				'NODAF' => $nodaf,
+				'NOREF' => $noref,
+				'NOMINAL' => $biayadaftar,
+				'TGL_TRANSAKSI' => date('Y-m-d H:i:s'),
+				'JENIS_PEMBAYARAN' => 17,
+				'TAHUN' => $this->data['tahun_pmb'],
+				'STATUS' => 1,
+				'JALUR_PEMBAYARAN' => 'cspmb',
+			);
+			$this->model_crud->insertData('KEUANGAN_PEMBAYARAN_PENDAFTARAN', $tagihan);
 		} else {
 			$data2 = array(
 				'jenis_mhs' => $jenis_mhs,

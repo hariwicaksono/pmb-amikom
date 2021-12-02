@@ -77,7 +77,7 @@
 							<li>Fotocopy KK &amp; KTP (masing-masing 1 lembar)</li>
 							<li>Fotocopy Ijazah &amp; Transkrip Nilai terakhir (masing-masing 1 lembar)</li>
 							<li>Pas Photo berwarna ukuran 3 x 4 cm (2 lembar)</li>
-							<li>Membayar Biaya Pendaftaran Rp 150.000, (seratus lima puluh ribu rupiah)</li>
+							<li>Membayar Biaya Pendaftaran Rp 200.000, (dua ratus ribu rupiah)</li>
 						</ol>
 						<p>B. Mahasiswa <strong>Transfer/pindahan</strong></p>
 						<ol type="a">
@@ -86,7 +86,7 @@
 							<li>Menyerahkan Transkrip dan Ijazah dari PT asal (Rangkap 2)</li>
 							<li>Surat Pindah dari Perguruan Tinggi Asal</li>
 							<li>Pas Photo berwarna ukuran 3 x 4 cm (2 lembar)</li>
-							<li>Membayar Biaya Pendaftaran Rp 150.000, (seratus lima puluh ribu rupiah)</li>
+							<li>Membayar Biaya Pendaftaran Rp 200.000, (dua ratus ribu rupiah)</li>
 							<li>Membayar biaya pengakuan SKS (Rp 10.000,- per SKS)</li>
 						</ol>
 						<p>C. Mahasiswa <strong>Kelas PNS</strong></p>
@@ -96,7 +96,7 @@
 							<li>Menyerahkan Transkrip dan Ijazah dari PT asal (Rangkap 2)</li>
 							<li>Surat Ijin belajar dari perusahaan atau instansi</li>
 							<li>Pas Photo berwarna ukuran 3 x 4 cm (2 lembar)</li>
-							<li>Membayar Biaya Pendaftaran Rp 150.000, (seratus lima puluh ribu rupiah)</li>
+							<li>Membayar Biaya Pendaftaran Rp 200.000, (dua ratus ribu rupiah)</li>
 						</ol>
 
 					</div>

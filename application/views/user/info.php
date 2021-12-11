@@ -3,6 +3,8 @@ $pilihan1 = $this->model_crud->selectData('department', array('kd_dept' => $biod
 $pilihan2 = $this->model_crud->selectData('department', array('kd_dept' => $biodata['pilihan2']))->row_array();
 $pilihan3 = $this->model_crud->selectData('department', array('kd_dept' => $biodata['pilihan3']))->row_array();
 $jur_lulus = $this->model_crud->selectData('department', array('kd_dept' => $biodata['JUR_LULUS']))->row_array();
+$bayar_daftar = $this->model_crud->selectData('KEUANGAN_PEMBAYARAN_PENDAFTARAN', array('nodaf' => $biodata['nodaf']))->row_array();
+$jenis_mhs = $this->model_crud->selectData('MASTER_JENISMHS', array('ID_JENISMHS' => $biodata['ID_JENISMHS']))->row_array();
 ?>
 <div class="card">
 	<div class="card-body">
@@ -49,6 +51,22 @@ $jur_lulus = $this->model_crud->selectData('department', array('kd_dept' => $bio
 							<td>NO.VA</td>
 							<td style="font-weight: 600"><span id="nomor_va"><?= $va ?></a></td>
 						</tr>
+						<tr>
+							<td>BIAYA DAFTAR / STATUS</td>
+							<td style="font-weight: 600">
+								<?php $biayadaftar = $biodata['BIAYA_PENDAFTARAN'];
+								echo "Rp" . number_format("$biayadaftar", 2, ",", "."); ?>
+								/
+								<?php
+								if ($bayar_daftar['STATUS'] == 1) {
+									$status = "<div class='badge badge-success'>Dibayar</div>";
+								} else {
+									$status = "<div class='badge badge-danger'>Belum Dibayar</div>";
+								}
+								echo $status;
+								?>
+							</td>
+						</tr>
 						<?php if (($biodata['status_registrasi'] == 'KIP-Kuliah') || ($biodata['status_registrasi'] == 'KIP-Kuliah2')) { ?>
 							<tr>
 								<td>NO.KIPK</td>
@@ -87,11 +105,24 @@ $jur_lulus = $this->model_crud->selectData('department', array('kd_dept' => $bio
 				</table>
 				<!-- STATUS PENDAFTARAN -->
 				<h5>Status</h5>
+				<?php if (empty($biodata['nikktp'])) : ?>
+					<span class="text-warning"><strong><i class="fa fa-exclamation-triangle"></i> Perhatian!</strong><br/>
+					Biodata diri Belum diisi</span><br/>
+				<?php endif ?>
+				<?php if (empty($biodata['sekolah'])) : ?>
+					<span class="text-warning">Data Sekolah Belum diisi</span><br/>
+				<?php endif ?>
+				<?php if (empty($biodata['alamat'])) : ?>
+					<span class="text-warning">Data Alamat Belum diisi</span><br/>
+				<?php endif ?>
+				<?php if (empty($biodata['NAMA_ORTU'])) : ?>
+					<span class="text-warning">Data Orang Tua Belum diisi</span>
+				<?php endif ?>
 				<div class="card py-0 mb-2">
 					<div class="row d-flex justify-content-center">
 						<div class="col-12">
 							<ul id="progressbar" class="text-center">
-								<li class="<?php if (!empty($biodata)) echo "activ"; ?> step0"></li>
+								<li class="<?php if (!empty($biodata['nodaf'] && $biodata['sekolah'] && $biodata['alamat'] && $biodata['NAMA_ORTU'])) echo "activ"; ?> step0"></li>
 								<li class="<?php if ($biodata['syarat1'] == 'Lengkap') echo "activ"; ?> step0"></li>
 								<li class="<?php if ($biodata['syarat2'] == 'Sudah') echo "activ"; ?> step0"></li>
 								<li class="<?php if (($biodata['ket_lulus'] == 'Lulus') && ($biodata['JUR_LULUS'] != '')) echo "activ"; ?> step0"></li>
@@ -167,17 +198,19 @@ $jur_lulus = $this->model_crud->selectData('department', array('kd_dept' => $bio
 
 <script type="text/javascript">
 	var $jquery = jQuery.noConflict();
-	$jquery(document).ready(function(){
-		$jquery("#generate_va").click(function(event){
+	$jquery(document).ready(function() {
+		$jquery("#generate_va").click(function(event) {
 			event.preventDefault()
-			var nodaf=$jquery(this).attr('nodaf');
-			var url='main_user/generate_va';
+			var nodaf = $jquery(this).attr('nodaf');
+			var url = 'main_user/generate_va';
 			$jquery.ajax({
-				type : 'post',
-				url : '<?=base_url()?>'+url,
-				data : { nodaf:nodaf },
-				cache : false,
-				success : function(data){
+				type: 'post',
+				url: '<?= base_url() ?>' + url,
+				data: {
+					nodaf: nodaf
+				},
+				cache: false,
+				success: function(data) {
 					$jquery("#nomor_va").html(data);
 				}
 			})

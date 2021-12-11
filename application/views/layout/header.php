@@ -238,7 +238,7 @@
               ?>
               <?=
               'Selamat ' . $salam;
-              ?>, <?= $this->session->userdata['username']; ?> <b class="caret"></b>
+              ?>, <?= $this->session->userdata['email']; ?> <b class="caret"></b>
             </a>
             <div class="dropdown-menu dropdown-menu-lg-right" aria-labelledby="navbarDropdown">
               <a class="dropdown-item" href="#"> <?= $this->session->userdata['nama']; ?></a>

@@ -48,18 +48,17 @@
 
 <div class="card">
     <div class="card-body">
-        <?php if (empty($bukti)) { 
-            ?>
+        <?php if (empty($bukti)) {
+        ?>
             <div class="alert alert-secondary" style="background-color: #fafafa;">
-                <p class="blink mb-0" style="font-size:14px;font-weight:600;color:red;animation: blink 2s linear infinite"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Perhatian!<br/>Harap Membayar Biaya Pendaftaran.<br /><span style="font-size:16px;font-weight:700">Biaya Pendaftaran Rp.<?=  number_format("$biayadaftar",2,",",".");;?></span></p>
-                <!--<p class="mb-2" style="font-size:12px;font-weight:600;color:red;">Setelah Mengupload Bukti Bayar (Struk Transfer Pendaftaran) harap konfirmasi via WA dengan no. 0858-48888-445.</p>-->
+                <p class="blink mb-0" style="font-size:16px;font-weight:600;color:red;animation: blink 2s linear infinite"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Perhatian!<br />Harap Membayar Biaya Pendaftaran. <span style="font-size:16px;font-weight:700">Biaya Pendaftaran Rp.<?= number_format("$biayadaftar", 2, ",", "."); ?></span></p>
                 <div>
                     <b>Dibayarkan Via Transfer ke Nomor VA (Virtual Account) Bank Muamalat:</b>
                     <br />
-                   <?= $biodata['va'];?>
+                    <?= $biodata['va']; ?>
                 </div>
             </div>
-        <?php } 
+        <?php }
         ?>
 
         <div class="row">
@@ -70,7 +69,17 @@
                         <h5>BUKTI BAYAR (Manual)</h5>
                     </div>
                     <div class="col-sm-9">
-                        <?php if (empty($bukti)) { 
+                        <?php
+                        if ($bayar_daftar['STATUS'] == 1) {
+                            $status = "<div class='badge badge-success'>Dibayar</div>";
+                        } else {
+                            $status = "<div class='badge badge-danger'>Belum Dibayar</div>";
+                        }
+                        echo "STATUS: " . $status." &mdash; ";
+                        echo "PEMBAYARAN: " . $bayar_daftar['JALUR_PEMBAYARAN'];
+                        ?>
+                        <br/><small>*Keterangan: Pembayaran otomatis terverifikasi oleh Bank, Jika status "Dibayar" anda tidak diharuskan Upload Bukti Bayar.</small>
+                        <?php if (empty($bukti)) {
                         ?>
                             <form class="dropzone" action="<?= base_url() ?>main_user/post_dokumen?act=bukti_bayar" enctype="multipart/form-data" id="buktiDropzone">
                                 <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
@@ -79,12 +88,12 @@
                                     <input type="file" name="bukti_bayar">
                                 </div>
                             </form>
-                        <?php } else { 
+                        <?php } else {
                         ?>
                             <div id="data_bukti">
 
                             </div>
-                        <?php } 
+                        <?php }
                         ?>
                     </div>
                 </div>
@@ -212,7 +221,7 @@
                         <?php } ?>
                     </div>
                 </div>
-                <br/>
+                <br />
             </div>
 
             <div class="col-sm-3">

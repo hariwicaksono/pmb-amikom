@@ -4,7 +4,7 @@
     <div class="card shadow">
         <?php
         $gelombang=$this->mgelombang->cek_daftar(array('thn_akademik'=>$tahun_pmb));
-        if (!empty($gelombang)) {
+        if (empty($gelombang)) {
             ?>
         <div class="tab-content" style="min-height: 500px;">
         <div class="tab-pane fade show active">
@@ -28,14 +28,14 @@
         </li>
     
         <li class="nav-item" id="ribbon3" >
-        <a class="nav-link <?php if ($this->uri->segment(2)=='upload') echo "active";?>" <?php if (!empty($biodata)) { ?> href="<?=base_url()?>main_user/upload?act=det" <?php } else { ?>  onclick="alert1();" <?php }  ?>  >Upload</a></li>
+        <a class="nav-link <?php if ($this->uri->segment(2)=='upload') echo "active";?>" <?php if (!empty($biodata)) { ?> href="<?=base_url()?>main_user/upload" <?php } else { ?>  onclick="alert1();" <?php }  ?>  >Upload</a></li>
 
         <?php if ($biodata['status_registrasi']=='KIP-Kuliah' || $biodata['status_registrasi']=='KIP-Kuliah2') { ?>
         <li class="nav-item" id="ribbon4">
-        <a class="nav-link font-weight-bold <?php if ($this->uri->segment(2)=='mulaiujian') echo "active";?>" <?php if (($biodata['syarat2']=='Sudah')) { ?> href="<?=base_url()?>main_user/mulaiujian?act=det" <?php } else { ?>  onclick="alert2();" <?php }  ?>  >Ujian KIPK</a></li>
+        <a class="nav-link font-weight-bold <?php if ($this->uri->segment(2)=='mulaiujian') echo "active";?>" <?php if (($biodata['syarat2']=='Sudah')) { ?> href="<?=base_url()?>main_user/mulaiujian" <?php } else { ?>  onclick="alert2();" <?php }  ?>  >Ujian KIPK</a></li>
         <?php } else {?> 
         <li class="nav-item" id="ribbon4">
-        <a class="nav-link <?php if ($this->uri->segment(2)=='mulaiujian') echo "active";?>" <?php if (($biodata['syarat2']=='Sudah')) { ?> href="<?=base_url()?>main_user/mulaiujian?act=det" <?php } else { ?>  onclick="alert2();" <?php }  ?>  >Ujian</a></li>
+        <a class="nav-link <?php if ($this->uri->segment(2)=='mulaiujian') echo "active";?>" <?php if (($biodata['syarat2']=='Sudah')) { ?> href="<?=base_url()?>main_user/mulaiujian" <?php } else { ?>  onclick="alert2();" <?php }  ?>  >Ujian</a></li>
         <?php }?>
 
         

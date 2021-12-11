@@ -85,6 +85,7 @@ class Main_user extends CI_Controller
 		$this->data['foto'] = $this->model_crud->selectData('dokumen_pmb', array('nodaf' => $this->data['biodata']['nodaf'], 'jenis_dokumen' => 'foto'))->row_array();
 		$this->data['ktp'] = $this->model_crud->selectData('dokumen_pmb', array('nodaf' => $this->data['biodata']['nodaf'], 'jenis_dokumen' => 'ktp'))->row_array();
 		$this->data['bukti'] = $this->model_crud->selectData('dokumen_pmb', array('nodaf' => $this->data['biodata']['nodaf'], 'jenis_dokumen' => 'bukti_bayar'))->row_array();
+		$this->data['bayar_daftar'] = $this->model_crud->selectData('KEUANGAN_PEMBAYARAN_PENDAFTARAN', array('nodaf' => $this->data['biodata']['nodaf']))->row_array();
 
 		$this->load->view('view_main', $this->data);
 	}
@@ -168,8 +169,7 @@ class Main_user extends CI_Controller
 				'TGL_TRANSAKSI' => date('Y-m-d H:i:s'),
 				'JENIS_PEMBAYARAN' => 17,
 				'TAHUN' => $this->data['tahun_pmb'],
-				'STATUS' => 1,
-				'JALUR_PEMBAYARAN' => 'cspmb',
+				'STATUS' => 0,
 			);
 			$this->model_crud->insertData('KEUANGAN_PEMBAYARAN_PENDAFTARAN', $tagihan);
 		} else {

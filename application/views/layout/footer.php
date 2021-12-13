@@ -1,22 +1,25 @@
     <div class="gdt-purple-1 text-white border-0 py-5">
         <div class="container">
             <div class="row">
-                <div class="col-md-3">
-                    <a href="https://goo.gl/maps/JExNCJiqcFrVX6iUA" alt="Link Maps Amikom Purwokerto"><img src="<?= base_url('assets/main/images/amikom-map.png'); ?>" class="img-fluid py-3" width="350" alt="amikom-map" /></a>
-                </div>
-                <div class="col-md-6">
+                <!--<div class="col-md-2">
+                    <a href="https://goo.gl/maps/JExNCJiqcFrVX6iUA" alt="Link Maps Amikom Purwokerto"><img src="<?//= base_url('assets/main/images/amikom-map.png'); ?>" class="img-fluid py-3" width="350" alt="amikom-map" /></a>
+                </div>-->
+                <div class="col-md-7">
                     <h5>Hubungi Kami</h5>
-                    <h4 class="mb-2">Universitas Amikom Purwokerto</h4>
+                    <h2 class="mb-2">Universitas Amikom Purwokerto</h2>
                     <h6 style="font-weight: 400">Jl. Letjen Pol Soemarto Watumas<br />
                         Purwanegara, Purwokerto, Banyumas 53127<br />
                         Telp: (0281) 623321<br />
-                        Whatsapp: 0858 4888 8445</h6>
+                        Whatsapp: 0858 4888 8445</h6><br/>
                     <!--<a href="https://pesan.link/tanyaAmikom" target="_blank" class="btn btn-success mb-2" title="Chat Kami" alt="Chat Kami" rel="noopener noreferrer"><i class="fa fa-whatsapp" aria-hidden="true"></i> Chat Kami</a>-->
                 </div>
 
-                <div class="col-md-3">
-                    <h4 class="mb-3">Scan Lokasi</h4>
-                    <img src="<?= base_url('assets/main/images/amikom-qr.png'); ?>" class="img-fluid" width="120" alt="" />
+                <div class="col-md-5">
+                    <a href="https://goo.gl/maps/JExNCJiqcFrVX6iUA" alt="Link Maps Amikom Purwokerto"><h4 class="mb-3">Lokasi</h4></a>
+                    <!--<img src="<?//= base_url('assets/main/images/amikom-qr.png'); ?>" class="img-fluid" width="120" alt="" />-->
+                    <div class="embed-responsive embed-responsive-16by9">
+                    <iframe class="embed-responsive-item" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3956.5807772891662!2d109.22903365069075!3d-7.400779794633966!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e655ef25207e1e1%3A0xcedb82ef04ed7e7c!2sUniversitas%20Amikom%20Purwokerto!5e0!3m2!1sid!2sid!4v1639358640497!5m2!1sid!2sid" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
                 </div>
             </div>
 

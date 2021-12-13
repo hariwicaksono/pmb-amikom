@@ -65,6 +65,40 @@ $jenis_mhs = $this->model_crud->selectData('MASTER_JENISMHS', array('ID_JENISMHS
 								}
 								echo $status;
 								?>
+								/
+								<!-- Button trigger modal -->
+								<a href="#" class="font-weight-normal" data-toggle="modal" data-target="#bModal">
+									Panduan Bayar
+								</a>
+								<!-- Modal -->
+								<div class="modal fade" id="bModal" tabindex="-1" aria-labelledby="bModalLabel" aria-hidden="true">
+									<div class="modal-dialog modal-dialog-scrollable">
+										<div class="modal-content">
+											<div class="modal-header">
+												<h5 class="modal-title" id="bModalLabel">TATA CARA PEMBAYARAN</h5>
+												<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+													<span aria-hidden="true">&times;</span>
+												</button>
+											</div>
+											<div class="modal-body font-weight-normal">
+											Calon Mahasiswa dapat melakukan pembayaran biaya pendaftaran dengan beberapa cara sebagai berikut:<br/>
+											<strong>1. Melalui Teller Bank Muamalat</strong><br/>
+											Pembayaran dapat dilakukan melalui Payment Point Bank Muamalat depan kampus atau seluruh Bank Muamalat seluruh Indonesia dengan cara mengisi slip setoran yang telah tersedia, isi no. Virtual Account: <?=$biodata['va']?>, kemudian tuliskan total biaya sesuai tagihan.<br/>
+											<strong>2. Melalui ATM, Internet Banking, Mobile Banking Bank Muamalat</strong><br/>
+											Masuk ke menu Pembayaran - Virtual Account <?=$biodata['va']?>, kemudian ketik total biaya sesuai tagihan.<br/>
+											<strong>3. Melalui ATM Bank Lain</strong><br/>
+											Pilih menu Transfer Antar Bank, jika diminta masukan kode bank, masukkan kode (147) kemudian masukkan <?=$biodata['va']?> kemudian ketik total biaya sesuai tagihan.<br/>
+											<strong>4. Melalui Internet Banking / Mobile Banking Bank Lain</strong><br/>
+											Pilih menu Transfer Antar Bank, kemudian pilih Bank Muamalat - Ketik Virtual Account <?=$biodata['va']?> - Jika Meminta no referensi atau kode bank, masukkan kode (147) kemudian ketik total biaya sesuai tagihan.<br/>
+											<strong>5. Melalui Teller Bank Lain</strong><br/>
+											Dapat ditanyakan ke masing-masing bank untuk tata cara pengisian slip storan pembayaran ke no. Virtual Account.
+											</div>
+											<div class="modal-footer">
+												<button type="button" class="btn btn-primary" data-dismiss="modal">Tutup</button>
+											</div>
+										</div>
+									</div>
+								</div><!--modal-->
 							</td>
 						</tr>
 						<?php if (($biodata['status_registrasi'] == 'KIP-Kuliah') || ($biodata['status_registrasi'] == 'KIP-Kuliah2')) { ?>
@@ -106,19 +140,18 @@ $jenis_mhs = $this->model_crud->selectData('MASTER_JENISMHS', array('ID_JENISMHS
 				<!-- STATUS PENDAFTARAN -->
 				<h5>Status</h5>
 				<?php if (empty($biodata['nikktp'])) : ?>
-					<span class="text-warning"><strong><i class="fa fa-exclamation-triangle"></i> Perhatian!</strong><br/>
-					Biodata diri Belum diisi</span><br/>
+					<span class="text-warning"><strong><i class="fa fa-exclamation-triangle"></i></strong> Biodata diri Belum diisi</span><br />
 				<?php endif ?>
 				<?php if (empty($biodata['sekolah'])) : ?>
-					<span class="text-warning">Data Sekolah Belum diisi</span><br/>
+					<span class="text-warning"><strong><i class="fa fa-exclamation-triangle"></i></strong> Data Sekolah Belum diisi</span><br />
 				<?php endif ?>
 				<?php if (empty($biodata['alamat'])) : ?>
-					<span class="text-warning">Data Alamat Belum diisi</span><br/>
+					<span class="text-warning"><strong><i class="fa fa-exclamation-triangle"></i></strong> Data Alamat Belum diisi</span><br />
 				<?php endif ?>
 				<?php if (empty($biodata['NAMA_ORTU'])) : ?>
-					<span class="text-warning">Data Orang Tua Belum diisi</span>
+					<span class="text-warning"><strong><i class="fa fa-exclamation-triangle"></i></strong> Data Orang Tua Belum diisi</span>
 				<?php endif ?>
-				<div class="card py-0 mb-2">
+				<div class="card py-0 my-2">
 					<div class="row d-flex justify-content-center">
 						<div class="col-12">
 							<ul id="progressbar" class="text-center">

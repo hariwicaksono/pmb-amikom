@@ -34,7 +34,7 @@
     <script src="<?= base_url('assets/plugins/offline-js/offline.js'); ?>" type="text/javascript"></script>
     <script src="<?= base_url('assets/js/zoom.min.js'); ?>" type="text/javascript"></script>
     <script src="<?= base_url('assets/js/aos.js'); ?>" type="text/javascript"></script>
-    <script src="<?= base_url('assets/js/loadingoverlay.min.js'); ?>" type="text/javascript"></script>
+    <!--<script src="<?//= base_url('assets/js/loadingoverlay.min.js'); ?>" type="text/javascript"></script>-->
     <script src="<?= base_url('assets/js/floating-wpp.min.js'); ?>" type="text/javascript"></script>
     <script src="<?= base_url('assets/plugins/jquery-ui-1.12.1.custom/jquery-ui.min.js'); ?>" type="text/javascript"></script>
 
@@ -86,16 +86,16 @@
         });
     </script>
 
-    <script>
+    <!--<script>
         var $jQuery = jQuery.noConflict();
         $jQuery("#carousel").LoadingOverlay("show", {
             background: "rgba(255, 255, 255, 0.8)",
-            image: "<?= base_url('assets/main/images/loading.svg'); ?>",
+            image: "<?//= base_url('assets/main/images/loading.svg'); ?>",
             size: 25
         });
         $jQuery("#carousel").LoadingOverlay("show");
         $jQuery("#carousel").LoadingOverlay("hide", true);
-    </script>
+    </script>-->
 
     <script type="text/javascript">
         var $jQuery = jQuery.noConflict();

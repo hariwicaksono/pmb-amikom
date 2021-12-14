@@ -34,12 +34,11 @@ $jenis_mhs = $this->model_crud->selectData('MASTER_JENISMHS', array('ID_JENISMHS
 				</div>
 			<?php } else { ?>
 				<?php
-
-				if (!empty($biodata['va'])) {
-					$va = $biodata['va'];
-				} else {
-					$va = "<button class='btn btn-sm btn-warning' id='generate_va' nodaf='" . $biodata['nodaf'] . "'>Generate VA</button>";
-				}
+				//if (!empty($biodata['va'])) {
+				//$va = $biodata['va'];
+				//} else {
+				//$va = "<button class='btn btn-sm btn-warning' id='generate_va' nodaf='" . $biodata['nodaf'] . "'>Generate VA</button>";
+				//}
 				?>
 				<table id="example" class="table table-sm mb-2">
 					<tbody>
@@ -48,8 +47,8 @@ $jenis_mhs = $this->model_crud->selectData('MASTER_JENISMHS', array('ID_JENISMHS
 							<td style="font-weight: 600"><?= $biodata['nodaf'] ?></td>
 						</tr>
 						<tr>
-							<td>NO.VA</td>
-							<td style="font-weight: 600"><span id="nomor_va"><?= $va ?></a></td>
+							<td>NO.VA MUAMALAT</td>
+							<td style="font-weight: 600"><a href="#" class="copy" data-toggle="tooltip" title="Copy ke Clipboard" data-clipboard data-clipboard-action="copy" data-clipboard-text="<?= $biodata['va']; ?>"><?= $biodata['va']; ?></a></td>
 						</tr>
 						<tr>
 							<td>BIAYA DAFTAR / STATUS</td>
@@ -81,24 +80,33 @@ $jenis_mhs = $this->model_crud->selectData('MASTER_JENISMHS', array('ID_JENISMHS
 												</button>
 											</div>
 											<div class="modal-body font-weight-normal">
-											Calon Mahasiswa dapat melakukan pembayaran biaya pendaftaran dengan beberapa cara sebagai berikut:<br/>
-											<strong>1. Melalui Teller Bank Muamalat</strong><br/>
-											Pembayaran dapat dilakukan melalui Payment Point Bank Muamalat depan kampus atau seluruh Bank Muamalat seluruh Indonesia dengan cara mengisi slip setoran yang telah tersedia, isi no. Virtual Account: <?=$biodata['va']?>, kemudian tuliskan total biaya sesuai tagihan.<br/>
-											<strong>2. Melalui ATM, Internet Banking, Mobile Banking Bank Muamalat</strong><br/>
-											Masuk ke menu Pembayaran - Virtual Account <?=$biodata['va']?>, kemudian ketik total biaya sesuai tagihan.<br/>
-											<strong>3. Melalui ATM Bank Lain</strong><br/>
-											Pilih menu Transfer Antar Bank, jika diminta masukan kode bank, masukkan kode (147) kemudian masukkan <?=$biodata['va']?> kemudian ketik total biaya sesuai tagihan.<br/>
-											<strong>4. Melalui Internet Banking / Mobile Banking Bank Lain</strong><br/>
-											Pilih menu Transfer Antar Bank, kemudian pilih Bank Muamalat - Ketik Virtual Account <?=$biodata['va']?> - Jika Meminta no referensi atau kode bank, masukkan kode (147) kemudian ketik total biaya sesuai tagihan.<br/>
-											<strong>5. Melalui Teller Bank Lain</strong><br/>
-											Dapat ditanyakan ke masing-masing bank untuk tata cara pengisian slip storan pembayaran ke no. Virtual Account.
+												Calon Mahasiswa dapat melakukan pembayaran biaya pendaftaran dengan beberapa cara sebagai berikut:<br />
+												<strong>Rekening Muamalat</strong><br />
+												1. Buka ATM / e-Banking / Internet Banking<br />
+												2. Pilih menu Transfer ke sesama Muamalat<br />
+												3. Masukkan 16 Digit no VA (Virtual Account) anda <?= $biodata['va']; ?><br />
+												4. Ketikkan nominal transfer (<?php $biayadaftar = $biodata['BIAYA_PENDAFTARAN'];
+								echo "Rp" . number_format("$biayadaftar", 2, ",", "."); ?>)<br />
+												5. Selanjutnya pastikan nama yang tertera telah sesuai dan nominal transfer sesuai kriteria<br />
+												6. Lakukan transfer<br />
+												<br />
+												<strong>Rekening Non-Muamalat (Setiap Sistem Mungkin Berbeda)</strong><br />
+												1. Buka ATM / e-Banking / Internet Banking<br />
+												2. Pilih menu Transfer ke Bank Lain<br />
+												3. Pilih Muamalat (Kode Bank : 147)<br />
+												3. Masukkan 16 Digit no VA (Virtual Account) anda <?= $biodata['va']; ?><br />
+												4. Ketikkan nominal transfer (<?php $biayadaftar = $biodata['BIAYA_PENDAFTARAN'];
+								echo "Rp" . number_format("$biayadaftar", 2, ",", "."); ?>)<br />
+												5. Selanjutnya pastikan nama yang tertera telah sesuai dan nominal transfer sesuai kriteria<br />
+												6. Lakukan transfer
 											</div>
 											<div class="modal-footer">
 												<button type="button" class="btn btn-primary" data-dismiss="modal">Tutup</button>
 											</div>
 										</div>
 									</div>
-								</div><!--modal-->
+								</div>
+								<!--modal-->
 							</td>
 						</tr>
 						<?php if (($biodata['status_registrasi'] == 'KIP-Kuliah') || ($biodata['status_registrasi'] == 'KIP-Kuliah2')) { ?>
@@ -229,7 +237,26 @@ $jenis_mhs = $this->model_crud->selectData('MASTER_JENISMHS', array('ID_JENISMHS
 	</div>
 </div>
 
-<script type="text/javascript">
+<script src="<?= base_url('assets/js/clipboard.min.js'); ?>" type="text/javascript"></script>
+<script src="<?= base_url('assets/js/clipboard.highlight.pack.min.js'); ?>" type="text/javascript"></script>
+<script src="<?= base_url('assets/js/clipboard.tooltips.js'); ?>" type="text/javascript"></script>
+<script>
+	var clipboardDemos = new ClipboardJS('[data-clipboard]');
+	clipboardDemos.on('success', function(e) {
+		e.clearSelection();
+		//console.info('Action:', e.action);
+		console.info('Text:', e.text);
+		//console.info('Trigger:', e.trigger);
+		showTooltip(e.trigger, 'Copied! to Clipboard');
+	});
+	clipboardDemos.on('error', function(e) {
+		console.error('Action:', e.action);
+		console.error('Trigger:', e.trigger);
+		showTooltip(e.trigger, fallbackMessage(e.action));
+	});
+</script>
+
+<!--<script type="text/javascript">
 	var $jquery = jQuery.noConflict();
 	$jquery(document).ready(function() {
 		$jquery("#generate_va").click(function(event) {
@@ -238,7 +265,8 @@ $jenis_mhs = $this->model_crud->selectData('MASTER_JENISMHS', array('ID_JENISMHS
 			var url = 'main_user/generate_va';
 			$jquery.ajax({
 				type: 'post',
-				url: '<?= base_url() ?>' + url,
+				url: '<? //= base_url() 
+						?>' + url,
 				data: {
 					nodaf: nodaf
 				},
@@ -249,4 +277,4 @@ $jenis_mhs = $this->model_crud->selectData('MASTER_JENISMHS', array('ID_JENISMHS
 			})
 		});
 	});
-</script>
+</script>-->

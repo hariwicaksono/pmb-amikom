@@ -10,6 +10,7 @@ $gelombang = $this->mgelombang->cek_daftar(array('thn_akademik' => $tha));
     <input type="hidden" name="kode_gelombang" value="<?= $gelombang['kode'] ?>">
     <input type="hidden" name="email" value="<?= $this->session->userdata['email'] ?>">
     <input type="hidden" name="nama" value="<?= $this->session->userdata['nama'] ?>">
+    <input type="hidden" name="telp" value="<?= $this->session->userdata['telp'] ?>">
 
     <div class="form-group">
         <label class="control-label">Jenis Pendaftaran *</label>

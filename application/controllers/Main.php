@@ -77,6 +77,7 @@ class Main extends CI_Controller
                 $this->session->set_userdata('username', $hasil['username']);
                 $this->session->set_userdata('nama', $hasil['nama']);
                 $this->session->set_userdata('email', $hasil['email']);
+                $this->session->set_userdata('telp', $hasil['telp']);
                 echo "ok";
             } else {
                 echo "<div class='alert alert-warning'><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button>Periksa kembali Username dan Password</div>";

@@ -140,7 +140,9 @@ class Main_user extends CI_Controller
 				'pilihan2' => $_POST['pilihan2'],
 				'pilihan3' => $_POST['pilihan3'],
 				'nama' => $_POST['nama'],
+				'telepon' => $_POST['telp'],
 				'email' => $_POST['email'],
+				'no_wa' => $_POST['telp'],
 				'komentar' => $data_checkbox,
 				'thn_akademik' => $this->data['tahun_pmb'],
 				'gelombang' => $gelombang['kode'],
@@ -485,7 +487,7 @@ class Main_user extends CI_Controller
 			if (!$this->upload->do_upload("ijazah")) {
 				echo "<center>File belum dipilih atau tipe file yang diupload tidak sesuai <input type=button value=<<Back onclick=history.back(-1) /></center>";
 			} else {
-				$this->model_crud->insertData('dokumen_pmb', array('jenis_dokumen' => 'ijazah', 'nodaf' => $_POST['nodaf'], 'nama_dokumen' => $this->upload->data('file_name')));
+				$this->model_crud->insertData('dokumen_pmb', array('jenis_dokumen' => 'ijazah', 'nodaf' => $_POST['nodaf'], 'nama_dokumen' => $this->upload->data('file_name'), 'checklist' => 0, 'created_at' => date('Y-m-d H:i:s')));
 				$this->session->set_flashdata('info', "Data Berhasil ditambahkan");
 				//redirect(base_url('main_user/upload?act=det'));
 			}
@@ -504,7 +506,7 @@ class Main_user extends CI_Controller
 			if (!$this->upload->do_upload("skl")) {
 				echo "<center>File belum dipilih atau tipe file yang diupload tidak sesuai <input type=button value=<<Back onclick=history.back(-1) /></center>";
 			} else {
-				$this->model_crud->insertData('dokumen_pmb', array('jenis_dokumen' => 'skl', 'nodaf' => $_POST['nodaf'], 'nama_dokumen' => $this->upload->data('file_name')));
+				$this->model_crud->insertData('dokumen_pmb', array('jenis_dokumen' => 'skl', 'nodaf' => $_POST['nodaf'], 'nama_dokumen' => $this->upload->data('file_name'), 'checklist' => 0, 'created_at' => date('Y-m-d H:i:s')));
 				$this->session->set_flashdata('info', "Data Berhasil ditambahkan");
 				//redirect(base_url('main_user/upload?act=det'));
 			}
@@ -523,7 +525,7 @@ class Main_user extends CI_Controller
 			if (!$this->upload->do_upload("skhu")) {
 				echo "<center>File belum dipilih atau tipe file yang diupload tidak sesuai <input type=button value=Go Back onclick=history.back(-1) /></center>";
 			} else {
-				$this->model_crud->insertData('dokumen_pmb', array('jenis_dokumen' => 'skhu', 'nodaf' => $_POST['nodaf'], 'nama_dokumen' => $this->upload->data('file_name')));
+				$this->model_crud->insertData('dokumen_pmb', array('jenis_dokumen' => 'skhu', 'nodaf' => $_POST['nodaf'], 'nama_dokumen' => $this->upload->data('file_name'), 'checklist' => 0, 'created_at' => date('Y-m-d H:i:s')));
 				$this->session->set_flashdata('info', "Data Berhasil ditambahkan");
 				//redirect(base_url('main_user/upload?act=det'));
 			}
@@ -542,7 +544,7 @@ class Main_user extends CI_Controller
 			if (!$this->upload->do_upload("foto")) {
 				echo "<center>File belum dipilih atau tipe file yang diupload tidak sesuai <input type=button value=Go Back onclick=history.back(-1) /></center>";
 			} else {
-				$this->model_crud->insertData('dokumen_pmb', array('jenis_dokumen' => 'foto', 'nodaf' => $_POST['nodaf'], 'nama_dokumen' => $this->upload->data('file_name')));
+				$this->model_crud->insertData('dokumen_pmb', array('jenis_dokumen' => 'foto', 'nodaf' => $_POST['nodaf'], 'nama_dokumen' => $this->upload->data('file_name'), 'checklist' => 0, 'created_at' => date('Y-m-d H:i:s')));
 				$this->session->set_flashdata('info', "Data Berhasil ditambahkan");
 				//redirect(base_url('main_user/upload?act=det'));
 			}
@@ -561,7 +563,7 @@ class Main_user extends CI_Controller
 			if (!$this->upload->do_upload("ktp")) {
 				echo "<center>File belum dipilih atau tipe file yang diupload tidak sesuai <input type=button value=Go Back onclick=history.back(-1) /></center>";
 			} else {
-				$this->model_crud->insertData('dokumen_pmb', array('jenis_dokumen' => 'ktp', 'nodaf' => $_POST['nodaf'], 'nama_dokumen' => $this->upload->data('file_name')));
+				$this->model_crud->insertData('dokumen_pmb', array('jenis_dokumen' => 'ktp', 'nodaf' => $_POST['nodaf'], 'nama_dokumen' => $this->upload->data('file_name'), 'checklist' => 0, 'created_at' => date('Y-m-d H:i:s')));
 				$this->session->set_flashdata('info', "Data Berhasil ditambahkan");
 				//redirect(base_url('main_user/upload?act=det'));
 			}
@@ -580,14 +582,13 @@ class Main_user extends CI_Controller
 			if (!$this->upload->do_upload("bukti_bayar")) {
 				echo "<center>File belum dipilih atau tipe file yang diupload tidak sesuai <input type=button value=Go Back onclick=history.back(-1) /></center>";
 			} else {
-				$this->model_crud->insertData('dokumen_pmb', array('jenis_dokumen' => 'bukti_bayar', 'nodaf' => $_POST['nodaf'], 'nama_dokumen' => $this->upload->data('file_name')));
+				$this->model_crud->insertData('dokumen_pmb', array('jenis_dokumen' => 'bukti_bayar', 'nodaf' => $_POST['nodaf'], 'nama_dokumen' => $this->upload->data('file_name'), 'checklist' => 0, 'created_at' => date('Y-m-d H:i:s')));
 				$this->session->set_flashdata('info', "Data Berhasil ditambahkan");
 				//redirect(base_url('main_user/upload?act=det'));
 			}
 		}
 
 		if ($_GET['act'] == 'hapus') {
-
 
 			$cari = $this->model_crud->selectData('dokumen_pmb', array('id_dokumen' => $_GET['id']))->row_array();
 			$dokumen = $cari['jenis_dokumen'];

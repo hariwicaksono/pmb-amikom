@@ -1,3 +1,17 @@
+<style>
+    .form-control {
+        font-size: 1rem;
+    }
+
+    input[type="radio"],
+    input[type="checkbox"] {
+        -ms-transform: scale(1.3);
+        /* IE 9 */
+        -webkit-transform: scale(1.3);
+        /* Chrome, Safari, Opera */
+        transform: scale(1.3);
+    }
+</style>
 <div class="container">
     <div class="mt-4 mb-3">
 
@@ -25,36 +39,35 @@
 
                     <!-- <img src="<?= base_url('files/JalurPenerimaanB.png'); ?>" class="card-img-top mb-0" alt="Universitas Amikom Purwokerto" />-->
                     <div class="card-body">
-                        <h4 class="mb-2">Login</h4>
+                        <h3 class="mb-2">Login</h3>
                         <form role="form" method="post" action="" id="formlogin">
                             <div id="alerts"></div>
 
                             <div class="form-group">
                                 <div class="input-group">
                                     <div class="input-group-prepend">
-                                        <div class="input-group-text"><i class="fa fa-user"></i></div>
+                                        <div class="input-group-text bg-white"><i class="fa fa-user"></i></div>
                                     </div>
-                                    <input type="text" class="form-control input-lg" placeholder="Username" id="usernames" name="username" required="required">
+                                    <input type="text" class="form-control form-control-lg" placeholder="Username" id="usernames" name="username" required="required">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="input-group mb-1">
                                     <div class="input-group-prepend">
-                                        <div class="input-group-text"><i class="fa fa-lock"></i></div>
+                                        <div class="input-group-text bg-white"><i class="fa fa-lock"></i></div>
                                     </div>
-                                    <input type="password" class="form-control input-lg" placeholder="Password" id="passwords" name="password" required="required">
-                                </div>
-                                <!-- An element to toggle between password visibility -->
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" onclick="myPassword()" id="defaultCheck1">
-                                    <label for="defaultCheck1">
-                                        Show Password
-                                    </label>
+                                    <input type="password" class="form-control form-control-lg" placeholder="Password" id="passwords" name="password" required="required">
                                 </div>
                             </div>
 
+                            <div class="form-group form-check" style="padding-left:20px;">
+                                <!-- An element to toggle between password visibility -->
+                                <input class="form-check-input" type="checkbox" onclick="myPassword()" id="defaultCheck1">
+                                <label class="form-check-label pl-1" for="defaultCheck1">Lihat Password</label>
+                            </div>
+
                             <div class="form-group">
-                                <a href="#" class="btn btn-info btn-block mb-3" id="btnLogin" onclick="masuk_log();"><i class="fa fa-sign-in" aria-hidden="true"></i> Masuk</a>
+                                <a href="#" class="btn btn-info btn-lg btn-block mb-3" id="btnLogin" onclick="masuk_log();"><i class="fa fa-sign-in" aria-hidden="true"></i> Masuk</a>
                                 <a href="<?= base_url('page/register'); ?>">Belum punya Akun? Daftar</a>
                             </div>
 
@@ -71,7 +84,7 @@
 </div>
 
 
-<script src="<?= base_url('assets/js/jquery.validate.min.js');?>"></script>
+<script src="<?= base_url('assets/js/jquery.validate.min.js'); ?>"></script>
 
 <script type="text/javascript">
     var $jquery = jQuery.noConflict();

@@ -17,7 +17,7 @@
                 <div class="card shadow bg-white border-0" data-aos="fade-down">
 
                     <div class="card-body">
-                        <h4 class="mb-2">Daftar Akun PMB</h4>
+                        <h3 class="mb-2">Daftar Akun</h3>
                         <?php $info = $this->session->flashdata('info');
                         if (!empty($info)) { ?>
                             <div class="alert alert-success alert-dismissable" role="alert">
@@ -76,7 +76,8 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <button type="submit" class="btn btn-success btn-block" id="simpan"><i class="fa fa-check-square-o" aria-hidden="true"></i> Daftar</button>
+                                <button type="submit" class="btn btn-success btn-lg btn-block mb-3" id="simpan"><i class="fa fa-check-square-o" aria-hidden="true"></i> Daftar</button>
+                                <a href="<?= base_url('page/login'); ?>">Email Sudah Terdaftar? Login</a>
                             </div>
                         </form>
                     </div>

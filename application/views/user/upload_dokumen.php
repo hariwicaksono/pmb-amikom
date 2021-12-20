@@ -66,7 +66,14 @@
 
                 <div class="row">
                     <div class="col-sm-3">
-                        <h5>BUKTI BAYAR (Manual)</h5>
+                        <h5>BUKTI BAYAR (Manual)
+                            <?php
+                            if ($bukti['checklist'] == 1) {
+                                echo '<i class="fa fa-check-circle text-info" aria-hidden="true" title="Verified" alt="Verified"></i>';
+                            } else {
+                            }
+                            ?>
+                        </h5>
                     </div>
                     <div class="col-sm-9">
                         <?php
@@ -75,10 +82,10 @@
                         } else {
                             $status = "<div class='badge badge-danger'>Belum Dibayar</div>";
                         }
-                        echo "STATUS: " . $status." &mdash; ";
+                        echo "STATUS: " . $status . " &mdash; ";
                         echo "PEMBAYARAN: " . $bayar_daftar['JALUR_PEMBAYARAN'];
                         ?>
-                        <br/><small>*Keterangan: Pembayaran otomatis terverifikasi oleh Bank, Jika status "Dibayar" anda tidak diharuskan Upload Bukti Bayar.</small>
+                        <br /><small>*Keterangan: Pembayaran VA otomatis terverifikasi oleh Bank, Jika status "Dibayar" anda tidak diharuskan Upload Bukti Bayar.</small>
                         <?php if (empty($bukti)) {
                         ?>
                             <form class="dropzone" action="<?= base_url() ?>main_user/post_dokumen?act=bukti_bayar" enctype="multipart/form-data" id="buktiDropzone">
@@ -102,7 +109,14 @@
 
                 <div class="row">
                     <div class="col-sm-3">
-                        <h5>1. FOTO</h5>
+                        <h5>1. FOTO
+                            <?php
+                            if ($foto['checklist'] == 1) {
+                                echo '<i class="fa fa-check-circle text-info" aria-hidden="true" title="Verified" alt="Verified"></i>';
+                            } else {
+                            }
+                            ?>
+                        </h5>
                     </div>
                     <div class="col-sm-9">
                         <?php if (empty($foto)) { ?>
@@ -125,7 +139,14 @@
 
                 <div class="row">
                     <div class="col-sm-3">
-                        <h5>2. KTP</h5>
+                        <h5>2. KTP 
+                            <?php
+                            if ($ktp['checklist'] == 1) {
+                                echo '<i class="fa fa-check-circle text-info" aria-hidden="true" title="Verified" alt="Verified"></i>';
+                            } else {
+                            }
+                            ?>
+                        </h5>
                     </div>
                     <div class="col-sm-9">
                         <?php if (empty($ktp)) { ?>
@@ -148,7 +169,14 @@
 
                 <div class="row" id="formIjazah">
                     <div class="col-sm-3">
-                        <h5>3. IJAZAH / SKL</h5>
+                        <h5>3. IJAZAH / SKL
+                            <?php
+                            if ($ijazah['checklist'] == 1 || $skl['checklist'] == 1) {
+                                echo '<i class="fa fa-check-circle text-info" aria-hidden="true" title="Verified" alt="Verified"></i>';
+                            } else {
+                            }
+                            ?>
+                        </h5>
                     </div>
                     <div class="col-sm-9">
                         <ul class="nav nav-pills nav-fill mb-2 mt-1" id="myTab" role="tablist">
@@ -203,7 +231,14 @@
 
                 <div class="row">
                     <div class="col-sm-3">
-                        <h5>4. SKHU</h5>
+                        <h5>4. SKHU
+                            <?php
+                            if ($skhu['checklist'] == 1) {
+                                echo '<i class="fa fa-check-circle text-info" aria-hidden="true" title="Verified" alt="Verified"></i>';
+                            } else {
+                            }
+                            ?>
+                        </h5>
                     </div>
                     <div class="col-sm-9">
                         <?php if (empty($skhu)) { ?>

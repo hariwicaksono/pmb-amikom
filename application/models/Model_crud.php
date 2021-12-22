@@ -17,6 +17,13 @@ class Model_crud extends CI_model
         return $this->db->get_where($tablename, $data);
     }
 
+    function selectOrData($tablename = '', $data1 = array(), $data2 = array())
+    {
+        $this->db->where($data1);
+        $this->db->or_where($data2);
+        return $this->db->get($tablename);
+    }
+
     function deleteData($tablename = '', $data = array())
     {
         $this->db->delete($tablename, $data);

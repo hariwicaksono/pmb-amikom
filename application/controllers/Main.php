@@ -68,7 +68,7 @@ class Main extends CI_Controller
     function login_process()
     {
 
-        $hasil = $this->model_crud->selectData('registrasi_pmb', array('username' => $_POST['username']))->row_array();
+        $hasil = $this->model_crud->selectOrData('registrasi_pmb', array('username' => $_POST['username']), array('email' => $_POST['username']))->row_array();
 
         if (empty($hasil)) {
             echo "<div class='alert alert-warning'>username not found</div>";

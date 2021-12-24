@@ -137,36 +137,44 @@ $waktu = $waktu_selesai;
               <div class="card-body">
                 <div class="radio">
                   <label>
-                    <input name="pilihan[<?php echo $id; ?>]" type="radio" value="A">&nbsp;
+                    <input id="pilihan<?php echo $id; ?>" name="pilihan[<?php echo $id; ?>]" type="radio" value="A" onclick="window.localStorage.setItem('<?= $this->session->userdata['email']; ?>_pilihan<?php echo $id; ?>','A');">&nbsp;
                     <span style="font-size:18px;color:#000">A. <?php echo "$pilihan_a"; ?></span>
                   </label>
                 </div>
                 <div class="radio">
                   <label>
-                    <input name="pilihan[<?php echo $id; ?>]" type="radio" value="B">&nbsp;
+                    <input id="pilihan<?php echo $id; ?>" name="pilihan[<?php echo $id; ?>]" type="radio" value="B" onclick="window.localStorage.setItem('<?= $this->session->userdata['email']; ?>_pilihan<?php echo $id; ?>','B');">&nbsp;
                     <span style="font-size:18px;color:#000">B. <?php echo "$pilihan_b"; ?></span>
                   </label>
                 </div>
                 <div class="radio">
                   <label>
-                    <input name="pilihan[<?php echo $id; ?>]" type="radio" value="C">&nbsp;
+                    <input id="pilihan<?php echo $id; ?>" name="pilihan[<?php echo $id; ?>]" type="radio" value="C" onclick="window.localStorage.setItem('<?= $this->session->userdata['email']; ?>_pilihan<?php echo $id; ?>','C');">&nbsp;
                     <span style="font-size:18px;color:#000">C. <?php echo "$pilihan_c"; ?></span>
                   </label>
                 </div>
                 <div class="radio">
                   <label>
-                    <input name="pilihan[<?php echo $id; ?>]" type="radio" value="D">&nbsp;
+                    <input id="pilihan<?php echo $id; ?>" name="pilihan[<?php echo $id; ?>]" type="radio" value="D" onclick="window.localStorage.setItem('<?= $this->session->userdata['email']; ?>_pilihan<?php echo $id; ?>','D');">&nbsp;
                     <span style="font-size:18px;color:#000">D. <?php echo "$pilihan_d"; ?></span>
                   </label>
                 </div>
                 <div class="radio">
                   <label>
-                    <input name="pilihan[<?php echo $id; ?>]" type="radio" value="E">&nbsp;
+                    <input id="pilihan<?php echo $id; ?>" name="pilihan[<?php echo $id; ?>]" type="radio" value="E" onclick="window.localStorage.setItem('<?= $this->session->userdata['email']; ?>_pilihan<?php echo $id; ?>','E');">&nbsp;
                     <span style="font-size:18px;color:#000">E. <?php echo "$pilihan_e"; ?></span>
                   </label>
                 </div>
               </div>
             </div>
+
+            <script>
+              var thevalue = localStorage.getItem('<?= $this->session->userdata['email']; ?>_pilihan<?php echo $id; ?>');
+              var input = $('#pilihan<?php echo $id; ?>').val()
+              if (input === thevalue) {
+                $("#pilihan<?php echo $id; ?>").prop('checked', true);
+              }
+            </script>
 
           <?php } ?>
 
@@ -212,3 +220,9 @@ $waktu = $waktu_selesai;
 
   </div>
 </div>
+
+<script>
+  window.onbeforeunload = function() {
+    return "Kemungkinan Data akan hilang jika Anda meninggalkan halaman, apakah Anda yakin?";
+  };
+</script>

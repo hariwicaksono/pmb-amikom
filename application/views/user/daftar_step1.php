@@ -178,7 +178,7 @@ $gelombang = $this->mgelombang->cek_daftar(array('thn_akademik' => $tha));
         ?>
     </div>
 
-    <button type="submit" class="btn btn-success btn-lg" type="button" <?php if (!empty($biodata)) {
+    <button type="submit" class="btn btn-success" type="button" <?php if (!empty($biodata)) {
                                                                             if ($biodata['syarat2'] == 'Sudah') echo "disabled";
-                                                                        } ?>>Selanjutnya <i class="fa fa-chevron-right" aria-hidden="true"></i></button>
+                                                                        } ?>>Lanjut ke Biodata <i class="fa fa-chevron-right" aria-hidden="true"></i></button>
 </form>

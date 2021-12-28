@@ -125,8 +125,8 @@
 
     </div>
 
-    <a href="<?= base_url('main_user/daftar?act=step4') ?>" class="btn btn-primary btn-lg" type="button">Sebelumnya</a>
-    <button type="submit" class="btn btn-success btn-lg" type="button" <?php if (!empty($biodata)) {
+    <a href="<?= base_url('main_user/daftar?act=step4') ?>" class="btn btn-primary" type="button">Sebelumnya</a>
+    <button type="submit" class="btn btn-success" type="button" <?php if (!empty($biodata)) {
                                                                             if ($biodata['syarat2'] == 'Sudah') echo "disabled";
-                                                                        } ?>>Simpan & Selesai</button>
+                                                                        } ?>>SUBMIT</button>
 </form>

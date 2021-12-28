@@ -331,6 +331,9 @@ class Main_user extends CI_Controller
 
 		$nodaf = $this->model_crud->genNodaf($this->data['tahun_pmb']);
 		$noref = $this->model_crud->nomor_referensi($nodaf);
+        $kode_bank='7510360000';
+		$unix_va=substr(ltrim($nodaf),0,6);
+		$va_calonmhs=$kode_bank.$unix_va;
 		$gelombang = $this->mgelombang->cek_daftar(array('thn_akademik' => $this->data['tahun_pmb']));
 		$tgllahir = $_POST['thnlahir'] . '-' . $_POST['blnlahir'] . '-' . $_POST['tgllahir'];
 		$pecah = explode('/', $_POST['jenis_mhs']);
@@ -344,6 +347,15 @@ class Main_user extends CI_Controller
 		$data_checkbox = substr($data_checkbox, 0, -1);
 		$this->data['biodata'] = $this->model_crud->selectData('calonsiswa', array('email' => $this->session->userdata['email']))->row_array();
 
+        $dbjenismhs = $this->model_crud->selectData('MASTER_JENISMHS', array('ID_JENISMHS' => $id_jenismhs))->row_array();
+		$biayadaftar = $dbjenismhs['BIAYA_DAFTAR'];
+
+        if ($_POST['jurusan'] == 'Lainnya' || $_POST['jurusan'] == '') {
+			$jurusan = $this->input->post('jurusanlain', true);
+		} else {
+			$jurusan = $_POST['jurusan'];
+		}
+
 		if (empty($this->data['biodata'])) {
 			$data = array(
 				'nodaf' => $nodaf,
@@ -354,36 +366,37 @@ class Main_user extends CI_Controller
 				'pilihan1' => $_POST['pilihan1'],
 				'pilihan2' => $_POST['pilihan2'],
 				'pilihan3' => $_POST['pilihan3'],
-				'nama' => $_POST['nama'],
-				'nikktp' => $_POST['nik'],
-				'tempatlahir' => $_POST['tempatlahir'],
+				'nama' => $this->input->post('nama', true),
+				'nikktp' => $this->input->post('nik', true),
+				'tempatlahir' => $this->input->post('tempatlahir', true),
 				'tgllahir' => $tgllahir,
+                'kewargaan' => $_POST['kewargaan'],
 				'status_pernikahan' => $_POST['status_pernikahan'],
-				'sekolah' => $_POST['sekolah'],
-				'jurusan' => $_POST['jurusan'],
-				'alamat' => $_POST['alamat'],
+				'sekolah' => $this->input->post('sekolah', true),
+				'jurusan' => $jurusan,
+				'alamat' => $this->input->post('alamat', true),
 				'rt' => $_POST['rt'],
 				'rw' => $_POST['rw'],
 				'nem' => $_POST['nem'],
-				'kelurahan' => $_POST['kelurahan'],
-				'kecamatan' => $_POST['kecamatan'],
+				'kelurahan' => $this->input->post('kelurahan', true),
+				'kecamatan' => $this->input->post('kecamatan', true),
 				'kabupaten' => $_POST['kabupaten'],
 				'propinsi' => $_POST['propinsi'],
 				'kodepos' => $_POST['kodepos'],
 				'deskripsi_alamat' => $this->input->post('deskripsi_alamat', TRUE),
 				'agama' => $_POST['agama'],
 				'telepon' => $_POST['telepon'],
-				'nama_ortu' => $_POST['nama_ortu'],
-				'nama_ayah' => $_POST['nama_ayah'],
+				'nama_ortu' => $this->input->post('nama_ortu',true),
+				'nama_ayah' => $this->input->post('nama_ayah',true),
 				'telp_ortu' => $_POST['telp_ortu'],
 				'telp_ayah' => $_POST['telp_ayah'],
 				'pekerjaan_ortu' => $_POST['pekerjaan_ortu'],
 				'pekerjaan_ayah' => $_POST['pekerjaan_ayah'],
-				'alamatortu' => $_POST['alamat_ortu'],
+				'alamatortu' => $this->input->post('alamat_ortu',true),
 				'rt_ortu' => $_POST['rt_ortu'],
 				'rw_ortu' => $_POST['rw_ortu'],
-				'kelurahan_ortu' => $_POST['kelurahan_ortu'],
-				'kecamatan_ortu' => $_POST['kecamatan_ortu'],
+				'kelurahan_ortu' => $this->input->post('kelurahan_ortu',true),
+				'kecamatan_ortu' => $this->input->post('kecamatan_ortu',true),
 				'kabupaten_ortu' => $_POST['kabupaten_ortu'],
 				'propinsi_ortu' => $_POST['propinsi_ortu'],
 				'kodepos_ortu' => $_POST['kodepos_ortu'],
@@ -395,7 +408,7 @@ class Main_user extends CI_Controller
 				'tgldaftar' => date('Y-m-d'),
 				'id_relasi' => $_POST['relasi'],
 				//'tgl_tes'=>date('Y-m-d'),
-				'biaya_pendaftaran' => 150000,
+				'biaya_pendaftaran' => $biayadaftar,
 				'status' => 0,
 				'nama_cs' => 'ADMINTEST',
 				'kode_kerjasama' => 1,
@@ -406,9 +419,21 @@ class Main_user extends CI_Controller
 				'status_registrasi' => $_POST['status_reg'],
 				'no_kipk' => $_POST['no_kipk'],
 				'tahun_lulus' => $_POST['thn_lulus'],
-				'ukuran_jas' => $_POST['ukuran_jas']
+				'ukuran_jas' => $_POST['ukuran_jas'],
+                'va'=>$va_calonmhs
 			);
 			$this->model_crud->insertData('calonsiswa', $data);
+
+            $tagihan = array(
+				'NODAF' => $nodaf,
+				'NOREF' => $noref,
+				'NOMINAL' => $biayadaftar,
+				'TGL_TRANSAKSI' => date('Y-m-d H:i:s'),
+				'JENIS_PEMBAYARAN' => 17,
+				'TAHUN' => $this->data['tahun_pmb'],
+				'STATUS' => 0,
+			);
+			$this->model_crud->insertData('KEUANGAN_PEMBAYARAN_PENDAFTARAN', $tagihan);
 		} else {
 
 			$data2 = array(
@@ -418,36 +443,37 @@ class Main_user extends CI_Controller
 				'pilihan1' => $_POST['pilihan1'],
 				'pilihan2' => $_POST['pilihan2'],
 				'pilihan3' => $_POST['pilihan3'],
-				'nama' => $_POST['nama'],
-				'nikktp' => $_POST['nik'],
-				'tempatlahir' => $_POST['tempatlahir'],
+				'nama' => $this->input->post('nama', true),
+				'nikktp' => $this->input->post('nik', true),
+				'tempatlahir' => $this->input->post('tempatlahir', true),
 				'tgllahir' => $tgllahir,
+                'kewargaan' => $_POST['kewargaan'],
 				'status_pernikahan' => $_POST['status_pernikahan'],
-				'sekolah' => $_POST['sekolah'],
-				'jurusan' => $_POST['jurusan'],
-				'alamat' => $_POST['alamat'],
+				'sekolah' => $this->input->post('sekolah', true),
+				'jurusan' => $jurusan,
+				'alamat' => $this->input->post('alamat', true),
 				'rt' => $_POST['rt'],
 				'rw' => $_POST['rw'],
 				'nem' => $_POST['nem'],
-				'kelurahan' => $_POST['kelurahan'],
-				'kecamatan' => $_POST['kecamatan'],
+				'kelurahan' => $this->input->post('kelurahan', true),
+				'kecamatan' => $this->input->post('kecamatan', true),
 				'kabupaten' => $_POST['kabupaten'],
 				'propinsi' => $_POST['propinsi'],
 				'kodepos' => $_POST['kodepos'],
 				'deskripsi_alamat' => $this->input->post('deskripsi_alamat', TRUE),
 				'agama' => $_POST['agama'],
 				'telepon' => $_POST['telepon'],
-				'nama_ortu' => $_POST['nama_ortu'],
-				'nama_ayah' => $_POST['nama_ayah'],
+				'nama_ortu' => $this->input->post('nama_ortu',true),
+				'nama_ayah' => $this->input->post('nama_ayah',true),
 				'telp_ortu' => $_POST['telp_ortu'],
 				'telp_ayah' => $_POST['telp_ayah'],
 				'pekerjaan_ortu' => $_POST['pekerjaan_ortu'],
 				'pekerjaan_ayah' => $_POST['pekerjaan_ayah'],
-				'alamatortu' => $_POST['alamat_ortu'],
+				'alamatortu' => $this->input->post('alamat_ortu',true),
 				'rt_ortu' => $_POST['rt_ortu'],
 				'rw_ortu' => $_POST['rw_ortu'],
-				'kelurahan_ortu' => $_POST['kelurahan_ortu'],
-				'kecamatan_ortu' => $_POST['kecamatan_ortu'],
+				'kelurahan_ortu' => $this->input->post('kelurahan_ortu', true),
+				'kecamatan_ortu' => $this->input->post('kecamatan_ortu',true),
 				'kabupaten_ortu' => $_POST['kabupaten_ortu'],
 				'propinsi_ortu' => $_POST['propinsi_ortu'],
 				'kodepos_ortu' => $_POST['kodepos_ortu'],
@@ -463,9 +489,8 @@ class Main_user extends CI_Controller
 			$this->model_crud->updateData('calonsiswa', $data2, array('nodaf' => $this->data['biodata']['nodaf']));
 		}
 
-
-		$this->session->set_flashdata('info', "Data Berhasil diperbarui");
-		redirect(base_url('main_user/profil'));
+		$this->session->set_flashdata('info', "Data Berhasil disimpan");
+		redirect(base_url('main_user'));
 	}
 
 	function post_dokumen()

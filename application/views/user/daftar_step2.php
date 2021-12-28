@@ -167,8 +167,8 @@
         </div>
     </div>
 
-    <a href="<?= base_url('main_user/daftar?act=step1') ?>" class="btn btn-primary btn-lg" type="button">Sebelumnya</a>
-    <button type="submit" class="btn btn-success btn-lg" type="button" <?php if (!empty($biodata)) {
+    <a href="<?= base_url('main_user/daftar?act=step1') ?>" class="btn btn-primary" type="button">Sebelumnya</a>
+    <button type="submit" class="btn btn-success" type="button" <?php if (!empty($biodata)) {
                                                                             if ($biodata['syarat2'] == 'Sudah') echo "disabled";
-                                                                        } ?>>Selanjutnya <i class="fa fa-chevron-right" aria-hidden="true"></i></button>
+                                                                        } ?>>Lanjut ke Data Sekolah <i class="fa fa-chevron-right" aria-hidden="true"></i></button>
 </form>

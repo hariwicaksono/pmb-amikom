@@ -77,7 +77,8 @@
                             </div>
                             <div class="form-group">
                                 <button type="submit" class="btn btn-success btn-lg btn-block mb-3" id="simpan"><i class="fa fa-check-square-o" aria-hidden="true"></i> Daftar</button>
-                                <a href="<?= base_url('page/login'); ?>">Email Sudah Terdaftar? Login</a>
+                                <a href="<?= base_url('page/login'); ?>" alt="Email Sudah Terdaftar? Login">Email sudah terdaftar? Login</a>
+                                <a href="https://bit.ly/jppo22" class="float-right" alt="Download Brosur">Download Brosur</a>
                             </div>
                         </form>
                     </div>

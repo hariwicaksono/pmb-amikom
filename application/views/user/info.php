@@ -86,7 +86,8 @@ $jenis_mhs = $this->model_crud->selectData('MASTER_JENISMHS', array('ID_JENISMHS
 												2. Pilih menu Transfer ke sesama Muamalat<br />
 												3. Masukkan 16 Digit no VA (Virtual Account) anda <?= $biodata['va']; ?><br />
 												4. Ketikkan nominal transfer (<?php $biayadaftar = $biodata['BIAYA_PENDAFTARAN'];
-								echo "Rp" . number_format("$biayadaftar", 2, ",", "."); ?>)<br />
+								echo "Rp" . number_format("$biayadaftar", 2, ",", "."); ?>)*<br />
+												<span class="font-weight-normal text-small pl-2">*Biaya Admin VA Rp.2000</span><br/>
 												5. Selanjutnya pastikan nama yang tertera telah sesuai dan nominal transfer sesuai kriteria<br />
 												6. Lakukan transfer<br />
 												<br />
@@ -96,7 +97,8 @@ $jenis_mhs = $this->model_crud->selectData('MASTER_JENISMHS', array('ID_JENISMHS
 												3. Pilih Muamalat (Kode Bank : 147)<br />
 												3. Masukkan 16 Digit no VA (Virtual Account) anda <?= $biodata['va']; ?><br />
 												4. Ketikkan nominal transfer (<?php $biayadaftar = $biodata['BIAYA_PENDAFTARAN'];
-								echo "Rp" . number_format("$biayadaftar", 2, ",", "."); ?>)<br />
+								echo "Rp" . number_format("$biayadaftar", 2, ",", "."); ?>)*<br />
+												<span class="font-weight-normal text-small pl-2">*Biaya Admin VA Rp.2000</span><br/>
 												5. Selanjutnya pastikan nama yang tertera telah sesuai dan nominal transfer sesuai kriteria<br />
 												6. Lakukan transfer
 											</div>
@@ -107,6 +109,8 @@ $jenis_mhs = $this->model_crud->selectData('MASTER_JENISMHS', array('ID_JENISMHS
 									</div>
 								</div>
 								<!--modal-->
+								<br/>
+								<span class="font-weight-normal text-small">*Biaya Admin VA Rp.2000</span>
 							</td>
 						</tr>
 						<?php if (($biodata['status_registrasi'] == 'KIP-Kuliah') || ($biodata['status_registrasi'] == 'KIP-Kuliah2')) { ?>

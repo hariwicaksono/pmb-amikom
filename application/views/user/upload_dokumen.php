@@ -51,7 +51,8 @@
         <?php if (empty($bukti)) {
         ?>
             <div class="alert alert-secondary" style="background-color: #fafafa;">
-                <p class="blink mb-0" style="font-size:16px;font-weight:600;color:red;animation: blink 2s linear infinite"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Perhatian!<br />Harap Membayar Biaya Pendaftaran. <span style="font-size:16px;font-weight:700">Biaya Pendaftaran Rp.<?= number_format("$biayadaftar", 2, ",", "."); ?></span></p>
+                <p class="blink mb-0" style="font-size:16px;font-weight:600;color:red;animation: blink 2s linear infinite"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Perhatian!<br />Harap Membayar Biaya Pendaftaran. <span style="font-size:16px;font-weight:700">Biaya Pendaftaran Rp.<?= number_format("$biayadaftar", 2, ",", "."); ?>*<br/>
+				<span class="font-weight-normal text-small">*Biaya Admin VA Rp.2000</span></span></p>
                 <div>
                     <b>Dibayarkan Via Transfer ke Nomor VA (Virtual Account) Bank Muamalat:</b>
                     <br />
